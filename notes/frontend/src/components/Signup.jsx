@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function SignUp() {
+function SignUp(props) {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -51,7 +51,7 @@ function SignUp() {
         setIsError(false);
         setMessage(result.message);
       } else {
-        setIsError(True);
+        setIsError(true);
         setMessage(result.message || "Sign Up failed");
       }
     } catch (err) {
@@ -94,6 +94,17 @@ function SignUp() {
       />
       <button type="submit">Sign Up</button>
       {message && <p style={{ color: isError ? "red" : "green" }}>{message}</p>}
+
+      <div>
+        Already have an account?{" "}
+        <button
+          onClick={() => {
+            props.setPage("LogIn");
+          }}
+        >
+          Log In
+        </button>
+      </div>
     </form>
   );
 }

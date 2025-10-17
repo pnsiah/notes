@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Login() {
+function Login(props) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -33,7 +33,17 @@ function Login() {
         onChange={(e) => setUsername(e.target.value)}
         placeholder="confirm_password"
       />
-      <button type="submit">Sign Up</button>
+      <button type="submit">Log In</button>
+      <div>
+        Do not have an account?
+        <button
+          onClick={() => {
+            props.setPage("SignUp");
+          }}
+        >
+          Sign Up
+        </button>
+      </div>
     </form>
   );
 }
