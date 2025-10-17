@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
-import "./App.css";
+import LogIn from "./components/Login";
+import SignUp from "./components/Signup.jsx";
+// import "./App.css";
 
 function App() {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/message/")
-      .then((res) => res.json())
-      .then((data) => setMessage(data.message))
-      .catch((err) => console.error("Error:", err));
-  }, []);
-
-  return <h1>{message || "Loading..."}</h1>;
+  const [page, setPage] = useState("LogIn");
+  const pages = {
+    LogIn: <LogIn setPage={setPage} />,
+    SignUp: <SignUp setPage={setPage} />,
+  };
+  return <div>{pages[page]}</div>;
 }
 
 export default App;
