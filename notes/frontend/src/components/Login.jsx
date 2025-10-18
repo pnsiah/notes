@@ -1,37 +1,66 @@
+import Dashboard from "./Dashboard";
 import { useState } from "react";
 
 function Login(props) {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirm, setConfirm] = useState("");
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+
+  const [isError, setIsError] = useState(false);
+  const [message, setMessage] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("hello");
+    if (!formData.username.trim() || !formData.password.trim()) {
+      setIsError(true);
+      setMessage("All fields are required");
+    }
+    try {
+      const response = await fetch("http://localhost:8000/api/login/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+      if (result.status) {
+        // setIsError(false);
+        // setMessage(result.message);
+        props.setPage("Dashboard");
+        // <Dashboard />;
+        // return;
+      } else {
+        setIsError(true);
+        setMessage(result.message);
+      }
+    } catch (err) {
+      setIsError(true);
+      setMessage("Server error try again later");
+    }
   };
 
   return (
     <form action="" onSubmit={handleSubmit}>
       <input
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        value={formData.username}
+        name="username"
+        onChange={(e) =>
+          setFormData({ ...formData, [e.target.name]: e.target.value })
+        }
         placeholder="username"
       />
       <input
-        value={email}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="email"
-      />
-      <input
-        value={password}
-        onChange={(e) => setUsername(e.target.value)}
+        value={formData.password}
+        type="password"
+        name="password"
+        onChange={(e) =>
+          setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+          })
+        }
         placeholder="password"
-      />
-      <input
-        value={confirm}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="confirm_password"
       />
       <button type="submit">Log In</button>
       <div>
@@ -44,6 +73,7 @@ function Login(props) {
           Sign Up
         </button>
       </div>
+      {message && <p style={{ color: isError ? "red" : "green" }}>{message}</p>}
     </form>
   );
 }

@@ -1,3 +1,4 @@
+import Login from "./Login";
 import { useState } from "react";
 
 function SignUp(props) {
@@ -48,8 +49,9 @@ function SignUp(props) {
 
       const result = await response.json();
       if (result.status) {
-        setIsError(false);
-        setMessage(result.message);
+        // setIsError(false);
+        // setMessage(result.message);
+        props.setPage("LogIn");
       } else {
         setIsError(true);
         setMessage(result.message || "Sign Up failed");

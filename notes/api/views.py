@@ -1,4 +1,5 @@
 import json
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -42,12 +43,34 @@ def register(request):
         return JsonResponse({"status": False, "message": "Invalid request"}, status=405)
 
 
-def login(request):
-    pass
+@csrf_exempt
+def login_view(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        username = data.get("username")
+        password = data.get("password")
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return JsonResponse(
+                {"status": True, "message": "Logged in successfully"}, status=200
+            )
+        else:
+            return JsonResponse(
+                {"status": False, "message": "Invalid username or password"}, status=400
+            )
+    else:
+        return JsonResponse({"status": False, "message": "Invalid Request"}, status=405)
 
 
-def logout(request):
-    pass
+def logout_view(request):
+    logout(request)
+    return JsonResponse({"status": True, "message": "Log out succesful"})
+
+
+def dashboard(request):
+    return JsonResponse({"status": True, "user_data": json.dump(User)})
 
 
 def create_note(request):
