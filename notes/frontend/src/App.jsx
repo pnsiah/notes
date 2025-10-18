@@ -5,7 +5,15 @@ import SignUp from "./components/Signup.jsx";
 // import "./App.css";
 
 function App() {
-  const [page, setPage] = useState("LogIn");
+  // ✅ Load the last page from localStorage OR default to LogIn
+  const [page, setPage] = useState(
+    () => localStorage.getItem("page") || "LogIn",
+  );
+
+  // ✅ Whenever page changes, save it to localStorage
+  useEffect(() => {
+    localStorage.setItem("page", page);
+  }, [page]);
   const pages = {
     LogIn: <LogIn setPage={setPage} />,
     SignUp: <SignUp setPage={setPage} />,

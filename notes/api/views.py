@@ -64,13 +64,47 @@ def login_view(request):
         return JsonResponse({"status": False, "message": "Invalid Request"}, status=405)
 
 
+@csrf_exempt
 def logout_view(request):
     logout(request)
     return JsonResponse({"status": True, "message": "Log out succesful"})
 
 
+# @csrf_exempt
+# def dashboard(request):
+#     if request.user.is_authenticated:
+#         user = request.user
+#         user_data = {
+#             "username": user.username,
+#             "email": user.email,
+#         }
+#         return JsonResponse({"status": True, "user_data": user_data})
+#
+#
+@csrf_exempt
 def dashboard(request):
-    return JsonResponse({"status": True, "user_data": json.dump(User)})
+    if request.method == "POST":
+        if request.user.is_authenticated:
+            user = request.user
+            return JsonResponse(
+                {
+                    "status": True,
+                    "user_data": {
+                        "id": user.id,
+                        "username": user.username,
+                        "email": user.email,
+                    },
+                }
+            )
+        else:
+            return JsonResponse(
+                {"status": False, "message": "Not authenticated"}, status=401
+            )
+
+    # ✅ Make sure GET or other methods return something too
+    return JsonResponse(
+        {"status": False, "message": "Invalid request method"}, status=400
+    )
 
 
 def create_note(request):
