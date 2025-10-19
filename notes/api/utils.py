@@ -10,3 +10,11 @@ def save_note_with_tags(user, title, content, tag_list):
         note.tags.add(tag)
 
     return note
+
+
+def serialize_note(notes):
+    serialized_notes = []
+    for note in notes:
+        new_note = {"title": note.title, "content": note.content}
+        serialized_notes.append(new_note)
+    return serialized_notes

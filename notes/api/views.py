@@ -4,7 +4,8 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db import IntegrityError
-from .models import User
+from .models import User, Note
+from .utils import serialize_note
 
 
 def index(request):
@@ -86,6 +87,16 @@ def dashboard(request):
     if request.method == "POST":
         if request.user.is_authenticated:
             user = request.user
+            # notes = Note.objects.filter(user=user).values()
+            notes = Note.objects.values(
+                "id",
+                "title",
+                "content",
+                "folder__name",  # ✅ Access related model field
+                "tags__name",
+            )
+
+            # new_notes = serialize_note(notes)
             return JsonResponse(
                 {
                     "status": True,
@@ -93,6 +104,7 @@ def dashboard(request):
                         "id": user.id,
                         "username": user.username,
                         "email": user.email,
+                        "notes": list(notes),
                     },
                 }
             )

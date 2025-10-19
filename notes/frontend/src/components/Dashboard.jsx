@@ -12,6 +12,17 @@ function Dashboard(props) {
     console.log(result);
   };
 
+  // const fetchNotes = async () => {
+  //   const response = await fetch("http://localhost:8000/api/notes", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     credentials: "include",
+  //     body: JSON.stringify({}),
+  //   });
+  //   const result = await response.json();
+  //   console.log(result);
+  // };
+
   const handleLogOut = async () => {
     try {
       const response = await fetch("http://localhost:8000/api/logout/", {
