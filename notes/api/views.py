@@ -4,8 +4,8 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db import IntegrityError
-from .models import User, Note
-from .utils import serialize_note
+from .models import User, Note, Folder
+from .utils import serialize_note, save_note_with_tags
 
 
 def index(request):
@@ -88,14 +88,25 @@ def dashboard(request):
         if request.user.is_authenticated:
             user = request.user
             # notes = Note.objects.filter(user=user).values()
-            notes = Note.objects.values(
-                "id",
-                "title",
-                "content",
-                "folder__name",  # ✅ Access related model field
-                "tags__name",
-            )
+            # notes = Note.objects.values(
+            #     "id",
+            #     "title",
+            #     "content",
+            #     "folder",
+            #     "folder__name",
+            #     "tags__name",
+            # )
 
+            notes = Note.objects.filter(user=user).prefetch_related("tags")
+            new_notes = [
+                {
+                    "id": note.id,
+                    "title": note.title,
+                    "content": note.content,
+                    "tags": [tag.name for tag in note.tags.all()],
+                }
+                for note in notes
+            ]
             # new_notes = serialize_note(notes)
             return JsonResponse(
                 {
@@ -104,7 +115,7 @@ def dashboard(request):
                         "id": user.id,
                         "username": user.username,
                         "email": user.email,
-                        "notes": list(notes),
+                        "notes": new_notes,
                     },
                 }
             )
@@ -119,8 +130,37 @@ def dashboard(request):
     )
 
 
+@csrf_exempt
 def create_note(request):
-    pass
+    if request.method == "POST":
+        data = json.loads(request.body)
+        title = data.get("title").strip()
+        tags = data.get("tags")
+        content = data.get("content").strip()
+        folder_id = data.get("folder")
+
+        if not title:
+            return JsonResponse({"status": False, "message": "Title cannot be empty"})
+        elif not content:
+            return JsonResponse({"status": False, "message": "Content cannot be empty"})
+
+        note = Note(user=request.user, title=title, content=content)
+
+        if folder_id:
+            try:
+                note.folder = Folder.objects.get(id=folder_id, user=request.user)
+            except Folder.DoesNotExist:
+                return JsonResponse(
+                    {"status": False, "message": "Folder does not exists"}
+                )
+
+        note.save()
+
+        if tags:
+            save_note_with_tags(request.user, note, tags)
+        return JsonResponse({"status": True, "message": "Note created successfully"})
+    else:
+        JsonResponse({"status": False, "message": "Invalid request"}, status=405)
 
 
 def update_note(request):

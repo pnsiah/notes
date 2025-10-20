@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import NoteForm from "./NoteForm";
 
 function Dashboard(props) {
   const fetchUserData = async () => {
@@ -47,7 +48,7 @@ function Dashboard(props) {
   });
   return (
     <div>
-      Dashboard lol
+      <NoteForm />
       <button onClick={handleLogOut}>Log Out</button>
     </div>
   );
