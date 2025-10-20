@@ -1,7 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import NoteForm from "./NoteForm";
 
 function Dashboard(props) {
+  const [folder, setFolder] = useState("");
+
   const fetchUserData = async () => {
     const response = await fetch("http://localhost:8000/api/dashboard", {
       method: "POST",
@@ -64,6 +66,23 @@ function Dashboard(props) {
     }
   };
 
+  const createFolder = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:8000/api/create_folder/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          folder: folder,
+        }),
+      });
+      const result = await response.json();
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div>
       <NoteForm />
@@ -75,6 +94,19 @@ function Dashboard(props) {
       >
         Delete Note
       </button>
+      <div>
+        <form onSubmit={createFolder}>
+          <input
+            type="text"
+            placeholder="Create Folder"
+            value={folder}
+            onChange={(e) => {
+              setFolder(e.target.value);
+            }}
+          />
+          <button type="submit">Create Folder</button>
+        </form>
+      </div>
     </div>
   );
 }

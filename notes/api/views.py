@@ -179,6 +179,27 @@ def delete_note(request, note_id):
     return JsonResponse({"status": True, "message": "Note deleted successfully"})
 
 
+@csrf_exempt
+def create_folder(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        folder_name = data.get("folder", "").strip()
+        if not folder_name:
+            return JsonResponse(
+                {"status": False, "message": "Folder name cannot be empty"}, status=405
+            )
+
+        if Folder.objects.filter(user=request.user, name=folder_name).exists():
+            return JsonResponse(
+                {"status": False, "message": "Folder already exists"}, status=409
+            )
+
+        Folder.objects.create(name=folder_name, user=request.user)
+        return JsonResponse({"status": True, "message": "Folder created successfully"})
+    else:
+        return JsonResponse({"status": False, "message": "Invalid request"}, status=405)
+
+
 def list_notes(request):
     pass
 
