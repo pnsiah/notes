@@ -46,10 +46,35 @@ function Dashboard(props) {
   useEffect(() => {
     fetchUserData();
   });
+
+  const deleteNote = async (id) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/delete_note/${id}/`,
+        {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+        },
+      );
+      const result = await response.json();
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div>
       <NoteForm />
       <button onClick={handleLogOut}>Log Out</button>
+      <button
+        onClick={() => {
+          deleteNote(1);
+        }}
+      >
+        Delete Note
+      </button>
     </div>
   );
 }

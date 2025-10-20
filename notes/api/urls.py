@@ -7,6 +7,7 @@ urlpatterns = [
     path("api/login/", views.login_view, name="login_view"),
     path("api/logout/", views.logout_view, name="logout"),
     path("api/dashboard", views.dashboard, name="dashboard"),
+    path("api/delete_note/<int:note_id>/", views.delete_note, name="delete_note"),
     path("api/create_note/", views.create_note, name="create_note"),
     path("api/message/", views.message),
 ]

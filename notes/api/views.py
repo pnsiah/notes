@@ -1,11 +1,11 @@
 import json
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db import IntegrityError
 from .models import User, Note, Folder
-from .utils import serialize_note, save_note_with_tags
+from .utils import save_note_with_tags
 
 
 def index(request):
@@ -167,8 +167,16 @@ def update_note(request):
     pass
 
 
-def delete_note(request):
-    pass
+@csrf_exempt
+def delete_note(request, note_id):
+    if request.method != "DELETE":
+        return JsonResponse({"status": False, "message": "Invalid request"}, status=405)
+    note = get_object_or_404(Note, id=note_id)
+
+    if note.user != request.user:
+        return JsonResponse({"status": False, "message": "Denied"}, status=403)
+    note.delete()
+    return JsonResponse({"status": True, "message": "Note deleted successfully"})
 
 
 def list_notes(request):
