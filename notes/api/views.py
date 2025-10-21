@@ -73,6 +73,8 @@ def logout_view(request):
 
 # @csrf_exempt
 # def dashboard(request):
+
+
 #     if request.user.is_authenticated:
 #         user = request.user
 #         user_data = {
@@ -97,7 +99,9 @@ def dashboard(request):
             #     "tags__name",
             # )
 
-            notes = Note.objects.filter(user=user).prefetch_related("tags")
+            notes = Note.objects.filter(user=user, archived=False).prefetch_related(
+                "tags"
+            )
             new_notes = [
                 {
                     "id": note.id,
@@ -225,7 +229,36 @@ def list_notes(request):
 
 
 def list_archived_notes(request):
-    pass
+    if request.method == "GET":
+        notes = Note.objects.filter(user=request.user, archived=True).prefetch_related(
+            "tags"
+        )
+        archived_notes = [
+            {
+                "id": note.id,
+                "title": note.title,
+                "content": note.content,
+                "created_at": note.created_at,
+                "tags": [tag.name for tag in note.tags.all()],
+            }
+            for note in notes
+        ]
+        return JsonResponse(
+            {
+                "status": True,
+                "message": "Archived sent successfully",
+                "notes": archived_notes,
+            },
+            status=200,
+        )
+    else:
+        return JsonResponse(
+            {
+                "status": False,
+                "message": "Invalid request",
+            },
+            status=405,
+        )
 
 
 def list_tags(request):
