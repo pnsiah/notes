@@ -163,8 +163,28 @@ def create_note(request):
         JsonResponse({"status": False, "message": "Invalid request"}, status=405)
 
 
-def update_note(request):
-    pass
+@csrf_exempt
+def update_note(request, note_id):
+    if request.method == "PUT":
+        data = json.loads(request.body)
+        note = get_object_or_404(Note, id=note_id, user=request.user)
+        new_title = data.get("title")
+        new_content = data.get("content")
+        if not new_title or not new_content:
+            return JsonResponse(
+                {"status": False, "message": "Both fields cannot be empty"}, status=400
+            )
+        note.title = new_title
+        note.content = new_content
+        note.save()
+
+        if "tags" in data:
+            save_note_with_tags(user=request.user, note=note, tag_list=data["tags"])
+
+        return JsonResponse({"status": True, "message": "Note updated"})
+
+    else:
+        return JsonResponse({"status": False, "message": "Invalid request"}, status=405)
 
 
 @csrf_exempt
