@@ -1,10 +1,11 @@
 import json
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db import IntegrityError
-from .models import User, Note, Folder
+from .models import User, Note, Folder, Tag
 from .utils import save_note_with_tags
 
 
@@ -262,7 +263,19 @@ def list_archived_notes(request):
 
 
 def list_tags(request):
-    pass
+    if request.method == "GET":
+        tags = Tag.objects.filter(user=request.user).values("id", "name").distinct()
+        print(tags)
+        return JsonResponse(
+            {
+                "status": True,
+                "message": "Tags retrieved successfully",
+                "tags": list(tags),
+            },
+            status=200,
+        )
+
+    return JsonResponse({"status": False, "message": "Invalid request"}, status=405)
 
 
 def restore_note(request):
