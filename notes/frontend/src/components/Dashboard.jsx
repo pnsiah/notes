@@ -83,6 +83,20 @@ function Dashboard(props) {
       console.log(err);
     }
   };
+
+  const listTags = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/api/list_tags/", {
+        method: "GET",
+        credentials: "include",
+      });
+
+      const result = await response.json();
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div>
       <NoteForm />
@@ -107,6 +121,7 @@ function Dashboard(props) {
           <button type="submit">Create Folder</button>
         </form>
       </div>
+      <div onClick={listTags}>Tags</div>
     </div>
   );
 }
