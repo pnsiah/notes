@@ -1,7 +1,7 @@
 import json
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse
+from django.models import Q
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db import IntegrityError
@@ -283,7 +283,26 @@ def restore_note(request):
 
 
 def search(request):
-    pass
+    if request.method == "POST":
+        data = json.loads(request.data)
+        query = data.get("query", "").strip()
+        if not query:
+            return JsonResponse(
+                {"status": False, "message": "No search query"}, status=405
+            )
+        notes = (
+            Note.objects.filter(
+                Q(title__icontains=query) | Q(content=query) | Q(tag=query),
+                user=request.user,
+            )
+            .distint()
+            .values("id", "title", "content")
+        )
+        return JsonResponse(
+            {"status": True, "message": "Successfully retrieved", "notes": list(notes)},
+            status=405,
+        )
+    return JsonResponse({"status": False, "message": "Invalid request"}, status=405)
 
 
 def list_folders(request):
