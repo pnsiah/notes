@@ -3,6 +3,7 @@ import NoteForm from "./NoteForm";
 
 function Dashboard(props) {
   const [folder, setFolder] = useState("");
+  const [folderList, setFolderList] = useState([]);
 
   const fetchUserData = async () => {
     const response = await fetch("http://localhost:8000/api/dashboard", {
@@ -15,6 +16,20 @@ function Dashboard(props) {
     console.log(result);
   };
 
+  useEffect(() => {
+    fetch("http://localhost:8000/api/list_folders/", {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status) {
+          console.log("Folders:", data.folders);
+          setFolderList(data.folders);
+        }
+      })
+      .catch(console.error);
+  }, []);
   // const fetchNotes = async () => {
   //   const response = await fetch("http://localhost:8000/api/notes", {
   //     method: "POST",
@@ -122,6 +137,11 @@ function Dashboard(props) {
         </form>
       </div>
       <div onClick={listTags}>Tags</div>
+      <div>
+        {folderList
+          ? folderList.map((item) => <ul key={item.id}>{item.name}</ul>)
+          : "No folders created"}
+      </div>
     </div>
   );
 }
