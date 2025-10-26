@@ -1,7 +1,7 @@
 import json
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, get_object_or_404, redirect
-from django.models import Q
+from django.db.models import Q
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db import IntegrityError
@@ -295,7 +295,7 @@ def search(request):
                 Q(title__icontains=query) | Q(content=query) | Q(tag=query),
                 user=request.user,
             )
-            .distint()
+            .distinct()
             .values("id", "title", "content")
         )
         return JsonResponse(
@@ -306,4 +306,12 @@ def search(request):
 
 
 def list_folders(request):
-    pass
+    if request.method == "GET":
+        folders = Folder.objects.filter(user=request.user).values("id", "name")
+        return JsonResponse(
+            {"status": True, "message": "Folders retrieved", "folders": list(folders)},
+            status=200,
+        )
+
+    else:
+        return JsonResponse({"status": False, "message": "Invalid request"}, status=405)
