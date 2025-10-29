@@ -1,0 +1,118 @@
+.auth-container {
+  width: 40vw;
+  height: fit-content;
+  margin-inline: auto;
+  margin-top: calc((100vh - 50vh) / 4.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.auth-form {
+  width: 100%;
+  padding: 2rem;
+  border-radius: 0.5em;
+  background: #eee;
+  background-color: var(--card);
+  border: 3px solid var(--muted);
+}
+
+.form_image {
+  width: 100px;
+  height: 50px;
+  background-image: url("../assets/images/logo.svg");
+  margin: 0 auto;
+  background-size: contain;
+  /* background-position: center; */
+  background-repeat: no-repeat;
+}
+
+.header-info {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.header-info h3 {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 0.5em;
+  color: var(--card-foreground);
+}
+
+.header-info p {
+  margin-bottom: 0.9em;
+  color: var(--secondary);
+}
+
+.auth-form label {
+  color: var(--secondary-foreground);
+}
+
+.auth-form input {
+  padding: 0.7em;
+  font-size: 0.9rem;
+  border-radius: 0.5em;
+  margin-top: 0.2em;
+  border: 1px solid var(--neutral-300);
+}
+
+.auth-form input::placeholder {
+  color: var(--secondary);
+}
+
+.auth-form input:hover {
+  background-color: var(--muted);
+}
+
+.auth-form input:focus {
+  background-color: var(--muted);
+  border: 2px solid var(--neutral-300);
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.form-btn {
+  width: 100%;
+  text-align: center;
+  padding: 0.9em;
+  background-color: var(--blue-500);
+  color: white;
+  border-radius: 0.5em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.form-btn:hover {
+  background-color: var(--blue-700);
+}
+
+.auth-redirect {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: var(--secondary);
+  text-align: center;
+}
+
+.auth-link {
+  color: var(--card-foreground);
+  font-weight: 500;
+  margin-left: 0.3em;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.auth-link:hover {
+  color: var(--neutral-400); /* slightly lighter on hover */
+  text-decoration: underline;
+}
