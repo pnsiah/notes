@@ -32,27 +32,29 @@ function NoteForm() {
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        onChange={(e) => setTitle(e.target.value)}
-        value={title}
-        placeholder="Title"
-      />
-      <input
-        type="text"
-        onChange={(e) => setTags(e.target.value)}
-        value={tags}
-        placeholder="Tags"
-      />
-      <input
-        type="text"
-        onChange={(e) => setContent(e.target.value)}
-        value={content}
-        placeholder="Content"
-      />
-      <button type="submit">Save</button>
-    </form>
+    <div className="create-note">
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          onChange={(e) => setTitle(e.target.value)}
+          value={title}
+          placeholder="Title"
+        />
+        <input
+          type="text"
+          onChange={(e) => setTags(e.target.value)}
+          value={tags}
+          placeholder="Tags"
+        />
+        <input
+          type="text"
+          onChange={(e) => setContent(e.target.value)}
+          value={content}
+          placeholder="Content"
+        />
+        <button type="submit">Save</button>
+      </form>
+    </div>
   );
 }
 

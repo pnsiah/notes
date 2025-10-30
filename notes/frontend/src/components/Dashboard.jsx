@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
+import Header from "./Header";
 import NoteForm from "./NoteForm";
+import Notes from "./Notes";
+import NoteActions from "./NoteActions";
 import "../components/dashboard.css";
 
 function Dashboard(props) {
@@ -146,11 +149,15 @@ function Dashboard(props) {
       {/* </div> */}
       <Sidebar />
       {/* <div className="red">red</div> */}
+
       <div className="grid">
-        <div className="blue">blue</div>
-        <div className="green">green</div>
-        <div className="yellow">yellow</div>
-        <div className="orange">orange</div>
+        <Header />
+        {/* <div className="blue">blue</div> */}
+        <Notes />
+        <NoteForm />
+        <NoteActions />
+        {/* <div className="yellow">yellow</div> */}
+        {/* <div className="orange">orange</div> */}
       </div>
     </div>
   );

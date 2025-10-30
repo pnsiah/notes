@@ -1,4 +1,5 @@
 .dashboard-container {
+  display: block;
   color: white;
   display: flex;
   flex-direction: column;
@@ -50,37 +51,78 @@
   }
 }
 
-.blue {
+.header {
   grid-area: title;
-  background-color: blue;
+  color: black;
 }
 
-.green {
+.search-form {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .header {
+    display: flex;
+    /* justify-content: space-between; */
+    /* gap: 25em; */
+    align-items: center;
+    padding: 0.5em;
+  }
+  .header h2 {
+    font-size: 2em;
+    font-weight: bold;
+    width: 40%;
+  }
+  .search-form {
+    width: 60%;
+    margin-left: 3rem;
+    display: flex;
+    justify-self: flex-end;
+    align-items: center;
+    gap: 1em;
+    /* justify-content: space-between; */
+  }
+  .search-form form {
+    width: 70%;
+    margin-left: 8em;
+  }
+  .search {
+    background-color: moccasin;
+    border-radius: 0.5em;
+    width: 100%;
+    padding: 1em;
+    /* margin-left: 3em; */
+  }
+  .settings {
+    /* margin-left: 1em; */
+  }
+}
+.notes {
   grid-area: main;
   background-color: green;
 }
-.yellow {
+.create-note {
   background-color: yellow;
   grid-area: footer;
 }
 
 @media (min-width: 768px) {
-  .blue {
+  .header {
     grid-area: title;
     /* height: 200px; */
   }
 
-  .green {
+  .notes {
     grid-area: notes;
     /* height: 200px; */
   }
 
-  .yellow {
+  .create-note {
     /* height: 200px; */
     grid-area: main;
   }
 
-  .orange {
+  .note-actions {
     background-color: orangered;
   }
 }
