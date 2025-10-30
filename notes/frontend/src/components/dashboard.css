@@ -1,0 +1,139 @@
+.dashboard-container {
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .dashboard-container {
+    flex-direction: row;
+  }
+}
+
+.sidebar {
+  /* background-color: red; */
+  grid-area: sidebar;
+  width: 100vw;
+  height: 100px;
+  border-right: 1px solid var(--sidebar-foreground);
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    width: 200px;
+    min-height: 100vh;
+  }
+}
+
+.grid {
+  width: 100vw;
+  height: calc(100vh - 100px);
+  display: grid;
+  grid-template-areas:
+    "title"
+    "main"
+    "footer";
+  grid-template-columns: 1fr;
+  grid-template-rows: 50px 1fr 60px;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    width: calc(100vw - 200px);
+    height: 100vh;
+    display: grid;
+    grid-template-areas:
+      "title title title"
+      "notes main right";
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-rows: 70px auto;
+  }
+}
+
+.blue {
+  grid-area: title;
+  background-color: blue;
+}
+
+.green {
+  grid-area: main;
+  background-color: green;
+}
+.yellow {
+  background-color: yellow;
+  grid-area: footer;
+}
+
+@media (min-width: 768px) {
+  .blue {
+    grid-area: title;
+    /* height: 200px; */
+  }
+
+  .green {
+    grid-area: notes;
+    /* height: 200px; */
+  }
+
+  .yellow {
+    /* height: 200px; */
+    grid-area: main;
+  }
+
+  .orange {
+    background-color: orangered;
+  }
+}
+
+.sidebar-logo {
+  width: 100px;
+  height: 50px;
+  background-image: url("../assets/images/logo.svg");
+  margin: 0 auto;
+  background-size: contain;
+  /* background-position: center; */
+  background-repeat: no-repeat;
+  margin-top: 1em;
+  padding: 0.5em;
+}
+
+.menu-links {
+  margin: 0.5em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid var(--sidebar-foreground);
+}
+
+.sidebar-button {
+  width: 100%;
+  /* display: block; */
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4em;
+  margin-top: 0.5em;
+  border-radius: 0.5em;
+  cursor: pointer;
+}
+
+.tags {
+  color: black;
+  padding: 0.5em;
+  margin-bottom: 1px solid black;
+  margin-bottom: 10px solid red;
+}
+
+.tags-heading {
+  color: var(--secondary);
+  margin-bottom: 1em;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  margin: 0.5em;
+  /* padding: 0.5em; */
+}
+.tag-text {
+  margin-right: 0.5em;
+}

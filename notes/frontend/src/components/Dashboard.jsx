@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import Sidebar from "./Sidebar";
 import NoteForm from "./NoteForm";
+import "../components/dashboard.css";
 
 function Dashboard(props) {
   const [folder, setFolder] = useState("");
@@ -113,34 +115,42 @@ function Dashboard(props) {
     }
   };
   return (
-    <div>
-      <NoteForm />
-      <button onClick={handleLogOut}>Log Out</button>
-      <button
-        onClick={() => {
-          deleteNote(1);
-        }}
-      >
-        Delete Note
-      </button>
-      <div>
-        <form onSubmit={createFolder}>
-          <input
-            type="text"
-            placeholder="Create Folder"
-            value={folder}
-            onChange={(e) => {
-              setFolder(e.target.value);
-            }}
-          />
-          <button type="submit">Create Folder</button>
-        </form>
-      </div>
-      <div onClick={listTags}>Tags</div>
-      <div>
-        {folderList
-          ? folderList.map((item) => <ul key={item.id}>{item.name}</ul>)
-          : "No folders created"}
+    <div className="dashboard-container">
+      {/* <NoteForm /> */}
+      {/* <button onClick={handleLogOut}>Log Out</button> */}
+      {/* <button */}
+      {/*   onClick={() => { */}
+      {/*     deleteNote(1); */}
+      {/*   }} */}
+      {/* > */}
+      {/*   Delete Note */}
+      {/* </button> */}
+      {/* <div> */}
+      {/*   <form onSubmit={createFolder}> */}
+      {/*     <input */}
+      {/*       type="text" */}
+      {/*       placeholder="Create Folder" */}
+      {/*       value={folder} */}
+      {/*       onChange={(e) => { */}
+      {/*         setFolder(e.target.value); */}
+      {/*       }} */}
+      {/*     /> */}
+      {/*     <button type="submit">Create Folder</button> */}
+      {/*   </form> */}
+      {/* </div> */}
+      {/* <div onClick={listTags}>Tags</div> */}
+      {/* <div> */}
+      {/*   {folderList */}
+      {/*     ? folderList.map((item) => <ul key={item.id}>{item.name}</ul>) */}
+      {/*     : "No folders created"} */}
+      {/* </div> */}
+      <Sidebar />
+      {/* <div className="red">red</div> */}
+      <div className="grid">
+        <div className="blue">blue</div>
+        <div className="green">green</div>
+        <div className="yellow">yellow</div>
+        <div className="orange">orange</div>
       </div>
     </div>
   );
