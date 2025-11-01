@@ -46,7 +46,7 @@
     grid-template-areas:
       "title title title"
       "notes main right";
-    grid-template-columns: 200px 1fr 200px;
+    grid-template-columns: 250px 1fr 200px;
     grid-template-rows: 70px auto;
   }
 }
@@ -109,21 +109,153 @@
 @media (min-width: 768px) {
   .header {
     grid-area: title;
+    border-bottom: 1px solid black;
+
     /* height: 200px; */
   }
 
   .notes {
     grid-area: notes;
     /* height: 200px; */
+    background-color: white;
+    border-right: 1px solid black;
   }
 
   .create-note {
     /* height: 200px; */
     grid-area: main;
+    border-left: 1px solid black;
   }
 
   .note-actions {
-    background-color: orangered;
+    background-color: white;
+    color: black;
+  }
+  .note-list-container {
+    padding: 0.5em;
+  }
+  .new-note-btn {
+    display: flex;
+    align-items: center;
+    padding: 0.5em;
+    background-color: var(--blue-500);
+    color: white;
+    width: 100%;
+    border-radius: 0.5em;
+  }
+
+  .new-note-btn span {
+    margin-left: 0.5em;
+  }
+  .notes-list {
+    margin-top: 1em;
+  }
+  .note {
+    width: 100%;
+    color: black;
+    margin-bottom: 0.5em;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid black;
+  }
+  .note h4 {
+    font-weight: 600;
+  }
+  .tags-section {
+    padding: 0.8em;
+  }
+  .date {
+    font-size: 0.9rem;
+  }
+  .tags-section span {
+    width: fit-content;
+    padding: 0.2em 0.3em;
+    font-size: 0.9rem;
+    background-color: var(--secondary);
+    margin-left: 0.3em;
+    border-radius: 0.5em;
+  }
+  .create-note {
+    background: white;
+    padding: 0.5em;
+  }
+  .title {
+    padding: 0.5em;
+    font-size: 1.5rem;
+  }
+  .title:focus {
+    border-bottom: 1px solid black;
+  }
+  .form-divider {
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid black;
+  }
+  .note-inputs {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    /* justify-content: space-between; */
+  }
+  .note-inputs input {
+    width: 100%;
+    background-color: rosybrown;
+    padding: 0.5em;
+    font-size: 1rem;
+    border: 1px solid black;
+  }
+  .note-inputs input:focus {
+    background-color: red;
+  }
+  .left-text {
+    color: black;
+  }
+  .left-text span {
+    display: block;
+  }
+  .left {
+    display: flex;
+    gap: 0.5em;
+  }
+  .right {
+    flex: 1;
+  }
+  .content {
+    height: 20em;
+  }
+
+  .note-buttons {
+    padding: 0.5em;
+    margin-top: 0.5em;
+    border-top: 1px solid black;
+  }
+  .save {
+    padding: 0.5em 1.3rem;
+    font-size: 1.2rem;
+    border-radius: 0.5em;
+    margin-right: 1.5em;
+    color: white;
+    background-color: var(--blue-500);
+    cursor: pointer;
+  }
+  .cancel {
+    padding: 0.5em 1.3rem;
+    font-size: 1.2rem;
+    border-radius: 0.5em;
+    margin-right: 1.5em;
+    color: black;
+    cursor: pointer;
+  }
+  .action-button {
+    display: block;
+    margin: 0.5em 0 1em 0;
+    width: 90%;
+    border-radius: 0.5em;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.5em;
+    border: 1px solid black;
+    color: white;
   }
 }
 

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import tag from "../assets/images/icon-tag.svg";
+import clock from "../assets/images/icon-clock.svg";
 
 function NoteForm() {
   const [title, setTitle] = useState("");
@@ -38,21 +40,52 @@ function NoteForm() {
           type="text"
           onChange={(e) => setTitle(e.target.value)}
           value={title}
-          placeholder="Title"
+          className="title"
+          placeholder="Enter a title..."
         />
-        <input
-          type="text"
-          onChange={(e) => setTags(e.target.value)}
-          value={tags}
-          placeholder="Tags"
-        />
-        <input
+        <section className="form-divider">
+          <div className="note-inputs">
+            <div className="left">
+              <img src={tag} alt="" />
+              <p className="left-text">Tags</p>
+            </div>
+            <div className="right">
+              <input
+                type="text"
+                onChange={(e) => setTags(e.target.value)}
+                value={tags}
+                placeholder="Add tags separated by commas (e.g. Work, Planning)"
+              />
+            </div>
+          </div>
+          <div className="note-inputs">
+            <div className="left">
+              <img src={clock} alt="" />
+              <p className="left-text">
+                Last
+                <span>Edited</span>
+              </p>
+            </div>
+            <div className="right">
+              <input type="text" placeholder="Not yet saved" />
+            </div>
+          </div>
+        </section>
+        <textarea
+          className="content"
           type="text"
           onChange={(e) => setContent(e.target.value)}
           value={content}
-          placeholder="Content"
+          placeholder="Start typing your note here"
         />
-        <button type="submit">Save</button>
+        <div className="note-buttons">
+          <button className="save" type="submit">
+            Save Note
+          </button>
+          <button className="cancel" type="submit">
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );
