@@ -4,12 +4,14 @@ import Header from "./Header";
 import TagList from "./TagList";
 import NoteForm from "./NoteForm";
 import Notes from "./Notes";
+import View from "./View";
 import Footer from "./Footer";
 import NoteActions from "./NoteActions";
 import "../components/dashboard.css";
 
 function Dashboard(props) {
   const [folder, setFolder] = useState("");
+  const [view, setView] = useState("note");
   const [folderList, setFolderList] = useState([]);
 
   const fetchUserData = async () => {
@@ -149,22 +151,28 @@ function Dashboard(props) {
       {/*     ? folderList.map((item) => <ul key={item.id}>{item.name}</ul>) */}
       {/*     : "No folders created"} */}
       {/* </div> */}
-      <Sidebar />
+      <div className="small">
+        <Header showSearch={false} />
+        <View view={view} />
+        <Footer view={view} setView={setView} />
+      </div>
       {/* <div className="red">red</div> */}
 
-      <div className="grid">
-        <Header />
-        {/* <div className="blue">blue</div> */}
-        {/* <div className="main"> */}
-        <Notes />
-        <NoteForm />
-        <NoteActions />
-        {/* </div> */}
-        <TagList></TagList>
-        <Footer />
-        {/* <div className="footer">Footer</div> */}
-        {/* <div className="yellow">yellow</div> */}
-        {/* <div className="orange">orange</div> */}
+      <div className="big">
+        <Sidebar />
+        <div className="grid">
+          <Header />
+          {/* <div className="blue">blue</div> */}
+          {/* <div className="main"> */}
+          <Notes />
+          <NoteForm />
+          <NoteActions />
+          {/* </div> */}
+          {/* <TagList></TagList> */}
+          {/* <div className="footer">Footer</div> */}
+          {/* <div className="yellow">yellow</div> */}
+          {/* <div className="orange">orange</div> */}
+        </div>
       </div>
     </div>
   );
