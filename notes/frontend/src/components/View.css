@@ -1,0 +1,12 @@
+.view {
+  width: 100%;
+  height: fit-content;
+  grid-area: main;
+  background-color: red;
+}
+
+@media (min-width: 768px) {
+  .view {
+    display: none;
+  }
+}

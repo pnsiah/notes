@@ -51,17 +51,33 @@
   --neutral-100: #f3f5f8;
   --neutral-50: #f5f7fa;
   --neutral-0: #ffffff;
-
   --blue-700: #2547d0;
   --blue-500: #335cff;
   --blue-50: #ebf1ff;
+  --padding-xs: 0.25em; /* 4px  */
+  --padding-sm: 0.5em; /* 8px  */
+  --padding-md: 1em; /* 16px */
+  --padding-lg: 1.5em; /* 24px */
+  --padding-xl: 2em; /* 32px */
+  --padding-2xl: 3em; /* 48px */
 
+  /* If you want horizontal/vertical variants */
+  --padding-inline: var(--padding-md);
+  --padding-block: var(--padding-sm);
   --green-500: #21c16b;
   --green-100: #191b25;
 
   --red-500: #fb3748;
   --red-100: #ffd5d8;
 }
+@media (min-width: 768px) {
+  :root {
+    --padding-md: 1.25rem;
+    --padding-lg: 2rem;
+    --padding-xl: 3rem;
+  }
+}
+
 .dark {
   /* changes here */
   --primary-background: #2b303b;
@@ -151,13 +167,15 @@ a {
 
 input,
 select,
-textarea {
+textarea,
+button {
   display: block;
   width: 100%;
-  margin-block: 1rem;
+  margin-block: 1em;
   outline: none;
   border: none;
 }
+
 button {
-  border: none;
+  background-color: transparent;
 }

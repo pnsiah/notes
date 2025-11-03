@@ -1,0 +1,38 @@
+.nav-item {
+  list-style: none;
+}
+
+.nav-button {
+  background: transparent;
+  border: none;
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.nav-button:hover {
+  background-color: var(--neutral-200);
+}
+
+.nav-button.active {
+  background-color: var(--neutral-300);
+}
+
+.nav-button img {
+  width: 24px;
+  height: 24px;
+  transition: filter 0.2s ease;
+}
+
+.nav-button.active img {
+  filter: invert(32%) sepia(93%) saturate(7492%) hue-rotate(203deg)
+    brightness(97%) contrast(105%);
+}
+
+.nav-button:hover img {
+  opacity: 0.8;
+}

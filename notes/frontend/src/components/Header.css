@@ -1,0 +1,23 @@
+.header {
+  grid-area: title;
+  color: black;
+}
+
+.header-text {
+  font-size: 1.7rem;
+  font-weight: 700;
+  width: 40%;
+  padding: var(--padding-md);
+}
+@media (min-width: 768px) {
+  .header {
+    display: flex;
+    align-items: center;
+    padding: var(--padding-md) var(--padding-sm);
+  }
+
+  .header {
+    /* grid-area: title; */
+    border-bottom: 1px solid var(--neutral-200);
+  }
+}

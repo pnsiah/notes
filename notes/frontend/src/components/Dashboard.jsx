@@ -5,7 +5,7 @@ import TagList from "./TagList";
 import NoteForm from "./NoteForm";
 import Notes from "./Notes";
 import View from "./View";
-import Footer from "./Footer";
+import NavBar from "./NavBar";
 import NoteActions from "./NoteActions";
 import "../components/dashboard.css";
 
@@ -152,9 +152,9 @@ function Dashboard(props) {
       {/*     : "No folders created"} */}
       {/* </div> */}
       <div className="small">
-        <Header showSearch={false} />
+        <Header showSearch={false} showLogo={true} />
         <View view={view} />
-        <Footer view={view} setView={setView} />
+        <NavBar view={view} setView={setView} />
       </div>
       {/* <div className="red">red</div> */}
 
