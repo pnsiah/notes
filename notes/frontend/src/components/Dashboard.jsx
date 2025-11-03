@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
+import TagList from "./TagList";
 import NoteForm from "./NoteForm";
 import Notes from "./Notes";
+import Footer from "./Footer";
 import NoteActions from "./NoteActions";
 import "../components/dashboard.css";
 
@@ -153,9 +155,14 @@ function Dashboard(props) {
       <div className="grid">
         <Header />
         {/* <div className="blue">blue</div> */}
+        {/* <div className="main"> */}
         <Notes />
         <NoteForm />
         <NoteActions />
+        {/* </div> */}
+        <TagList></TagList>
+        <Footer />
+        {/* <div className="footer">Footer</div> */}
         {/* <div className="yellow">yellow</div> */}
         {/* <div className="orange">orange</div> */}
       </div>

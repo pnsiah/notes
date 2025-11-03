@@ -1,20 +1,12 @@
+import Search from "./Search";
 import settings from "../assets/images/icon-settings.svg";
+import Logo from "./Logo";
 function Header() {
   return (
     <div className="header">
-      <h2>Heading</h2>
-      <div className="search-form">
-        <form>
-          <input
-            className="search"
-            type="text"
-            placeholder="Search by title, tags or folder"
-          />
-        </form>
-        <span className="settings">
-          <img src={settings} alt="" />
-        </span>
-      </div>
+      <Logo />
+      <h2 className="header-text">Heading</h2>
+      <Search></Search>
     </div>
   );
 }
