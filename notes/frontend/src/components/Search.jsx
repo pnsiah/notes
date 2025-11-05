@@ -1,19 +1,25 @@
-import settings from "../assets/images/icon-settings.svg";
+import searchIcon from "../assets/images/icon-search.svg";
+import settingsIcon from "../assets/images/icon-settings.svg";
+import "../components/Search.css";
+
 function Search() {
   return (
-    <div className="search-form">
-      <form>
+    <form className="search-form">
+      <div className="input-wrapper">
         <input
-          className="search"
+          className="search-input"
           type="text"
           placeholder="Search by title, tags or folder"
         />
-        <p className="search-info">All notes matching are displayed here.</p>
-      </form>
-      <span className="settings">
-        <img src={settings} alt="" />
-      </span>
-    </div>
+        <span className="search-icon">
+          <img src={searchIcon} alt="" />
+        </span>
+      </div>
+      <div className="settings-icon">
+        <img src={settingsIcon} alt="" />
+      </div>
+      <p className="search-info">All notes matching are displayed here.</p>
+    </form>
   );
 }
 

@@ -70,14 +70,14 @@
   --red-500: #fb3748;
   --red-100: #ffd5d8;
 }
-@media (min-width: 768px) {
-  :root {
-    --padding-md: 1.25rem;
-    --padding-lg: 2rem;
-    --padding-xl: 3rem;
-  }
-}
-
+/* @media (min-width: 768px) { */
+/*   :root { */
+/*     --padding-md: 1.25rem; */
+/*     --padding-lg: 2rem; */
+/*     --padding-xl: 3rem; */
+/*   } */
+/* } */
+/**/
 .dark {
   /* changes here */
   --primary-background: #2b303b;

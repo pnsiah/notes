@@ -66,53 +66,21 @@
   grid-area: main;
 }
 
-.search-form {
-  width: 100%;
-}
 .settings {
   display: none;
 }
 
-.search {
-  background-color: moccasin;
-  border-radius: 0.5em;
-  width: 100%;
-  padding: 1em;
-  /* margin-left: 3em; */
-}
-
-.search-info {
-  display: block;
-  font: 4rem;
-  color: black;
-}
-
 @media (min-width: 768px) {
-  .settings {
-    display: block;
-  }
-  .search-form {
-    width: 60%;
-    margin-left: 3rem;
-    display: flex;
-    justify-self: flex-end;
-    align-items: center;
-    gap: 1em;
-    /* justify-content: space-between; */
-  }
-  .search-form form {
-    width: 70%;
-    margin-left: 8em;
-  }
+  /* .settings { */
+  /*   display: block; */
+  /* } */
+
   /* .search { */
   /*   background-color: moccasin; */
   /*   border-radius: 0.5em; */
   /*   width: 100%; */
   /*   padding: 1em; */
   /* } */
-  .search-info {
-    display: none;
-  }
 }
 .notes {
   display: block; /* For now */

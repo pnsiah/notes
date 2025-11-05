@@ -1,7 +1,7 @@
 import Search from "./Search";
-import settings from "../assets/images/icon-settings.svg";
 import Logo from "./Logo";
 import "../components/Header.css";
+
 function Header({ showSearch = true, showLogo = false }) {
   return (
     <header className="header">

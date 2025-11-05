@@ -44,12 +44,12 @@
     padding: var(--padding-sm);
     font: 0.9rem;
     border-bottom: none;
-
-    /* padding: 0.5em; */
   }
+
   .tag:hover {
     background-color: transparent;
   }
+
   .section-heading {
     display: block;
     padding-bottom: var(--padding-md);
