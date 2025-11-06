@@ -1,5 +1,4 @@
 .header {
-  grid-area: title;
   color: black;
 }
 
@@ -11,6 +10,7 @@
 }
 @media (min-width: 768px) {
   .header {
+    grid-area: title;
     display: flex;
     align-items: center;
     padding: var(--padding-md) var(--padding-sm);

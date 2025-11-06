@@ -1,6 +1,7 @@
 import { useState } from "react";
 import tag from "../assets/images/icon-tag.svg";
 import clock from "../assets/images/icon-clock.svg";
+import "../components/NoteForm.css";
 
 function NoteForm() {
   const [title, setTitle] = useState("");

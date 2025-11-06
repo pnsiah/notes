@@ -1,0 +1,90 @@
+.create-note {
+  background-color: yellow;
+  background-color: blue;
+  /* grid-area: footer; */
+}
+
+@media (min-width: 786px) {
+  .create-note {
+    /* height: 200px; */
+    display: block;
+    grid-area: main;
+    border-left: 1px solid black;
+  }
+
+  .create-note {
+    background: white;
+    padding: 0.5em;
+  }
+
+  .title {
+    padding: 0.5em;
+    font-size: 1.5rem;
+  }
+  .title:focus {
+    border-bottom: 1px solid black;
+  }
+  .form-divider {
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid black;
+  }
+  .note-inputs {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    /* justify-content: space-between; */
+  }
+  .note-inputs input {
+    width: 100%;
+    background-color: rosybrown;
+    padding: 0.5em;
+    font-size: 1rem;
+    border: 1px solid black;
+  }
+  .note-inputs input:focus {
+    background-color: red;
+  }
+  .left-text {
+    color: black;
+  }
+  .left-text span {
+    display: block;
+  }
+  .left {
+    display: flex;
+    gap: 0.5em;
+  }
+  .right {
+    flex: 1;
+  }
+  .content {
+    height: 20em;
+  }
+
+  .date {
+    font-size: 0.9rem;
+  }
+  .note-buttons {
+    padding: 0.5em;
+    margin-top: 0.5em;
+    border-top: 1px solid black;
+  }
+  .save {
+    padding: 0.5em 1.3rem;
+    font-size: 1.2rem;
+    border-radius: 0.5em;
+    margin-right: 1.5em;
+    color: white;
+    background-color: var(--blue-500);
+    cursor: pointer;
+  }
+  .cancel {
+    padding: 0.5em 1.3rem;
+    font-size: 1.2rem;
+    border-radius: 0.5em;
+    margin-right: 1.5em;
+    color: black;
+    cursor: pointer;
+  }
+}

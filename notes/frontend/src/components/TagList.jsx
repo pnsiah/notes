@@ -15,6 +15,39 @@ function TagList() {
         <li className="tag">
           <img src={tag} alt="" /> <span className="tag-text">React</span>
         </li>
+
+        <li className="tag">
+          <img src={tag} alt="" /> <span className="tag-text">React</span>
+        </li>
+        <li className="tag">
+          <img src={tag} alt="" /> <span className="tag-text">React</span>
+        </li>
+        <li className="tag">
+          <img src={tag} alt="" /> <span className="tag-text">React</span>
+        </li>
+        <li className="tag">
+          <img src={tag} alt="" /> <span className="tag-text">React</span>
+        </li>
+
+        <li className="tag">
+          <img src={tag} alt="" /> <span className="tag-text">React</span>
+        </li>
+        <li className="tag">
+          <img src={tag} alt="" /> <span className="tag-text">React</span>
+        </li>
+        <li className="tag">
+          <img src={tag} alt="" /> <span className="tag-text">React</span>
+        </li>
+
+        <li className="tag">
+          <img src={tag} alt="" /> <span className="tag-text">React</span>
+        </li>
+        <li className="tag">
+          <img src={tag} alt="" /> <span className="tag-text">React</span>
+        </li>
+        <li className="tag">
+          <img src={tag} alt="" /> <span className="tag-text">React</span>
+        </li>
       </ul>
     </section>
   );

@@ -1,11 +1,13 @@
 .navbar {
   width: 100%;
-  /* background-color: red; */
+  z-index: 10;
   height: 10vw;
   position: fixed;
   bottom: 0;
+  background-color: red;
   left: 0;
-  padding: var(--padding-2xl) var(--padding-md);
+  /* padding: var(--padding-2xl) var(--padding-md); */
+  padding: 0;
   border-top: 1px solid var(--neutral-200);
   display: flex;
   align-items: center;
