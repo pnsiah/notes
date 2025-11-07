@@ -46,7 +46,7 @@ function TagList() {
           <img src={tag} alt="" /> <span className="tag-text">React</span>
         </li>
         <li className="tag">
-          <img src={tag} alt="" /> <span className="tag-text">React</span>
+          <img src={tag} alt="" /> <span className="tag-text">Learn</span>
         </li>
       </ul>
     </section>

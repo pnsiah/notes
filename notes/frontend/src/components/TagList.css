@@ -39,6 +39,12 @@
     border-radius 0.2s ease;
 }
 
+.tag-list li:last-child {
+  /* background-color: red; */
+  border-bottom: none;
+  /* padding-bottom: 0; */
+}
+
 @media (min-width: 768px) {
   .tag {
     padding: var(--padding-sm);
