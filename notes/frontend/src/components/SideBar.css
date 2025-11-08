@@ -13,15 +13,17 @@
 
 .arrow-right {
   visibility: hidden;
+  margin-left: auto;
 }
 
 .sidebar-button {
   width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   padding: var(--padding-sm) var(--padding-md);
   border-radius: 0.5em;
+  margin-block: 1em;
   cursor: pointer;
 }
 

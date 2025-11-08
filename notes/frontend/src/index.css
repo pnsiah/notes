@@ -173,7 +173,7 @@ textarea,
 button {
   display: block;
   width: 100%;
-  margin-block: 1em;
+  /* margin-block: 1em; */
   outline: none;
   border: none;
 }

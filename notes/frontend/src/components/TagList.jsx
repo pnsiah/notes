@@ -1,53 +1,48 @@
 import tag from "../assets/images/icon-tag.svg";
 import "../components/TagList.css";
+import arrow_right from "../assets/images/icon-chevron-right.svg";
 
 function TagList() {
   return (
     <section className="tags">
       <h3 className="section-heading">Tags</h3>
       <ul className="tag-list">
-        <li className="tag">
-          <img src={tag} alt="" /> <span className="tag-text">Tags</span>
+        <li>
+          <button className="tag">
+            <img src={tag} alt="" /> <span className="tag-text">Tags</span>
+            <img className="arrow-right" src={arrow_right} alt="" />
+          </button>
         </li>
 
-        <li className="tag">
-          <img src={tag} alt="" /> <span className="tag-text">Element</span>
+        <li>
+          <button className="tag">
+            <img src={tag} alt="" /> <span className="tag-text">Tags</span>
+            <img className="arrow-right" src={arrow_right} alt="" />
+          </button>
         </li>
-        <li className="tag">
-          <img src={tag} alt="" /> <span className="tag-text">React</span>
+        <li>
+          <button className="tag">
+            <img src={tag} alt="" /> <span className="tag-text">Tags</span>
+            <img className="arrow-right" src={arrow_right} alt="" />
+          </button>
         </li>
-
-        <li className="tag">
-          <img src={tag} alt="" /> <span className="tag-text">React</span>
+        <li>
+          <button className="tag">
+            <img src={tag} alt="" /> <span className="tag-text">Tags</span>
+            <img className="arrow-right" src={arrow_right} alt="" />
+          </button>
         </li>
-        <li className="tag">
-          <img src={tag} alt="" /> <span className="tag-text">React</span>
+        <li>
+          <button className="tag">
+            <img src={tag} alt="" /> <span className="tag-text">Tags</span>
+            <img className="arrow-right" src={arrow_right} alt="" />
+          </button>
         </li>
-        <li className="tag">
-          <img src={tag} alt="" /> <span className="tag-text">React</span>
-        </li>
-        <li className="tag">
-          <img src={tag} alt="" /> <span className="tag-text">React</span>
-        </li>
-
-        <li className="tag">
-          <img src={tag} alt="" /> <span className="tag-text">React</span>
-        </li>
-        <li className="tag">
-          <img src={tag} alt="" /> <span className="tag-text">React</span>
-        </li>
-        <li className="tag">
-          <img src={tag} alt="" /> <span className="tag-text">React</span>
-        </li>
-
-        <li className="tag">
-          <img src={tag} alt="" /> <span className="tag-text">React</span>
-        </li>
-        <li className="tag">
-          <img src={tag} alt="" /> <span className="tag-text">React</span>
-        </li>
-        <li className="tag">
-          <img src={tag} alt="" /> <span className="tag-text">Learn</span>
+        <li>
+          <button className="tag">
+            <img src={tag} alt="" /> <span className="tag-text">Tags</span>
+            <img className="arrow-right" src={arrow_right} alt="" />
+          </button>
         </li>
       </ul>
     </section>
