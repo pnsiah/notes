@@ -1,5 +1,6 @@
 import tag from "../assets/images/icon-tag.svg";
 import "../components/TagList.css";
+
 function TagList() {
   return (
     <section className="tags">

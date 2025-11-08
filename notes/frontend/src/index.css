@@ -60,6 +60,7 @@
   --padding-lg: 1.5em; /* 24px */
   --padding-xl: 2em; /* 32px */
   --padding-2xl: 3em; /* 48px */
+  --sidebar-padding-horizontal: var(--padding-md);
 
   /* If you want horizontal/vertical variants */
   --padding-inline: var(--padding-md);

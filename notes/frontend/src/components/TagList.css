@@ -1,4 +1,5 @@
-.tags {
+.tags,
+.folders {
   color: black;
   padding: 0.5em;
   margin-bottom: 1px solid black;
@@ -10,11 +11,12 @@
   color: var(--secondary);
 }
 
-.tag {
+.tag,
+.folder {
   display: flex;
   align-items: center;
   cursor: pointer;
-  padding: var(--padding-md);
+  padding: var(--padding-sm) var(--padding-md);
   font: 1.2rem;
   gap: 1rem;
   border-bottom: 1px solid var(--neutral-200);
@@ -25,13 +27,15 @@
     border-radius 0.2s ease;
 }
 
-.tag:hover {
+.tag:hover,
+.folder:hover {
   background-color: var(--neutral-200);
   border-color: var(--neutral-300);
   border-radius: 0.5em;
 }
 
-.tag-list li:has(+ li:hover) {
+.tag-list li:has(+ li:hover),
+.folder-list li:has(+ li:hover) {
   border-color: transparent;
   transition:
     background-color 0.2s ease,
@@ -39,25 +43,39 @@
     border-radius 0.2s ease;
 }
 
-.tag-list li:last-child {
-  /* background-color: red; */
+.tag-list li:last-child,
+.folder-list li:last-child {
   border-bottom: none;
-  /* padding-bottom: 0; */
 }
 
 @media (min-width: 768px) {
-  .tag {
-    padding: var(--padding-sm);
+  .tags,
+  .folders {
+    flex: 1;
+    overflow-y: auto;
+    position: relative;
+    padding: 0;
+  }
+  .section-heading {
+    display: block;
+    font-size: 0.9rem;
+    padding: var(--padding-sm) var(--padding-md);
+    background-color: var(--neutral-200);
+    position: sticky;
+    border-radius: 0.3em;
+    top: 0;
+    left: 0;
+  }
+
+  .tag,
+  .folder {
+    /* padding: var(--padding-sm) var(--padding-lg); */
     font: 0.9rem;
     border-bottom: none;
   }
 
-  .tag:hover {
+  .tag:hover,
+  .folder:hover {
     background-color: transparent;
-  }
-
-  .section-heading {
-    display: block;
-    padding-bottom: var(--padding-md);
   }
 }
