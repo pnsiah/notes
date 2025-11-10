@@ -1,90 +1,114 @@
 .create-note {
-  background-color: yellow;
-  background-color: blue;
-  /* grid-area: footer; */
+  height: 100%;
+  padding: var(--padding-md);
+  color: var(--neutral-400);
+}
+
+.title {
+  padding: var(--padding-sm) var(--padding-md);
+  padding-bottom: 0.2em;
+  background-color: transparent;
+  font-size: 1.5rem;
+  margin-bottom: 0.5em;
+}
+
+.title:focus {
+  border-bottom: 1px solid var(--neutral-300);
+}
+
+.form-divider {
+  padding: var(--padding-md) 0;
+  border-bottom: 1px solid var(--neutral-300);
+  padding-bottom: 1rem;
+}
+
+.note-inputs {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  margin-bottom: 0.5em;
+}
+
+.note-inputs input {
+  width: 100%;
+  background-color: transparent;
+  padding: var(--padding-sm);
+  font-size: 0.8rem;
+  border: none;
+}
+
+.note-inputs .tags-input:focus {
+  border-bottom: 1px solid var(--neutral-300);
+}
+
+.date-input {
+  pointer-events: none;
+  color: var(--neutral-500);
+}
+
+.left-text span {
+  display: block;
+}
+
+.left {
+  display: flex;
+  gap: 0.5em;
+  min-width: 70px;
+}
+
+.right {
+  flex: 1;
+}
+
+.note-content {
+  width: 100%;
+  min-height: 300px;
+  padding: var(--padding-sm);
+  font-size: 1rem;
+  font-family: inherit;
+  line-height: 1.5;
+  resize: none;
+  margin: 1em 0.5em;
+  background-color: transparent;
+}
+
+.note-content:focus {
+  border: 1px solid var(--neutral-300);
+  border-radius: 0.5rem;
+}
+
+.note-buttons {
+  padding: var(--padding-sm);
+  margin-top: 0.5em;
+  border-top: 1px solid black;
+}
+
+.save {
+  padding: 0.5em 1.3rem;
+  font-size: 1.2rem;
+  border-radius: 0.5em;
+  margin-right: 1.5em;
+  color: white;
+  background-color: var(--blue-500);
+  cursor: pointer;
+}
+.cancel {
+  padding: 0.5em 1.3rem;
+  font-size: 1.2rem;
+  border-radius: 0.5em;
+  margin-right: 1.5em;
+  color: black;
+  cursor: pointer;
 }
 
 @media (min-width: 786px) {
   .create-note {
-    /* height: 200px; */
     display: block;
     grid-area: main;
-    /* border-left: 1px solid black; */
   }
 
-  .create-note {
-    background: white;
-    padding: 0.5em;
-  }
-
-  .title {
-    padding: 0.5em;
-    font-size: 1.5rem;
-  }
-  .title:focus {
-    border-bottom: 1px solid black;
-  }
-  .form-divider {
-    padding-bottom: 0.5em;
-    border-bottom: 1px solid black;
-  }
-  .note-inputs {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-    /* justify-content: space-between; */
-  }
   .note-inputs input {
-    width: 100%;
-    background-color: rosybrown;
-    padding: 0.5em;
-    font-size: 1rem;
-    border: 1px solid black;
-  }
-  .note-inputs input:focus {
-    background-color: red;
-  }
-  .left-text {
-    color: black;
-  }
-  .left-text span {
-    display: block;
-  }
-  .left {
-    display: flex;
-    gap: 0.5em;
-  }
-  .right {
-    flex: 1;
-  }
-  .content {
-    height: 20em;
-  }
-
-  .date {
-    font-size: 0.9rem;
-  }
-  .note-buttons {
-    padding: 0.5em;
-    margin-top: 0.5em;
-    border-top: 1px solid black;
-  }
-  .save {
-    padding: 0.5em 1.3rem;
-    font-size: 1.2rem;
-    border-radius: 0.5em;
-    margin-right: 1.5em;
-    color: white;
-    background-color: var(--blue-500);
-    cursor: pointer;
-  }
-  .cancel {
-    padding: 0.5em 1.3rem;
-    font-size: 1.2rem;
-    border-radius: 0.5em;
-    margin-right: 1.5em;
-    color: black;
-    cursor: pointer;
+    font-size: 0.91rem;
   }
 }

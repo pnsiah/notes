@@ -68,12 +68,17 @@ function NoteForm() {
               </p>
             </div>
             <div className="right">
-              <input type="text" placeholder="Not yet saved" />
+              <input
+                className="date-input"
+                readOnly
+                type="text"
+                value="Not yet saved"
+              />
             </div>
           </div>
         </section>
         <textarea
-          className="content"
+          className="note-content"
           type="text"
           onChange={(e) => setContent(e.target.value)}
           value={content}

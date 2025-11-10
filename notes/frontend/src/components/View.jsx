@@ -1,12 +1,14 @@
 import Notes from "./Notes";
 import TagList from "./TagList";
+import NoteForm from "./NoteForm";
 import Search from "./Search";
 import "../components/View.css";
 
 function View({ view }) {
   return (
     <div className="view">
-      {view === "notes" && <Notes />}
+      {/* {view === "notes" && <Notes />} */}
+      {view === "notes" && <NoteForm />}
       {view === "form" && <NoteForm />}
       {view === "tags" && <TagList />}
       {view === "search" && <Search />}
