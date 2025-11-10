@@ -1,4 +1,7 @@
 import plus from "../assets/images/icon-plus.svg";
+import "../components/Notes.css";
+import "../components/NoteList.css";
+
 function Notes() {
   return (
     <div className="notes">
@@ -6,27 +9,97 @@ function Notes() {
         <button className="new-note-btn">
           <img src={plus} alt="" /> <span>Create New Note</span>
         </button>
-        <div className="notes-list">
-          <div className="note">
-            <h4>Title</h4>
-            <div className="tags-section">
-              <span>Tag</span>
-              <span>Tag</span>
-              <span>Tag</span>
-            </div>
-            <p className="date">30th October 2034</p>
-          </div>
+        <ul className="notes-list">
+          <li>
+            <button className="note">
+              <h4 className="note-title">Title</h4>
+              <div className="tags-section">
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+              </div>
+              <p className="date">30th October 2034</p>
+            </button>
+          </li>
+          <li>
+            <button className="note">
+              <h4 className="note-title">Title</h4>
+              <div className="tags-section">
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+              </div>
+              <p className="date">30th October 2034</p>
+            </button>
+          </li>
+          <li>
+            <button className="note">
+              <h4 className="note-title">Title</h4>
+              <div className="tags-section">
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Maiores repellat amet quas ad natus cum!
+                </span>
 
-          <div className="note">
-            <h4>Title</h4>
-            <div className="tags-section">
-              <span>Tag</span>
-              <span>Tag</span>
-              <span>Tag</span>
-            </div>
-            <p className="date">30th October 2034</p>
-          </div>
-        </div>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+              </div>
+              <p className="date">30th October 2034</p>
+            </button>
+          </li>
+          <li>
+            <button className="note">
+              <h4 className="note-title">Title</h4>
+              <div className="tags-section">
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+              </div>
+              <p className="date">30th October 2034</p>
+            </button>
+          </li>
+          <li>
+            <button className="note">
+              <h4 className="note-title">Title</h4>
+              <div className="tags-section">
+                <span>Tag</span>
+                <span>Tag</span>
+                <span>Tag</span>
+              </div>
+              <p className="date">30th October 2034</p>
+            </button>
+          </li>
+        </ul>
       </div>
     </div>
   );

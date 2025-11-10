@@ -8,6 +8,7 @@ import View from "./View";
 import NavBar from "./NavBar";
 import NoteActions from "./NoteActions";
 import "../components/dashboard.css";
+import plusIcon from "../assets/images/icon-plus.svg";
 
 function Dashboard(props) {
   const [folder, setFolder] = useState("");
@@ -155,6 +156,9 @@ function Dashboard(props) {
         <Header showSearch={false} showLogo={true} />
         <View view={view} />
         <NavBar view={view} setView={setView} />
+        <div className="new-note-icon">
+          <img src={plusIcon} alt="" />
+        </div>
       </div>
       {/* <div className="red">red</div> */}
 

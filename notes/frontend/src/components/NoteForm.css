@@ -9,7 +9,7 @@
     /* height: 200px; */
     display: block;
     grid-area: main;
-    border-left: 1px solid black;
+    /* border-left: 1px solid black; */
   }
 
   .create-note {
