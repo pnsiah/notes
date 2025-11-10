@@ -44,6 +44,31 @@ function TagList() {
             <img className="arrow-right" src={arrow_right} alt="" />
           </button>
         </li>
+
+        <li>
+          <button className="tag">
+            <img src={tag} alt="" /> <span className="tag-text">Tags</span>
+            <img className="arrow-right" src={arrow_right} alt="" />
+          </button>
+        </li>
+        <li>
+          <button className="tag">
+            <img src={tag} alt="" /> <span className="tag-text">Tags</span>
+            <img className="arrow-right" src={arrow_right} alt="" />
+          </button>
+        </li>
+        <li>
+          <button className="tag">
+            <img src={tag} alt="" /> <span className="tag-text">Tags</span>
+            <img className="arrow-right" src={arrow_right} alt="" />
+          </button>
+        </li>
+        <li>
+          <button className="tag">
+            <img src={tag} alt="" /> <span className="tag-text">Tags</span>
+            <img className="arrow-right" src={arrow_right} alt="" />
+          </button>
+        </li>
       </ul>
     </section>
   );
