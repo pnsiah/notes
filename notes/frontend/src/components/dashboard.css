@@ -80,17 +80,4 @@
   .view {
     display: none;
   }
-
-  .action-button {
-    display: block;
-    margin: 0.5em 0 1em 0;
-    width: 90%;
-    border-radius: 0.5em;
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
-    padding: 0.5em;
-    border: 1px solid black;
-    color: white;
-  }
 }

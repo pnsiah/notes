@@ -61,7 +61,8 @@
   --padding-xl: 2em; /* 32px */
   --padding-2xl: 3em; /* 48px */
   --sidebar-padding-horizontal: var(--padding-md);
-
+  --icon-color-change: invert(37%) sepia(74%) saturate(3294%) hue-rotate(222deg)
+    brightness(95%) contrast(101%);
   /* If you want horizontal/vertical variants */
   --padding-inline: var(--padding-md);
   --padding-block: var(--padding-sm);
