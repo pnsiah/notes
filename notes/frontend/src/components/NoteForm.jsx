@@ -85,10 +85,10 @@ function NoteForm() {
           placeholder="Start typing your note here"
         />
         <div className="note-buttons">
-          <button className="save" type="submit">
+          <button className="note-button save" type="submit">
             Save Note
           </button>
-          <button className="cancel" type="submit">
+          <button className="note-button cancel" type="submit">
             Cancel
           </button>
         </div>

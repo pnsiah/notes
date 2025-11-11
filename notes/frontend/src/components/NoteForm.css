@@ -1,5 +1,5 @@
 .create-note {
-  height: 100%;
+  height: 100vh;
   padding: var(--padding-md);
   color: var(--neutral-400);
 }
@@ -69,7 +69,7 @@
   font-family: inherit;
   line-height: 1.5;
   resize: none;
-  margin: 1em 0.5em;
+  margin: 1em 0;
   background-color: transparent;
 }
 
@@ -81,34 +81,41 @@
 .note-buttons {
   padding: var(--padding-sm);
   margin-top: 0.5em;
-  border-top: 1px solid black;
+  border-top: 1px solid var(--neutral-300);
+  display: flex;
+  gap: 1em;
+}
+
+.note-button {
+  padding: var(--padding-md);
+  width: 6rem;
+  font-size: 0.9rem;
+  border-radius: 0.5em;
+  cursor: pointer;
 }
 
 .save {
-  padding: 0.5em 1.3rem;
-  font-size: 1.2rem;
-  border-radius: 0.5em;
-  margin-right: 1.5em;
-  color: white;
   background-color: var(--blue-500);
-  cursor: pointer;
+  color: white;
 }
+
 .cancel {
-  padding: 0.5em 1.3rem;
-  font-size: 1.2rem;
-  border-radius: 0.5em;
-  margin-right: 1.5em;
+  background-color: var(--neutral-300);
   color: black;
-  cursor: pointer;
 }
 
 @media (min-width: 786px) {
   .create-note {
     display: block;
     grid-area: main;
+    /* padding-bottom: 5rem; */
   }
 
   .note-inputs input {
     font-size: 0.91rem;
+  }
+
+  .note-content {
+    margin: 0.5em 0;
   }
 }
