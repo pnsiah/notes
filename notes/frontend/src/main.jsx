@@ -4,10 +4,12 @@ import "./index.css";
 import App from "./App.jsx";
 import { NotificationProvider } from "./components/NotificationContext";
 import Notification from "./components/Notification";
+import Modal from "./components/Modal.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <NotificationProvider>
+      <Modal />
       <Notification />
       <App />
     </NotificationProvider>
