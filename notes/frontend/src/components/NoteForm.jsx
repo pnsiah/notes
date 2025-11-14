@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import tag from "../assets/images/icon-tag.svg";
 import clock from "../assets/images/icon-clock.svg";
 import "../components/NoteForm.css";
+import { NotificationContext } from "./NotificationContext";
 
 function NoteForm() {
   const [title, setTitle] = useState("");
   const [tags, setTags] = useState("");
   const [content, setContent] = useState("");
+
+  const { addNotification } = useContext(NotificationContext);
+
+  const handleClick = () => {
+    addNotification("hello");
+  };
 
   const cleanTags = (input) => {
     return input
@@ -91,6 +98,7 @@ function NoteForm() {
           <button className="note-button cancel" type="submit">
             Cancel
           </button>
+          <button onClick={handleClick}>Click me</button>
         </div>
       </form>
     </div>

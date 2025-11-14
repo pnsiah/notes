@@ -11,8 +11,8 @@ export function NotificationProvider({ children }) {
   }
 
   return (
-    <Notification.Provider value={{ message, addNotification }}>
+    <NotificationContext.Provider value={{ message, addNotification }}>
       {children}
-    </Notification.Provider>
+    </NotificationContext.Provider>
   );
 }
