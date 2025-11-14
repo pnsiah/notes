@@ -14,6 +14,7 @@ function Dashboard(props) {
   const [folder, setFolder] = useState("");
   const [view, setView] = useState("note");
   const [folderList, setFolderList] = useState([]);
+  const [showActions, setshowActions] = useState(true);
 
   const fetchUserData = async () => {
     const response = await fetch("http://localhost:8000/api/dashboard", {
@@ -124,34 +125,6 @@ function Dashboard(props) {
   };
   return (
     <div className="dashboard-container">
-      {/* <NoteForm /> */}
-      {/* <button onClick={handleLogOut}>Log Out</button> */}
-      {/* <button */}
-      {/*   onClick={() => { */}
-      {/*     deleteNote(1); */}
-      {/*   }} */}
-      {/* > */}
-      {/*   Delete Note */}
-      {/* </button> */}
-      {/* <div> */}
-      {/*   <form onSubmit={createFolder}> */}
-      {/*     <input */}
-      {/*       type="text" */}
-      {/*       placeholder="Create Folder" */}
-      {/*       value={folder} */}
-      {/*       onChange={(e) => { */}
-      {/*         setFolder(e.target.value); */}
-      {/*       }} */}
-      {/*     /> */}
-      {/*     <button type="submit">Create Folder</button> */}
-      {/*   </form> */}
-      {/* </div> */}
-      {/* <div onClick={listTags}>Tags</div> */}
-      {/* <div> */}
-      {/*   {folderList */}
-      {/*     ? folderList.map((item) => <ul key={item.id}>{item.name}</ul>) */}
-      {/*     : "No folders created"} */}
-      {/* </div> */}
       <div className="small">
         <Header showSearch={false} showLogo={true} />
         <View view={view} />
@@ -160,22 +133,14 @@ function Dashboard(props) {
           <img src={plusIcon} alt="" />
         </div>
       </div>
-      {/* <div className="red">red</div> */}
 
       <div className="big">
         <Sidebar />
         <div className="grid">
           <Header />
-          {/* <div className="blue">blue</div> */}
-          {/* <div className="main"> */}
           <Notes />
           <NoteForm />
-          <NoteActions />
-          {/* </div> */}
-          {/* <TagList></TagList> */}
-          {/* <div className="footer">Footer</div> */}
-          {/* <div className="yellow">yellow</div> */}
-          {/* <div className="orange">orange</div> */}
+          {showActions && <NoteActions />}
         </div>
       </div>
     </div>
