@@ -1,0 +1,47 @@
+.notification {
+  padding: 0.4em;
+  background-color: white;
+  border-radius: 0.5em;
+  border: 1px solid var(--neutral-300);
+  width: 300px;
+  position: absolute;
+  right: 2vw;
+  bottom: 5vh;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  opacity: 0;
+  animation: fadeInOut 3s forwards;
+}
+
+.check-mark {
+  width: 20px;
+  height: 20px;
+}
+
+.close {
+  width: 20px;
+  height: 20px;
+  margin-left: auto;
+}
+
+/* Animation keyframes */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}

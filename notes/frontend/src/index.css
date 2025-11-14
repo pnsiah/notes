@@ -177,6 +177,7 @@ button {
   /* margin-block: 1em; */
   outline: none;
   border: none;
+  background-color: transparent;
 }
 
 button {
