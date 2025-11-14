@@ -2,10 +2,12 @@ import { useState, useContext } from "react";
 import tag from "../assets/images/icon-tag.svg";
 import clock from "../assets/images/icon-clock.svg";
 import "../components/NoteForm.css";
+import folderIcon from "../assets/images/folder-regular-full.svg";
 import { NotificationContext } from "./NotificationContext";
 
 function NoteForm() {
   const [title, setTitle] = useState("");
+  const [folder, setFolder] = useState("");
   const [tags, setTags] = useState("");
   const [content, setContent] = useState("");
 
@@ -68,6 +70,28 @@ function NoteForm() {
           </div>
           <div className="note-inputs">
             <div className="left">
+              <img className="folder-icon" src={folderIcon} alt="" />
+              <p className="left-text">Folder</p>
+            </div>
+            <div className="right">
+              <select>
+                <option
+                  className="select-placeholder"
+                  disabled
+                  selected
+                  value={folder}
+                  onChange={(e) => setFolder(e.target.value)}
+                >
+                  Select a folder
+                </option>
+                <option value="Work">Name</option>
+                <option value="Naem">Name</option>
+                <option value="wah">Name</option>
+              </select>
+            </div>
+          </div>
+          <div className="note-inputs">
+            <div className="left">
               <img src={clock} alt="" />
               <p className="left-text">
                 Last
@@ -98,7 +122,6 @@ function NoteForm() {
           <button className="note-button cancel" type="submit">
             Cancel
           </button>
-          <button onClick={handleClick}>Click me</button>
         </div>
       </form>
     </div>

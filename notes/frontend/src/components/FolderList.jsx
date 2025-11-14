@@ -11,7 +11,7 @@ function FolderList() {
         <li>
           <button className="folder">
             <img src={folderIcon} alt="" />{" "}
-            <span className="tag-text">Tags</span>
+            <span className="tag-text">what</span>
             <img className="arrow-right" src={arrow_right} alt="" />
           </button>
         </li>

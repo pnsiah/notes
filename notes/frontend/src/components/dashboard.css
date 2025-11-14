@@ -37,7 +37,7 @@
   }
   .big {
     display: flex;
-    height: 100vh;
+    height: 110vh;
     /* align-items: stretch; */
     overflow-y: hidden;
   }
