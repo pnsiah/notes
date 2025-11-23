@@ -9,7 +9,6 @@ import Modal from "./components/Modal.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <NotificationProvider>
-      <Modal />
       <Notification />
       <App />
     </NotificationProvider>

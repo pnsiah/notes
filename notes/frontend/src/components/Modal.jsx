@@ -1,31 +1,35 @@
 import "../components/Modal.css";
 import deleteIcon from "../assets/images/icon-delete.svg";
 
-function Modal({ modalTitle, modalImage, body, confirmBtnMessage }) {
+function Modal({ closeModal, modalTitle, modalImage, modalBody, confirmText }) {
+  const closeOnBackdrop = () => {
+    closeModal();
+  };
+
+  const stopPropagation = (e) => {
+    e.stopPropagation();
+  };
+
   return (
-    <div className="modal-backdrop">
-      <div className="modal">
-        <div className="modal-text">
-          {/* <img src={modalImage} alt="" /> */}
-          <img src={deleteIcon} alt="" />
-          <div>
-            {/* <h3>{modalTitle}</h3> */}
-            <h3>Title</h3>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
-            quisquam veniam repellat impedit commodi deserunt? Iure repellendus
-            eos neque architecto deleniti, ipsam voluptatum amet, totam
-            consequuntur quis distinctio labore perferendis dolorem voluptates
-            tempore mollitia dolore nisi dolores excepturi eligendi sequi
-            aspernatur omnis pariatur! Et explicabo harum, deleniti non qui
-            labore?
-            <p>{body}</p>
+    <div className="modal-backdrop" onClick={closeOnBackdrop}>
+      <div className="modal" onClick={stopPropagation}>
+        <div className="modal-content">
+          <img src={modalImage} alt="" />
+          <div className="modal-text">
+            <h3>{modalTitle}</h3>
+            <p>{modalBody}</p>
           </div>
         </div>
 
         <div className="modal-buttons">
-          <button className="modal-button modal-cancel">Cancel</button>
-          <button className="modal-button modal-confirm">Confirm</button>
-          {/* <button>{confirmBtnMessage}</button> */}
+          <button className="modal-button modal-cancel" onClick={closeModal}>
+            Cancel
+          </button>
+          <button
+            className={`modal-button ${confirmText === "Delete Note" ? "modal-danger-button" : "modal-confirm"}`}
+          >
+            {confirmText}
+          </button>
         </div>
       </div>
     </div>
