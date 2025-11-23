@@ -9,12 +9,29 @@ import NavBar from "./NavBar";
 import NoteActions from "./NoteActions";
 import "../components/dashboard.css";
 import plusIcon from "../assets/images/icon-plus.svg";
+import Modal from "./Modal";
 
 function Dashboard(props) {
   const [folder, setFolder] = useState("");
   const [view, setView] = useState("note");
   const [folderList, setFolderList] = useState([]);
   const [showActions, setshowActions] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalData, setModalData] = useState({
+    title: "",
+    body: "",
+    image: null,
+    confirmText: "",
+  });
+
+  const openModal = (data) => {
+    setModalData(data);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   const fetchUserData = async () => {
     const response = await fetch("http://localhost:8000/api/dashboard", {
@@ -125,6 +142,16 @@ function Dashboard(props) {
   };
   return (
     <div className="dashboard-container">
+      {isModalOpen && (
+        <Modal
+          closeModal={closeModal}
+          isModalOpen={isModalOpen}
+          modalTitle={modalData.title}
+          modalBody={modalData.body}
+          modalImage={modalData.image}
+          confirmText={modalData.confirmText}
+        />
+      )}
       <div className="small">
         <Header showSearch={false} showLogo={true} />
         <View view={view} />
@@ -133,14 +160,16 @@ function Dashboard(props) {
           <img src={plusIcon} alt="" />
         </div>
       </div>
-
       <div className="big">
+        {/* <Modal isModalOpen={isModalOpen} /> */}
+
+        {/* {isModalOpen && <Modal isModalOpen={isModalOpen} />}{" "} */}
         <Sidebar />
         <div className="grid">
           <Header />
           <Notes />
           <NoteForm />
-          {showActions && <NoteActions />}
+          {showActions && <NoteActions openModal={openModal} />}
         </div>
       </div>
     </div>

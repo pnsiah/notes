@@ -1,28 +1,31 @@
 import "../components/Modal.css";
 import deleteIcon from "../assets/images/icon-delete.svg";
 
-function Modal({ modalTitle, modalImage, body, confirmBtnMessage }) {
+function Modal({ closeModal, modalTitle, modalImage, modalBody, confirmText }) {
+  const closeOnBackdrop = () => {
+    closeModal();
+  };
+
+  const stopPropagation = (e) => {
+    e.stopPropagation();
+  };
+
   return (
-    <div className="modal-backdrop">
-      <div className="modal">
+    <div className="modal-backdrop" onClick={closeOnBackdrop}>
+      <div className="modal" onClick={stopPropagation}>
         <div className="modal-content">
-          {/* <img src={modalImage} alt="" /> */}
-          <img src={deleteIcon} alt="" />
+          <img src={modalImage} alt="" />
           <div className="modal-text">
-            {/* <h3>{modalTitle}</h3> */}
-            <h3>Title</h3>
-            {/* <p>{body}</p> */}
-            <p>
-              Are you sure you want to delete this note? This action cannot be
-              undone.
-            </p>
+            <h3>{modalTitle}</h3>
+            <p>{modalBody}</p>
           </div>
         </div>
 
         <div className="modal-buttons">
-          <button className="modal-button modal-cancel">Cancel</button>
-          <button className="modal-button modal-confirm">Confirm</button>
-          {/* <button>{confirmBtnMessage}</button> */}
+          <button className="modal-button modal-cancel" onClick={closeModal}>
+            Cancel
+          </button>
+          <button className="modal-button modal-confirm">{confirmText}</button>
         </div>
       </div>
     </div>
