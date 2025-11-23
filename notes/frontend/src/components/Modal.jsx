@@ -25,7 +25,11 @@ function Modal({ closeModal, modalTitle, modalImage, modalBody, confirmText }) {
           <button className="modal-button modal-cancel" onClick={closeModal}>
             Cancel
           </button>
-          <button className="modal-button modal-confirm">{confirmText}</button>
+          <button
+            className={`modal-button ${confirmText === "Delete Note" ? "modal-danger-button" : "modal-confirm"}`}
+          >
+            {confirmText}
+          </button>
         </div>
       </div>
     </div>
