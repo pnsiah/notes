@@ -5,20 +5,17 @@ function Modal({ modalTitle, modalImage, body, confirmBtnMessage }) {
   return (
     <div className="modal-backdrop">
       <div className="modal">
-        <div className="modal-text">
+        <div className="modal-content">
           {/* <img src={modalImage} alt="" /> */}
           <img src={deleteIcon} alt="" />
-          <div>
+          <div className="modal-text">
             {/* <h3>{modalTitle}</h3> */}
             <h3>Title</h3>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
-            quisquam veniam repellat impedit commodi deserunt? Iure repellendus
-            eos neque architecto deleniti, ipsam voluptatum amet, totam
-            consequuntur quis distinctio labore perferendis dolorem voluptates
-            tempore mollitia dolore nisi dolores excepturi eligendi sequi
-            aspernatur omnis pariatur! Et explicabo harum, deleniti non qui
-            labore?
-            <p>{body}</p>
+            {/* <p>{body}</p> */}
+            <p>
+              Are you sure you want to delete this note? This action cannot be
+              undone.
+            </p>
           </div>
         </div>
 
