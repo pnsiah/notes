@@ -127,7 +127,7 @@ function Dashboard(props) {
     }
   };
 
-  const listTags = async () => {
+  const fetchTags = async () => {
     try {
       const response = await fetch("http://localhost:8000/api/list_tags/", {
         method: "GET",
@@ -140,6 +140,7 @@ function Dashboard(props) {
       console.log(err);
     }
   };
+
   return (
     <div className="dashboard-container">
       {isModalOpen && (
@@ -161,9 +162,6 @@ function Dashboard(props) {
         </div>
       </div>
       <div className="big">
-        {/* <Modal isModalOpen={isModalOpen} /> */}
-
-        {/* {isModalOpen && <Modal isModalOpen={isModalOpen} />}{" "} */}
         <Sidebar />
         <div className="grid">
           <Header />
