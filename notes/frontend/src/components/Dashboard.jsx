@@ -13,7 +13,7 @@ import Modal from "./Modal";
 
 function Dashboard(props) {
   const [notes, setNotes] = useState([]);
-  const [folder, setFolder] = useState([]);
+  const [folders, setFolder] = useState([]);
   const [tags, setTags] = useState([]);
   const [userData, setUserData] = useState({});
   const [view, setView] = useState("note");
@@ -53,9 +53,6 @@ function Dashboard(props) {
     };
     fetchUserData();
   }, []);
-  // what do i need
-  // all distinct tags and folders
-  // all notes initially
   //
   // useEffect(() => {
   //   fetch("http://localhost:8000/api/list_folders/", {
@@ -166,7 +163,7 @@ function Dashboard(props) {
       )}
       <div className="small">
         <Header showSearch={false} showLogo={true} />
-        <View view={view} />
+        <View view={view} notes={notes} folders={folders} tags={tags} />
         <NavBar view={view} setView={setView} />
         <div className="new-note-icon">
           <img src={plusIcon} alt="" />
@@ -176,7 +173,7 @@ function Dashboard(props) {
         <Sidebar />
         <div className="grid">
           <Header />
-          <Notes />
+          <Notes notes={notes} tags={tags} folders={folders} />
           <NoteForm />
           {showActions && <NoteActions openModal={openModal} />}
         </div>

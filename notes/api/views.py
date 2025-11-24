@@ -101,6 +101,7 @@ def dashboard(request):
                     "id": note.id,
                     "title": note.title,
                     "content": note.content,
+                    "date_created": note.created_at.strftime("%d %B %Y"),
                     "tags": [tag.name for tag in note.tags.all()],
                 }
                 for note in notes

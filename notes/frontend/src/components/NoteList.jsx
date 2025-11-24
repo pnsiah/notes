@@ -12,7 +12,7 @@ function NoteList({ notes }) {
                 <span key={index}>{tag}</span>
               ))}
             </div>
-            <p className="date">{note.date}</p>
+            <p className="date">{note.date_created}</p>
           </button>
         </li>
       ))}
