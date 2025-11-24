@@ -12,9 +12,12 @@ import plusIcon from "../assets/images/icon-plus.svg";
 import Modal from "./Modal";
 
 function Dashboard(props) {
-  const [folder, setFolder] = useState("");
+  const [notes, setNotes] = useState([]);
+  const [folder, setFolder] = useState([]);
+  const [tags, setTags] = useState([]);
+  const [userData, setUserData] = useState({});
   const [view, setView] = useState("note");
-  const [folderList, setFolderList] = useState([]);
+  // const [folderList, setFolderList] = useState([]);
   const [showActions, setshowActions] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState({
@@ -33,31 +36,43 @@ function Dashboard(props) {
     setIsModalOpen(false);
   };
 
-  const fetchUserData = async () => {
-    const response = await fetch("http://localhost:8000/api/dashboard", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify({}),
-    });
-    const result = await response.json();
-    console.log(result);
-  };
-
   useEffect(() => {
-    fetch("http://localhost:8000/api/list_folders/", {
-      method: "GET",
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status) {
-          console.log("Folders:", data.folders);
-          setFolderList(data.folders);
-        }
-      })
-      .catch(console.error);
+    const fetchUserData = async () => {
+      const response = await fetch("http://localhost:8000/api/dashboard", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({}),
+      });
+      const result = await response.json();
+      console.log(result);
+      setUserData(result.user_data);
+      setFolder(result.folders);
+      setTags(result.tags);
+      setNotes(result.notes);
+    };
+    fetchUserData();
   }, []);
+  // what do i need
+  // all distinct tags and folders
+  // all notes initially
+  //
+  // useEffect(() => {
+  //   fetch("http://localhost:8000/api/list_folders/", {
+  //     method: "GET",
+  //     credentials: "include",
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (data.status) {
+  //         console.log("Folders:", data.folders);
+  //         setFolderList(data.folders);
+  //       }
+  //     })
+  //     .catch(console.error);
+  // }, []);
+  // Come here
+
   // const fetchNotes = async () => {
   //   const response = await fetch("http://localhost:8000/api/notes", {
   //     method: "POST",
@@ -87,10 +102,6 @@ function Dashboard(props) {
       alert("Log out failed. Try again");
     }
   };
-
-  useEffect(() => {
-    fetchUserData();
-  });
 
   const deleteNote = async (id) => {
     try {
@@ -169,6 +180,9 @@ function Dashboard(props) {
           <NoteForm />
           {showActions && <NoteActions openModal={openModal} />}
         </div>
+      </div>
+      <div>
+        <button onClick={handleLogOut}>Log Out</button>
       </div>
     </div>
   );
