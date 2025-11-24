@@ -7,7 +7,7 @@ import arrow_right from "../assets/images/icon-chevron-right.svg";
 import tag from "../assets/images/icon-tag.svg";
 import "./SideBar.css";
 
-function Sidebar() {
+function Sidebar({ folders, tags }) {
   return (
     <div className="sidebar">
       <Logo />
@@ -25,8 +25,8 @@ function Sidebar() {
         </button>
       </div>
       <div className="list-container">
-        <TagList />
-        <FolderList />
+        <TagList tags={tags} />
+        <FolderList folders={folders} />
       </div>
 
       {/* <section className="tags"> */}

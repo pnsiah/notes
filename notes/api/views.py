@@ -107,11 +107,9 @@ def dashboard(request):
                 for note in notes
             ]
 
-            serialized_tags = [
-                {"id": tag.id, "tag_name": tag.name} for tag in user_tags
-            ]
+            serialized_tags = [{"id": tag.id, "name": tag.name} for tag in user_tags]
             serialized_folders = [
-                {"id": folder.id, "folder_name": folder.name} for folder in user_folders
+                {"id": folder.id, "name": folder.name} for folder in user_folders
             ]
 
             return JsonResponse(

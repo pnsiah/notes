@@ -13,7 +13,7 @@ import Modal from "./Modal";
 
 function Dashboard(props) {
   const [notes, setNotes] = useState([]);
-  const [folders, setFolder] = useState([]);
+  const [folders, setFolders] = useState([]);
   const [tags, setTags] = useState([]);
   const [userData, setUserData] = useState({});
   const [view, setView] = useState("note");
@@ -47,12 +47,14 @@ function Dashboard(props) {
       const result = await response.json();
       console.log(result);
       setUserData(result.user_data);
-      setFolder(result.folders);
+      setFolders(result.folders);
       setTags(result.tags);
       setNotes(result.notes);
     };
     fetchUserData();
   }, []);
+
+  console.log(tags);
   //
   // useEffect(() => {
   //   fetch("http://localhost:8000/api/list_folders/", {
@@ -170,10 +172,10 @@ function Dashboard(props) {
         </div>
       </div>
       <div className="big">
-        <Sidebar />
+        <Sidebar folders={folders} tags={tags} />
         <div className="grid">
           <Header />
-          <Notes notes={notes} tags={tags} folders={folders} />
+          <Notes notes={notes} />
           <NoteForm />
           {showActions && <NoteActions openModal={openModal} />}
         </div>
