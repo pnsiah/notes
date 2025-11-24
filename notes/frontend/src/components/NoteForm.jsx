@@ -74,17 +74,16 @@ function NoteForm() {
               <p className="left-text">Folder</p>
             </div>
             <div className="right">
-              <select>
+              <select defaultValue="">
+                <option className="select-placeholder" value="" disabled>
+                  Select a folder
+                </option>
                 <option
-                  className="select-placeholder"
-                  disabled
-                  selected
                   value={folder}
                   onChange={(e) => setFolder(e.target.value)}
                 >
-                  Select a folder
+                  Name
                 </option>
-                <option value="Work">Name</option>
                 <option value="Naem">Name</option>
                 <option value="wah">Name</option>
               </select>
