@@ -4,7 +4,7 @@ function NoteList({ notes }) {
   return (
     <ul className="notes-list">
       {notes.map((note) => (
-        <li>
+        <li key={note.id}>
           <button className="note" key={note.id}>
             <h4 className="note-title">{note.title}</h4>
             <div className="tags-section">
@@ -12,7 +12,7 @@ function NoteList({ notes }) {
                 <span key={index}>{tag}</span>
               ))}
             </div>
-            <p className="date">{note.date}</p>
+            <p className="date">{note.date_created}</p>
           </button>
         </li>
       ))}

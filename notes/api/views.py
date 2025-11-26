@@ -90,29 +90,28 @@ def dashboard(request):
     if request.method == "POST":
         if request.user.is_authenticated:
             user = request.user
-            # notes = Note.objects.filter(user=user).values()
-            # notes = Note.objects.values(
-            #     "id",
-            #     "title",
-            #     "content",
-            #     "folder",
-            #     "folder__name",
-            #     "tags__name",
-            # )
 
             notes = Note.objects.filter(user=user, archived=False).prefetch_related(
                 "tags"
             )
-            new_notes = [
+            user_tags = Tag.objects.filter(user=user)
+            user_folders = Folder.objects.filter(user=user)
+            serialized_notes = [
                 {
                     "id": note.id,
                     "title": note.title,
                     "content": note.content,
+                    "date_created": note.created_at.strftime("%d %B %Y"),
                     "tags": [tag.name for tag in note.tags.all()],
                 }
                 for note in notes
             ]
-            # new_notes = serialize_note(notes)
+
+            serialized_tags = [{"id": tag.id, "name": tag.name} for tag in user_tags]
+            serialized_folders = [
+                {"id": folder.id, "name": folder.name} for folder in user_folders
+            ]
+
             return JsonResponse(
                 {
                     "status": True,
@@ -120,8 +119,10 @@ def dashboard(request):
                         "id": user.id,
                         "username": user.username,
                         "email": user.email,
-                        "notes": new_notes,
                     },
+                    "notes": serialized_notes,
+                    "tags": serialized_tags,
+                    "folders": serialized_folders,
                 }
             )
         else:
