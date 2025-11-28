@@ -5,11 +5,13 @@ import FolderList from "./FolderList";
 import Search from "./Search";
 import "../components/View.css";
 
-function View({ view, tags, notes, fetchNote, selectedNote }) {
+function View({ view, tags, notes, fetchNote, selectedNote, folders }) {
   return (
     <div className="view">
       {view === "notes" && <Notes fetchNote={fetchNote} notes={notes} />}
-      {view === "form" && <NoteForm selectedNote={selectedNote} />}
+      {view === "form" && (
+        <NoteForm userFolders={folders} selectedNote={selectedNote} />
+      )}
       {view === "tags" && <TagList tags={tags} />}
       {view === "folders" && <FolderList folders={folders} />}
       {view === "search" && <Search />}
