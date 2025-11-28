@@ -19,7 +19,7 @@ function NoteForm({ selectedNote }) {
       setTitle(selectedNote.title || "");
       setFolder(selectedNote.folder || "");
       setContent(selectedNote.content || "");
-      setContent(selectedNote.last_edited);
+      setLastEdited(selectedNote.last_edited);
       setTags((selectedNote.tags || []).join(", "));
     } else {
       setTitle("");
@@ -147,8 +147,7 @@ function NoteForm({ selectedNote }) {
           className="note-content"
           type="text"
           onChange={(e) => setContent(e.target.value)}
-          // value={content}
-          value={selectedNote.content}
+          value={content}
           placeholder="Start typing your note here"
         />
         <div className="note-buttons">

@@ -3,11 +3,14 @@ import "../components/Notes.css";
 import "../components/NoteList.css";
 import NoteList from "./NoteList";
 
-function Notes({ notes, fetchNote }) {
+function Notes({ notes, fetchNote, setSelectedNote }) {
+  const createNewForm = () => {
+    setSelectedNote("");
+  };
   return (
     <div className="notes">
       <div className="note-list-container">
-        <button className="new-note-btn">
+        <button className="new-note-btn" onClick={createNewForm}>
           <img src={plus} alt="" /> <span>Create New Note</span>
         </button>
         <NoteList notes={notes} fetchNote={fetchNote} />
