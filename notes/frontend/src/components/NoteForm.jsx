@@ -5,7 +5,7 @@ import "../components/NoteForm.css";
 import folderIcon from "../assets/images/folder-regular-full.svg";
 import { NotificationContext } from "./NotificationContext";
 
-function NoteForm({ selectedNote }) {
+function NoteForm({ selectedNote, userFolders }) {
   const [title, setTitle] = useState("");
   const [folder, setFolder] = useState("");
   const [lastEdited, setLastEdited] = useState("");
@@ -110,18 +110,18 @@ function NoteForm({ selectedNote }) {
               <p className="left-text">Folder</p>
             </div>
             <div className="right">
-              <select defaultValue="">
+              <select
+                value={folder}
+                onChange={(e) => setFolder(e.target.value)}
+              >
                 <option className="select-placeholder" value="" disabled>
                   Select a folder
                 </option>
-                <option
-                  value={folder}
-                  onChange={(e) => setFolder(e.target.value)}
-                >
-                  Name
-                </option>
-                <option value="Naem">Name</option>
-                <option value="wah">Name</option>
+                {userFolders.map((folder) => (
+                  <option key={folder.id} value={folder.id}>
+                    {folder.name}
+                  </option>
+                ))}
               </select>
             </div>
           </div>

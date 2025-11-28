@@ -55,8 +55,9 @@ function Dashboard(props) {
     fetchUserData();
   }, []);
 
-  console.log(tags);
+  console.log({ folders });
   //
+  ///
   // useEffect(() => {
   //   fetch("http://localhost:8000/api/list_folders/", {
   //     method: "GET",
@@ -203,7 +204,7 @@ function Dashboard(props) {
             fetchNote={fetchNote}
             notes={notes}
           />
-          <NoteForm selectedNote={selectedNote} />
+          <NoteForm userFolders={folders} selectedNote={selectedNote} />
           {showActions && <NoteActions openModal={openModal} />}
         </div>
       </div>
