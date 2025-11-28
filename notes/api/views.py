@@ -301,7 +301,7 @@ def fetch_note(request, note_id):
                 "id": note.id,
                 "title": note.title,
                 "content": note.content,
-                "last_edited": note.last_edited,
+                "last_edited": note.last_edited.strftime("%d %B %Y"),
                 "archived": note.archived,
                 "folder": note.folder,
             },
