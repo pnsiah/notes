@@ -130,7 +130,7 @@ function Dashboard(props) {
     );
 
     const result = await response.json();
-    // console.log("fetched note", result.note);
+    console.log(result.note);
     setSelectedNote(result.note);
   };
 
