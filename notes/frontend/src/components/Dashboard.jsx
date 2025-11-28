@@ -186,6 +186,7 @@ function Dashboard(props) {
           notes={notes}
           folders={folders}
           tags={tags}
+          selectedNote={selectedNote}
         />
         <NavBar view={view} setView={setView} />
         <div className="new-note-icon">
@@ -197,7 +198,7 @@ function Dashboard(props) {
         <div className="grid">
           <Header />
           <Notes fetchNote={fetchNote} notes={notes} />
-          <NoteForm />
+          <NoteForm selectedNote={selectedNote} />
           {showActions && <NoteActions openModal={openModal} />}
         </div>
       </div>
