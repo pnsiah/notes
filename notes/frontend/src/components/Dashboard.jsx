@@ -181,11 +181,13 @@ function Dashboard(props) {
       <div className="small">
         <Header showSearch={false} showLogo={true} />
         <View
+          setSelectedNote={setSelectedNote}
           fetchNote={fetchNote}
           view={view}
           notes={notes}
           folders={folders}
           tags={tags}
+          selectedNote={selectedNote}
         />
         <NavBar view={view} setView={setView} />
         <div className="new-note-icon">
@@ -196,8 +198,12 @@ function Dashboard(props) {
         <Sidebar folders={folders} tags={tags} />
         <div className="grid">
           <Header />
-          <Notes fetchNote={fetchNote} notes={notes} />
-          <NoteForm />
+          <Notes
+            setSelectedNote={setSelectedNote}
+            fetchNote={fetchNote}
+            notes={notes}
+          />
+          <NoteForm selectedNote={selectedNote} />
           {showActions && <NoteActions openModal={openModal} />}
         </div>
       </div>
