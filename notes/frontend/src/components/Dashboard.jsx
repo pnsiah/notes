@@ -17,6 +17,7 @@ function Dashboard(props) {
   const [tags, setTags] = useState([]);
   const [userData, setUserData] = useState({});
   const [view, setView] = useState("note");
+  const [selectedNote, setSelectedNote] = useState("");
   // const [folderList, setFolderList] = useState([]);
   const [showActions, setshowActions] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -119,6 +120,20 @@ function Dashboard(props) {
     }
   };
 
+  const fetchNote = async (noteId) => {
+    const response = await fetch(
+      `http://localhost:8000/api/fetch_note/${noteId}/`,
+      {
+        method: "GET",
+        credentials: "include",
+      },
+    );
+
+    const result = await response.json();
+    // console.log("fetched note", result.note);
+    setSelectedNote(result.note);
+  };
+
   const createFolder = async (e) => {
     e.preventDefault();
     try {
@@ -165,7 +180,13 @@ function Dashboard(props) {
       )}
       <div className="small">
         <Header showSearch={false} showLogo={true} />
-        <View view={view} notes={notes} folders={folders} tags={tags} />
+        <View
+          fetchNote={fetchNote}
+          view={view}
+          notes={notes}
+          folders={folders}
+          tags={tags}
+        />
         <NavBar view={view} setView={setView} />
         <div className="new-note-icon">
           <img src={plusIcon} alt="" />
@@ -175,7 +196,7 @@ function Dashboard(props) {
         <Sidebar folders={folders} tags={tags} />
         <div className="grid">
           <Header />
-          <Notes notes={notes} />
+          <Notes fetchNote={fetchNote} notes={notes} />
           <NoteForm />
           {showActions && <NoteActions openModal={openModal} />}
         </div>

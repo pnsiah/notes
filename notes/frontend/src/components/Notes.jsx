@@ -3,14 +3,14 @@ import "../components/Notes.css";
 import "../components/NoteList.css";
 import NoteList from "./NoteList";
 
-function Notes({ notes }) {
+function Notes({ notes, fetchNote }) {
   return (
     <div className="notes">
       <div className="note-list-container">
         <button className="new-note-btn">
           <img src={plus} alt="" /> <span>Create New Note</span>
         </button>
-        <NoteList notes={notes} />
+        <NoteList notes={notes} fetchNote={fetchNote} />
         {/* <ul className="notes-list"> */}
         {/*   <li> */}
         {/*     <button className="note"> */}

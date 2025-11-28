@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_GET
 from django.db import IntegrityError
 from .models import User, Note, Folder, Tag
 from .utils import save_note_with_tags
@@ -281,6 +282,32 @@ def list_tags(request):
 
 def restore_note(request):
     pass
+
+
+@require_GET
+def fetch_note(request, note_id):
+    try:
+        note = Note.objects.get(id=note_id, user=request.user)
+
+    except Note.DoesNotExist:
+        return JsonResponse({"status": False, "message": "Note not found"}, status=405)
+
+    #  Return serialized note
+    return JsonResponse(
+        {
+            "status": True,
+            "message": "Note fetched successfully",
+            "note": {
+                "id": note.id,
+                "title": note.title,
+                "content": note.content,
+                "last_edited": note.last_edited,
+                "archived": note.archived,
+                "folder": note.folder,
+            },
+        },
+        status=200,
+    )
 
 
 def search(request):
