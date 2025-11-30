@@ -51,6 +51,7 @@ function NoteForm({ selectedNote, userFolders }) {
     setTags("");
     setContent("");
     setLastEdited("Not saved yet");
+    setWarnings({ title: false, content: false });
   };
 
   const handleClick = () => {
