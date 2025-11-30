@@ -12,8 +12,21 @@ function NoteForm({ selectedNote, userFolders }) {
   const [lastEdited, setLastEdited] = useState("");
   const [tags, setTags] = useState("");
   const [content, setContent] = useState("");
+  const [warnings, setWarnings] = useState({
+    title: false,
+    content: false,
+  });
 
   const { addNotification } = useContext(NotificationContext);
+
+  const handleBlur = (field, value) => {
+    setWarnings((prev) => ({ ...prev, [field]: !value.trim() }));
+  };
+
+  const handleChange = (field, value, setter) => {
+    setter(value);
+    setWarnings((prev) => ({ ...prev, [field]: false })); // remove warning
+  };
 
   useEffect(() => {
     if (selectedNote) {
@@ -22,12 +35,12 @@ function NoteForm({ selectedNote, userFolders }) {
       setContent(selectedNote.content || "");
       setLastEdited(selectedNote.last_edited);
       setTags((selectedNote.tags || []).join(", "));
+      setWarnings({ title: false, content: false });
     } else {
       setTitle("");
       setFolder("");
       setTags("");
       setContent("");
-      setTags("");
       setLastEdited("Not saved yet");
     }
   }, [selectedNote]);
@@ -43,28 +56,9 @@ function NoteForm({ selectedNote, userFolders }) {
       .map((tag) => tag.toLowerCase());
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const response = await fetch("http://localhost:8000/api/create_note/", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       credentials: "include",
-  //       body: JSON.stringify({
-  //         title: title,
-  //         tags: cleanTags(tags),
-  //         content: content,
-  //       }),
-  //     });
-  //     const result = await response.json();
-  //     console.log(result);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-  //
-  const handleSubmit = () => {
-    noteData = {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const noteData = {
       title,
       folder,
       content,
@@ -88,15 +82,19 @@ function NoteForm({ selectedNote, userFolders }) {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => handleChange("title", e.target.value, setTitle)}
           value={title}
           className="title"
           placeholder="Enter a title..."
+          onBlur={() => handleBlur("title", title)}
         />
-        <div className="warning">
-          <img src={infoIcon} alt="" />
-          <p>Can't be empty</p>
-        </div>
+        {warnings.title && (
+          <div className="warning">
+            <img src={infoIcon} alt="" />
+            <p>Can't be empty</p>
+          </div>
+        )}
+
         <section className="form-divider">
           <div className="note-inputs">
             <div className="left">
@@ -120,7 +118,7 @@ function NoteForm({ selectedNote, userFolders }) {
             <div className="right">
               <select
                 value={folder}
-                onChange={(e) => setFolder(e.target.value)}
+                onChange={(e) => setFolder(Number(e.target.value))}
               >
                 <option className="select-placeholder" value="" disabled>
                   Select a folder
@@ -154,19 +152,23 @@ function NoteForm({ selectedNote, userFolders }) {
         <textarea
           className="note-content"
           type="text"
-          onChange={(e) => setContent(e.target.value)}
+          onChange={(e) => handleChange("content", e.target.value, setContent)}
           value={content}
           placeholder="Start typing your note here"
+          onBlur={() => handleBlur("content", content)}
         />
-        <div className="warning content-warning">
-          <img src={infoIcon} alt="" />
-          <p>Can't be empty</p>
-        </div>
+
+        {warnings.content && (
+          <div className="warning content-warning">
+            <img src={infoIcon} alt="" />
+            <p>Can't be empty</p>
+          </div>
+        )}
         <div className="note-buttons">
-          <button className="note-button save" type="submit">
+          <button className="note-button save" type="button">
             Save Note
           </button>
-          <button className="note-button cancel" type="submit">
+          <button className="note-button cancel" type="button">
             Cancel
           </button>
         </div>
