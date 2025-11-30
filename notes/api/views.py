@@ -304,7 +304,7 @@ def fetch_note(request, note_id):
                 "last_edited": note.last_edited.strftime("%d %B %Y"),
                 "archived": note.archived,
                 "tags": [tag.name for tag in note.tags.all()],
-                "folder": note.folder,
+                "folder": note.folder.name if note.folder else "",
             },
         },
         status=200,
