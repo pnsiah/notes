@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import tag from "../assets/images/icon-tag.svg";
+import infoIcon from "../assets/images/icon-info.svg";
 import clock from "../assets/images/icon-clock.svg";
 import "../components/NoteForm.css";
 import folderIcon from "../assets/images/folder-regular-full.svg";
@@ -92,6 +93,10 @@ function NoteForm({ selectedNote, userFolders }) {
           className="title"
           placeholder="Enter a title..."
         />
+        <div className="warning">
+          <img src={infoIcon} alt="" />
+          <p>Can't be empty</p>
+        </div>
         <section className="form-divider">
           <div className="note-inputs">
             <div className="left">
@@ -153,6 +158,10 @@ function NoteForm({ selectedNote, userFolders }) {
           value={content}
           placeholder="Start typing your note here"
         />
+        <div className="warning content-warning">
+          <img src={infoIcon} alt="" />
+          <p>Can't be empty</p>
+        </div>
         <div className="note-buttons">
           <button className="note-button save" type="submit">
             Save Note
