@@ -19,15 +19,6 @@ function NoteForm({ selectedNote, userFolders }) {
 
   const { addNotification } = useContext(NotificationContext);
 
-  const handleBlur = (field, value) => {
-    setWarnings((prev) => ({ ...prev, [field]: !value.trim() }));
-  };
-
-  const handleChange = (field, value, setter) => {
-    setter(value);
-    setWarnings((prev) => ({ ...prev, [field]: false })); // remove warning
-  };
-
   useEffect(() => {
     if (selectedNote) {
       setTitle(selectedNote.title || "");
@@ -44,6 +35,23 @@ function NoteForm({ selectedNote, userFolders }) {
       setLastEdited("Not saved yet");
     }
   }, [selectedNote]);
+
+  const handleBlur = (field, value) => {
+    setWarnings((prev) => ({ ...prev, [field]: !value.trim() }));
+  };
+
+  const handleChange = (field, value, setter) => {
+    setter(value);
+    setWarnings((prev) => ({ ...prev, [field]: false })); // remove warning
+  };
+
+  const cancelNote = () => {
+    setTitle("");
+    setFolder("");
+    setTags("");
+    setContent("");
+    setLastEdited("Not saved yet");
+  };
 
   const handleClick = () => {
     addNotification("hello");
@@ -165,10 +173,18 @@ function NoteForm({ selectedNote, userFolders }) {
           </div>
         )}
         <div className="note-buttons">
-          <button className="note-button save" type="button">
+          <button
+            onClick={handleSubmit}
+            className="note-button save"
+            type="button"
+          >
             Save Note
           </button>
-          <button className="note-button cancel" type="button">
+          <button
+            onClick={cancelNote}
+            className="note-button cancel"
+            type="button"
+          >
             Cancel
           </button>
         </div>
