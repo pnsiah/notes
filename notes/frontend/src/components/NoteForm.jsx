@@ -117,9 +117,9 @@ function NoteForm({ selectedNote, userFolders }) {
                 <option className="select-placeholder" value="" disabled>
                   Select a folder
                 </option>
-                {userFolders.map((folder) => (
-                  <option key={folder.id} value={folder.id}>
-                    {folder.name}
+                {userFolders.map((f) => (
+                  <option key={f.id} value={f.id}>
+                    {f.name}
                   </option>
                 ))}
               </select>
