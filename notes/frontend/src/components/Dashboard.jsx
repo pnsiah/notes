@@ -104,6 +104,39 @@ function Dashboard(props) {
     }
   };
 
+  const createNote = async (noteData) => {
+    try {
+      const response = await fetch("http://localhost:8000/api/create_note/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(noteData),
+      });
+      const result = await response.json();
+      console.log(result);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const updateNote = async (noteId, noteData) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/update_note/${noteId}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify(noteData),
+        },
+      );
+      const result = await response.json();
+      console.log(result);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const deleteNote = async (id) => {
     try {
       const response = await fetch(

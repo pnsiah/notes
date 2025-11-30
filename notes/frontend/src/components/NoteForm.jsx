@@ -75,6 +75,9 @@ function NoteForm({ selectedNote, userFolders }) {
     if ((selectedNote.id, noteData)) {
       updateNote(selectedNote, noteData);
     } else {
+      if (!noteData.content || !noteData.title) {
+        return;
+      }
       createNote(noteData);
     }
   };
