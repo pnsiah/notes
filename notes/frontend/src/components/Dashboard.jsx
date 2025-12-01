@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import TagList from "./TagList";
@@ -10,6 +10,7 @@ import NoteActions from "./NoteActions";
 import "../components/dashboard.css";
 import plusIcon from "../assets/images/icon-plus.svg";
 import Modal from "./Modal";
+import { NotificationContext } from "./NotificationContext";
 
 function Dashboard(props) {
   const [notes, setNotes] = useState([]);
@@ -17,7 +18,7 @@ function Dashboard(props) {
   const [tags, setTags] = useState([]);
   const [userData, setUserData] = useState({});
   const [view, setView] = useState("note");
-  const [selectedNote, setSelectedNote] = useState("");
+  const [selectedNote, setSelectedNote] = useState(null);
   // const [folderList, setFolderList] = useState([]);
   const [showActions, setshowActions] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,6 +29,8 @@ function Dashboard(props) {
     confirmText: "",
   });
 
+  const { addNotification } = useContext(NotificationContext);
+
   const openModal = (data) => {
     setModalData(data);
     setIsModalOpen(true);
@@ -37,27 +40,26 @@ function Dashboard(props) {
     setIsModalOpen(false);
   };
 
+  const fetchUserData = async () => {
+    const response = await fetch("http://localhost:8000/api/dashboard", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({}),
+    });
+    const result = await response.json();
+    console.log(result);
+    setUserData(result.user_data);
+    setFolders(result.folders);
+    setTags(result.tags);
+    setNotes(result.notes);
+  };
+
   useEffect(() => {
-    const fetchUserData = async () => {
-      const response = await fetch("http://localhost:8000/api/dashboard", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({}),
-      });
-      const result = await response.json();
-      console.log(result);
-      setUserData(result.user_data);
-      setFolders(result.folders);
-      setTags(result.tags);
-      setNotes(result.notes);
-    };
     fetchUserData();
   }, []);
 
-  console.log({ folders });
   //
-  ///
   // useEffect(() => {
   //   fetch("http://localhost:8000/api/list_folders/", {
   //     method: "GET",
@@ -113,7 +115,11 @@ function Dashboard(props) {
         body: JSON.stringify(noteData),
       });
       const result = await response.json();
-      console.log(result);
+      if (result.status) {
+        addNotification(result.message);
+        await fetchUserData();
+      }
+      return result.status;
     } catch (e) {
       console.log(e);
     }
@@ -122,7 +128,7 @@ function Dashboard(props) {
   const updateNote = async (noteId, noteData) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/update_note/${noteId}`,
+        `http://localhost:8000/api/update_note/${noteId}/`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -131,7 +137,11 @@ function Dashboard(props) {
         },
       );
       const result = await response.json();
-      console.log(result);
+      if (result.status) {
+        addNotification(result.message);
+        await fetchUserData();
+      }
+      return result.status;
     } catch (e) {
       console.log(e);
     }
@@ -222,6 +232,8 @@ function Dashboard(props) {
           folders={folders}
           tags={tags}
           selectedNote={selectedNote}
+          updateNote={updateNote}
+          createNote={createNote}
         />
         <NavBar view={view} setView={setView} />
         <div className="new-note-icon">
@@ -237,7 +249,12 @@ function Dashboard(props) {
             fetchNote={fetchNote}
             notes={notes}
           />
-          <NoteForm userFolders={folders} selectedNote={selectedNote} />
+          <NoteForm
+            updateNote={updateNote}
+            createNote={createNote}
+            userFolders={folders}
+            selectedNote={selectedNote}
+          />
           {showActions && <NoteActions openModal={openModal} />}
         </div>
       </div>

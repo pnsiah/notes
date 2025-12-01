@@ -6,7 +6,7 @@ import "../components/NoteForm.css";
 import folderIcon from "../assets/images/folder-regular-full.svg";
 import { NotificationContext } from "./NotificationContext";
 
-function NoteForm({ selectedNote, userFolders }) {
+function NoteForm({ selectedNote, userFolders, createNote, updateNote }) {
   const [title, setTitle] = useState("");
   const [folder, setFolder] = useState("");
   const [lastEdited, setLastEdited] = useState("");
@@ -36,7 +36,7 @@ function NoteForm({ selectedNote, userFolders }) {
     }
   }, [selectedNote]);
 
-  const handleBlur = (field, value) => {
+  const validateField = (field, value) => {
     setWarnings((prev) => ({ ...prev, [field]: !value.trim() }));
   };
 
@@ -45,17 +45,13 @@ function NoteForm({ selectedNote, userFolders }) {
     setWarnings((prev) => ({ ...prev, [field]: false })); // remove warning
   };
 
-  const cancelNote = () => {
+  const resetForm = () => {
     setTitle("");
     setFolder("");
     setTags("");
     setContent("");
     setLastEdited("Not saved yet");
     setWarnings({ title: false, content: false });
-  };
-
-  const handleClick = () => {
-    addNotification("hello");
   };
 
   const cleanTags = (input) => {
@@ -65,8 +61,22 @@ function NoteForm({ selectedNote, userFolders }) {
       .map((tag) => tag.toLowerCase());
   };
 
-  const handleSubmit = (e) => {
+  const validateNote = () => {
+    const isTitleEmpty = !title.trim();
+    const isContentEmpty = !content.trim();
+
+    setWarnings({ title: isTitleEmpty, content: isContentEmpty });
+
+    return !isTitleEmpty && !isContentEmpty;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateNote()) {
+      return;
+    }
+
     const noteData = {
       title,
       folder,
@@ -76,14 +86,11 @@ function NoteForm({ selectedNote, userFolders }) {
     };
 
     // decide whether to create or update
-    if ((selectedNote.id, noteData)) {
-      updateNote(selectedNote, noteData);
-    } else {
-      if (!noteData.content || !noteData.title) {
-        return;
-      }
-      createNote(noteData);
-    }
+    const success = selectedNote
+      ? await updateNote(selectedNote.id, noteData)
+      : await createNote(noteData);
+
+    if (success) resetForm();
   };
 
   return (
@@ -95,7 +102,7 @@ function NoteForm({ selectedNote, userFolders }) {
           value={title}
           className="title"
           placeholder="Enter a title..."
-          onBlur={() => handleBlur("title", title)}
+          onBlur={() => validateField("title", title)}
         />
         {warnings.title && (
           <div className="warning">
@@ -164,7 +171,7 @@ function NoteForm({ selectedNote, userFolders }) {
           onChange={(e) => handleChange("content", e.target.value, setContent)}
           value={content}
           placeholder="Start typing your note here"
-          onBlur={() => handleBlur("content", content)}
+          onBlur={() => validateField("content", content)}
         />
 
         {warnings.content && (
@@ -175,14 +182,14 @@ function NoteForm({ selectedNote, userFolders }) {
         )}
         <div className="note-buttons">
           <button
-            onClick={handleSubmit}
+            // onClick={handleSubmit}
             className="note-button save"
-            type="button"
+            type="submit"
           >
             Save Note
           </button>
           <button
-            onClick={cancelNote}
+            onClick={resetForm}
             className="note-button cancel"
             type="button"
           >
