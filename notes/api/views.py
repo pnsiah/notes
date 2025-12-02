@@ -208,6 +208,19 @@ def delete_note(request, note_id):
 
 
 @csrf_exempt
+def archive_note(request, note_id):
+    if request.method != "PUT":
+        return JsonResponse({"status": False, "message": "Invalid request"}, status=405)
+    note = get_object_or_404(Note, id=note_id)
+
+    if note.user != request.user:
+        return JsonResponse({"status": False, "message": "Denied"}, status=403)
+    note.archived = not note.archived
+    print(note.archived)
+    return JsonResponse({"status": True, "message": "Note archived successfully"})
+
+
+@csrf_exempt
 def create_folder(request):
     if request.method == "POST":
         data = json.loads(request.body)

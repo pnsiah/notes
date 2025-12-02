@@ -1,7 +1,15 @@
 import "../components/Modal.css";
 import deleteIcon from "../assets/images/icon-delete.svg";
 
-function Modal({ closeModal, modalTitle, modalImage, modalBody, confirmText }) {
+function Modal({
+  closeModal,
+  modalTitle,
+  modalImage,
+  modalBody,
+  confirmText,
+  actionFunc,
+  selectedNote,
+}) {
   const closeOnBackdrop = () => {
     closeModal();
   };
@@ -27,6 +35,10 @@ function Modal({ closeModal, modalTitle, modalImage, modalBody, confirmText }) {
           </button>
           <button
             className={`modal-button ${confirmText === "Delete Note" ? "modal-danger-button" : "modal-confirm"}`}
+            onClick={() => {
+              actionFunc(selectedNote.id);
+              closeModal();
+            }}
           >
             {confirmText}
           </button>

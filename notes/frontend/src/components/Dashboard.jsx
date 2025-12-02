@@ -22,11 +22,13 @@ function Dashboard(props) {
   // const [folderList, setFolderList] = useState([]);
   const [showActions, setshowActions] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [action, setAction] = useState("");
   const [modalData, setModalData] = useState({
     title: "",
     body: "",
     image: null,
     confirmText: "",
+    actionFunc: null,
   });
 
   const { addNotification } = useContext(NotificationContext);
@@ -147,10 +149,10 @@ function Dashboard(props) {
     }
   };
 
-  const deleteNote = async (id) => {
+  const deleteNote = async (noteId) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/delete_note/${id}/`,
+        `http://localhost:8000/api/delete_note/${noteId}/`,
         {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
@@ -159,6 +161,27 @@ function Dashboard(props) {
       );
       const result = await response.json();
       console.log(result);
+      addNotification(result.message);
+      await fetchUserData();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const archiveNote = async (noteId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/archive_note/${noteId}/`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+        },
+      );
+      const result = await response.json();
+      console.log(result);
+      addNotification(result.message);
+      await fetchUserData();
     } catch (err) {
       console.log(err);
     }
@@ -220,6 +243,8 @@ function Dashboard(props) {
           modalBody={modalData.body}
           modalImage={modalData.image}
           confirmText={modalData.confirmText}
+          actionFunc={modalData.actionFunc}
+          selectedNote={selectedNote}
         />
       )}
       <div className="small">
@@ -255,14 +280,27 @@ function Dashboard(props) {
             userFolders={folders}
             selectedNote={selectedNote}
           />
-          {showActions && <NoteActions openModal={openModal} />}
+          {showActions && (
+            <NoteActions
+              deleteNote={deleteNote}
+              archiveNote={archiveNote}
+              openModal={openModal}
+            />
+          )}
         </div>
-      </div>
-      <div>
-        <button onClick={handleLogOut}>Log Out</button>
       </div>
     </div>
   );
+}
+
+{
+  /* <div> */
+}
+{
+  /*   <button onClick={handleLogOut}>Log Out</button> */
+}
+{
+  /* </div> */
 }
 
 export default Dashboard;
