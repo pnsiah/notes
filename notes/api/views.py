@@ -215,9 +215,15 @@ def archive_note(request, note_id):
 
     if note.user != request.user:
         return JsonResponse({"status": False, "message": "Denied"}, status=403)
+
     note.archived = not note.archived
-    print(note.archived)
-    return JsonResponse({"status": True, "message": "Note archived successfully"})
+    note.save()
+
+    if note.archived:
+        message = "Not archived successfully"
+    else:
+        message = "Note restored successsfully"
+    return JsonResponse({"status": True, "message": message})
 
 
 @csrf_exempt
