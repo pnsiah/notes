@@ -2,11 +2,13 @@ import searchIcon from "../assets/images/icon-search.svg";
 import settingsIcon from "../assets/images/icon-settings.svg";
 import "../components/Search.css";
 
-function Search() {
+function Search({ searchNotes }) {
+  console.log(typeof searchNotes);
   return (
     <form className="search-form">
       <div className="input-wrapper">
         <input
+          onChange={(e) => searchNotes(e.target.value)}
           className="search-input"
           type="text"
           placeholder="Search by title, tags or folder"

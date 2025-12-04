@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET
 from django.db import IntegrityError
 from .models import User, Note, Folder, Tag
-from .utils import save_note_with_tags
+from .utils import save_note_with_tags, serialize_note
 
 
 def index(request):
@@ -361,25 +361,32 @@ def fetch_note(request, note_id):
     )
 
 
-def search(request):
-    if request.method == "POST":
-        data = json.loads(request.data)
-        query = data.get("query", "").strip()
+@csrf_exempt
+def search_notes(request):
+    if request.method == "GET":
+        query = request.GET.get("query", "").strip()
         if not query:
             return JsonResponse(
-                {"status": False, "message": "No search query"}, status=405
+                {"status": False, "message": "No search query"}, status=404
             )
         notes = (
             Note.objects.filter(
-                Q(title__icontains=query) | Q(content=query) | Q(tag=query),
+                Q(title__icontains=query)
+                | Q(content__icontains=query)
+                | Q(tags__name__icontains=query),
                 user=request.user,
             )
             .distinct()
-            .values("id", "title", "content")
+            .order_by("-created_at")
         )
+        serialized_notes = serialize_note(notes)
         return JsonResponse(
-            {"status": True, "message": "Successfully retrieved", "notes": list(notes)},
-            status=405,
+            {
+                "status": True,
+                "message": "Successfully retrieved",
+                "notes": serialized_notes,
+            },
+            status=200,
         )
     return JsonResponse({"status": False, "message": "Invalid request"}, status=405)
 
