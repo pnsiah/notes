@@ -198,9 +198,18 @@ function Dashboard(props) {
 
     const result = await response.json();
     setNotes(result.notes);
-    // console.log({ result });
   };
 
+  const search = async (query) => {
+    const response = await fetch("http://localhost:8000/api/search/", {
+      method: "GET",
+      credentials: "include",
+      body: JSON.stringify({ query }),
+    });
+
+    const result = await response.json();
+    console.log({ result });
+  };
   const fetchSingleNote = async (noteId) => {
     const response = await fetch(
       `http://localhost:8000/api/fetch_note/${noteId}/`,

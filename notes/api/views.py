@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET
 from django.db import IntegrityError
 from .models import User, Note, Folder, Tag
-from .utils import save_note_with_tags
+from .utils import save_note_with_tags, serialize_note
 
 
 def index(request):
@@ -361,9 +361,9 @@ def fetch_note(request, note_id):
     )
 
 
-def search(request):
+def search_notes(request):
     if request.method == "POST":
-        data = json.loads(request.data)
+        data = json.loads(request.body)
         query = data.get("query", "").strip()
         if not query:
             return JsonResponse(
@@ -376,10 +376,16 @@ def search(request):
             )
             .distinct()
             .values("id", "title", "content")
+            .order_by("-created_at")
         )
+        serialized_notes = serialize_note(notes)
         return JsonResponse(
-            {"status": True, "message": "Successfully retrieved", "notes": list(notes)},
-            status=405,
+            {
+                "status": True,
+                "message": "Successfully retrieved",
+                "notes": serialized_notes,
+            },
+            status=200,
         )
     return JsonResponse({"status": False, "message": "Invalid request"}, status=405)
 
