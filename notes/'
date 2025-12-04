@@ -2,11 +2,9 @@ import searchIcon from "../assets/images/icon-search.svg";
 import settingsIcon from "../assets/images/icon-settings.svg";
 import "../components/Search.css";
 
-function Search({ searchNotes, setNoteListInfo }) {
+function Search({ setQuery, searchNotes }) {
   const handleSearch = (e) => {
-    setNoteListInfo(
-      `All notes matching "${e.target.value}" are displayed here.`,
-    );
+    setQuery(e.target.value);
     searchNotes(e.target.value);
   };
 
