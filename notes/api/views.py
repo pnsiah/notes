@@ -233,6 +233,8 @@ def get_notes(request):
 
     if filter == "archived":
         notes = notes.filter(archived=True)
+    else:
+        notes = notes.filter(archived=False)
 
     serialized_notes = [
         {

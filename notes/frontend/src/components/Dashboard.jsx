@@ -187,7 +187,7 @@ function Dashboard(props) {
     }
   };
 
-  const fetchNotes = async (filter = all) => {
+  const fetchNotes = async (filter = "all") => {
     const response = await fetch(
       `http://localhost:8000/api/get_notes/?filter=${filter}`,
       {
