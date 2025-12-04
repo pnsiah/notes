@@ -5,7 +5,7 @@ import NoteList from "./NoteList";
 
 function Notes({ notes, fetchNote, setSelectedNote }) {
   const createNewForm = () => {
-    setSelectedNote("");
+    setSelectedNote(null);
   };
   return (
     <div className="notes">
@@ -14,97 +14,6 @@ function Notes({ notes, fetchNote, setSelectedNote }) {
           <img src={plus} alt="" /> <span>Create New Note</span>
         </button>
         <NoteList notes={notes} fetchNote={fetchNote} />
-        {/* <ul className="notes-list"> */}
-        {/*   <li> */}
-        {/*     <button className="note"> */}
-        {/*       <h4 className="note-title">Title</h4> */}
-        {/*       <div className="tags-section"> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*       </div> */}
-        {/*       <p className="date">30th October 2034</p> */}
-        {/*     </button> */}
-        {/*   </li> */}
-        {/*   <li> */}
-        {/*     <button className="note"> */}
-        {/*       <h4 className="note-title">Title</h4> */}
-        {/*       <div className="tags-section"> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*       </div> */}
-        {/*       <p className="date">30th October 2034</p> */}
-        {/*     </button> */}
-        {/*   </li> */}
-        {/*   <li> */}
-        {/*     <button className="note"> */}
-        {/*       <h4 className="note-title">Title</h4> */}
-        {/*       <div className="tags-section"> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span> */}
-        {/*           Lorem ipsum dolor, sit amet consectetur adipisicing elit. */}
-        {/*           Maiores repellat amet quas ad natus cum! */}
-        {/*         </span> */}
-        {/**/}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*       </div> */}
-        {/*       <p className="date">30th October 2034</p> */}
-        {/*     </button> */}
-        {/*   </li> */}
-        {/*   <li> */}
-        {/*     <button className="note"> */}
-        {/*       <h4 className="note-title">Title</h4> */}
-        {/*       <div className="tags-section"> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*       </div> */}
-        {/*       <p className="date">30th October 2034</p> */}
-        {/*     </button> */}
-        {/*   </li> */}
-        {/*   <li> */}
-        {/*     <button className="note"> */}
-        {/*       <h4 className="note-title">Title</h4> */}
-        {/*       <div className="tags-section"> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*         <span>Tag</span> */}
-        {/*       </div> */}
-        {/*       <p className="date">30th October 2034</p> */}
-        {/*     </button> */}
-        {/*   </li> */}
-        {/* </ul> */}
       </div>
     </div>
   );

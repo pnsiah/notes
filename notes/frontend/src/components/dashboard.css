@@ -43,8 +43,8 @@
   }
 
   .big .grid {
-    /* width: calc(100vw - 20vw); */
-    /* flex: 1 0 0; */
+    width: calc(100vw - 20vw);
+    flex: 1 0 0;
     display: grid;
     grid-template-areas:
       "title title title"

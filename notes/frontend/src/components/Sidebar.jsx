@@ -7,7 +7,7 @@ import arrow_right from "../assets/images/icon-chevron-right.svg";
 import tag from "../assets/images/icon-tag.svg";
 import "./SideBar.css";
 
-function Sidebar({ folders, tags }) {
+function Sidebar({ folders, tags, fetchArchivedNotes }) {
   return (
     <div className="sidebar">
       <Logo />
@@ -18,7 +18,7 @@ function Sidebar({ folders, tags }) {
           <span className="menu-text">All Notes</span>
           <img className="arrow-right" src={arrow_right} alt="" />
         </button>
-        <button className="sidebar-button">
+        <button onClick={fetchArchivedNotes} className="sidebar-button">
           <img className="archived-icon" src={archived} alt="" />
           <span className="menu-text">Archived Notes</span>
           <img className="arrow-right" src={arrow_right} alt="" />

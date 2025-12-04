@@ -179,7 +179,8 @@ def update_note(request, note_id):
         new_content = data.get("content")
         if not new_title or not new_content:
             return JsonResponse(
-                {"status": False, "message": "Both fields cannot be empty"}, status=400
+                {"status": False, "message": "Title or content cannot be empty"},
+                status=400,
             )
         note.title = new_title
         note.content = new_content
@@ -204,6 +205,25 @@ def delete_note(request, note_id):
         return JsonResponse({"status": False, "message": "Denied"}, status=403)
     note.delete()
     return JsonResponse({"status": True, "message": "Note deleted successfully"})
+
+
+@csrf_exempt
+def archive_note(request, note_id):
+    if request.method != "PUT":
+        return JsonResponse({"status": False, "message": "Invalid request"}, status=405)
+    note = get_object_or_404(Note, id=note_id)
+
+    if note.user != request.user:
+        return JsonResponse({"status": False, "message": "Denied"}, status=403)
+
+    note.archived = not note.archived
+    note.save()
+
+    if note.archived:
+        message = "Not archived successfully"
+    else:
+        message = "Note restored successsfully"
+    return JsonResponse({"status": True, "message": message})
 
 
 @csrf_exempt

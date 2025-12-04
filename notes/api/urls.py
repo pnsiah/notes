@@ -12,6 +12,7 @@ urlpatterns = [
         "api/list_archived_notes", views.list_archived_notes, name="list_archived_notes"
     ),
     path("api/delete_note/<int:note_id>/", views.delete_note, name="delete_note"),
+    path("api/archive_note/<int:note_id>/", views.archive_note, name="archive_note"),
     path("api/fetch_note/<int:note_id>/", views.fetch_note, name="fetch_note"),
     path("api/update_note/<int:note_id>/", views.update_note, name="update_note"),
     path("api/create_note/", views.create_note, name="create_note"),

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import TagList from "./TagList";
@@ -10,6 +10,7 @@ import NoteActions from "./NoteActions";
 import "../components/dashboard.css";
 import plusIcon from "../assets/images/icon-plus.svg";
 import Modal from "./Modal";
+import { NotificationContext } from "./NotificationContext";
 
 function Dashboard(props) {
   const [notes, setNotes] = useState([]);
@@ -17,16 +18,20 @@ function Dashboard(props) {
   const [tags, setTags] = useState([]);
   const [userData, setUserData] = useState({});
   const [view, setView] = useState("note");
-  const [selectedNote, setSelectedNote] = useState("");
+  const [selectedNote, setSelectedNote] = useState(null);
   // const [folderList, setFolderList] = useState([]);
   const [showActions, setshowActions] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [action, setAction] = useState("");
   const [modalData, setModalData] = useState({
     title: "",
     body: "",
     image: null,
     confirmText: "",
+    actionFunc: null,
   });
+
+  const { addNotification } = useContext(NotificationContext);
 
   const openModal = (data) => {
     setModalData(data);
@@ -37,27 +42,26 @@ function Dashboard(props) {
     setIsModalOpen(false);
   };
 
+  const fetchUserData = async () => {
+    const response = await fetch("http://localhost:8000/api/dashboard", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({}),
+    });
+    const result = await response.json();
+    console.log(result);
+    setUserData(result.user_data);
+    setFolders(result.folders);
+    setTags(result.tags);
+    setNotes(result.notes);
+  };
+
   useEffect(() => {
-    const fetchUserData = async () => {
-      const response = await fetch("http://localhost:8000/api/dashboard", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({}),
-      });
-      const result = await response.json();
-      console.log(result);
-      setUserData(result.user_data);
-      setFolders(result.folders);
-      setTags(result.tags);
-      setNotes(result.notes);
-    };
     fetchUserData();
   }, []);
 
-  console.log({ folders });
   //
-  ///
   // useEffect(() => {
   //   fetch("http://localhost:8000/api/list_folders/", {
   //     method: "GET",
@@ -113,7 +117,11 @@ function Dashboard(props) {
         body: JSON.stringify(noteData),
       });
       const result = await response.json();
-      console.log(result);
+      if (result.status) {
+        addNotification(result.message);
+        await fetchUserData();
+      }
+      return result.status;
     } catch (e) {
       console.log(e);
     }
@@ -122,7 +130,7 @@ function Dashboard(props) {
   const updateNote = async (noteId, noteData) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/update_note/${noteId}`,
+        `http://localhost:8000/api/update_note/${noteId}/`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -131,16 +139,20 @@ function Dashboard(props) {
         },
       );
       const result = await response.json();
-      console.log(result);
+      if (result.status) {
+        addNotification(result.message);
+        await fetchUserData();
+      }
+      return result.status;
     } catch (e) {
       console.log(e);
     }
   };
 
-  const deleteNote = async (id) => {
+  const deleteNote = async (noteId) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/delete_note/${id}/`,
+        `http://localhost:8000/api/delete_note/${noteId}/`,
         {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
@@ -149,6 +161,27 @@ function Dashboard(props) {
       );
       const result = await response.json();
       console.log(result);
+      addNotification(result.message);
+      await fetchUserData();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const archiveNote = async (noteId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/archive_note/${noteId}/`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+        },
+      );
+      const result = await response.json();
+      console.log(result);
+      addNotification(result.message);
+      await fetchUserData();
     } catch (err) {
       console.log(err);
     }
@@ -210,6 +243,8 @@ function Dashboard(props) {
           modalBody={modalData.body}
           modalImage={modalData.image}
           confirmText={modalData.confirmText}
+          actionFunc={modalData.actionFunc}
+          selectedNote={selectedNote}
         />
       )}
       <div className="small">
@@ -222,6 +257,8 @@ function Dashboard(props) {
           folders={folders}
           tags={tags}
           selectedNote={selectedNote}
+          updateNote={updateNote}
+          createNote={createNote}
         />
         <NavBar view={view} setView={setView} />
         <div className="new-note-icon">
@@ -237,15 +274,34 @@ function Dashboard(props) {
             fetchNote={fetchNote}
             notes={notes}
           />
-          <NoteForm userFolders={folders} selectedNote={selectedNote} />
-          {showActions && <NoteActions openModal={openModal} />}
+          <NoteForm
+            updateNote={updateNote}
+            createNote={createNote}
+            userFolders={folders}
+            selectedNote={selectedNote}
+          />
+          {showActions && (
+            <NoteActions
+              selectedNote={selectedNote}
+              deleteNote={deleteNote}
+              archiveNote={archiveNote}
+              openModal={openModal}
+            />
+          )}
         </div>
-      </div>
-      <div>
-        <button onClick={handleLogOut}>Log Out</button>
       </div>
     </div>
   );
+}
+
+{
+  /* <div> */
+}
+{
+  /*   <button onClick={handleLogOut}>Log Out</button> */
+}
+{
+  /* </div> */
 }
 
 export default Dashboard;
