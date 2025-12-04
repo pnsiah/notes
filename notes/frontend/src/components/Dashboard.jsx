@@ -18,6 +18,11 @@ function Dashboard(props) {
   const [tags, setTags] = useState([]);
   const [userData, setUserData] = useState({});
   const [view, setView] = useState("note");
+  const [noteListInfo, setNoteListInfo] = useState("");
+  const [emptyQueryInfo, setEmptyQueryInfo] = useState({
+    isNoteEmpty: false,
+    emptyNoteInfo: "",
+  });
   const [selectedNote, setSelectedNote] = useState(null);
   // const [folderList, setFolderList] = useState([]);
   const [showActions, setshowActions] = useState(true);
@@ -77,17 +82,6 @@ function Dashboard(props) {
   //     .catch(console.error);
   // }, []);
   // Come here
-
-  // const fetchNotes = async () => {
-  //   const response = await fetch("http://localhost:8000/api/notes", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     credentials: "include",
-  //     body: JSON.stringify({}),
-  //   });
-  //   const result = await response.json();
-  //   console.log(result);
-  // };
 
   const handleLogOut = async () => {
     try {
@@ -210,7 +204,23 @@ function Dashboard(props) {
     );
 
     const result = await response.json();
-    console.log({ result });
+    setNotes(result.notes);
+    if (notes.length === 0) {
+      setEmptyQueryInfo({
+        isNoteEmpty: true,
+        emptyNoteInfo:
+          "You don’t have any notes available in this tab. Start a new note to capture your thoughts and ideas.",
+      });
+
+      fetchNotes();
+      return;
+    } else {
+      setEmptyQueryInfo({ isNoteEmpty: false });
+      setNoteListInfo("");
+      //
+      // setNotes(result.notes);
+    }
+    // console.log({ result });
   };
 
   const fetchSingleNote = async (noteId) => {
@@ -274,7 +284,12 @@ function Dashboard(props) {
         />
       )}
       <div className="small">
-        <Header searchNotes={searchNotes} showSearch={false} showLogo={true} />
+        <Header
+          setNoteListInfo={setNoteListInfo}
+          searchNotes={searchNotes}
+          showSearch={false}
+          showLogo={true}
+        />
         <View
           setSelectedNote={setSelectedNote}
           fetchSingleNote={fetchSingleNote}
@@ -294,18 +309,23 @@ function Dashboard(props) {
       <div className="big">
         <Sidebar fetchNotes={fetchNotes} folders={folders} tags={tags} />
         <div className="grid">
-          <Header searchNotes={searchNotes} />
+          <Header setNoteListInfo={setNoteListInfo} searchNotes={searchNotes} />
           <Notes
+            noteListInfo={noteListInfo}
             setSelectedNote={setSelectedNote}
             fetchSingleNote={fetchSingleNote}
             notes={notes}
           />
-          <NoteForm
-            updateNote={updateNote}
-            createNote={createNote}
-            userFolders={folders}
-            selectedNote={selectedNote}
-          />
+          {emptyQueryInfo.isNoteEmpty ? (
+            <div style={{ color: "red" }}>{emptyQueryInfo.emptyNoteInfo}</div>
+          ) : (
+            <NoteForm
+              updateNote={updateNote}
+              createNote={createNote}
+              userFolders={folders}
+              selectedNote={selectedNote}
+            />
+          )}
           {showActions && (
             <NoteActions
               selectedNote={selectedNote}
