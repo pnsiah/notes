@@ -92,8 +92,10 @@ def dashboard(request):
         if request.user.is_authenticated:
             user = request.user
 
-            notes = Note.objects.filter(user=user, archived=False).prefetch_related(
-                "tags"
+            notes = (
+                Note.objects.filter(user=user, archived=False)
+                .prefetch_related("tags")
+                .order_by("-created_at")
             )
             user_tags = Tag.objects.filter(user=user)
             user_folders = Folder.objects.filter(user=user)
@@ -229,7 +231,11 @@ def archive_note(request, note_id):
 @csrf_exempt
 def get_notes(request):
     filter = request.GET.get("filter", "all")
-    notes = Note.objects.filter(user=request.user).prefetch_related("tags")
+    notes = (
+        Note.objects.filter(user=request.user)
+        .prefetch_related("tags")
+        .order_by("-created_at")
+    )
 
     if filter == "archived":
         notes = notes.filter(archived=True)
