@@ -195,6 +195,12 @@ function Dashboard(props) {
   };
 
   const searchNotes = async (query) => {
+    if (!query.trim()) {
+      fetchNotes();
+      setNoteListInfo("");
+      setEmptyQueryInfo({ isNoteEmpty: false });
+      return;
+    }
     const response = await fetch(
       `http://localhost:8000/api/search_notes/?query=${encodeURIComponent(query)}`,
       {
@@ -204,16 +210,16 @@ function Dashboard(props) {
     );
 
     const result = await response.json();
-    setNotes(result.notes);
-    if (notes.length === 0) {
+    const noteList = result.notes || [];
+
+    setNotes(noteList);
+
+    if (noteList.length === 0) {
       setEmptyQueryInfo({
         isNoteEmpty: true,
         emptyNoteInfo:
           "You don’t have any notes available in this tab. Start a new note to capture your thoughts and ideas.",
       });
-
-      fetchNotes();
-      return;
     } else {
       setEmptyQueryInfo({ isNoteEmpty: false });
       setNoteListInfo("");
