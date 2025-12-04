@@ -1,10 +1,10 @@
 import "../components/NoteList.css";
 
-function NoteList({ notes, fetchNote }) {
+function NoteList({ notes, fetchSingleNote }) {
   return (
     <ul className="notes-list">
       {notes.map((note) => (
-        <li onClick={() => fetchNote(note.id)} key={note.id}>
+        <li onClick={() => fetchSingleNote(note.id)} key={note.id}>
           <button className="note" key={note.id}>
             <h4 className="note-title">{note.title}</h4>
             <div className="tags-section">

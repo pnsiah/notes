@@ -187,7 +187,9 @@ function Dashboard(props) {
     }
   };
 
-  const fetchNote = async (noteId) => {
+  // const  jj
+
+  const fetchSingleNote = async (noteId) => {
     const response = await fetch(
       `http://localhost:8000/api/fetch_note/${noteId}/`,
       {
@@ -251,7 +253,7 @@ function Dashboard(props) {
         <Header showSearch={false} showLogo={true} />
         <View
           setSelectedNote={setSelectedNote}
-          fetchNote={fetchNote}
+          fetchSingleNote={fetchSingleNote}
           view={view}
           notes={notes}
           folders={folders}
@@ -271,7 +273,7 @@ function Dashboard(props) {
           <Header />
           <Notes
             setSelectedNote={setSelectedNote}
-            fetchNote={fetchNote}
+            fetchSingleNote={fetchSingleNote}
             notes={notes}
           />
           <NoteForm
