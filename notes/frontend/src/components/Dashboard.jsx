@@ -202,7 +202,7 @@ function Dashboard(props) {
 
   const searchNotes = async (query) => {
     const response = await fetch(
-      `http://localhost:8000/api/?${encodeURIComponent(query)}/`,
+      `http://localhost:8000/api/search_notes/?query=${encodeURIComponent(query)}`,
       {
         method: "GET",
         credentials: "include",
