@@ -187,17 +187,18 @@ function Dashboard(props) {
     }
   };
 
-  const fetchNotes = async (filter) => {
+  const fetchNotes = async (filter = all) => {
     const response = await fetch(
-      `http://localhost:8000/api/get_notes/?${filter}/`,
+      `http://localhost:8000/api/get_notes/?filter=${filter}`,
       {
         method: "GET",
         credentials: "include",
       },
     );
 
-    const result = response.json();
-    console.log(result);
+    const result = await response.json();
+    setNotes(result.notes);
+    // console.log({ result });
   };
 
   const fetchSingleNote = async (noteId) => {
@@ -279,7 +280,7 @@ function Dashboard(props) {
         </div>
       </div>
       <div className="big">
-        <Sidebar folders={folders} tags={tags} />
+        <Sidebar fetchNotes={fetchNotes} folders={folders} tags={tags} />
         <div className="grid">
           <Header />
           <Notes

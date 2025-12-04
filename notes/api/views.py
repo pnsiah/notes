@@ -229,7 +229,7 @@ def archive_note(request, note_id):
 @csrf_exempt
 def get_notes(request):
     filter = request.GET.get("filter", "all")
-    notes = Note.object.filer(user=request.user).prefetch_related("tags")
+    notes = Note.objects.filter(user=request.user).prefetch_related("tags")
 
     if filter == "archived":
         notes = notes.filter(archived=True)
