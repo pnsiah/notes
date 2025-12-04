@@ -9,7 +9,7 @@ function View({
   view,
   tags,
   notes,
-  fetchNote,
+  fetchSingleNote,
   selectedNote,
   folders,
   updateNote,
@@ -17,7 +17,9 @@ function View({
 }) {
   return (
     <div className="view">
-      {view === "notes" && <Notes fetchNote={fetchNote} notes={notes} />}
+      {view === "notes" && (
+        <Notes fetchSingleNote={fetchSingleNote} notes={notes} />
+      )}
       {view === "form" && (
         <NoteForm
           createNote={createNote}

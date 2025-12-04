@@ -14,6 +14,8 @@ function NoteActions({
     actionFunc(action);
   };
 
+  const confirmText = selectedNote?.archived ? "Restore Note" : "Archive Note";
+
   return (
     <div className="note-actions">
       <button
@@ -22,14 +24,14 @@ function NoteActions({
             title: "Archive Note",
             body: "Are you sure you want to archive this note? You can find it in the Archived Notes section and restore it anytime.",
             image: archiveButton,
-            confirmText: "Archive Note",
+            confirmText: confirmText,
             actionFunc: archiveNote,
           });
         }}
         className="action-button"
       >
         <img className="icon" src={archive} alt="" />
-        <span> {selectedNote?.archived ? "Restore Note" : "Archive Note"}</span>
+        <span>{confirmText}</span>
       </button>
       <button
         onClick={() => {

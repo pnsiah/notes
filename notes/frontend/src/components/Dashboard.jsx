@@ -187,7 +187,21 @@ function Dashboard(props) {
     }
   };
 
-  const fetchNote = async (noteId) => {
+  const fetchNotes = async (filter = "all") => {
+    const response = await fetch(
+      `http://localhost:8000/api/get_notes/?filter=${filter}`,
+      {
+        method: "GET",
+        credentials: "include",
+      },
+    );
+
+    const result = await response.json();
+    setNotes(result.notes);
+    // console.log({ result });
+  };
+
+  const fetchSingleNote = async (noteId) => {
     const response = await fetch(
       `http://localhost:8000/api/fetch_note/${noteId}/`,
       {
@@ -251,7 +265,7 @@ function Dashboard(props) {
         <Header showSearch={false} showLogo={true} />
         <View
           setSelectedNote={setSelectedNote}
-          fetchNote={fetchNote}
+          fetchSingleNote={fetchSingleNote}
           view={view}
           notes={notes}
           folders={folders}
@@ -266,12 +280,12 @@ function Dashboard(props) {
         </div>
       </div>
       <div className="big">
-        <Sidebar folders={folders} tags={tags} />
+        <Sidebar fetchNotes={fetchNotes} folders={folders} tags={tags} />
         <div className="grid">
           <Header />
           <Notes
             setSelectedNote={setSelectedNote}
-            fetchNote={fetchNote}
+            fetchSingleNote={fetchSingleNote}
             notes={notes}
           />
           <NoteForm
