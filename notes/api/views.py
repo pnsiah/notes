@@ -361,21 +361,22 @@ def fetch_note(request, note_id):
     )
 
 
+@csrf_exempt
 def search_notes(request):
-    if request.method == "POST":
-        data = json.loads(request.body)
-        query = data.get("query", "").strip()
+    if request.method == "GET":
+        query = request.GET.get("query", "").strip()
         if not query:
             return JsonResponse(
-                {"status": False, "message": "No search query"}, status=405
+                {"status": False, "message": "No search query"}, status=404
             )
         notes = (
             Note.objects.filter(
-                Q(title__icontains=query) | Q(content=query) | Q(tag=query),
+                Q(title__icontains=query)
+                | Q(content__icontains=query)
+                | Q(tags__name__icontains=query),
                 user=request.user,
             )
             .distinct()
-            .values("id", "title", "content")
             .order_by("-created_at")
         )
         serialized_notes = serialize_note(notes)

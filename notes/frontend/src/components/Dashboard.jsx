@@ -200,16 +200,19 @@ function Dashboard(props) {
     setNotes(result.notes);
   };
 
-  const search = async (query) => {
-    const response = await fetch("http://localhost:8000/api/search/", {
-      method: "GET",
-      credentials: "include",
-      body: JSON.stringify({ query }),
-    });
+  const searchNotes = async (query) => {
+    const response = await fetch(
+      `http://localhost:8000/api/?${encodeURIComponent(query)}/`,
+      {
+        method: "GET",
+        credentials: "include",
+      },
+    );
 
     const result = await response.json();
     console.log({ result });
   };
+
   const fetchSingleNote = async (noteId) => {
     const response = await fetch(
       `http://localhost:8000/api/fetch_note/${noteId}/`,
@@ -271,7 +274,7 @@ function Dashboard(props) {
         />
       )}
       <div className="small">
-        <Header showSearch={false} showLogo={true} />
+        <Header searchNotes={searchNotes} showSearch={false} showLogo={true} />
         <View
           setSelectedNote={setSelectedNote}
           fetchSingleNote={fetchSingleNote}
@@ -291,7 +294,7 @@ function Dashboard(props) {
       <div className="big">
         <Sidebar fetchNotes={fetchNotes} folders={folders} tags={tags} />
         <div className="grid">
-          <Header />
+          <Header searchNotes={searchNotes} />
           <Notes
             setSelectedNote={setSelectedNote}
             fetchSingleNote={fetchSingleNote}
