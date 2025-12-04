@@ -227,6 +227,28 @@ def archive_note(request, note_id):
 
 
 @csrf_exempt
+def get_notes(request):
+    filter = request.GET.get("filter", "all")
+    notes = Note.object.filer(user=request.user).prefetch_related("tags")
+
+    if filter == "archived":
+        notes = notes.filter(archived=True)
+
+    serialized_notes = [
+        {
+            "id": note.id,
+            "title": note.title,
+            "content": note.content,
+            "date_created": note.created_at.strftime("%d %B %Y"),
+            "tags": [tag.name for tag in note.tags.all()],
+        }
+        for note in notes
+    ]
+
+    return JsonResponse({"status": True, "notes": serialized_notes})
+
+
+@csrf_exempt
 def create_folder(request):
     if request.method == "POST":
         data = json.loads(request.body)

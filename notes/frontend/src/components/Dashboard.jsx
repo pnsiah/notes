@@ -187,7 +187,18 @@ function Dashboard(props) {
     }
   };
 
-  // const  jj
+  const fetchNotes = async (filter) => {
+    const response = await fetch(
+      `http://localhost:8000/api/get_notes/?${filter}/`,
+      {
+        method: "GET",
+        credentials: "include",
+      },
+    );
+
+    const result = response.json();
+    console.log(result);
+  };
 
   const fetchSingleNote = async (noteId) => {
     const response = await fetch(
