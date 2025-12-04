@@ -3,7 +3,13 @@ import archive from "../assets/images/icon-archive.svg";
 import archiveButton from "../assets/images/icon-archive.svg";
 import "../components/NoteActions.css";
 
-function NoteActions({ openModal, actionFunc, archiveNote, deleteNote }) {
+function NoteActions({
+  openModal,
+  selectedNote,
+  actionFunc,
+  archiveNote,
+  deleteNote,
+}) {
   const updateAction = (action) => {
     actionFunc(action);
   };
@@ -23,7 +29,7 @@ function NoteActions({ openModal, actionFunc, archiveNote, deleteNote }) {
         className="action-button"
       >
         <img className="icon" src={archive} alt="" />
-        <span>Archive Note</span>
+        <span> {selectedNote?.archived ? "Restore Note" : "Archive Note"}</span>
       </button>
       <button
         onClick={() => {

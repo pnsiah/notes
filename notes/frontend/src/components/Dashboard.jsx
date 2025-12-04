@@ -282,6 +282,7 @@ function Dashboard(props) {
           />
           {showActions && (
             <NoteActions
+              selectedNote={selectedNote}
               deleteNote={deleteNote}
               archiveNote={archiveNote}
               openModal={openModal}
