@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import TagList from "./TagList";
 import FolderList from "./FolderList";
 import Logo from "./Logo";
@@ -7,7 +8,18 @@ import arrow_right from "../assets/images/icon-chevron-right.svg";
 import tag from "../assets/images/icon-tag.svg";
 import "./SideBar.css";
 
-function Sidebar({ folders, tags, fetchNotes }) {
+function Sidebar({
+  selectedFilter,
+  setSelectedFilter,
+  folders,
+  tags,
+  fetchNotes,
+}) {
+  useEffect(() => {
+    fetchNotes(selectedFilter);
+    console.log("Effect:", selectedFilter);
+  }, [selectedFilter]);
+
   return (
     <div className="sidebar">
       <Logo />
@@ -15,9 +27,10 @@ function Sidebar({ folders, tags, fetchNotes }) {
       <div className="menu-links">
         <button
           onClick={() => {
-            fetchNotes();
+            setSelectedFilter("all");
+            console.log(selectedFilter);
           }}
-          className="sidebar-button"
+          className={`sidebar-button ${selectedFilter === "all" ? "highlight" : ""}`}
         >
           <img className="home" src={home} alt="" />
           <span className="menu-text">All Notes</span>
@@ -25,9 +38,10 @@ function Sidebar({ folders, tags, fetchNotes }) {
         </button>
         <button
           onClick={() => {
-            fetchNotes("archived");
+            setSelectedFilter("archived");
+            console.log(selectedFilter);
           }}
-          className="sidebar-button"
+          className={`sidebar-button ${selectedFilter === "archived" ? "highlight" : ""}`}
         >
           <img className="archived-icon" src={archived} alt="" />
           <span className="menu-text">Archived Notes</span>

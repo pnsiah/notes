@@ -28,13 +28,21 @@
   cursor: pointer;
 }
 
-.sidebar-button:focus {
+.highlight {
   background-color: var(--neutral-300);
 }
-.sidebar-button:focus .arrow-right {
+
+.highlight .arrow-right {
   display: block;
   visibility: visible;
 }
+/* .sidebar-button:focus { */
+/*   background-color: var(--neutral-300); */
+/* } */
+/* .sidebar-button:focus .arrow-right { */
+/*   display: block; */
+/*   visibility: visible; */
+/* } */
 
 .sidebar-button:focus .home,
 .sidebar-button:focus .archived-icon {
