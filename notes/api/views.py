@@ -184,6 +184,7 @@ def update_note(request, note_id):
                 {"status": False, "message": "Title or content cannot be empty"},
                 status=400,
             )
+
         note.title = new_title
         note.content = new_content
         note.save()

@@ -41,10 +41,3 @@ class Note(models.Model):
 
     def __str__(self):
         return self.title
-
-    class Meta:
-        constraints = [
-            models.UniqueConstraint(
-                fields=["user", "title"], name="unique_user_note_title"
-            )
-        ]
