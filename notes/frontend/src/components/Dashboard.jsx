@@ -18,7 +18,7 @@ function Dashboard(props) {
   const [tags, setTags] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [userData, setUserData] = useState({});
-  const [view, setView] = useState("note");
+  const [view, setView] = useState("notes");
   const [notesInfoMessage, setNotesInfoMessage] = useState("");
   const [emptyState, setEmptyState] = useState({
     isEmpty: false,
@@ -301,7 +301,7 @@ function Dashboard(props) {
           createNote={createNote}
         />
         <NavBar view={view} setView={setView} />
-        <div className="new-note-icon">
+        <div onClick={() => setView("form")} className="new-note-icon">
           <img src={plusIcon} alt="" />
         </div>
       </div>
