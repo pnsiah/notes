@@ -18,7 +18,7 @@ function Dashboard(props) {
   const [tags, setTags] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [userData, setUserData] = useState({});
-  const [view, setView] = useState("notes");
+  const [view, setView] = useState("all");
   const [notesInfoMessage, setNotesInfoMessage] = useState("");
   const [emptyState, setEmptyState] = useState({
     isEmpty: false,
@@ -288,6 +288,7 @@ function Dashboard(props) {
           showLogo={true}
         />
         <View
+          setSelectedFilter={setSelectedFilter}
           setEmptyState={setEmptyState}
           setSelectedNote={setSelectedNote}
           fetchNotes={fetchNotes}

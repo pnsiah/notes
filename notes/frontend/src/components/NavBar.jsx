@@ -8,8 +8,8 @@ import "../components/NavBar.css";
 
 function NavBar({ view, setView }) {
   const navItems = [
-    { id: "notes", icon: home },
-    { id: "archive", icon: archive },
+    { id: "all", icon: home },
+    { id: "archived", icon: archive },
     { id: "tags", icon: tagIcon },
     { id: "search", icon: search },
     { id: "settings", icon: settings },

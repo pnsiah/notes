@@ -4,8 +4,10 @@ import NoteForm from "./NoteForm";
 import FolderList from "./FolderList";
 import Search from "./Search";
 import "../components/View.css";
+import { useEffect } from "react";
 
 function View({
+  setSelectedFilter,
   view,
   setEmptyState,
   tags,
@@ -17,9 +19,20 @@ function View({
   createNote,
   fetchNotes,
 }) {
+  useEffect(() => {
+    if (view === "all") {
+      setSelectedFilter("all");
+    }
+    if (view === "archived") {
+      setSelectedFilter("archived");
+    }
+  }, [view]);
   return (
     <div className="view">
-      {view === "notes" && (
+      {view === "all" && (
+        <Notes fetchSingleNote={fetchSingleNote} notes={notes} />
+      )}
+      {view === "archived" && (
         <Notes fetchSingleNote={fetchSingleNote} notes={notes} />
       )}
       {view === "form" && (
