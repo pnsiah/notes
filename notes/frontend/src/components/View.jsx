@@ -7,6 +7,7 @@ import "../components/View.css";
 
 function View({
   view,
+  setEmptyState,
   tags,
   notes,
   fetchSingleNote,
@@ -14,6 +15,7 @@ function View({
   folders,
   updateNote,
   createNote,
+  fetchNotes,
 }) {
   return (
     <div className="view">
@@ -30,7 +32,9 @@ function View({
       )}
       {view === "tags" && <TagList tags={tags} />}
       {view === "folders" && <FolderList folders={folders} />}
-      {view === "search" && <Search />}
+      {view === "search" && (
+        <Search setEmptyState={setEmptyState} fetchNotes={fetchNotes} />
+      )}
       {view === "settings" && <Settings />}
     </div>
   );

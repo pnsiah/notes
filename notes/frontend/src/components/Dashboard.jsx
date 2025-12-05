@@ -195,12 +195,6 @@ function Dashboard(props) {
   };
 
   const searchNotes = async (query) => {
-    if (!query.trim()) {
-      fetchNotes();
-      setNotesInfoMessage("");
-      setEmptyState({ isEmpty: false });
-      return;
-    }
     const response = await fetch(
       `http://localhost:8000/api/search_notes/?query=${encodeURIComponent(query)}`,
       {
@@ -293,7 +287,9 @@ function Dashboard(props) {
           showLogo={true}
         />
         <View
+          setEmptyState={setEmptyState}
           setSelectedNote={setSelectedNote}
+          fetchNotes={fetchNotes}
           fetchSingleNote={fetchSingleNote}
           view={view}
           notes={notes}
@@ -312,8 +308,10 @@ function Dashboard(props) {
         <Sidebar fetchNotes={fetchNotes} folders={folders} tags={tags} />
         <div className="grid">
           <Header
+            setEmptyState={setEmptyState}
             setNotesInfoMessage={setNotesInfoMessage}
             searchNotes={searchNotes}
+            fetchNotes={fetchNotes}
           />
           <Notes
             notesInfoMessage={notesInfoMessage}

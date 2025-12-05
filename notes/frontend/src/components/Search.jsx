@@ -1,20 +1,44 @@
+import { useRef, useEffect } from "react";
 import searchIcon from "../assets/images/icon-search.svg";
 import settingsIcon from "../assets/images/icon-settings.svg";
 import "../components/Search.css";
 
-function Search({ searchNotes, setNotesInfoMessage }) {
-  const handleSearch = (e) => {
-    setNotesInfoMessage(
-      `All notes matching "${e.target.value}" are displayed here.`,
-    );
-    searchNotes(e.target.value);
+function Search({
+  setEmptyState,
+  fetchNotes,
+  searchNotes,
+  setNotesInfoMessage,
+}) {
+  const debounceRef = useRef(null);
+
+  const handleSearch = (query) => {
+    if (!query.trim()) {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+      fetchNotes();
+      setNotesInfoMessage("");
+      setEmptyState({ isEmpty: false });
+      return;
+    }
+
+    debounceRef.current = setTimeout(() => {
+      searchNotes(query);
+      setNotesInfoMessage(`All notes matching "${query}" are displayed here.`);
+    }, 300);
   };
+
+  useEffect(() => {
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+    };
+  }, []);
 
   return (
     <form className="search-form">
       <div className="input-wrapper">
         <input
-          onChange={handleSearch}
+          onChange={(e) => {
+            handleSearch(e.target.value);
+          }}
           className="search-input"
           type="text"
           placeholder="Search by title, tags or folder"
