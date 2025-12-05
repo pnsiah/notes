@@ -18,10 +18,10 @@ function Dashboard(props) {
   const [tags, setTags] = useState([]);
   const [userData, setUserData] = useState({});
   const [view, setView] = useState("note");
-  const [noteListInfo, setNoteListInfo] = useState("");
-  const [emptyQueryInfo, setEmptyQueryInfo] = useState({
-    isNoteEmpty: false,
-    emptyNoteInfo: "",
+  const [notesInfoMessage, setNotesInfoMessage] = useState("");
+  const [emptyState, setEmptyState] = useState({
+    isEmpty: false,
+    message: "",
   });
   const [selectedNote, setSelectedNote] = useState(null);
   // const [folderList, setFolderList] = useState([]);
@@ -197,8 +197,8 @@ function Dashboard(props) {
   const searchNotes = async (query) => {
     if (!query.trim()) {
       fetchNotes();
-      setNoteListInfo("");
-      setEmptyQueryInfo({ isNoteEmpty: false });
+      setNotesInfoMessage("");
+      setEmptyState({ isEmpty: false });
       return;
     }
     const response = await fetch(
@@ -210,23 +210,19 @@ function Dashboard(props) {
     );
 
     const result = await response.json();
-    const noteList = result.notes || [];
+    const notes = result.notes || [];
 
-    setNotes(noteList);
+    setNotes(notes);
 
-    if (noteList.length === 0) {
-      setEmptyQueryInfo({
-        isNoteEmpty: true,
-        emptyNoteInfo:
+    if (notes.length === 0) {
+      setEmptyState({
+        isEmpty: true,
+        message:
           "You don’t have any notes available in this tab. Start a new note to capture your thoughts and ideas.",
       });
     } else {
-      setEmptyQueryInfo({ isNoteEmpty: false });
-      setNoteListInfo("");
-      //
-      // setNotes(result.notes);
+      setEmptyState({ isEmpty: false });
     }
-    // console.log({ result });
   };
 
   const fetchSingleNote = async (noteId) => {
@@ -291,7 +287,7 @@ function Dashboard(props) {
       )}
       <div className="small">
         <Header
-          setNoteListInfo={setNoteListInfo}
+          setNotesInfoMessage={setNotesInfoMessage}
           searchNotes={searchNotes}
           showSearch={false}
           showLogo={true}
@@ -315,15 +311,18 @@ function Dashboard(props) {
       <div className="big">
         <Sidebar fetchNotes={fetchNotes} folders={folders} tags={tags} />
         <div className="grid">
-          <Header setNoteListInfo={setNoteListInfo} searchNotes={searchNotes} />
+          <Header
+            setNotesInfoMessage={setNotesInfoMessage}
+            searchNotes={searchNotes}
+          />
           <Notes
-            noteListInfo={noteListInfo}
+            notesInfoMessage={notesInfoMessage}
             setSelectedNote={setSelectedNote}
             fetchSingleNote={fetchSingleNote}
             notes={notes}
           />
-          {emptyQueryInfo.isNoteEmpty ? (
-            <div style={{ color: "red" }}>{emptyQueryInfo.emptyNoteInfo}</div>
+          {emptyState.isEmpty ? (
+            <div style={{ color: "red" }}>{emptyState.message}</div>
           ) : (
             <NoteForm
               updateNote={updateNote}

@@ -3,7 +3,7 @@ import Logo from "./Logo";
 import "../components/Header.css";
 
 function Header({
-  setNoteListInfo,
+  setNotesInfoMessage,
   searchNotes,
   showSearch = true,
   showLogo = false,
@@ -14,7 +14,10 @@ function Header({
       {showLogo && <Logo />}
       <h2 className="header-text">Heading</h2>
       {showSearch && (
-        <Search setNoteListInfo={setNoteListInfo} searchNotes={searchNotes} />
+        <Search
+          setNotesInfoMessage={setNotesInfoMessage}
+          searchNotes={searchNotes}
+        />
       )}
     </header>
   );
