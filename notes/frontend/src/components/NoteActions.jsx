@@ -1,6 +1,7 @@
 import deleteIcon from "../assets/images/icon-delete.svg";
 import archive from "../assets/images/icon-archive.svg";
 import archiveButton from "../assets/images/icon-archive.svg";
+import restore from "../assets/images/icon-restore.svg";
 import "../components/NoteActions.css";
 
 function NoteActions({
@@ -15,6 +16,7 @@ function NoteActions({
   };
 
   const confirmText = selectedNote?.archived ? "Restore Note" : "Archive Note";
+  const confirmIcon = selectedNote?.archived ? restore : archive;
 
   return (
     <div className="note-actions">
@@ -30,7 +32,7 @@ function NoteActions({
         }}
         className="action-button"
       >
-        <img className="icon" src={archive} alt="" />
+        <img className="icon" src={confirmIcon} alt="" />
         <span>{confirmText}</span>
       </button>
       <button
