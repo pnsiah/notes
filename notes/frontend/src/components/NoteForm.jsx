@@ -86,11 +86,16 @@ function NoteForm({ selectedNote, userFolders, createNote, updateNote }) {
     };
 
     // decide whether to create or update
-    const success = selectedNote
-      ? await updateNote(selectedNote.id, noteData)
-      : await createNote(noteData);
-
-    if (success) resetForm();
+    // const success = selectedNote
+    //   ? await updateNote(selectedNote.id, noteData)
+    //   : await createNote(noteData);
+    //
+    // if (success) resetForm();
+    if (selectedNote) {
+      updateNote(selectedNote.id, noteData);
+    } else {
+      createNote(noteData);
+    }
   };
 
   return (

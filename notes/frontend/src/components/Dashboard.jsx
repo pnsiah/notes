@@ -121,6 +121,7 @@ function Dashboard(props) {
         addNotification(result.message);
         await fetchUserData();
       }
+      setSelectedNote(result.note[0]);
       return result.status;
     } catch (e) {
       console.log(e);
