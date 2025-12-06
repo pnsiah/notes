@@ -6,12 +6,22 @@ import back from "../assets/images/icon-arrow-left.svg";
 import "../components/NoteActions.css";
 
 function NoteActions({
+  setView,
+  selectedFilter,
+  setSelectedFilter,
   openModal,
   selectedNote,
   actionFunc,
   archiveNote,
   deleteNote,
+  fetchNotes,
+  setSelectedNote,
 }) {
+  const goBack = () => {
+    setSelectedNote(null);
+    setView(selectedFilter);
+    fetchNotes(selectedFilter);
+  };
   const updateAction = (action) => {
     actionFunc(action);
   };
@@ -22,7 +32,7 @@ function NoteActions({
   return (
     <div className="note-actions">
       <div>
-        <button className="note-actions__back">
+        <button onClick={goBack} className="note-actions__back">
           <img className="icon" src={back} alt="" />
           <p>Go back</p>
         </button>
