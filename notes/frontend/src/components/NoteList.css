@@ -2,6 +2,7 @@
   width: 100%;
   text-align: left;
   padding: var(--padding-md) var(--padding-sm);
+  cursor: pointer;
   border-bottom: 1px solid var(--neutral-300);
 }
 
