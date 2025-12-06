@@ -44,6 +44,11 @@ function Dashboard(props) {
     setIsModalOpen(true);
   };
 
+  const createNewNote = () => {
+    setSelectedNote(null);
+    setView("form");
+  };
+
   const closeModal = () => {
     setIsModalOpen(false);
   };
@@ -303,7 +308,7 @@ function Dashboard(props) {
           createNote={createNote}
         />
         <NavBar view={view} setView={setView} />
-        <div onClick={() => setView("form")} className="new-note-icon">
+        <div onClick={createNewNote} className="new-note-icon">
           <img src={plusIcon} alt="" />
         </div>
       </div>
