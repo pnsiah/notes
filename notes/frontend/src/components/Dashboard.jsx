@@ -44,6 +44,11 @@ function Dashboard(props) {
     setIsModalOpen(true);
   };
 
+  const createNewNote = () => {
+    setSelectedNote(null);
+    setView("form");
+  };
+
   const closeModal = () => {
     setIsModalOpen(false);
   };
@@ -116,6 +121,7 @@ function Dashboard(props) {
         addNotification(result.message);
         await fetchUserData();
       }
+      setSelectedNote(result.note[0]);
       return result.status;
     } catch (e) {
       console.log(e);
@@ -294,6 +300,7 @@ function Dashboard(props) {
           fetchNotes={fetchNotes}
           fetchSingleNote={fetchSingleNote}
           view={view}
+          setView={setView}
           notes={notes}
           folders={folders}
           tags={tags}
@@ -302,7 +309,7 @@ function Dashboard(props) {
           createNote={createNote}
         />
         <NavBar view={view} setView={setView} />
-        <div onClick={() => setView("form")} className="new-note-icon">
+        <div onClick={createNewNote} className="new-note-icon">
           <img src={plusIcon} alt="" />
         </div>
       </div>
@@ -322,7 +329,10 @@ function Dashboard(props) {
             fetchNotes={fetchNotes}
           />
           <Notes
+            selectedNote={selectedNote}
             notesInfoMessage={notesInfoMessage}
+            createNewNote={createNewNote}
+            setView={setView}
             setSelectedNote={setSelectedNote}
             fetchSingleNote={fetchSingleNote}
             notes={notes}

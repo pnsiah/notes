@@ -167,7 +167,14 @@ def create_note(request):
 
         if tags:
             save_note_with_tags(request.user, note, tags)
-        return JsonResponse({"status": True, "message": "Note created successfully"})
+
+        return JsonResponse(
+            {
+                "status": True,
+                "note": serialize_note([note]),
+                "message": "Note created successfully",
+            }
+        )
     else:
         JsonResponse({"status": False, "message": "Invalid request"}, status=405)
 

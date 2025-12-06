@@ -5,8 +5,10 @@ import FolderList from "./FolderList";
 import Search from "./Search";
 import "../components/View.css";
 import { useEffect } from "react";
+import NoteActions from "./NoteActions";
 
 function View({
+  setView,
   setSelectedFilter,
   view,
   setEmptyState,
@@ -30,18 +32,29 @@ function View({
   return (
     <div className="view">
       {view === "all" && (
-        <Notes fetchSingleNote={fetchSingleNote} notes={notes} />
+        <Notes
+          setView={setView}
+          fetchSingleNote={fetchSingleNote}
+          notes={notes}
+        />
       )}
       {view === "archived" && (
-        <Notes fetchSingleNote={fetchSingleNote} notes={notes} />
+        <Notes
+          setView={setView}
+          fetchSingleNote={fetchSingleNote}
+          notes={notes}
+        />
       )}
       {view === "form" && (
-        <NoteForm
-          createNote={createNote}
-          updateNote={updateNote}
-          userFolders={folders}
-          selectedNote={selectedNote}
-        />
+        <>
+          <NoteActions />
+          <NoteForm
+            createNote={createNote}
+            updateNote={updateNote}
+            userFolders={folders}
+            selectedNote={selectedNote}
+          />
+        </>
       )}
       {view === "tags" && <TagList tags={tags} />}
       {view === "folders" && <FolderList folders={folders} />}

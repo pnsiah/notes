@@ -22,12 +22,6 @@ def save_note_with_tags(user, note, tag_list):
 
 
 def serialize_note(notes):
-    # serialized_notes = []
-    # for note in notes:
-    #     new_note = {"title": note.title, "content": note.content}
-    #     serialized_notes.append(new_note)
-    # return serialized_notes
-
     serialized_notes = [
         {
             "id": note.id,
