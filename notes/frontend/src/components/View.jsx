@@ -8,7 +8,9 @@ import { useEffect } from "react";
 import NoteActions from "./NoteActions";
 
 function View({
+  setSelectedNote,
   setView,
+  selectedFilter,
   setSelectedFilter,
   view,
   setEmptyState,
@@ -47,7 +49,13 @@ function View({
       )}
       {view === "form" && (
         <>
-          <NoteActions />
+          <NoteActions
+            setSelectedNote={setSelectedNote}
+            setView={setView}
+            fetchNotes={fetchNotes}
+            selectedFilter={selectedFilter}
+            setSelectedFilter={setSelectedFilter}
+          />
           <NoteForm
             createNote={createNote}
             updateNote={updateNote}

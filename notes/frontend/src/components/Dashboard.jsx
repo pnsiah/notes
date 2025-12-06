@@ -295,6 +295,7 @@ function Dashboard(props) {
         />
         <View
           setSelectedFilter={setSelectedFilter}
+          selectedFilter={selectedFilter}
           setEmptyState={setEmptyState}
           setSelectedNote={setSelectedNote}
           fetchNotes={fetchNotes}
@@ -349,7 +350,9 @@ function Dashboard(props) {
           )}
           {showActions && (
             <NoteActions
+              setSelectedNote={setSelectedNote}
               selectedNote={selectedNote}
+              setView={setView}
               deleteNote={deleteNote}
               archiveNote={archiveNote}
               openModal={openModal}
