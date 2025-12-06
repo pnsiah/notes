@@ -5,6 +5,7 @@ import FolderList from "./FolderList";
 import Search from "./Search";
 import "../components/View.css";
 import { useEffect } from "react";
+import NoteActions from "./NoteActions";
 
 function View({
   setView,
@@ -45,12 +46,15 @@ function View({
         />
       )}
       {view === "form" && (
-        <NoteForm
-          createNote={createNote}
-          updateNote={updateNote}
-          userFolders={folders}
-          selectedNote={selectedNote}
-        />
+        <>
+          <NoteActions />
+          <NoteForm
+            createNote={createNote}
+            updateNote={updateNote}
+            userFolders={folders}
+            selectedNote={selectedNote}
+          />
+        </>
       )}
       {view === "tags" && <TagList tags={tags} />}
       {view === "folders" && <FolderList folders={folders} />}
