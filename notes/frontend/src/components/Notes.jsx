@@ -5,19 +5,17 @@ import NoteList from "./NoteList";
 
 function Notes({
   selectedNote,
+  createNewNote,
   setView,
   notes,
   notesInfoMessage,
   fetchSingleNote,
   setSelectedNote,
 }) {
-  const createNewForm = () => {
-    setSelectedNote(null);
-  };
   return (
     <div className="notes">
       <div className="note-list-container">
-        <button className="new-note-btn" onClick={createNewForm}>
+        <button className="new-note-btn" onClick={createNewNote}>
           <img src={plus} alt="" /> <span>Create New Note</span>
         </button>
         <div style={{ color: "red" }}>{notesInfoMessage}</div>
