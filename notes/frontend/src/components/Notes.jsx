@@ -4,6 +4,7 @@ import "../components/NoteList.css";
 import NoteList from "./NoteList";
 
 function Notes({
+  selectedNote,
   setView,
   notes,
   notesInfoMessage,
@@ -21,6 +22,7 @@ function Notes({
         </button>
         <div style={{ color: "red" }}>{notesInfoMessage}</div>
         <NoteList
+          selectedNote={selectedNote}
           setView={setView}
           notes={notes}
           fetchSingleNote={fetchSingleNote}

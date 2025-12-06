@@ -329,6 +329,7 @@ function Dashboard(props) {
             fetchNotes={fetchNotes}
           />
           <Notes
+            selectedNote={selectedNote}
             notesInfoMessage={notesInfoMessage}
             setSelectedNote={setSelectedNote}
             fetchSingleNote={fetchSingleNote}

@@ -5,11 +5,15 @@
   border-bottom: 1px solid var(--neutral-300);
 }
 
-@media (max-width: 768px) {
-  .note:hover {
-    background-color: var(--neutral-300);
-    border-radius: 0.5em;
-  }
+.note:hover {
+  background-color: var(--neutral-300);
+  border-radius: 0.5em;
+}
+
+.note-active {
+  border-radius: 0.5em;
+  background-color: var(--neutral-200);
+  border-bottom: none;
 }
 
 .tags-section {
@@ -57,11 +61,5 @@
     width: 100%;
     color: black;
     margin-bottom: 0.3em;
-  }
-
-  .note:active {
-    border-radius: 0.5em;
-    background-color: var(--neutral-200);
-    border-bottom: none;
   }
 }
