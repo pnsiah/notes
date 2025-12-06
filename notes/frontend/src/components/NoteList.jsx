@@ -1,10 +1,14 @@
 import "../components/NoteList.css";
 
-function NoteList({ notes, fetchSingleNote }) {
+function NoteList({ setView, notes, fetchSingleNote }) {
+  const show = (id) => {
+    fetchSingleNote(id);
+    setView("form");
+  };
   return (
     <ul className="notes-list">
       {notes.map((note) => (
-        <li onClick={() => fetchSingleNote(note.id)} key={note.id}>
+        <li onClick={() => show(note.id)} key={note.id}>
           <button className="note" key={note.id}>
             <h4 className="note-title">{note.title}</h4>
             <div className="tags-section">

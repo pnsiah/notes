@@ -294,6 +294,7 @@ function Dashboard(props) {
           fetchNotes={fetchNotes}
           fetchSingleNote={fetchSingleNote}
           view={view}
+          setView={setView}
           notes={notes}
           folders={folders}
           tags={tags}
