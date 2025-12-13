@@ -6,6 +6,7 @@ import SignUp from "./components/Signup.jsx";
 
 function App() {
   // ✅ Load the last page from localStorage OR default to LogIn
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
   const [page, setPage] = useState(
     () => localStorage.getItem("page") || "LogIn",
   );

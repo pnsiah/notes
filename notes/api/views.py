@@ -18,6 +18,15 @@ def message(request):
     return JsonResponse({"message": "Hello from Django!"})
 
 
+def auth_status(request):
+    return JsonResponse(
+        {
+            "isAuthenticated": request.user.is_authenticated,
+            "username": request.username if request.user.is_authenticated else None,
+        }
+    )
+
+
 @csrf_exempt
 def register(request):
     if request.method == "POST":
@@ -238,6 +247,10 @@ def archive_note(request, note_id):
 
 @csrf_exempt
 def get_notes(request):
+    if not request.user.is_authenticated:
+        return JsonResponse(
+            {"status": False, "error": "Authentication required"}, status=401
+        )
     filter = request.GET.get("filter", "all")
     notes = (
         Note.objects.filter(user=request.user)
