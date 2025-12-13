@@ -360,18 +360,11 @@ function Dashboard(props) {
           )}
         </div>
       </div>
+      <div>
+        <button onClick={handleLogOut}>Log Out</button>
+      </div>
     </div>
   );
-}
-
-{
-  /* <div> */
-}
-{
-  /*   <button onClick={handleLogOut}>Log Out</button> */
-}
-{
-  /* </div> */
 }
 
 export default Dashboard;

@@ -21,8 +21,10 @@ def message(request):
 def auth_status(request):
     return JsonResponse(
         {
-            "isAuthenticated": request.user.is_authenticated,
-            "username": request.username if request.user.is_authenticated else None,
+            "authenticated": request.user.is_authenticated,
+            "username": request.user.username
+            if request.user.is_authenticated
+            else None,
         }
     )
 
