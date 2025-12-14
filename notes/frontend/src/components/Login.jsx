@@ -60,9 +60,10 @@ function Login(props) {
           <input
             value={formData.username}
             name="username"
-            onChange={(e) =>
-              setFormData({ ...formData, [e.target.name]: e.target.value })
-            }
+            onChange={(e) => {
+              setFormData({ ...formData, [e.target.name]: e.target.value });
+              setMessage(null);
+            }}
             // placeholder="username"
           />
         </label>
@@ -74,12 +75,13 @@ function Login(props) {
               type={showPassword ? "text" : "password"}
               // className="password"
               name="password"
-              onChange={(e) =>
+              onChange={(e) => {
                 setFormData({
                   ...formData,
                   [e.target.name]: e.target.value,
-                })
-              }
+                });
+                setMessage(null);
+              }}
             />
             <span
               className="password-icon"

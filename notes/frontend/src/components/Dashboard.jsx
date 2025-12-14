@@ -179,7 +179,8 @@ function Dashboard(props) {
         },
       );
       const result = await response.json();
-      console.log(result);
+      setNotes(result.notes);
+      setView("note");
     } catch (e) {
       console.log(e);
     }
