@@ -30,11 +30,11 @@ function View({
   useEffect(() => {
     if (view === "all") {
       setSelectedFilter("all");
-      // fetchNotes(selectedFilter);
+      fetchNotes("all");
     }
     if (view === "archived") {
       setSelectedFilter("archived");
-      // fetchNotes(selectedFilter);
+      fetchNotes("archived");
     }
   }, [view]);
   return (
