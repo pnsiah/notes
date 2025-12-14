@@ -313,6 +313,7 @@ function Dashboard(props) {
           showLogo={true}
         />
         <View
+          setHighlight={setHighlight}
           getNotesByTags={getNotesByTags}
           selectedTag={selectedTag}
           setSelectedTag={setSelectedTag}

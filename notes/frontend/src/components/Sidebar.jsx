@@ -56,6 +56,7 @@ function Sidebar({
       </div>
       <div className="list-container">
         <TagList
+          setHighlight={setHighlight}
           setView={setView}
           selectedTag={selectedTag}
           setSelectedTag={setSelectedTag}

@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import NoteActions from "./NoteActions";
 
 function View({
+  setHighlight,
   selectedTag,
   setSelectedTag,
   getNotesByTags,
@@ -72,6 +73,7 @@ function View({
       )}
       {view === "tags" && (
         <TagList
+          setHighlight={setHighlight}
           setView={setView}
           setSelectedTag={setSelectedTag}
           selectedTag={selectedTag}

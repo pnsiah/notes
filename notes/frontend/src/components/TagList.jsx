@@ -4,6 +4,7 @@ import arrow_right from "../assets/images/icon-chevron-right.svg";
 
 function TagList({
   selectedTag,
+  setHighlight,
   setView,
   setSelectedTag,
   tags,
@@ -19,6 +20,7 @@ function TagList({
             onClick={() => {
               setSelectedTag(tag.name);
               setView("taggedNotes");
+              setHighlight("");
             }}
           >
             <button className="tag">
