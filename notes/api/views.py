@@ -292,14 +292,15 @@ def create_folder(request):
 #     pass
 
 
+@csrf_exempt
 def get_notes_by_tags(request):
     if request.method == "GET":
         tag_name = request.GET.get("tag", "").strip()
-        notes = Note.objects.get(user=request.user, tags__name=tag_name)
+        notes = Note.objects.filter(user=request.user, tags__name=tag_name)
         serialized_notes = serialize_note(notes)
         return JsonResponse({"status": True, "notes": serialized_notes})
     else:
-        return JsonResponse({"status": False, message: "Error fetching notes"})
+        return JsonResponse({"status": False, "message": "Error fetching notes"})
 
 
 def list_archived_notes(request):
