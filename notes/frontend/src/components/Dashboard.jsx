@@ -6,6 +6,7 @@ import NoteForm from "./NoteForm";
 import Notes from "./Notes";
 import View from "./View";
 import NavBar from "./NavBar";
+import TaggedNotes from "./TaggedNotes";
 import NoteActions from "./NoteActions";
 import "../components/dashboard.css";
 import plusIcon from "../assets/images/icon-plus.svg";
@@ -180,7 +181,7 @@ function Dashboard(props) {
       );
       const result = await response.json();
       setNotes(result.notes);
-      setView("note");
+      setView("taggedNotes");
     } catch (e) {
       console.log(e);
     }

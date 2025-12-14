@@ -2,6 +2,7 @@ import Notes from "./Notes";
 import TagList from "./TagList";
 import NoteForm from "./NoteForm";
 import FolderList from "./FolderList";
+import TaggedNotes from "./TaggedNotes";
 import Search from "./Search";
 import "../components/View.css";
 import { useEffect } from "react";
@@ -73,8 +74,22 @@ function View({
         <Search setEmptyState={setEmptyState} fetchNotes={fetchNotes} />
       )}
       {view === "settings" && <Settings />}
+      {view === "taggedNotes" && (
+        <TaggedNotes
+          selectedNote={selectedNote}
+          setView={setView}
+          notes={notes}
+          fetchSingleNote={fetchSingleNote}
+        />
+      )}
     </div>
   );
 }
 
+{
+  /* <TaggedNotes */
+}
+{
+  /* /> */
+}
 export default View;
