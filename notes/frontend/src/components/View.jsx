@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import NoteActions from "./NoteActions";
 
 function View({
+  getNotesByTags,
   setSelectedNote,
   setView,
   selectedFilter,
@@ -64,7 +65,9 @@ function View({
           />
         </>
       )}
-      {view === "tags" && <TagList tags={tags} />}
+      {view === "tags" && (
+        <TagList getNotesByTags={getNotesByTags} tags={tags} />
+      )}
       {view === "folders" && <FolderList folders={folders} />}
       {view === "search" && (
         <Search setEmptyState={setEmptyState} fetchNotes={fetchNotes} />

@@ -2,13 +2,18 @@ import tagIcon from "../assets/images/icon-tag.svg";
 import "../components/TagList.css";
 import arrow_right from "../assets/images/icon-chevron-right.svg";
 
-function TagList({ tags }) {
+function TagList({ tags, getNotesByTags }) {
   return (
     <section className="tags">
       <h3 className="section-heading">Tags</h3>
       <ul className="tag-list">
         {tags.map((tag) => (
-          <li key={tag.id}>
+          <li
+            key={tag.id}
+            onClick={() => {
+              getNotesByTags(tag.name);
+            }}
+          >
             <button className="tag">
               <img src={tagIcon} alt="" />
               <span className="tag-text">{tag.name}</span>

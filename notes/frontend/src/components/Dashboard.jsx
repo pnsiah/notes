@@ -169,6 +169,18 @@ function Dashboard(props) {
     }
   };
 
+  const getNotesByTags = async (tag) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/get_notes_by_tags?${tag}/`,
+      );
+      const result = await response.json();
+      console.log(response);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const archiveNote = async (noteId) => {
     try {
       const response = await fetch(
@@ -294,6 +306,7 @@ function Dashboard(props) {
           showLogo={true}
         />
         <View
+          getNotesByTags={getNotesByTags}
           setSelectedFilter={setSelectedFilter}
           selectedFilter={selectedFilter}
           setEmptyState={setEmptyState}
@@ -316,6 +329,7 @@ function Dashboard(props) {
       </div>
       <div className="big">
         <Sidebar
+          getNotesByTags={getNotesByTags}
           setSelectedFilter={setSelectedFilter}
           selectedFilter={selectedFilter}
           fetchNotes={fetchNotes}

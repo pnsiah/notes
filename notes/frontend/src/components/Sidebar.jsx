@@ -9,6 +9,7 @@ import tag from "../assets/images/icon-tag.svg";
 import "./SideBar.css";
 
 function Sidebar({
+  getNotesByTags,
   selectedFilter,
   setSelectedFilter,
   folders,
@@ -49,7 +50,7 @@ function Sidebar({
         </button>
       </div>
       <div className="list-container">
-        <TagList tags={tags} />
+        <TagList getNotesByTags={getNotesByTags} tags={tags} />
         <FolderList folders={folders} />
       </div>
 
