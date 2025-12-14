@@ -172,10 +172,14 @@ function Dashboard(props) {
   const getNotesByTags = async (tag) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/get_notes_by_tags?${tag}/`,
+        `http://localhost:8000/api/get_notes_by_tags/?tag=${tag}`,
+        {
+          method: "GET",
+          credentials: "include",
+        },
       );
       const result = await response.json();
-      console.log(response);
+      console.log(result);
     } catch (e) {
       console.log(e);
     }
