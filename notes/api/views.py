@@ -84,19 +84,6 @@ def logout_view(request):
     return JsonResponse({"status": True, "message": "Log out succesful"})
 
 
-# @csrf_exempt
-# def dashboard(request):
-
-
-#     if request.user.is_authenticated:
-#         user = request.user
-#         user_data = {
-#             "username": user.username,
-#             "email": user.email,
-#         }
-#         return JsonResponse({"status": True, "user_data": user_data})
-#
-#
 @csrf_exempt
 def dashboard(request):
     if request.method == "POST":
@@ -110,16 +97,17 @@ def dashboard(request):
             )
             user_tags = Tag.objects.filter(user=user)
             user_folders = Folder.objects.filter(user=user)
-            serialized_notes = [
-                {
-                    "id": note.id,
-                    "title": note.title,
-                    "content": note.content,
-                    "date_created": note.created_at.strftime("%d %B %Y"),
-                    "tags": [tag.name for tag in note.tags.all()],
-                }
-                for note in notes
-            ]
+            # serialized_notes = [
+            #     {
+            #         "id": note.id,
+            #         "title": note.title,
+            #         "content": note.content,
+            #         "date_created": note.created_at.strftime("%d %B %Y"),
+            #         "tags": [tag.name for tag in note.tags.all()],
+            #     }
+            #     for note in notes
+            # ]
+            serialized_notes = serialize_note(notes)
 
             serialized_tags = [{"id": tag.id, "name": tag.name} for tag in user_tags]
             serialized_folders = [
@@ -265,17 +253,17 @@ def get_notes(request):
     else:
         notes = notes.filter(archived=False)
 
-    serialized_notes = [
-        {
-            "id": note.id,
-            "title": note.title,
-            "content": note.content,
-            "date_created": note.created_at.strftime("%d %B %Y"),
-            "tags": [tag.name for tag in note.tags.all()],
-        }
-        for note in notes
-    ]
-
+    # serialized_notes = [
+    #     {
+    #         "id": note.id,
+    #         "title": note.title,
+    #         "content": note.content,
+    #         "date_created": note.created_at.strftime("%d %B %Y"),
+    #         "tags": [tag.name for tag in note.tags.all()],
+    #     }
+    #     for note in notes
+    # ]
+    serialized_notes = serialize_note(notes)
     return JsonResponse({"status": True, "notes": serialized_notes})
 
 
@@ -300,8 +288,18 @@ def create_folder(request):
         return JsonResponse({"status": False, "message": "Invalid request"}, status=405)
 
 
-def list_notes(request):
-    pass
+# def list_notes(request):
+#     pass
+
+
+def get_notes_by_tags(request):
+    if request.method == "GET":
+        tag_name = request.GET.get("tag", "").strip()
+        notes = Note.objects.get(user=request.user, tags__name=tag_name)
+        serialized_notes = serialize_note(notes)
+        return JsonResponse({"status": True, "notes": serialized_notes})
+    else:
+        return JsonResponse({"status": False, message: "Error fetching notes"})
 
 
 def list_archived_notes(request):
