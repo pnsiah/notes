@@ -2,7 +2,13 @@ import tagIcon from "../assets/images/icon-tag.svg";
 import "../components/TagList.css";
 import arrow_right from "../assets/images/icon-chevron-right.svg";
 
-function TagList({ tags, getNotesByTags }) {
+function TagList({
+  selectedTag,
+  setView,
+  setSelectedTag,
+  tags,
+  getNotesByTags,
+}) {
   return (
     <section className="tags">
       <h3 className="section-heading">Tags</h3>
@@ -11,7 +17,9 @@ function TagList({ tags, getNotesByTags }) {
           <li
             key={tag.id}
             onClick={() => {
-              getNotesByTags(tag.name);
+              // getNotesByTags(tag.name);
+              setSelectedTag(tag.name);
+              setView("taggedNotes");
             }}
           >
             <button className="tag">

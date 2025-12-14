@@ -6,7 +6,9 @@ function NavItem({ id, icon, view, setView }) {
     <li className="nav-item">
       <button
         className={`nav-button ${isActive ? "active" : ""}`}
-        onClick={() => setView(id)}
+        onClick={() => {
+          setView(id);
+        }}
       >
         <img src={icon} alt={`${id} icon`} />
       </button>

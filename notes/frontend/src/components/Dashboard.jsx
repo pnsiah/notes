@@ -18,6 +18,7 @@ function Dashboard(props) {
   const [folders, setFolders] = useState([]);
   const [tags, setTags] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState("all");
+  const [selectedTag, setSelectedTag] = useState("");
   const [userData, setUserData] = useState({});
   const [view, setView] = useState("all");
   const [notesInfoMessage, setNotesInfoMessage] = useState("");
@@ -181,7 +182,6 @@ function Dashboard(props) {
       );
       const result = await response.json();
       setNotes(result.notes);
-      setView("taggedNotes");
     } catch (e) {
       console.log(e);
     }
@@ -313,6 +313,8 @@ function Dashboard(props) {
         />
         <View
           getNotesByTags={getNotesByTags}
+          selectedTag={selectedTag}
+          setSelectedTag={setSelectedTag}
           setSelectedFilter={setSelectedFilter}
           selectedFilter={selectedFilter}
           setEmptyState={setEmptyState}
@@ -335,6 +337,8 @@ function Dashboard(props) {
       </div>
       <div className="big">
         <Sidebar
+          selectedTag={selectedTag}
+          setSelectedTag={setSelectedTag}
           getNotesByTags={getNotesByTags}
           setSelectedFilter={setSelectedFilter}
           selectedFilter={selectedFilter}

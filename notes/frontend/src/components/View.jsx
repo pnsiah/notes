@@ -9,6 +9,8 @@ import { useEffect } from "react";
 import NoteActions from "./NoteActions";
 
 function View({
+  selectedTag,
+  setSelectedTag,
   getNotesByTags,
   setSelectedNote,
   setView,
@@ -28,9 +30,11 @@ function View({
   useEffect(() => {
     if (view === "all") {
       setSelectedFilter("all");
+      // fetchNotes(selectedFilter);
     }
     if (view === "archived") {
       setSelectedFilter("archived");
+      // fetchNotes(selectedFilter);
     }
   }, [view]);
   return (
@@ -67,7 +71,13 @@ function View({
         </>
       )}
       {view === "tags" && (
-        <TagList getNotesByTags={getNotesByTags} tags={tags} />
+        <TagList
+          setView={setView}
+          setSelectedTag={setSelectedTag}
+          selectedTag={selectedTag}
+          getNotesByTags={getNotesByTags}
+          tags={tags}
+        />
       )}
       {view === "folders" && <FolderList folders={folders} />}
       {view === "search" && (
@@ -76,6 +86,9 @@ function View({
       {view === "settings" && <Settings />}
       {view === "taggedNotes" && (
         <TaggedNotes
+          setSelectedTag={setSelectedTag}
+          selectedTag={selectedTag}
+          getNotesByTags={getNotesByTags}
           selectedNote={selectedNote}
           setView={setView}
           notes={notes}
