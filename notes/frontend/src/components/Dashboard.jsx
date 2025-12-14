@@ -17,6 +17,7 @@ function Dashboard(props) {
   const [notes, setNotes] = useState([]);
   const [folders, setFolders] = useState([]);
   const [tags, setTags] = useState([]);
+  const [highlight, setHighlight] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [selectedTag, setSelectedTag] = useState("");
   const [userData, setUserData] = useState({});
@@ -337,6 +338,8 @@ function Dashboard(props) {
       </div>
       <div className="big">
         <Sidebar
+          highlight={highlight}
+          setHighlight={setHighlight}
           selectedTag={selectedTag}
           setSelectedTag={setSelectedTag}
           getNotesByTags={getNotesByTags}
@@ -345,6 +348,7 @@ function Dashboard(props) {
           fetchNotes={fetchNotes}
           folders={folders}
           tags={tags}
+          setView={setView}
         />
         <div className="grid">
           <Header

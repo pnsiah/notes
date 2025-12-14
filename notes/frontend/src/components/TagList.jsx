@@ -17,7 +17,6 @@ function TagList({
           <li
             key={tag.id}
             onClick={() => {
-              // getNotesByTags(tag.name);
               setSelectedTag(tag.name);
               setView("taggedNotes");
             }}

@@ -9,6 +9,9 @@ import tag from "../assets/images/icon-tag.svg";
 import "./SideBar.css";
 
 function Sidebar({
+  setHighlight,
+  highlight,
+  setView,
   selectedTag,
   setSelectedTag,
   getNotesByTags,
@@ -31,9 +34,9 @@ function Sidebar({
         <button
           onClick={() => {
             setSelectedFilter("all");
-            console.log(selectedFilter);
+            setHighlight("all");
           }}
-          className={`sidebar-button ${selectedFilter === "all" ? "highlight" : ""}`}
+          className={`sidebar-button ${highlight === "all" ? "highlight" : ""}`}
         >
           <img className="home" src={home} alt="" />
           <span className="menu-text">All Notes</span>
@@ -42,9 +45,9 @@ function Sidebar({
         <button
           onClick={() => {
             setSelectedFilter("archived");
-            console.log(selectedFilter);
+            setHighlight("archived");
           }}
-          className={`sidebar-button ${selectedFilter === "archived" ? "highlight" : ""}`}
+          className={`sidebar-button ${highlight === "archived" ? "highlight" : ""}`}
         >
           <img className="archived-icon" src={archived} alt="" />
           <span className="menu-text">Archived Notes</span>
@@ -53,6 +56,7 @@ function Sidebar({
       </div>
       <div className="list-container">
         <TagList
+          setView={setView}
           selectedTag={selectedTag}
           setSelectedTag={setSelectedTag}
           getNotesByTags={getNotesByTags}
@@ -60,20 +64,6 @@ function Sidebar({
         />
         <FolderList folders={folders} />
       </div>
-
-      {/* <section className="tags"> */}
-      {/*   <h3 className="tags-heading">Folders</h3> */}
-      {/*   <p className="tag"> */}
-      {/*     <img src={tag} alt="" /> <span className="tag-text">Tags</span> */}
-      {/*   </p> */}
-      {/**/}
-      {/*   <p className="tag"> */}
-      {/*     <img src={tag} alt="" /> <span className="tag-text">Element</span> */}
-      {/*   </p> */}
-      {/*   <p className="tag"> */}
-      {/*     <img src={tag} alt="" /> <span className="tag-text">React</span> */}
-      {/*   </p> */}
-      {/* </section> */}
     </div>
   );
 }
