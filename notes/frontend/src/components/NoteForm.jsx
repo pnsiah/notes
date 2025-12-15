@@ -90,7 +90,7 @@ function NoteForm({ selectedNote, userFolders, createNote, updateNote }) {
       ? await updateNote(selectedNote.id, noteData)
       : await createNote(noteData);
 
-    if (success) resetForm();
+    // if (success) resetForm();
 
     // if (selectedNote) {
     //   updateNote(selectedNote.id, noteData);

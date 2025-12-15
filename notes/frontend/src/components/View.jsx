@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import NoteActions from "./NoteActions";
 
 function View({
+  navigateBack,
   setHighlight,
   selectedTag,
   setSelectedTag,
@@ -58,6 +59,7 @@ function View({
         <>
           <NoteActions
             setSelectedNote={setSelectedNote}
+            navigateBack={navigateBack}
             setView={setView}
             fetchNotes={fetchNotes}
             selectedFilter={selectedFilter}
@@ -73,6 +75,7 @@ function View({
       )}
       {view === "tags" && (
         <TagList
+          setSelectedFilter={setSelectedFilter}
           setHighlight={setHighlight}
           setView={setView}
           setSelectedTag={setSelectedTag}
@@ -88,6 +91,7 @@ function View({
       {view === "settings" && <Settings />}
       {view === "taggedNotes" && (
         <TaggedNotes
+          setSelectedFilter={setSelectedFilter}
           setSelectedTag={setSelectedTag}
           selectedTag={selectedTag}
           getNotesByTags={getNotesByTags}

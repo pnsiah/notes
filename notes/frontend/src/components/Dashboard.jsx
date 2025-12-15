@@ -291,6 +291,16 @@ function Dashboard(props) {
     }
   };
 
+  const navigateBack = () => {
+    setSelectedNote(null);
+    // if (view === "form") {
+    //   setView("taggedNotes");
+    // } else {
+    setView(selectedFilter);
+    // }
+    // fetchNotes(selectedFilter);
+  };
+
   return (
     <div className="dashboard-container">
       {isModalOpen && (
@@ -313,6 +323,7 @@ function Dashboard(props) {
           showLogo={true}
         />
         <View
+          navigateBack={navigateBack}
           setHighlight={setHighlight}
           getNotesByTags={getNotesByTags}
           selectedTag={selectedTag}

@@ -3,6 +3,7 @@ import NoteList from "./NoteList";
 import "./TaggedNotes.css";
 
 function TaggedNotes({
+  setSelectedFilter,
   selectedTag,
   setSelectedTag,
   getNotesByTags,

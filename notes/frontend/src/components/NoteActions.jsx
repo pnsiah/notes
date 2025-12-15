@@ -14,14 +14,10 @@ function NoteActions({
   actionFunc,
   archiveNote,
   deleteNote,
+  navigateBack,
   fetchNotes,
   setSelectedNote,
 }) {
-  const goBack = () => {
-    setSelectedNote(null);
-    setView(selectedFilter);
-    fetchNotes(selectedFilter);
-  };
   const updateAction = (action) => {
     actionFunc(action);
   };
@@ -32,7 +28,7 @@ function NoteActions({
   return (
     <div className="note-actions">
       <div>
-        <button onClick={goBack} className="note-actions__back">
+        <button onClick={navigateBack} className="note-actions__back">
           <img className="icon" src={back} alt="" />
           <p>Go back</p>
         </button>
