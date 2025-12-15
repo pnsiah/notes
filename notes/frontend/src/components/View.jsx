@@ -10,6 +10,9 @@ import NoteActions from "./NoteActions";
 
 function View({
   navigateBack,
+  openModal,
+  archiveNote,
+  deleteNote,
   setHighlight,
   selectedTag,
   setSelectedTag,
@@ -58,12 +61,15 @@ function View({
       {view === "form" && (
         <>
           <NoteActions
+            openModal={openModal}
             setSelectedNote={setSelectedNote}
             navigateBack={navigateBack}
             setView={setView}
             fetchNotes={fetchNotes}
             selectedFilter={selectedFilter}
             setSelectedFilter={setSelectedFilter}
+            deleteNote={deleteNote}
+            archiveNote={archiveNote}
           />
           <NoteForm
             createNote={createNote}

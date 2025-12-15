@@ -336,6 +336,9 @@ function Dashboard(props) {
           fetchSingleNote={fetchSingleNote}
           view={view}
           setView={setView}
+          openModal={openModal}
+          archiveNote={archiveNote}
+          deleteNote={deleteNote}
           notes={notes}
           folders={folders}
           tags={tags}
