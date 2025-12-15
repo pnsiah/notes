@@ -144,7 +144,8 @@ function Dashboard(props) {
       const result = await response.json();
       if (result.status) {
         addNotification(result.message);
-        await fetchUserData();
+        await fetchNotes(selectedFilter);
+        await fetchTags();
       }
       return result.status;
     } catch (e) {
@@ -165,8 +166,10 @@ function Dashboard(props) {
       const result = await response.json();
       console.log(result);
       addNotification(result.message);
-      await fetchUserData();
+      // await fetchUserData();
       setSelectedNote(null);
+      await fetchNotes(selectedFilter);
+      await fetchTags();
     } catch (err) {
       console.log(err);
     }
@@ -298,6 +301,7 @@ function Dashboard(props) {
       });
 
       const result = await response.json();
+      setTags(result.tags);
       console.log(result);
     } catch (err) {
       console.log(err);
