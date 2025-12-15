@@ -17,7 +17,7 @@ function Dashboard(props) {
   const [notes, setNotes] = useState([]);
   const [folders, setFolders] = useState([]);
   const [tags, setTags] = useState([]);
-  const [highlight, setHighlight] = useState("");
+  const [highlight, setHighlight] = useState("all");
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [selectedTag, setSelectedTag] = useState("");
   const [userData, setUserData] = useState({});
@@ -63,11 +63,16 @@ function Dashboard(props) {
     setFolders(result.folders);
     setTags(result.tags);
     setNotes(result.notes);
+    setSelectedNote(result.notes[0]);
   };
 
   useEffect(() => {
     fetchUserData();
   }, []);
+
+  // useEffect(() => {
+  //   setSelectedNote(notes[0]);
+  // }, [selectedNote]);
 
   //
   // useEffect(() => {
