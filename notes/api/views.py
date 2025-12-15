@@ -5,7 +5,7 @@ from django.db.models import Q
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET
-from django.db import IntegrityError
+from django.db import IntegrityError, transaction
 from .models import User, Note, Folder, Tag
 from .utils import save_note_with_tags, serialize_note
 
@@ -198,6 +198,9 @@ def update_note(request, note_id):
         if "tags" in data:
             save_note_with_tags(user=request.user, note=note, tag_list=data["tags"])
 
+            Tag.objects.filter(user=request.user).annotate(
+                note_count=Count("notes")
+            ).filter(note_count=0).delete()
         return JsonResponse({"status": True, "message": "Note updated"})
 
     else:
@@ -212,7 +215,24 @@ def delete_note(request, note_id):
 
     if note.user != request.user:
         return JsonResponse({"status": False, "message": "Denied"}, status=403)
-    note.delete()
+
+    with transaction.atomic():
+        # Get all tag IDs associated with this note
+        tag_ids = list(note.tags.values_list("id", flat=True))
+
+        # Clear the tags first (remove M2M relationships)
+
+        note.tags.clear()
+
+        # Delete tags that have no notes left
+        Tag.objects.filter(
+            id__in=tag_ids,
+            notes__isnull=True,  # Tags with no notes
+        ).delete()
+
+        # Now delete the note
+        note.delete()
+
     return JsonResponse({"status": True, "message": "Note deleted successfully"})
 
 
