@@ -10,6 +10,7 @@ import NoteActions from "./NoteActions";
 
 function View({
   navigateBack,
+  hasFetched,
   openModal,
   archiveNote,
   deleteNote,
@@ -47,6 +48,7 @@ function View({
       {view === "all" && (
         <Notes
           setView={setView}
+          hasFetched={hasFetched}
           fetchSingleNote={fetchSingleNote}
           notes={notes}
         />
@@ -54,6 +56,7 @@ function View({
       {view === "archived" && (
         <Notes
           setView={setView}
+          hasFetched={hasFetched}
           fetchSingleNote={fetchSingleNote}
           notes={notes}
         />

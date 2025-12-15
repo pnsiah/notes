@@ -228,36 +228,6 @@ def update_note(request, note_id):
         return JsonResponse({"status": False, "message": "Invalid request"}, status=405)
 
 
-# def update_note(request, note_id):
-#     if request.method == "PUT":
-#         data = json.loads(request.body)
-#         note = get_object_or_404(Note, id=note_id, user=request.user)
-#         new_title = data.get("title")
-#         new_content = data.get("content")
-#         if not new_title or not new_content:
-#             return JsonResponse(
-#                 {"status": False, "message": "Title or content cannot be empty"},
-#                 status=400,
-#             )
-#
-#         note.title = new_title
-#         note.content = new_content
-#         note.save()
-#
-#         if "tags" in data:
-#             save_note_with_tags(user=request.user, note=note, tag_list=data["tags"])
-#
-#             Tag.objects.filter(user=request.user).annotate(
-#                 note_count=Count("notes")
-#             ).filter(note_count=0).delete()
-#         return JsonResponse({"status": True, "message": "Note updated"})
-#
-#     else:
-#         return JsonResponse({"status": False, "message": "Invalid request"}, status=405)
-#
-#
-
-
 @csrf_exempt
 def delete_note(request, note_id):
     if request.method != "DELETE":

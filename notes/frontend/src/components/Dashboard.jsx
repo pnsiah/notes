@@ -16,6 +16,7 @@ import { NotificationContext } from "./NotificationContext";
 function Dashboard(props) {
   const [notes, setNotes] = useState([]);
   const [folders, setFolders] = useState([]);
+  const [hasFetched, setHasFetched] = useState(false);
   const [tags, setTags] = useState([]);
   const [highlight, setHighlight] = useState("all");
   const [selectedFilter, setSelectedFilter] = useState("all");
@@ -63,7 +64,9 @@ function Dashboard(props) {
     setFolders(result.folders);
     setTags(result.tags);
     setNotes(result.notes);
-    setSelectedNote(result.notes[0]);
+    setHasFetched(true);
+
+    // setSelectedNote(result.notes[0]);
   };
 
   useEffect(() => {
@@ -345,6 +348,7 @@ function Dashboard(props) {
         />
         <View
           navigateBack={navigateBack}
+          hasFetched={hasFetched}
           setHighlight={setHighlight}
           getNotesByTags={getNotesByTags}
           selectedTag={selectedTag}
@@ -396,6 +400,7 @@ function Dashboard(props) {
           <Notes
             selectedNote={selectedNote}
             notesInfoMessage={notesInfoMessage}
+            hasFetched={hasFetched}
             createNewNote={createNewNote}
             setView={setView}
             setSelectedNote={setSelectedNote}

@@ -1,10 +1,21 @@
 import "../components/NoteList.css";
 
-function NoteList({ selectedNote, setView, notes, fetchSingleNote }) {
+function NoteList({
+  hasFetched,
+  selectedNote,
+  setView,
+  notes,
+  fetchSingleNote,
+}) {
   const show = (id) => {
     fetchSingleNote(id);
     setView("form");
   };
+
+  if (!hasFetched) {
+    return null;
+  }
+
   return (
     <ul className="notes-list">
       {notes.length === 0 ? (
