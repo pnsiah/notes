@@ -167,6 +167,7 @@ function Dashboard(props) {
       console.log(result);
       addNotification(result.message);
       await fetchUserData();
+      setSelectedNote(null);
     } catch (err) {
       console.log(err);
     }
