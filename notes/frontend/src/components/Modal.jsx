@@ -1,4 +1,5 @@
 import "../components/Modal.css";
+import { useState } from "react";
 import deleteIcon from "../assets/images/icon-delete.svg";
 
 function Modal({
@@ -15,6 +16,7 @@ function Modal({
   // selectedNote,
 }) {
   // if (!modal) return null;
+  const [folderName, setFolderName] = useState("");
   const { type, title, image, confirmText, payload } = modal;
 
   const renderModalBody = (type) => {

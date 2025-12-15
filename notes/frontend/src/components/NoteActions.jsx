@@ -1,6 +1,7 @@
 import deleteIcon from "../assets/images/icon-delete.svg";
 import restoreIcon from "../assets/images/icon-restore.svg";
 import archive from "../assets/images/icon-archive.svg";
+import folderIcon from "../assets/images/folder-open-regular-full.svg";
 import archiveIcon from "../assets/images/icon-archive.svg";
 import restore from "../assets/images/icon-restore.svg";
 import back from "../assets/images/icon-arrow-left.svg";
@@ -36,6 +37,20 @@ function NoteActions({
         </button>
       </div>
       <div className="note-actions__group">
+        <button
+          onClick={() => {
+            openModal({
+              type: "create-folder",
+              image: folderIcon,
+              confirmText: "Create Folder",
+              // payload: { noteId: selectedNote.id },
+            });
+          }}
+          className="danger action-button"
+        >
+          <img className="icon folder-icon" src={folderIcon} alt="" />
+          <span>Create Folder</span>
+        </button>
         {selectedNote?.archived ? (
           <button
             onClick={() => {

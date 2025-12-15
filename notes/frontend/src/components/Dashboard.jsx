@@ -254,19 +254,18 @@ function Dashboard(props) {
     setSelectedNote(result.note);
   };
 
-  const createFolder = async (e) => {
-    e.preventDefault();
+  const createFolder = async (folderName) => {
     try {
       const response = await fetch("http://localhost:8000/api/create_folder/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify({
-          folder: folder,
+          folder: folderName,
         }),
       });
       const result = await response.json();
-      console.log(result);
+      addNotification(result.message);
     } catch (err) {
       console.log(err);
     }
