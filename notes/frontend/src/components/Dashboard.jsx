@@ -183,6 +183,19 @@ function Dashboard(props) {
     }
   };
 
+  const fetchFolders = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/api/list_folders/", {
+        method: "GET",
+        credentials: "include",
+      });
+      const result = await response.json();
+      setFolders(result.folders);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const archiveNote = async (noteId) => {
     try {
       const response = await fetch(
@@ -265,6 +278,7 @@ function Dashboard(props) {
         }),
       });
       const result = await response.json();
+      fetchFolders();
       addNotification(result.message);
     } catch (err) {
       console.log(err);
