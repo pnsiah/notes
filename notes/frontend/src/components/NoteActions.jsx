@@ -1,11 +1,13 @@
 import deleteIcon from "../assets/images/icon-delete.svg";
+import restoreIcon from "../assets/images/icon-restore.svg";
 import archive from "../assets/images/icon-archive.svg";
-import archiveButton from "../assets/images/icon-archive.svg";
+import archiveIcon from "../assets/images/icon-archive.svg";
 import restore from "../assets/images/icon-restore.svg";
 import back from "../assets/images/icon-arrow-left.svg";
 import "../components/NoteActions.css";
 
 function NoteActions({
+  createFolder,
   setView,
   selectedFilter,
   setSelectedFilter,
@@ -34,29 +36,49 @@ function NoteActions({
         </button>
       </div>
       <div className="note-actions__group">
+        {selectedNote?.archived ? (
+          <button
+            onClick={() => {
+              openModal({
+                // title: "Archive Note",
+                // body: "Are you sure you want to archive this note? You can find it in the Archived Notes section and restore it anytime.",
+                // image: archiveButton,
+                // confirmText: confirmText,
+                // actionFunc: archiveNote,
+                type: "restore-note",
+                image: restoreIcon,
+                confirmText: "Restore Note",
+                payload: { noteId: selectedNote.id },
+              });
+            }}
+            className="action-button"
+          >
+            <img className="icon" src={confirmIcon} alt="" />
+            <span>{confirmText}</span>
+          </button>
+        ) : (
+          <button
+            onClick={() => {
+              openModal({
+                type: "archive-note",
+                image: archiveIcon,
+                confirmText: "Archive Note",
+                payload: { noteId: selectedNote.id },
+              });
+            }}
+            className="action-button"
+          >
+            <img className="icon" src={confirmIcon} alt="" />
+            <span>{confirmText}</span>
+          </button>
+        )}
         <button
           onClick={() => {
             openModal({
-              title: "Archive Note",
-              body: "Are you sure you want to archive this note? You can find it in the Archived Notes section and restore it anytime.",
-              image: archiveButton,
-              confirmText: confirmText,
-              actionFunc: archiveNote,
-            });
-          }}
-          className="action-button"
-        >
-          <img className="icon" src={confirmIcon} alt="" />
-          <span>{confirmText}</span>
-        </button>
-        <button
-          onClick={() => {
-            openModal({
-              title: "Delete Note",
-              body: "Are you sure you want to permanently delete this note? This action cannot be undone.",
+              type: "delete-note",
               image: deleteIcon,
               confirmText: "Delete Note",
-              actionFunc: deleteNote,
+              payload: { noteId: selectedNote.id },
             });
           }}
           className="danger action-button"

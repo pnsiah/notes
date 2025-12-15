@@ -32,13 +32,7 @@ function Dashboard(props) {
   const [showActions, setshowActions] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   // const [action, setAction] = useState("");
-  const [modalData, setModalData] = useState({
-    title: "",
-    body: "",
-    image: null,
-    confirmText: "",
-    actionFunc: null,
-  });
+  const [modalData, setModalData] = useState(null);
 
   const { addNotification } = useContext(NotificationContext);
 
@@ -306,14 +300,18 @@ function Dashboard(props) {
     <div className="dashboard-container">
       {isModalOpen && (
         <Modal
+          deleteNote={deleteNote}
+          archiveNote={archiveNote}
+          createFolder={createFolder}
           closeModal={closeModal}
           isModalOpen={isModalOpen}
-          modalTitle={modalData.title}
-          modalBody={modalData.body}
-          modalImage={modalData.image}
-          confirmText={modalData.confirmText}
-          actionFunc={modalData.actionFunc}
-          selectedNote={selectedNote}
+          modal={modalData}
+          // modalTitle={modalData.title}
+          // modalBody={modalData.body}
+          // modalImage={modalData.image}
+          // confirmText={modalData.confirmText}
+          // actionFunc={modalData.actionFunc}
+          // selectedNote={selectedNote}
         />
       )}
       <div className="small">
@@ -399,6 +397,7 @@ function Dashboard(props) {
               setView={setView}
               deleteNote={deleteNote}
               archiveNote={archiveNote}
+              createFolder={createFolder}
               openModal={openModal}
             />
           )}

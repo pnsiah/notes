@@ -3,13 +3,90 @@ import deleteIcon from "../assets/images/icon-delete.svg";
 
 function Modal({
   closeModal,
-  modalTitle,
-  modalImage,
-  modalBody,
-  confirmText,
-  actionFunc,
-  selectedNote,
+  modal,
+  archiveNote,
+  deleteNote,
+  createFolder,
+  // modalTitle,
+  // modalImage,
+  // modalBody,
+  // confirmText,
+  // actionFunc,
+  // selectedNote,
 }) {
+  // if (!modal) return null;
+  const { type, title, image, confirmText, payload } = modal;
+
+  const renderModalBody = (type) => {
+    switch (type) {
+      case "delete-note":
+        return (
+          <p>
+            Are you sure you want to permanently delete this note? This action
+            cannot be undone.
+          </p>
+        );
+
+      case "archive-note":
+        return (
+          <p>
+            Are you sure you want to archive this note? You can find it in the
+            Archived Notes section and restore it anytime.
+          </p>
+        );
+
+      case "restore-note":
+        return (
+          <p>
+            Are you sure you want to restore this note? This note will be
+            restored to All Notes section.
+          </p>
+        );
+
+      case "create-folder":
+        return (
+          <input
+            value={folderName}
+            onChange={(e) => setFolderName(e.target.value)}
+            placeholder="Folder name"
+            autoFocus
+          />
+        );
+
+      default:
+        return null;
+    }
+  };
+
+  const handleConfirm = () => {
+    if (!modal) return;
+
+    switch (modal.type) {
+      case "delete-note":
+        deleteNote(payload.noteId);
+        break;
+
+      case "archive-note":
+        archiveNote(payload.noteId);
+        console.log("id here", payload.noteId);
+        break;
+
+      case "restore-note":
+        archiveNote(payload.noteId);
+        break;
+
+      case "create-folder":
+        if (!folderName.trim()) return;
+        createFolder(folderName);
+        break;
+
+      default:
+        console.warn("Unknown modal type:", modal.type);
+    }
+
+    closeModal();
+  };
+
   const closeOnBackdrop = () => {
     closeModal();
   };
@@ -22,10 +99,10 @@ function Modal({
     <div className="modal-backdrop" onClick={closeOnBackdrop}>
       <div className="modal" onClick={stopPropagation}>
         <div className="modal-content">
-          <img src={modalImage} alt="" />
+          <img src={image} alt="" />
           <div className="modal-text">
-            <h3>{modalTitle}</h3>
-            <p>{modalBody}</p>
+            <h3>{title}</h3>
+            <div>{renderModalBody(type)}</div>
           </div>
         </div>
 
@@ -35,10 +112,7 @@ function Modal({
           </button>
           <button
             className={`modal-button ${confirmText === "Delete Note" ? "modal-danger-button" : "modal-confirm"}`}
-            onClick={() => {
-              actionFunc(selectedNote.id);
-              closeModal();
-            }}
+            onClick={handleConfirm}
           >
             {confirmText}
           </button>
