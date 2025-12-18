@@ -2,6 +2,7 @@ import Notes from "./Notes";
 import TagList from "./TagList";
 import NoteForm from "./NoteForm";
 import FolderList from "./FolderList";
+import Settings from "./Settings.jsx";
 import TaggedNotes from "./TaggedNotes";
 import Search from "./Search";
 import "../components/View.css";
@@ -37,15 +38,15 @@ function View({
   updateNote,
   createNote,
   fetchNotes,
+  goToAllNotes,
+  goToArchivedNotes,
 }) {
   useEffect(() => {
     if (view === "all") {
-      setSelectedFilter("all");
-      fetchNotes("all");
+      goToAllNotes();
     }
     if (view === "archived") {
-      setSelectedFilter("archived");
-      fetchNotes("archived");
+      goToArchivedNotes();
     }
   }, [view]);
   return (

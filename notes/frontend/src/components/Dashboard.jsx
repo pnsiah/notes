@@ -55,6 +55,20 @@ function Dashboard(props) {
     setIsModalOpen(false);
   };
 
+  const goToAllNotes = () => {
+    setSearchQuery("");
+    setSelectedFilter("all");
+    setHighlight("all");
+    // fetchNotes("all");
+  };
+
+  const goToArchivedNotes = () => {
+    setSearchQuery("");
+    setSelectedFilter("archived");
+    setHighlight("archived");
+    // fetchNotes("archived");
+  };
+
   const fetchUserData = async () => {
     const response = await fetch("http://localhost:8000/api/dashboard", {
       method: "POST",
@@ -355,6 +369,8 @@ function Dashboard(props) {
         />
 
         <View
+          goToAllNotes={goToAllNotes}
+          goToArchivedNotes={goToArchivedNotes}
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
           notesInfoMessage={notesInfoMessage}
@@ -403,6 +419,8 @@ function Dashboard(props) {
           folders={folders}
           tags={tags}
           setView={setView}
+          goToAllNotes={goToAllNotes}
+          goToArchivedNotes={goToArchivedNotes}
         />
         <div className="grid">
           <div className="app-header">

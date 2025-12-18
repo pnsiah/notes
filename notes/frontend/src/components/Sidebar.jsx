@@ -12,6 +12,8 @@ function Sidebar({
   setSearchQuery,
   setHighlight,
   highlight,
+  goToAllNotes,
+  goToArchivedNotes,
   setView,
   selectedTag,
   setSelectedTag,
@@ -30,13 +32,10 @@ function Sidebar({
   return (
     <div className="sidebar">
       <Logo />
-      {/* <div className="sidebar-logo"></div> */}
       <div className="menu-links">
         <button
           onClick={() => {
-            setSearchQuery("");
-            setSelectedFilter("all");
-            setHighlight("all");
+            goToAllNotes();
           }}
           className={`sidebar-button ${highlight === "all" ? "highlight" : ""}`}
         >
@@ -46,9 +45,7 @@ function Sidebar({
         </button>
         <button
           onClick={() => {
-            setSearchQuery("");
-            setSelectedFilter("archived");
-            setHighlight("archived");
+            goToArchivedNotes();
           }}
           className={`sidebar-button ${highlight === "archived" ? "highlight" : ""}`}
         >
