@@ -3,6 +3,8 @@ import Logo from "./Logo";
 import "../components/Header.css";
 
 function Header({
+  setSearchQuery,
+  searchQuery,
   fetchNotes,
   setEmptyState,
   setNotesInfoMessage,
@@ -16,6 +18,8 @@ function Header({
       <h2 className="header-text">Heading</h2>
       {showSearch && (
         <Search
+          setSearchQuery={setSearchQuery}
+          searchQuery={searchQuery}
           fetchNotes={fetchNotes}
           setEmptyState={setEmptyState}
           setNotesInfoMessage={setNotesInfoMessage}

@@ -9,6 +9,7 @@ import tag from "../assets/images/icon-tag.svg";
 import "./SideBar.css";
 
 function Sidebar({
+  setSearchQuery,
   setHighlight,
   highlight,
   setView,
@@ -33,6 +34,7 @@ function Sidebar({
       <div className="menu-links">
         <button
           onClick={() => {
+            setSearchQuery("");
             setSelectedFilter("all");
             setHighlight("all");
           }}
@@ -44,6 +46,7 @@ function Sidebar({
         </button>
         <button
           onClick={() => {
+            setSearchQuery("");
             setSelectedFilter("archived");
             setHighlight("archived");
           }}

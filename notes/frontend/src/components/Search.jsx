@@ -6,14 +6,21 @@ import "../components/Search.css";
 function Search({
   setEmptyState,
   fetchNotes,
+  setSearchQuery,
+  searchQuery,
   searchNotes,
   setNotesInfoMessage,
 }) {
   const debounceRef = useRef(null);
 
   const handleSearch = (query) => {
-    if (!query.trim()) {
-      if (debounceRef.current) clearTimeout(debounceRef.current);
+    setSearchQuery(query);
+  };
+
+  useEffect(() => {
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+
+    if (!searchQuery.trim()) {
       fetchNotes();
       setNotesInfoMessage("");
       setEmptyState({ isEmpty: false });
@@ -21,16 +28,16 @@ function Search({
     }
 
     debounceRef.current = setTimeout(() => {
-      searchNotes(query);
-      setNotesInfoMessage(`All notes matching "${query}" are displayed here.`);
+      searchNotes(searchQuery);
+      setNotesInfoMessage(
+        `All notes matching "${searchQuery}" are displayed here.`,
+      );
     }, 300);
-  };
 
-  useEffect(() => {
     return () => {
       if (debounceRef.current) clearTimeout(debounceRef.current);
     };
-  }, []);
+  }, [searchQuery]);
 
   return (
     <form className="search-form">
@@ -39,6 +46,7 @@ function Search({
           onChange={(e) => {
             handleSearch(e.target.value);
           }}
+          value={searchQuery}
           className="search-input"
           type="text"
           placeholder="Search by title, tags or folder"

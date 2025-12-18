@@ -20,6 +20,7 @@ function Dashboard(props) {
   const [tags, setTags] = useState([]);
   const [highlight, setHighlight] = useState("all");
   const [selectedFilter, setSelectedFilter] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
   const [selectedTag, setSelectedTag] = useState("");
   const [userData, setUserData] = useState({});
   const [view, setView] = useState("all");
@@ -341,12 +342,16 @@ function Dashboard(props) {
       )}
       <div className="small">
         <Header
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
           setNotesInfoMessage={setNotesInfoMessage}
           searchNotes={searchNotes}
           showSearch={false}
           showLogo={true}
         />
         <View
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
           notesInfoMessage={notesInfoMessage}
           navigateBack={navigateBack}
           searchNotes={searchNotes}
@@ -381,6 +386,7 @@ function Dashboard(props) {
       </div>
       <div className="big">
         <Sidebar
+          setSearchQuery={setSearchQuery}
           highlight={highlight}
           setHighlight={setHighlight}
           selectedTag={selectedTag}
@@ -395,6 +401,8 @@ function Dashboard(props) {
         />
         <div className="grid">
           <Header
+            setSearchQuery={setSearchQuery}
+            searchQuery={searchQuery}
             setEmptyState={setEmptyState}
             setNotesInfoMessage={setNotesInfoMessage}
             searchNotes={searchNotes}

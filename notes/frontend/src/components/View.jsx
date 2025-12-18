@@ -10,6 +10,8 @@ import NoteActions from "./NoteActions";
 
 function View({
   notesInfoMessage,
+  setSearchQuery,
+  searchQuery,
   setNotesInfoMessage,
   searchNotes,
   navigateBack,
@@ -104,6 +106,8 @@ function View({
             setNotesInfoMessage={setNotesInfoMessage}
             searchNotes={searchNotes}
             setEmptyState={setEmptyState}
+            setSearchQuery={setSearchQuery}
+            searchQuery={searchQuery}
             fetchNotes={fetchNotes}
           />
           <Notes
