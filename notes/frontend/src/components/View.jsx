@@ -34,8 +34,6 @@ function View({
   folders,
   updateNote,
   createNote,
-  searchQuery,
-  setSearchQuery,
   fetchNotes,
 }) {
   useEffect(() => {
@@ -103,8 +101,6 @@ function View({
       {view === "search" && (
         <>
           <Search
-            setSearchQuery={setSearchQuery}
-            searchQuery={searchQuery}
             setNotesInfoMessage={setNotesInfoMessage}
             searchNotes={searchNotes}
             setEmptyState={setEmptyState}

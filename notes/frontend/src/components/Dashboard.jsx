@@ -21,7 +21,6 @@ function Dashboard(props) {
   const [highlight, setHighlight] = useState("all");
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [selectedTag, setSelectedTag] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
   const [userData, setUserData] = useState({});
   const [view, setView] = useState("all");
   const [notesInfoMessage, setNotesInfoMessage] = useState("");
@@ -243,7 +242,6 @@ function Dashboard(props) {
   const searchNotes = async (query) => {
     const response = await fetch(
       `http://localhost:8000/api/search_notes/?query=${encodeURIComponent(query)}`,
-
       {
         method: "GET",
         credentials: "include",
@@ -344,8 +342,6 @@ function Dashboard(props) {
       <div className="small">
         <Header
           setNotesInfoMessage={setNotesInfoMessage}
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
           searchNotes={searchNotes}
           showSearch={false}
           showLogo={true}
@@ -354,8 +350,6 @@ function Dashboard(props) {
           notesInfoMessage={notesInfoMessage}
           navigateBack={navigateBack}
           searchNotes={searchNotes}
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
           setNotesInfoMessage={setNotesInfoMessage}
           hasFetched={hasFetched}
           setHighlight={setHighlight}
@@ -405,8 +399,6 @@ function Dashboard(props) {
             setNotesInfoMessage={setNotesInfoMessage}
             searchNotes={searchNotes}
             fetchNotes={fetchNotes}
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
           />
           <Notes
             selectedNote={selectedNote}
