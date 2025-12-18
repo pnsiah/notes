@@ -50,7 +50,6 @@ function Search({
       <div className="settings-icon">
         <img src={settingsIcon} alt="" />
       </div>
-      <p className="search-info">All notes matching are displayed here.</p>
     </form>
   );
 }

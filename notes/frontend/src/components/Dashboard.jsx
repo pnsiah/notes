@@ -347,7 +347,10 @@ function Dashboard(props) {
           showLogo={true}
         />
         <View
+          notesInfoMessage={notesInfoMessage}
           navigateBack={navigateBack}
+          searchNotes={searchNotes}
+          setNotesInfoMessage={setNotesInfoMessage}
           hasFetched={hasFetched}
           setHighlight={setHighlight}
           getNotesByTags={getNotesByTags}

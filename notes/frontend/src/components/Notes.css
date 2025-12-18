@@ -28,6 +28,10 @@
   height: 100%;
 }
 
+.notes-message {
+  color: var(--neutral-600);
+}
+
 @media (min-width: 768px) {
   .note-actions {
     display: block;
