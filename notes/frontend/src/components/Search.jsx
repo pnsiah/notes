@@ -4,6 +4,8 @@ import settingsIcon from "../assets/images/icon-settings.svg";
 import "../components/Search.css";
 
 function Search({
+  setSearchQuery,
+  searchQuery,
   setEmptyState,
   fetchNotes,
   searchNotes,
@@ -12,6 +14,7 @@ function Search({
   const debounceRef = useRef(null);
 
   const handleSearch = (query) => {
+    setSearchQuery(query);
     if (!query.trim()) {
       if (debounceRef.current) clearTimeout(debounceRef.current);
       fetchNotes();
