@@ -6,6 +6,8 @@ function Header({
   fetchNotes,
   setEmptyState,
   setNotesInfoMessage,
+  searchQuery,
+  setSearchQuery,
   searchNotes,
   showSearch = true,
   showLogo = false,
@@ -16,6 +18,8 @@ function Header({
       <h2 className="header-text">Heading</h2>
       {showSearch && (
         <Search
+          setSearchQuery={setSearchQuery}
+          searchQuery={searchQuery}
           fetchNotes={fetchNotes}
           setEmptyState={setEmptyState}
           setNotesInfoMessage={setNotesInfoMessage}

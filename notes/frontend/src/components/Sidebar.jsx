@@ -34,6 +34,7 @@ function Sidebar({
         <button
           onClick={() => {
             setSelectedFilter("all");
+            // setView("all");
             setHighlight("all");
           }}
           className={`sidebar-button ${highlight === "all" ? "highlight" : ""}`}
@@ -45,6 +46,7 @@ function Sidebar({
         <button
           onClick={() => {
             setSelectedFilter("archived");
+            // setView("archived");
             setHighlight("archived");
           }}
           className={`sidebar-button ${highlight === "archived" ? "highlight" : ""}`}
