@@ -32,9 +32,6 @@
 /*   color: black; */
 /* } */
 
-.settings-icon {
-  display: none;
-}
 @media (min-width: 768px) {
   .search-form {
     display: flex;
@@ -66,9 +63,5 @@
 
   .search-info {
     display: none;
-  }
-
-  .settings-icon {
-    display: block;
   }
 }

@@ -1,6 +1,9 @@
 import { useEffect, useState, useContext } from "react";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
+import Settings from "./Settings.jsx";
+import Search from "./Search.jsx";
+import Logo from "./Logo.jsx";
 import TagList from "./TagList";
 import NoteForm from "./NoteForm";
 import Notes from "./Notes";
@@ -341,14 +344,16 @@ function Dashboard(props) {
         />
       )}
       <div className="small">
+        <Logo />
         <Header
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          setNotesInfoMessage={setNotesInfoMessage}
-          searchNotes={searchNotes}
-          showSearch={false}
-          showLogo={true}
+        // searchQuery={searchQuery}
+        // setSearchQuery={setSearchQuery}
+        // setNotesInfoMessage={setNotesInfoMessage}
+        // searchNotes={searchNotes}
+        // // showSearch={false}
+        // showLogo={true}
         />
+
         <View
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
@@ -400,14 +405,18 @@ function Dashboard(props) {
           setView={setView}
         />
         <div className="grid">
-          <Header
-            setSearchQuery={setSearchQuery}
-            searchQuery={searchQuery}
-            setEmptyState={setEmptyState}
-            setNotesInfoMessage={setNotesInfoMessage}
-            searchNotes={searchNotes}
-            fetchNotes={fetchNotes}
-          />
+          <div className="app-header">
+            <Header />
+            <Search
+              setSearchQuery={setSearchQuery}
+              searchQuery={searchQuery}
+              setEmptyState={setEmptyState}
+              setNotesInfoMessage={setNotesInfoMessage}
+              searchNotes={searchNotes}
+              fetchNotes={fetchNotes}
+            />
+            <Settings />
+          </div>
           <Notes
             selectedNote={selectedNote}
             notesInfoMessage={notesInfoMessage}

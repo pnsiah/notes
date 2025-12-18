@@ -54,6 +54,7 @@ justify-content: center;
 
   .note-actions {
     display: block; 
+    grid-area: right;
   }
 
   .note-actions__group {

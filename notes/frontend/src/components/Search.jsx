@@ -55,9 +55,6 @@ function Search({
           <img src={searchIcon} alt="" />
         </span>
       </div>
-      <div className="settings-icon">
-        <img src={settingsIcon} alt="" />
-      </div>
     </form>
   );
 }

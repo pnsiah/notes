@@ -53,11 +53,20 @@
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: 70px auto;
   }
+
+  .app-header {
+    grid-area: title;
+    display: flex;
+    align-items: center;
+    padding: var(--padding-md) var(--padding-sm);
+    border-bottom: 1px solid var(--neutral-200);
+    /* background-color: red; */
+  }
 }
 
-.main {
-  grid-area: main;
-}
+/* .main { */
+/*   grid-area: main; */
+/* } */
 
 .settings {
   display: none;

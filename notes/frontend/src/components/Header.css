@@ -10,14 +10,14 @@
 }
 @media (min-width: 768px) {
   .header {
-    grid-area: title;
-    display: flex;
-    align-items: center;
-    padding: var(--padding-md) var(--padding-sm);
+    /* grid-area: title; */
+    /* display: flex; */
+    /* align-items: center; */
+    /* padding: var(--padding-md) var(--padding-sm); */
   }
 
   .header {
     /* grid-area: title; */
-    border-bottom: 1px solid var(--neutral-200);
+    /* border-bottom: 1px solid var(--neutral-200); */
   }
 }
