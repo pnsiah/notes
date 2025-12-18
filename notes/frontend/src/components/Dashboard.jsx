@@ -59,7 +59,6 @@ function Dashboard(props) {
     setSearchQuery("");
     setSelectedFilter("all");
     setHighlight("all");
-    // fetchNotes("all");
   };
 
   const goToArchivedNotes = () => {
