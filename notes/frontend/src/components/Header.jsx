@@ -10,7 +10,6 @@ function Header({
   showSearch = true,
   showLogo = false,
 }) {
-  // console.log("search", typeof searchNotes);
   return (
     <header className="header">
       {showLogo && <Logo />}

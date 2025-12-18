@@ -9,6 +9,9 @@ import { useEffect } from "react";
 import NoteActions from "./NoteActions";
 
 function View({
+  notesInfoMessage,
+  setNotesInfoMessage,
+  searchNotes,
   navigateBack,
   hasFetched,
   openModal,
@@ -58,6 +61,7 @@ function View({
           setView={setView}
           hasFetched={hasFetched}
           fetchSingleNote={fetchSingleNote}
+          notesInfoMessage={notesInfoMessage}
           notes={notes}
         />
       )}
@@ -95,7 +99,21 @@ function View({
       )}
       {view === "folders" && <FolderList folders={folders} />}
       {view === "search" && (
-        <Search setEmptyState={setEmptyState} fetchNotes={fetchNotes} />
+        <>
+          <Search
+            setNotesInfoMessage={setNotesInfoMessage}
+            searchNotes={searchNotes}
+            setEmptyState={setEmptyState}
+            fetchNotes={fetchNotes}
+          />
+          <Notes
+            setView={setView}
+            hasFetched={hasFetched}
+            fetchSingleNote={fetchSingleNote}
+            notes={notes}
+            notesInfoMessage={notesInfoMessage}
+          />
+        </>
       )}
       {view === "settings" && <Settings />}
       {view === "taggedNotes" && (
@@ -114,10 +132,4 @@ function View({
   );
 }
 
-{
-  /* <TaggedNotes */
-}
-{
-  /* /> */
-}
 export default View;

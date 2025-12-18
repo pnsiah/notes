@@ -19,7 +19,7 @@ function Notes({
         <button className="new-note-btn" onClick={createNewNote}>
           <img src={plus} alt="" /> <span>Create New Note</span>
         </button>
-        <div style={{ color: "red" }}>{notesInfoMessage}</div>
+        <div className="notes-message">{notesInfoMessage}</div>
         <NoteList
           hasFetched={hasFetched}
           selectedNote={selectedNote}
