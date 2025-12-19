@@ -22,7 +22,7 @@ function TagList({
               setSelectedTag(tag.name);
               setView("taggedNotes");
               setHighlight("");
-              setSelectedFilter("taggedNotes");
+              setSelectedFilter(null);
             }}
           >
             <button className="tag">

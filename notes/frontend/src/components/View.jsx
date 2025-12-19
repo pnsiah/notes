@@ -1,6 +1,7 @@
 import Notes from "./Notes";
 import TagList from "./TagList";
 import NoteForm from "./NoteForm";
+import NoteList from "./NoteList.jsx";
 import FolderList from "./FolderList";
 import Settings from "./Settings.jsx";
 import TaggedNotes from "./TaggedNotes";
@@ -42,6 +43,7 @@ function View({
   goToArchivedNotes,
 }) {
   useEffect(() => {
+    if (view === "taggedNotes") return;
     if (view === "all") {
       goToAllNotes();
     }
@@ -122,16 +124,24 @@ function View({
       )}
       {view === "settings" && <Settings />}
       {view === "taggedNotes" && (
-        <TaggedNotes
-          setSelectedFilter={setSelectedFilter}
-          setSelectedTag={setSelectedTag}
-          selectedTag={selectedTag}
-          getNotesByTags={getNotesByTags}
-          selectedNote={selectedNote}
-          setView={setView}
-          notes={notes}
-          fetchSingleNote={fetchSingleNote}
-        />
+        <>
+          <TaggedNotes
+            setSelectedFilter={setSelectedFilter}
+            setSelectedTag={setSelectedTag}
+            selectedTag={selectedTag}
+            getNotesByTags={getNotesByTags}
+            selectedNote={selectedNote}
+            setView={setView}
+            notes={notes}
+            fetchSingleNote={fetchSingleNote}
+          />
+          {/* <Notes */}
+          {/*   selectedNote={selectedNote} */}
+          {/*   setView={setView} */}
+          {/*   notes={notes} */}
+          {/*   fetchSingleNote={fetchSingleNote} */}
+          {/* /> */}
+        </>
       )}
     </div>
   );

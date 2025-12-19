@@ -76,7 +76,7 @@ function Dashboard(props) {
       body: JSON.stringify({}),
     });
     const result = await response.json();
-    console.log(result);
+    // console.log(result);
     setUserData(result.user_data);
     setFolders(result.folders);
     setTags(result.tags);
@@ -122,7 +122,7 @@ function Dashboard(props) {
 
       const result = await response.json();
 
-      console.log(result);
+      // console.log(result);
       props.setPage("LogIn");
     } catch (err) {
       console.log(err);
@@ -184,7 +184,7 @@ function Dashboard(props) {
         },
       );
       const result = await response.json();
-      console.log(result);
+      // console.log(result);
       addNotification(result.message);
       // await fetchUserData();
       setSelectedNote(null);
@@ -205,6 +205,7 @@ function Dashboard(props) {
         },
       );
       const result = await response.json();
+      // console.log("tagged notes here", result.notes);
       setNotes(result.notes);
     } catch (e) {
       console.log(e);
@@ -235,7 +236,7 @@ function Dashboard(props) {
         },
       );
       const result = await response.json();
-      console.log(result);
+      // console.log(result);
       addNotification(result.message);
       await fetchUserData();
     } catch (err) {
@@ -291,7 +292,7 @@ function Dashboard(props) {
     );
 
     const result = await response.json();
-    console.log(result.note);
+    // console.log(result.note);
     setSelectedNote(result.note);
   };
 
@@ -322,7 +323,7 @@ function Dashboard(props) {
 
       const result = await response.json();
       setTags(result.tags);
-      console.log(result);
+      // console.log(result);
     } catch (err) {
       console.log(err);
     }

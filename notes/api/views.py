@@ -289,9 +289,11 @@ def get_notes(request):
         .order_by("-created_at")
     )
 
+    print(filter)
     if filter == "archived":
         notes = notes.filter(archived=True)
     else:
+        print("fetching all notes")
         notes = notes.filter(archived=False)
 
     # serialized_notes = [

@@ -25,8 +25,9 @@ function Sidebar({
   fetchNotes,
 }) {
   useEffect(() => {
+    if (selectedFilter == null) return;
     fetchNotes(selectedFilter);
-    console.log("Effect:", selectedFilter);
+    console.log("Effect and selected filter:", selectedFilter);
   }, [selectedFilter]);
 
   return (

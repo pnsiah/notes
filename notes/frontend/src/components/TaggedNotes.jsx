@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import NoteList from "./NoteList";
+import Notes from "./Notes";
 import "./TaggedNotes.css";
 
 function TaggedNotes({
@@ -12,10 +13,10 @@ function TaggedNotes({
   setView,
   view,
   fetchSingleNote,
+  setSelectedNote,
 }) {
   useEffect(() => {
     if (!selectedTag) return;
-
     getNotesByTags(selectedTag);
     console.log({ selectedTag });
   }, [selectedTag]);
@@ -23,12 +24,14 @@ function TaggedNotes({
   return (
     <div className="taggedNotes">
       <h3>Tagged Notes</h3>
-      <NoteList
-        selectedNote={selectedNote}
-        setView={setView}
-        notes={notes}
-        fetchSingleNote={fetchSingleNote}
-      />
+      <div style={{ background: "red" }}>
+        <NoteList
+          selectedNote={selectedNote}
+          setView={setView}
+          notes={notes}
+          fetchSingleNote={fetchSingleNote}
+        />
+      </div>
     </div>
   );
 }

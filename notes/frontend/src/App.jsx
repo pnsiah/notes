@@ -20,7 +20,7 @@ function App() {
         credentials: "include",
       });
       const result = await response.json();
-      console.log({ result });
+      // console.log({ result });
       if (result.authenticated) {
         setIsAuthenticated(result.authenticated);
         setPage("Dashboard");
