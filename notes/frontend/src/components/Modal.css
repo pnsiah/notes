@@ -63,9 +63,10 @@
 }
 
 .modal-button {
-  width: 100px;
+  /* width: 100px; */
+  width: auto;
   max-width: 120px;
-  padding: 0.8em var(--padding-sm);
+  padding: 0.8em var(--padding-md);
   border-radius: 0.5em;
   cursor: pointer;
   border: none;

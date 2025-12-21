@@ -92,7 +92,7 @@
 
 .note-button {
   padding: var(--padding-md);
-  width: 6rem;
+  width: auto;
   font-size: 0.9rem;
   border-radius: 0.5em;
   cursor: pointer;
