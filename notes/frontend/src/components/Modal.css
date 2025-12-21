@@ -28,9 +28,12 @@
   align-items: flex-start;
   padding-bottom: var(--padding-md);
   border-bottom: 1px solid var(--neutral-300);
+  width: 100%;
+  flex: 1;
 }
 
 .modal-content img {
+  /* background-color: var(--neutral-300); */
   width: 40px;
   height: 40px;
   margin-left: 0.5em;
@@ -39,7 +42,9 @@
 
 .modal-text {
   display: flex;
+  margin-right: 1em;
   flex-direction: column;
+  width: 100%;
   gap: 0.5rem;
   color: black;
 }
@@ -77,6 +82,19 @@
 .modal-cancel {
   background-color: var(--neutral-500);
   color: white;
+}
+
+.create-folder-input {
+  width: 100%;
+  padding: var(--padding-sm);
+  font-size: 0.9rem;
+  border: 1px solid var(--neutral-300);
+  border-radius: 0.4em;
+  transition: border-color 0.15s ease;
+}
+
+.create-folder-input:focus {
+  border-color: var(--blue-500);
 }
 
 .modal-confirm {

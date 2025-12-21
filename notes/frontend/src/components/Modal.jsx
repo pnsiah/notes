@@ -48,6 +48,7 @@ function Modal({
       case "create-folder":
         return (
           <input
+            className="create-folder-input"
             value={folderName}
             onChange={(e) => setFolderName(e.target.value)}
             placeholder="Folder name"
@@ -103,8 +104,8 @@ function Modal({
         <div className="modal-content">
           <img src={image} alt="" />
           <div className="modal-text">
-            <h3>{title}</h3>
-            <div>{renderModalBody(type)}</div>
+            <h3 className="modal-title">{title}</h3>
+            <div className="modal-body">{renderModalBody(type)}</div>
           </div>
         </div>
 
