@@ -134,6 +134,7 @@ function View({
             setView={setView}
             notes={notes}
             fetchSingleNote={fetchSingleNote}
+            hasFetched={hasFetched}
           />
           {/* <Notes */}
           {/*   selectedNote={selectedNote} */}

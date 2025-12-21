@@ -12,9 +12,9 @@ function NoteList({
     setView("form");
   };
 
-  // if (!hasFetched) {
-  //   return null;
-  // }
+  if (!hasFetched) {
+    return null;
+  }
 
   return (
     <ul className="notes-list">

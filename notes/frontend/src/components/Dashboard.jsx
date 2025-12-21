@@ -206,6 +206,7 @@ function Dashboard(props) {
       );
       const result = await response.json();
       // console.log("tagged notes here", result.notes);
+      setHasFetched(true);
       setNotes(result.notes);
     } catch (e) {
       console.log(e);
