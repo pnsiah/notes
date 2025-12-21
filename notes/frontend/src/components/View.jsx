@@ -43,7 +43,7 @@ function View({
   goToArchivedNotes,
 }) {
   useEffect(() => {
-    // if (view === "taggedNotes") return;
+    if (view === "taggedNotes") return;
     if (view === "all") {
       goToAllNotes();
     }

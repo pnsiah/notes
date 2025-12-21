@@ -332,12 +332,7 @@ function Dashboard(props) {
 
   const navigateBack = () => {
     setSelectedNote(null);
-    // if (view === "form") {
-    //   setView("taggedNotes");
-    // } else {
     setView(selectedFilter);
-    // }
-    // fetchNotes(selectedFilter);
   };
 
   return (

@@ -19,8 +19,6 @@ function TaggedNotes({
   useEffect(() => {
     if (!selectedTag) return;
     getNotesByTags(selectedTag);
-    console.log({ selectedTag });
-    console.log("hasFetched", { hasFetched });
   }, [selectedTag]);
 
   return (
