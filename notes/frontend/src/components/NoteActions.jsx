@@ -43,6 +43,7 @@ function NoteActions({
               type: "create-folder",
               image: folderIcon,
               confirmText: "Create Folder",
+              title: "Create Folder",
               // payload: { noteId: selectedNote.id },
             });
           }}
@@ -55,12 +56,12 @@ function NoteActions({
           <button
             onClick={() => {
               openModal({
-                // title: "Archive Note",
                 // body: "Are you sure you want to archive this note? You can find it in the Archived Notes section and restore it anytime.",
                 // image: archiveButton,
                 // confirmText: confirmText,
                 // actionFunc: archiveNote,
                 type: "restore-note",
+                title: "Archive Note",
                 image: restoreIcon,
                 confirmText: "Restore Note",
                 payload: { noteId: selectedNote.id },
@@ -78,6 +79,7 @@ function NoteActions({
                 type: "archive-note",
                 image: archiveIcon,
                 confirmText: "Archive Note",
+                title: "Archive Note",
                 payload: { noteId: selectedNote.id },
               });
             }}
