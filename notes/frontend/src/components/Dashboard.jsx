@@ -24,7 +24,10 @@ function Dashboard(props) {
   const [highlight, setHighlight] = useState("all");
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedTagId, setSelectedTagId] = useState("");
+  const [selectedTag, setSelectedTag] = useState({
+    id: null,
+    name: "",
+  });
   const [userData, setUserData] = useState({});
   const [view, setView] = useState("all");
   const [notesInfoMessage, setNotesInfoMessage] = useState("");

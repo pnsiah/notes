@@ -19,7 +19,7 @@ function TagList({
           <li
             key={tag.id}
             onClick={() => {
-              setSelectedTagId(tag.id);
+              setSelectedTag({ id: tag.id, name: tag.name });
               setView("taggedNotes");
               setHighlight("");
               setSelectedFilter("taggedNotes");
