@@ -229,7 +229,6 @@ function Dashboard(props) {
       // console.log("tagged notes here", result.notes);
       setHasFetched(true);
       setNotes(result.notes);
-      console.log(result.notes);
     } catch (e) {
       console.log(e);
     }
@@ -387,6 +386,7 @@ function Dashboard(props) {
         />
 
         <View
+          getNotesByFolder={getNotesByFolder}
           goToAllNotes={goToAllNotes}
           goToArchivedNotes={goToArchivedNotes}
           searchQuery={searchQuery}

@@ -4,6 +4,7 @@ import archive from "../assets/images/icon-archive.svg";
 import tagIcon from "../assets/images/icon-tag.svg";
 import search from "../assets/images/icon-search.svg";
 import settings from "../assets/images/icon-settings.svg";
+import folderIcon from "../assets/images/folder-open-regular-full.svg";
 import "../components/NavBar.css";
 
 function NavBar({ view, setView }) {
@@ -13,6 +14,7 @@ function NavBar({ view, setView }) {
     { id: "tags", icon: tagIcon },
     { id: "search", icon: search },
     { id: "settings", icon: settings },
+    { id: "folders", icon: folderIcon },
   ];
 
   return (

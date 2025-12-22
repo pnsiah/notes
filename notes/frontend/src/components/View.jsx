@@ -12,6 +12,7 @@ import NoteActions from "./NoteActions";
 
 function View({
   notesInfoMessage,
+  getNotesByFolder,
   setSearchQuery,
   searchQuery,
   setNotesInfoMessage,
@@ -103,7 +104,9 @@ function View({
           tags={tags}
         />
       )}
-      {view === "folders" && <FolderList folders={folders} />}
+      {view === "folders" && (
+        <FolderList getNotesByFolder={getNotesByFolder} folders={folders} />
+      )}
       {view === "search" && (
         <>
           <Search
@@ -123,7 +126,7 @@ function View({
           />
         </>
       )}
-      {view === "settings" && <Settings />}
+      {/* {view === "settings" && <Settings />} */}
       {view === "taggedNotes" && (
         <>
           <TaggedNotes
