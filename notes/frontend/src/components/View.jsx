@@ -1,5 +1,6 @@
 import Notes from "./Notes";
 import TagList from "./TagList";
+import FilteredNotes from "./FilteredNotes";
 import NoteForm from "./NoteForm";
 import NoteList from "./NoteList.jsx";
 import FolderList from "./FolderList";
@@ -129,9 +130,12 @@ function View({
       {/* {view === "settings" && <Settings />} */}
       {view === "taggedNotes" && (
         <>
-          <TaggedNotes
-            setSelectedFilter={setSelectedFilter}
+          <FilteredNotes
+            filterType="taggedNotes"
+            selectedItem={selectedTag}
+            // setSelectedFilter={setSelectedFilter}
             setSelectedTag={setSelectedTag}
+            getNotes={getNotesByTag}
             selectedTag={selectedTag}
             getNotesByTag={getNotesByTag}
             selectedNote={selectedNote}
@@ -140,6 +144,52 @@ function View({
             fetchSingleNote={fetchSingleNote}
             hasFetched={hasFetched}
           />
+          {/* <TaggedNotes */}
+          {/*   setSelectedFilter={setSelectedFilter} */}
+          {/*   setSelectedTag={setSelectedTag} */}
+          {/*   selectedTag={selectedTag} */}
+          {/*   getNotesByTag={getNotesByTag} */}
+          {/*   selectedNote={selectedNote} */}
+          {/*   setView={setView} */}
+          {/*   notes={notes} */}
+          {/*   fetchSingleNote={fetchSingleNote} */}
+          {/*   hasFetched={hasFetched} */}
+          {/* /> */}
+          {/* <Notes */}
+          {/*   selectedNote={selectedNote} */}
+          {/*   setView={setView} */}
+          {/*   notes={notes} */}
+          {/*   fetchSingleNote={fetchSingleNote} */}
+          {/* /> */}
+        </>
+      )}
+      {view === "folderNotes" && (
+        <>
+          <FilteredNotes
+            filterType="folderNotes"
+            selectedItem={selectedFolder}
+            // setSelectedFilter={setSelectedFilter}
+            setSelectedTag={setSelectedTag}
+            getNotes={getNotesByFolder}
+            selectedTag={selectedTag}
+            getNotesByTag={getNotesByTag}
+            selectedNote={selectedNote}
+            setView={setView}
+            notes={notes}
+            fetchSingleNote={fetchSingleNote}
+            hasFetched={hasFetched}
+          />
+          {/* <TaggedNotes */}
+          {/*   setSelectedFilter={setSelectedFilter} */}
+          {/*   setSelectedTag={setSelectedTag} */}
+          {/*   selectedTag={selectedTag} */}
+          {/*   getNotesByTag={getNotesByTag} */}
+          {/*   selectedNote={selectedNote} */}
+          {/*   setView={setView} */}
+          {/*   notes={notes} */}
+          {/*   fetchSingleNote={fetchSingleNote} */}
+          {/*   hasFetched={hasFetched} */}
+          {/* /> */}
           {/* <Notes */}
           {/*   selectedNote={selectedNote} */}
           {/*   setView={setView} */}
