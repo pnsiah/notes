@@ -18,12 +18,12 @@ function TaggedNotes({
 }) {
   useEffect(() => {
     if (!selectedTag) return;
-    getNotesByTags(selectedTag);
+    getNotesByTags(selectedTag.id);
   }, [selectedTag]);
 
   return (
     <div className="taggedNotes">
-      <h3>Tagged Notes: "{selectedTag}"</h3>
+      <h3>Tagged Notes: "{selectedTag.name}"</h3>
       <div>
         <NoteList
           selectedNote={selectedNote}

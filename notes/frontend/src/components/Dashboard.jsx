@@ -24,7 +24,10 @@ function Dashboard(props) {
   const [highlight, setHighlight] = useState("all");
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedTag, setSelectedTag] = useState("");
+  const [selectedTag, setSelectedTag] = useState({
+    id: null,
+    name: "",
+  });
   const [userData, setUserData] = useState({});
   const [view, setView] = useState("all");
   const [notesInfoMessage, setNotesInfoMessage] = useState("");
@@ -195,10 +198,10 @@ function Dashboard(props) {
     }
   };
 
-  const getNotesByTags = async (tag) => {
+  const getNotesByTags = async (tag_id) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/get_notes_by_tags/?tag=${tag}`,
+        `http://localhost:8000/api/get_notes_by_tags/?tag_id=${tag_id}`,
         {
           method: "GET",
           credentials: "include",

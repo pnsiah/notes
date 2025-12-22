@@ -338,8 +338,8 @@ def create_folder(request):
 @csrf_exempt
 def get_notes_by_tags(request):
     if request.method == "GET":
-        tag_name = request.GET.get("tag", "").strip()
-        notes = Note.objects.filter(user=request.user, tags__name=tag_name)
+        tag_id = request.GET.get("tag_id", "").strip()
+        notes = Note.objects.filter(user=request.user, tags__id=tag_id)
         serialized_notes = serialize_note(notes)
         return JsonResponse({"status": True, "notes": serialized_notes})
     else:
