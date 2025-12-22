@@ -4,10 +4,10 @@ import arrow_right from "../assets/images/icon-chevron-right.svg";
 
 function TagList({
   setSelectedFilter,
-  selectedTag,
+  selectedTagId,
   setHighlight,
   setView,
-  setSelectedTag,
+  setSelectedTagId,
   tags,
   getNotesByTags,
 }) {
@@ -19,7 +19,7 @@ function TagList({
           <li
             key={tag.id}
             onClick={() => {
-              setSelectedTag(tag.name);
+              setSelectedTagId(tag.id);
               setView("taggedNotes");
               setHighlight("");
               setSelectedFilter("taggedNotes");

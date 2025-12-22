@@ -24,7 +24,7 @@ function Dashboard(props) {
   const [highlight, setHighlight] = useState("all");
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedTag, setSelectedTag] = useState("");
+  const [selectedTagId, setSelectedTagId] = useState("");
   const [userData, setUserData] = useState({});
   const [view, setView] = useState("all");
   const [notesInfoMessage, setNotesInfoMessage] = useState("");
@@ -195,17 +195,17 @@ function Dashboard(props) {
     }
   };
 
-  const getNotesByTags = async (tag) => {
+  const getNotesByTags = async (tag_id) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/get_notes_by_tags/?tag=${tag}`,
+        `http://localhost:8000/api/get_notes_by_tags/?tag_id=${tag_id}`,
         {
           method: "GET",
           credentials: "include",
         },
       );
+      console.log("selectedTagId lmao", { selectedTagId });
       const result = await response.json();
-      // console.log("tagged notes here", result.notes);
       setHasFetched(true);
       setNotes(result.notes);
     } catch (e) {
@@ -395,8 +395,8 @@ function Dashboard(props) {
           hasFetched={hasFetched}
           setHighlight={setHighlight}
           getNotesByTags={getNotesByTags}
-          selectedTag={selectedTag}
-          setSelectedTag={setSelectedTag}
+          selectedTagId={selectedTagId}
+          setSelectedTagId={setSelectedTagId}
           setSelectedFilter={setSelectedFilter}
           selectedFilter={selectedFilter}
           setEmptyState={setEmptyState}
@@ -425,8 +425,8 @@ function Dashboard(props) {
           setSearchQuery={setSearchQuery}
           highlight={highlight}
           setHighlight={setHighlight}
-          selectedTag={selectedTag}
-          setSelectedTag={setSelectedTag}
+          selectedTagId={selectedTagId}
+          setSelectedTagId={setSelectedTagId}
           getNotesByTags={getNotesByTags}
           getNotesByFolder={getNotesByFolder}
           setSelectedFilter={setSelectedFilter}

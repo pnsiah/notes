@@ -5,9 +5,9 @@ import "./TaggedNotes.css";
 
 function TaggedNotes({
   setSelectedFilter,
-  selectedTag,
+  selectedTagId,
   hasFetched,
-  setSelectedTag,
+  setSelectedTagId,
   getNotesByTags,
   notes,
   selectedNote,
@@ -17,13 +17,13 @@ function TaggedNotes({
   setSelectedNote,
 }) {
   useEffect(() => {
-    if (!selectedTag) return;
-    getNotesByTags(selectedTag);
-  }, [selectedTag]);
+    if (!selectedTagId) return;
+    getNotesByTags(selectedTagId);
+  }, [selectedTagId]);
 
   return (
     <div className="taggedNotes">
-      <h3>Tagged Notes: "{selectedTag}"</h3>
+      {/* <h3>Tagged Notes: "{selectedTag}"</h3> */}
       <div>
         <NoteList
           selectedNote={selectedNote}

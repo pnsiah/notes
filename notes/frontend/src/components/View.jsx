@@ -22,8 +22,8 @@ function View({
   archiveNote,
   deleteNote,
   setHighlight,
-  selectedTag,
-  setSelectedTag,
+  selectedTagId,
+  setSelectedTagId,
   getNotesByTags,
   setSelectedNote,
   setView,
@@ -97,8 +97,8 @@ function View({
           setSelectedFilter={setSelectedFilter}
           setHighlight={setHighlight}
           setView={setView}
-          setSelectedTag={setSelectedTag}
-          selectedTag={selectedTag}
+          setSelectedTagId={setSelectedTagId}
+          selectedTagId={selectedTagId}
           getNotesByTags={getNotesByTags}
           tags={tags}
         />
@@ -128,8 +128,8 @@ function View({
         <>
           <TaggedNotes
             setSelectedFilter={setSelectedFilter}
-            setSelectedTag={setSelectedTag}
-            selectedTag={selectedTag}
+            setSelectedTagId={setSelectedTagId}
+            selectedTagId={selectedTagId}
             getNotesByTags={getNotesByTags}
             selectedNote={selectedNote}
             setView={setView}

@@ -16,8 +16,8 @@ function Sidebar({
   goToAllNotes,
   goToArchivedNotes,
   setView,
-  selectedTag,
-  setSelectedTag,
+  selectedTagId,
+  setSelectedTagId,
   getNotesByTags,
   selectedFilter,
   setSelectedFilter,
@@ -61,8 +61,8 @@ function Sidebar({
           setSelectedFilter={setSelectedFilter}
           setHighlight={setHighlight}
           setView={setView}
-          selectedTag={selectedTag}
-          setSelectedTag={setSelectedTag}
+          selectedTagId={selectedTagId}
+          setSelectedTagId={setSelectedTagId}
           getNotesByTags={getNotesByTags}
           tags={tags}
         />
