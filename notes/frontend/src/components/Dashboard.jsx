@@ -207,8 +207,8 @@ function Dashboard(props) {
           credentials: "include",
         },
       );
-      console.log("selectedTagId lmao", { selectedTagId });
       const result = await response.json();
+      // console.log("tagged notes here", result.notes);
       setHasFetched(true);
       setNotes(result.notes);
     } catch (e) {
@@ -398,8 +398,8 @@ function Dashboard(props) {
           hasFetched={hasFetched}
           setHighlight={setHighlight}
           getNotesByTags={getNotesByTags}
-          selectedTagId={selectedTagId}
-          setSelectedTagId={setSelectedTagId}
+          selectedTag={selectedTag}
+          setSelectedTag={setSelectedTag}
           setSelectedFilter={setSelectedFilter}
           selectedFilter={selectedFilter}
           setEmptyState={setEmptyState}
@@ -428,8 +428,8 @@ function Dashboard(props) {
           setSearchQuery={setSearchQuery}
           highlight={highlight}
           setHighlight={setHighlight}
-          selectedTagId={selectedTagId}
-          setSelectedTagId={setSelectedTagId}
+          selectedTag={selectedTag}
+          setSelectedTag={setSelectedTag}
           getNotesByTags={getNotesByTags}
           getNotesByFolder={getNotesByFolder}
           setSelectedFilter={setSelectedFilter}

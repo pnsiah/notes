@@ -5,9 +5,9 @@ import "./TaggedNotes.css";
 
 function TaggedNotes({
   setSelectedFilter,
-  selectedTagId,
+  selectedTag,
   hasFetched,
-  setSelectedTagId,
+  setSelectedTag,
   getNotesByTags,
   notes,
   selectedNote,

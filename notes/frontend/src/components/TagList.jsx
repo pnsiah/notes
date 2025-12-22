@@ -4,10 +4,10 @@ import arrow_right from "../assets/images/icon-chevron-right.svg";
 
 function TagList({
   setSelectedFilter,
-  selectedTagId,
+  selectedTag,
   setHighlight,
   setView,
-  setSelectedTagId,
+  setSelectedTag,
   tags,
   getNotesByTags,
 }) {
