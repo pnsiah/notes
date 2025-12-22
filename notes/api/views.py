@@ -349,10 +349,10 @@ def get_notes_by_tags(request):
 @csrf_exempt
 def get_notes_by_folder(request):
     if request.method == "GET":
-        folder_name = request.GET.get("folder", "").strip()
-        notes = Note.objects.filter(user=request.user, folder__name=folder_name)
+        folder_id = request.GET.get("folder_id", "").strip()
+        notes = Note.objects.filter(user=request.user, folder__id=folder_id)
         serialized_notes = serialize_note(notes)
-        # print(serialized_notes)
+        print(serialized_notes)
         return JsonResponse({"status": True, "notes": serialized_notes})
     else:
         return JsonResponse({"status": False, "message": "Error fetching notes"})

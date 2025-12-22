@@ -4,8 +4,8 @@ import "../components/FolderList.css";
 import arrow_right from "../assets/images/icon-chevron-right.svg";
 
 function FolderList({ folders, getNotesByFolder }) {
-  const fetchNotesByFolder = (folder) => {
-    getNotesByFolder(folder);
+  const fetchNotesByFolder = (folder_id) => {
+    getNotesByFolder(folder_id);
   };
 
   return (
@@ -13,7 +13,7 @@ function FolderList({ folders, getNotesByFolder }) {
       <h3 className="section-heading">Folders</h3>
       <ul className="folder-list">
         {folders.map((folder) => (
-          <li key={folder.id} onClick={() => fetchNotesByFolder(folder.name)}>
+          <li key={folder.id} onClick={() => fetchNotesByFolder(folder.id)}>
             <button className="folder">
               <img src={folderIcon} alt="" />
               <span className="tag-text">{folder.name}</span>

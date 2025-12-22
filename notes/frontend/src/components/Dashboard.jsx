@@ -213,10 +213,10 @@ function Dashboard(props) {
     }
   };
 
-  const getNotesByFolder = async (folder) => {
+  const getNotesByFolder = async (folder_id) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/get_notes_by_folder/?folder=${folder}`,
+        `http://localhost:8000/api/get_notes_by_folder/?folder_id=${folder_id}`,
         {
           method: "GET",
           credentials: "include",
