@@ -9,6 +9,7 @@ import tag from "../assets/images/icon-tag.svg";
 import "./SideBar.css";
 
 function Sidebar({
+  getNotesByFolder,
   setSearchQuery,
   setHighlight,
   highlight,
@@ -65,7 +66,7 @@ function Sidebar({
           getNotesByTags={getNotesByTags}
           tags={tags}
         />
-        <FolderList folders={folders} />
+        <FolderList getNotesByFolder={getNotesByFolder} folders={folders} />
       </div>
     </div>
   );

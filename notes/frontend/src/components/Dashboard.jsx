@@ -225,7 +225,7 @@ function Dashboard(props) {
       const result = await response.json();
       // console.log("tagged notes here", result.notes);
       setHasFetched(true);
-      // setNotes(result.notes);
+      setNotes(result.notes);
       console.log(result.notes);
     } catch (e) {
       console.log(e);
@@ -428,6 +428,7 @@ function Dashboard(props) {
           selectedTag={selectedTag}
           setSelectedTag={setSelectedTag}
           getNotesByTags={getNotesByTags}
+          getNotesByFolder={getNotesByFolder}
           setSelectedFilter={setSelectedFilter}
           selectedFilter={selectedFilter}
           fetchNotes={fetchNotes}
