@@ -12,6 +12,8 @@ import { useEffect } from "react";
 import NoteActions from "./NoteActions";
 
 function View({
+  selectedFolder,
+  setSelectedFolder,
   notesInfoMessage,
   getNotesByFolder,
   setSearchQuery,
@@ -45,7 +47,8 @@ function View({
   goToArchivedNotes,
 }) {
   useEffect(() => {
-    if (view === "taggedNotes") return;
+    // if (view === "taggedNote") return;
+    // if (view === "folderNotes") return;
     if (view === "all") {
       goToAllNotes();
     }
@@ -106,7 +109,14 @@ function View({
         />
       )}
       {view === "folders" && (
-        <FolderList getNotesByFolder={getNotesByFolder} folders={folders} />
+        <FolderList
+          setSelectedFolder={setSelectedFolder}
+          setView={setView}
+          setSelectedFilter={setSelectedFilter}
+          setHighlight={setHighlight}
+          getNotesByFolder={getNotesByFolder}
+          folders={folders}
+        />
       )}
       {view === "search" && (
         <>

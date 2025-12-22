@@ -10,6 +10,7 @@ import "./SideBar.css";
 
 function Sidebar({
   getNotesByFolder,
+  setSelectedFolder,
   setSearchQuery,
   setHighlight,
   highlight,
@@ -25,8 +26,10 @@ function Sidebar({
   tags,
   fetchNotes,
 }) {
+  const DATA_FETCHING_VIEWS = ["all", "archived"];
+
   useEffect(() => {
-    if (selectedFilter == null) return;
+    if (!DATA_FETCHING_VIEWS.includes(selectedFilter)) return;
     fetchNotes(selectedFilter);
     console.log("Effect and selected filter:", selectedFilter);
   }, [selectedFilter]);
@@ -66,7 +69,14 @@ function Sidebar({
           getNotesByTag={getNotesByTag}
           tags={tags}
         />
-        <FolderList getNotesByFolder={getNotesByFolder} folders={folders} />
+        <FolderList
+          setSelectedFilter={setSelectedFilter}
+          setView={setView}
+          setHighlight={setHighlight}
+          setSelectedFolder={setSelectedFolder}
+          getNotesByFolder={getNotesByFolder}
+          folders={folders}
+        />
       </div>
     </div>
   );

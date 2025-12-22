@@ -24,6 +24,10 @@ function Dashboard(props) {
   const [highlight, setHighlight] = useState("all");
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedFolder, setSelectedFolder] = useState({
+    id: null,
+    name: "",
+  });
   const [selectedTag, setSelectedTag] = useState({
     id: null,
     name: "",
@@ -386,6 +390,8 @@ function Dashboard(props) {
         />
 
         <View
+          selectedFolder={selectedFolder}
+          setSelectedFolder={setSelectedFolder}
           getNotesByFolder={getNotesByFolder}
           goToAllNotes={goToAllNotes}
           goToArchivedNotes={goToArchivedNotes}
@@ -425,6 +431,7 @@ function Dashboard(props) {
       </div>
       <div className="big">
         <Sidebar
+          setSelectedFolder={setSelectedFolder}
           setSearchQuery={setSearchQuery}
           highlight={highlight}
           setHighlight={setHighlight}

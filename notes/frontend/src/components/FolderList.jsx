@@ -3,9 +3,20 @@ import "../components/TagList.css";
 import "../components/FolderList.css";
 import arrow_right from "../assets/images/icon-chevron-right.svg";
 
-function FolderList({ folders, getNotesByFolder }) {
-  const fetchNotesByFolder = (folder_id) => {
-    getNotesByFolder(folder_id);
+function FolderList({
+  folders,
+  // getNotesByFolder,
+  setSelectedFolder,
+  setView,
+  setHighlight,
+  setSelectedFilter,
+}) {
+  const fetchFolderNotes = (folder) => {
+    setSelectedFolder({ id: folder.id, name: folder.name });
+    // getNotesByFolder(folder.id);
+    setView("folderNotes");
+    setHighlight("");
+    setSelectedFilter("folderNotes");
   };
 
   return (
@@ -13,7 +24,7 @@ function FolderList({ folders, getNotesByFolder }) {
       <h3 className="section-heading">Folders</h3>
       <ul className="folder-list">
         {folders.map((folder) => (
-          <li key={folder.id} onClick={() => fetchNotesByFolder(folder.id)}>
+          <li key={folder.id} onClick={() => fetchFolderNotes(folder)}>
             <button className="folder">
               <img src={folderIcon} alt="" />
               <span className="tag-text">{folder.name}</span>
