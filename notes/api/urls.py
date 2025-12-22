@@ -11,6 +11,11 @@ urlpatterns = [
     path("api/dashboard", views.dashboard, name="dashboard"),
     path("api/get_notes/", views.get_notes, name="get_notes"),
     path("api/get_notes_by_tags/", views.get_notes_by_tags, name="get_notes_by_tags"),
+    path(
+        "api/get_notes_by_folder/",
+        views.get_notes_by_folder,
+        name="get_notes_by_folder",
+    ),
     path("api/search_notes/", views.search_notes, name="search_notes"),
     path(
         "api/list_archived_notes", views.list_archived_notes, name="list_archived_notes"

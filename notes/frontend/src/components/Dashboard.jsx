@@ -213,6 +213,25 @@ function Dashboard(props) {
     }
   };
 
+  const getNotesByFolder = async (folder) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/get_notes_by_folder/?folder=${folder}`,
+        {
+          method: "GET",
+          credentials: "include",
+        },
+      );
+      const result = await response.json();
+      // console.log("tagged notes here", result.notes);
+      setHasFetched(true);
+      // setNotes(result.notes);
+      console.log(result.notes);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const fetchFolders = async () => {
     try {
       const response = await fetch("http://localhost:8000/api/list_folders/", {
