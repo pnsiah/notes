@@ -198,7 +198,7 @@ function Dashboard(props) {
     }
   };
 
-  const getNotesByTags = async (tag_id) => {
+  const getNotesByTag = async (tag_id) => {
     try {
       const response = await fetch(
         `http://localhost:8000/api/get_notes_by_tags/?tag_id=${tag_id}`,
@@ -397,7 +397,7 @@ function Dashboard(props) {
           setNotesInfoMessage={setNotesInfoMessage}
           hasFetched={hasFetched}
           setHighlight={setHighlight}
-          getNotesByTags={getNotesByTags}
+          getNotesByTag={getNotesByTag}
           selectedTag={selectedTag}
           setSelectedTag={setSelectedTag}
           setSelectedFilter={setSelectedFilter}
@@ -430,7 +430,7 @@ function Dashboard(props) {
           setHighlight={setHighlight}
           selectedTag={selectedTag}
           setSelectedTag={setSelectedTag}
-          getNotesByTags={getNotesByTags}
+          getNotesByTag={getNotesByTag}
           getNotesByFolder={getNotesByFolder}
           setSelectedFilter={setSelectedFilter}
           selectedFilter={selectedFilter}

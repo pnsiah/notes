@@ -24,7 +24,7 @@ function View({
   setHighlight,
   selectedTag,
   setSelectedTag,
-  getNotesByTags,
+  getNotesByTag,
   setSelectedNote,
   setView,
   selectedFilter,
@@ -99,7 +99,7 @@ function View({
           setView={setView}
           setSelectedTag={setSelectedTag}
           selectedTag={selectedTag}
-          getNotesByTags={getNotesByTags}
+          getNotesByTag={getNotesByTag}
           tags={tags}
         />
       )}
@@ -130,7 +130,7 @@ function View({
             setSelectedFilter={setSelectedFilter}
             setSelectedTag={setSelectedTag}
             selectedTag={selectedTag}
-            getNotesByTags={getNotesByTags}
+            getNotesByTag={getNotesByTag}
             selectedNote={selectedNote}
             setView={setView}
             notes={notes}

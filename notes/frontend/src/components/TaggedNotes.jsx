@@ -8,7 +8,7 @@ function TaggedNotes({
   selectedTag,
   hasFetched,
   setSelectedTag,
-  getNotesByTags,
+  getNotesByTag,
   notes,
   selectedNote,
   setView,
@@ -18,7 +18,7 @@ function TaggedNotes({
 }) {
   useEffect(() => {
     if (!selectedTag) return;
-    getNotesByTags(selectedTag.id);
+    getNotesByTag(selectedTag.id);
   }, [selectedTag]);
 
   return (

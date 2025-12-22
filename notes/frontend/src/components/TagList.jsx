@@ -9,7 +9,7 @@ function TagList({
   setView,
   setSelectedTag,
   tags,
-  getNotesByTags,
+  getNotesByTag,
 }) {
   return (
     <section className="tags">

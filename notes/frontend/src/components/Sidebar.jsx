@@ -18,7 +18,7 @@ function Sidebar({
   setView,
   selectedTag,
   setSelectedTag,
-  getNotesByTags,
+  getNotesByTag,
   selectedFilter,
   setSelectedFilter,
   folders,
@@ -63,7 +63,7 @@ function Sidebar({
           setView={setView}
           selectedTag={selectedTag}
           setSelectedTag={setSelectedTag}
-          getNotesByTags={getNotesByTags}
+          getNotesByTag={getNotesByTag}
           tags={tags}
         />
         <FolderList getNotesByFolder={getNotesByFolder} folders={folders} />
