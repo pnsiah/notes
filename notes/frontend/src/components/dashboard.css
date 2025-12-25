@@ -12,6 +12,7 @@
 
 .error-text {
   color: #d32f2f;
+  margin-top: 0.3rem;
 }
 
 @media (min-width: 768px) {
