@@ -12,6 +12,8 @@ import { useEffect } from "react";
 import NoteActions from "./NoteActions";
 
 function View({
+  emptyState,
+  setEmptyState,
   selectedFolder,
   setSelectedFolder,
   notesInfoMessage,
@@ -34,7 +36,6 @@ function View({
   selectedFilter,
   setSelectedFilter,
   view,
-  setEmptyState,
   tags,
   notes,
   fetchSingleNote,
@@ -60,6 +61,7 @@ function View({
     <div className="view">
       {view === "all" && (
         <Notes
+          emptyState={emptyState}
           setView={setView}
           hasFetched={hasFetched}
           fetchSingleNote={fetchSingleNote}
@@ -68,6 +70,7 @@ function View({
       )}
       {view === "archived" && (
         <Notes
+          emptyState={emptyState}
           setView={setView}
           hasFetched={hasFetched}
           fetchSingleNote={fetchSingleNote}
@@ -129,6 +132,7 @@ function View({
             fetchNotes={fetchNotes}
           />
           <Notes
+            emptyState={emptyState}
             setView={setView}
             hasFetched={hasFetched}
             fetchSingleNote={fetchSingleNote}

@@ -174,6 +174,7 @@ function Dashboard(props) {
         await fetchNotes(selectedFilter);
         await fetchTags();
       }
+
       return result.status;
     } catch (e) {
       console.log(e);
@@ -281,6 +282,13 @@ function Dashboard(props) {
 
     const result = await response.json();
     setNotes(result.notes);
+
+    if (result.notes.length === 0) {
+      setEmptyState({
+        message:
+          "You don’t have any notes yet. Start a new note to capture your thoughts and ideas.",
+      });
+    }
   };
 
   const searchNotes = async (query) => {
@@ -301,7 +309,7 @@ function Dashboard(props) {
       setEmptyState({
         isEmpty: true,
         message:
-          "You don’t have any notes available in this tab. Start a new note to capture your thoughts and ideas.",
+          "No notes match your search. Try a different keyword or create a new note.",
       });
     } else {
       setEmptyState({ isEmpty: false });
@@ -409,6 +417,7 @@ function Dashboard(props) {
           setSelectedFilter={setSelectedFilter}
           selectedFilter={selectedFilter}
           setEmptyState={setEmptyState}
+          emptyState={emptyState}
           setSelectedNote={setSelectedNote}
           fetchNotes={fetchNotes}
           fetchSingleNote={fetchSingleNote}
@@ -469,10 +478,15 @@ function Dashboard(props) {
             setView={setView}
             setSelectedNote={setSelectedNote}
             fetchSingleNote={fetchSingleNote}
+            setEmptyState={setEmptyState}
+            emptyState={emptyState}
             notes={notes}
           />
           {emptyState.isEmpty ? (
-            <div style={{ color: "red" }}>{emptyState.message}</div>
+            <div style={{ color: "red" }}>
+              You don’t have any notes available in this tab. Start a new note
+              to capture your thoughts and ideas.
+            </div>
           ) : (
             <NoteForm
               updateNote={updateNote}

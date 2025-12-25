@@ -1,6 +1,8 @@
 import "../components/NoteList.css";
+import EmptyNotes from "./EmptyNotes";
 
 function NoteList({
+  emptyState,
   hasFetched,
   selectedNote,
   setView,
@@ -19,10 +21,7 @@ function NoteList({
   return (
     <ul className="notes-list">
       {notes.length === 0 ? (
-        <li style={{ color: "red" }}>
-          You don’t have any notes yet. Start a new note to capture your
-          thoughts and ideas.
-        </li>
+        <EmptyNotes emptyState={emptyState} />
       ) : (
         notes.map((note) => (
           <li onClick={() => show(note.id)} key={note.id}>

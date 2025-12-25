@@ -5,6 +5,8 @@ import NoteList from "./NoteList";
 
 function Notes({
   selectedNote,
+  setEmptyState,
+  emptyState,
   hasFetched,
   createNewNote,
   setView,
@@ -21,6 +23,7 @@ function Notes({
         </button>
         <div className="notes-message">{notesInfoMessage}</div>
         <NoteList
+          emptyState={emptyState}
           hasFetched={hasFetched}
           selectedNote={selectedNote}
           setView={setView}
