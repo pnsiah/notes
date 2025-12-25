@@ -54,6 +54,8 @@ function Dashboard(props) {
   };
 
   const createNewNote = () => {
+    setSearchQuery("");
+    setEmptyState({ isEmpty: false });
     setSelectedNote(null);
     setView("form");
   };
