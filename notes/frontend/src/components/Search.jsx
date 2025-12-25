@@ -20,10 +20,10 @@ function Search({
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current);
 
-    if (!searchQuery.trim()) {
+    if (!searchQuery || !searchQuery.trim()) {
       fetchNotes();
       setNotesInfoMessage("");
-      setEmptyState({ isEmpty: false });
+      // setEmptyState({ isEmpty: false });
       return;
     }
 
