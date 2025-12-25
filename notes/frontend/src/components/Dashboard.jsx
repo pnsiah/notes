@@ -485,7 +485,7 @@ function Dashboard(props) {
             notes={notes}
           />
           {emptyState.isEmpty ? (
-            <div style={{ color: "red" }}>
+            <div className="alert error-text">
               You don’t have any notes available in this tab. Start a new note
               to capture your thoughts and ideas.
             </div>
