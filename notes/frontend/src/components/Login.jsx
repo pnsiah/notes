@@ -109,9 +109,9 @@ function Login(props) {
             Sign Up
           </span>
         </div>
-        {message && (
-          <p style={{ color: isError ? "red" : "green" }}>{message}</p>
-        )}
+        {/* {message && ( */}
+        {/*   <p style={{ color: isError ? "red" : "green" }}>{message}</p> */}
+        {/* )} */}
       </form>
     </div>
   );

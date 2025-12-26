@@ -1,9 +1,11 @@
 import Login from "./Login";
-import { useState } from "react";
+import { useContext, useState } from "react";
+
 import "./Auth.css";
 import logo from "../assets/images/logo.svg";
 import showLogo from "../assets/images/icon-show-password.svg";
 import hideLogo from "../assets/images/icon-hide-password.svg";
+import { NotificationContext } from "./NotificationContext";
 
 function SignUp(props) {
   const [showPassword, setShowPassword] = useState(false);
@@ -16,6 +18,7 @@ function SignUp(props) {
     confirmPassword: "",
   });
 
+  const { addNotification } = useContext(NotificationContext);
   const [isError, setIsError] = useState(false);
   const [message, setMessage] = useState(null);
 
@@ -33,13 +36,13 @@ function SignUp(props) {
       !formData.confirmPassword.trim()
     ) {
       setIsError(true);
-      setMessage("All fields are required");
+      addNotification("All fields are required");
       return;
     }
 
     if (formData.password !== formData.confirmPassword) {
       setIsError(true);
-      setMessage("Passwords do not match");
+      addNotification("Passwords do not match");
       return;
     }
 
@@ -61,11 +64,11 @@ function SignUp(props) {
         props.setPage("LogIn");
       } else {
         setIsError(true);
-        setMessage(result.message || "Sign Up failed");
+        addNotification(result.message || "Sign Up failed");
       }
     } catch (err) {
       setIsError(true);
-      setMessage("Server error. Try again later");
+      addNotification("Server error. Try again later");
     }
   };
 
@@ -140,9 +143,9 @@ function SignUp(props) {
         <button className="form-btn" type="submit">
           Sign Up
         </button>
-        {message && (
-          <p style={{ color: isError ? "red" : "green" }}>{message}</p>
-        )}
+        {/* {message && ( */}
+        {/*   <p style={{ color: isError ? "red" : "green" }}>{message}</p> */}
+        {/* )} */}
 
         <div className="auth-redirect">
           Already have an account?
