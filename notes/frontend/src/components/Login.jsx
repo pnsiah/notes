@@ -1,7 +1,8 @@
 import Dashboard from "./Dashboard";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import showLogo from "../assets/images/icon-show-password.svg";
 import hideLogo from "../assets/images/icon-hide-password.svg";
+import { NotificationContext } from "./NotificationContext";
 
 import "./Auth.css";
 
@@ -15,11 +16,13 @@ function Login(props) {
   const [isError, setIsError] = useState(false);
   const [message, setMessage] = useState(null);
 
+  const { addNotification } = useContext(NotificationContext);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.username.trim() || !formData.password.trim()) {
       setIsError(true);
-      setMessage("All fields are required");
+      addNotification("All fields are required");
       return;
     }
     try {
@@ -40,11 +43,11 @@ function Login(props) {
         // return;
       } else {
         setIsError(true);
-        setMessage(result.message);
+        addNotification(result.message);
       }
     } catch (err) {
       setIsError(true);
-      setMessage("Server error try again later");
+      addNotification("Server error try again later");
     }
   };
 
