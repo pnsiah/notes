@@ -13,7 +13,7 @@ function NavBar({ view, setView }) {
     { id: "archived", icon: archive },
     { id: "tags", icon: tagIcon },
     { id: "search", icon: search },
-    { id: "settings", icon: settings },
+    // { id: "settings", icon: settings },
     { id: "folders", icon: folderIcon },
   ];
 

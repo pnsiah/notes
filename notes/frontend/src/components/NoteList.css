@@ -52,7 +52,7 @@
   }
 
   .notes-list {
-    margin-top: 1em;
+    margin-top: 0.2em;
     overflow-y: auto;
     height: 500px;
     padding-bottom: 1rem;

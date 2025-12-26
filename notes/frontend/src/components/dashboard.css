@@ -10,6 +10,13 @@
   padding: var(--padding-md);
 }
 
+.top-bar {
+  display: flex;
+  align-items: center;
+  background-color: var(--neutral-200);
+  padding-right: 1rem;
+}
+
 .error-text {
   color: #d32f2f;
   margin-top: 0.3rem;

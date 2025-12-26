@@ -389,7 +389,10 @@ function Dashboard(props) {
         />
       )}
       <div className="small">
-        <Logo />
+        <div className="top-bar">
+          <Logo />
+          <Settings />
+        </div>
         <Header
         // searchQuery={searchQuery}
         // setSearchQuery={setSearchQuery}
@@ -510,9 +513,7 @@ function Dashboard(props) {
           )}
         </div>
       </div>
-      <div>
-        <button onClick={handleLogOut}>Log Out</button>
-      </div>
+      <div>{/* <button onClick={handleLogOut}>Log Out</button> */}</div>
     </div>
   );
 }
