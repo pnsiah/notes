@@ -20,6 +20,7 @@ function Login(props) {
     if (!formData.username.trim() || !formData.password.trim()) {
       setIsError(true);
       setMessage("All fields are required");
+      return;
     }
     try {
       const response = await fetch("http://localhost:8000/api/login/", {
