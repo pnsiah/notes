@@ -21,7 +21,9 @@ function Notes({
         <button className="new-note-btn" onClick={createNewNote}>
           <img src={plus} alt="" /> <span>Create New Note</span>
         </button>
-        <div className="notes-message">{notesInfoMessage}</div>
+        {notesInfoMessage && (
+          <div className="notes-message">{notesInfoMessage}</div>
+        )}
         <NoteList
           emptyState={emptyState}
           hasFetched={hasFetched}
