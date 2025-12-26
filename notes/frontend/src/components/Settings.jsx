@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import settingsIcon from "../assets/images/icon-settings.svg";
 import "./Settings.css";
 
-function Settings() {
+function Settings({ logOut }) {
   const [isOpen, setIsOpen] = useState(false);
   const settingsRef = useRef(null);
 
@@ -31,9 +31,9 @@ function Settings() {
         <div className="settings-popup">
           <div className="settings-section">
             <p className="settings-label">Account</p>
-            <button className="settings-item">
+            <button onClick={logOut} className="settings-item">
               <span className="item-icon">🔑</span>
-              <span>Log in</span>
+              <span>Log Out</span>
             </button>
           </div>
 

@@ -133,6 +133,7 @@ function Dashboard(props) {
 
       // console.log(result);
       props.setPage("LogIn");
+      console.log("hello");
     } catch (err) {
       console.log(err);
       alert("Log out failed. Try again");
@@ -391,7 +392,7 @@ function Dashboard(props) {
       <div className="small">
         <div className="top-bar">
           <Logo />
-          <Settings />
+          <Settings logOut={handleLogOut} />
         </div>
         <Header
         // searchQuery={searchQuery}
@@ -473,7 +474,7 @@ function Dashboard(props) {
               searchNotes={searchNotes}
               fetchNotes={fetchNotes}
             />
-            <Settings />
+            <Settings logOut={handleLogOut} />
           </div>
           <Notes
             selectedNote={selectedNote}
