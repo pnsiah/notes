@@ -21,8 +21,8 @@ function Login(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.username.trim() || !formData.password.trim()) {
-      setIsError(true);
-      addNotification("All fields are required");
+      // setIsError(true);
+      addNotification("All fields are required", true);
       return;
     }
     try {
@@ -42,12 +42,12 @@ function Login(props) {
         // <Dashboard />;
         // return;
       } else {
-        setIsError(true);
-        addNotification(result.message);
+        // setIsError(true);
+        addNotification(result.message, true);
       }
     } catch (err) {
-      setIsError(true);
-      addNotification("Server error try again later");
+      // setIsError(true);
+      addNotification("Server error try again later", true);
     }
   };
 

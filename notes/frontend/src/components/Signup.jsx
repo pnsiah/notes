@@ -36,13 +36,13 @@ function SignUp(props) {
       !formData.confirmPassword.trim()
     ) {
       setIsError(true);
-      addNotification("All fields are required");
+      addNotification("All fields are required", true);
       return;
     }
 
     if (formData.password !== formData.confirmPassword) {
       setIsError(true);
-      addNotification("Passwords do not match");
+      addNotification("Passwords do not match", true);
       return;
     }
 
@@ -63,12 +63,12 @@ function SignUp(props) {
         // setMessage(result.message);
         props.setPage("LogIn");
       } else {
-        setIsError(true);
-        addNotification(result.message || "Sign Up failed");
+        // setIsError(true);
+        addNotification(result.message || "Sign Up failed", true);
       }
     } catch (err) {
-      setIsError(true);
-      addNotification("Server error. Try again later");
+      // setIsError(true);
+      addNotification("Server error. Try again later", true);
     }
   };
 

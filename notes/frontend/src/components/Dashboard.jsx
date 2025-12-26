@@ -196,6 +196,7 @@ function Dashboard(props) {
       );
       const result = await response.json();
       // console.log(result);
+
       addNotification(result.message);
       // await fetchUserData();
       setSelectedNote(null);
