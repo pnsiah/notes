@@ -157,7 +157,9 @@ function Dashboard(props) {
         addNotification(result.message);
         await fetchUserData();
       }
-      setSelectedNote(result.note[0]);
+      // setSelectedNote(result.note[0]);
+      // setHeading("All notes");
+      goToAllNotes();
       return result.status;
     } catch (e) {
       console.log(e);
