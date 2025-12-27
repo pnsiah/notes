@@ -4,7 +4,6 @@ import Notes from "./Notes";
 import "./TaggedNotes.css";
 
 function FilteredNotes({
-  emptyState,
   filterType,
   setSelectedFilter,
   selectedItem,
@@ -33,7 +32,6 @@ function FilteredNotes({
       </h3>
       <div>
         <NoteList
-          emptyState={emptyState}
           selectedNote={selectedNote}
           setView={setView}
           notes={notes}
