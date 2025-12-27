@@ -18,6 +18,7 @@ import { NotificationContext } from "./NotificationContext";
 
 function Dashboard(props) {
   const [notes, setNotes] = useState([]);
+  const [heading, setHeading] = useState("All Notes");
   const [folders, setFolders] = useState([]);
   const [hasFetched, setHasFetched] = useState(false);
   const [tags, setTags] = useState([]);
@@ -402,12 +403,13 @@ function Dashboard(props) {
           <Settings logOut={handleLogOut} />
         </div>
         <Header
-        // searchQuery={searchQuery}
-        // setSearchQuery={setSearchQuery}
-        // setNotesInfoMessage={setNotesInfoMessage}
-        // searchNotes={searchNotes}
-        // // showSearch={false}
-        // showLogo={true}
+          heading={heading}
+          // searchQuery={searchQuery}
+          // setSearchQuery={setSearchQuery}
+          // setNotesInfoMessage={setNotesInfoMessage}
+          // searchNotes={searchNotes}
+          // // showSearch={false}
+          // showLogo={true}
         />
 
         <View
@@ -473,7 +475,7 @@ function Dashboard(props) {
         />
         <div className="grid">
           <div className="app-header">
-            <Header />
+            <Header heading={heading} />
             <Search
               setSearchQuery={setSearchQuery}
               searchQuery={searchQuery}
