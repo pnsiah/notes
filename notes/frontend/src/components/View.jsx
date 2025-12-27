@@ -145,6 +145,7 @@ function View({
       {view === "taggedNotes" && (
         <>
           <FilteredNotes
+            emptyState={emptyState}
             filterType="taggedNotes"
             selectedItem={selectedTag}
             // setSelectedFilter={setSelectedFilter}
@@ -180,6 +181,7 @@ function View({
       {view === "folderNotes" && (
         <>
           <FilteredNotes
+            emptyState={emptyState}
             filterType="folderNotes"
             selectedItem={selectedFolder}
             // setSelectedFilter={setSelectedFilter}

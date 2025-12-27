@@ -236,8 +236,14 @@ function Dashboard(props) {
       );
       const result = await response.json();
       // console.log("tagged notes here", result.notes);
-      setHasFetched(true);
-      setNotes(result.notes);
+
+      // setHasFetched(true);
+
+      if (result.notes.length > 0) {
+        setNotes(result.notes);
+      } else {
+        setEmptyState({ message: "No notes in this folder" });
+      }
     } catch (e) {
       console.log(e);
     }
