@@ -220,6 +220,9 @@ function Dashboard(props) {
       // console.log("tagged notes here", result.notes);
       setHasFetched(true);
       setNotes(result.notes);
+      if (result.notes.length === 0) {
+        setEmptyState({ message: "No notes found for this tag" });
+      }
     } catch (e) {
       console.log(e);
     }
@@ -238,6 +241,9 @@ function Dashboard(props) {
       // console.log("tagged notes here", result.notes);
       setHasFetched(true);
       setNotes(result.notes);
+      if (result.notes.length === 0) {
+        setEmptyState({ message: "No notes found in this folder" });
+      }
     } catch (e) {
       console.log(e);
     }
@@ -406,6 +412,7 @@ function Dashboard(props) {
 
         <View
           selectedFolder={selectedFolder}
+          emptyState={emptyState}
           setSelectedFolder={setSelectedFolder}
           getNotesByFolder={getNotesByFolder}
           goToAllNotes={goToAllNotes}
