@@ -75,6 +75,28 @@
     margin-bottom: 0.1em;
   }
 
+  .tags::-webkit-scrollbar,
+  .folders::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .tags::-webkit-scrollbar-track,
+  .folders::-webkit-scrollbar-track {
+    /* background-color: var(--neutral-200); */
+    border-radius: 8px;
+  }
+
+  .tags::-webkit-scrollbar-thumb,
+  .folders::-webkit-scrollbar-thumb {
+    background-color: var(--neutral-300);
+    border-radius: 8px;
+  }
+
+  .tags::-webkit-scrollbar-thumb:hover,
+  .folders::-webkit-scrollbar-thumb:hover {
+    background-color: var(--neutral-400);
+  }
+
   .tag,
   .folder {
     padding: var(--padding-sm);
