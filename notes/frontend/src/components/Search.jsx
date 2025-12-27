@@ -23,7 +23,7 @@ function Search({
     if (!searchQuery || !searchQuery.trim()) {
       fetchNotes();
       setNotesInfoMessage("");
-      // setEmptyState({ isEmpty: false });
+      setEmptyState({ isEmpty: false });
       return;
     }
 
