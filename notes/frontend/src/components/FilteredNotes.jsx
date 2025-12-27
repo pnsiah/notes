@@ -27,10 +27,10 @@ function FilteredNotes({
 
   return (
     <div className="taggedNotes">
-      <h3>
-        {filterType === "taggedNotes" ? "Tagged Notes" : "Folder Notes"}: "
-        {selectedItem.name}"
-      </h3>
+      {/* <h3> */}
+      {/*   {filterType === "taggedNotes" ? "Tagged Notes" : "Folder Notes"}: " */}
+      {/*   {selectedItem.name}" */}
+      {/* </h3> */}
       <div>
         <NoteList
           emptyState={emptyState}
