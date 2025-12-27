@@ -17,6 +17,7 @@ import Modal from "./Modal";
 import { NotificationContext } from "./NotificationContext";
 
 function Dashboard(props) {
+  const [showHeading, setShowHeading] = useState(true);
   const [notes, setNotes] = useState([]);
   const [heading, setHeading] = useState("All Notes");
   const [folders, setFolders] = useState([]);
@@ -69,12 +70,14 @@ function Dashboard(props) {
     setSearchQuery("");
     setSelectedFilter("all");
     setHighlight("all");
+    setHeading("All Notes");
   };
 
   const goToArchivedNotes = () => {
     setSearchQuery("");
     setSelectedFilter("archived");
     setHighlight("archived");
+    setHeading("Archived Notes");
     // fetchNotes("archived");
   };
 
@@ -402,17 +405,20 @@ function Dashboard(props) {
           <Logo />
           <Settings logOut={handleLogOut} />
         </div>
-        <Header
-          heading={heading}
-          // searchQuery={searchQuery}
-          // setSearchQuery={setSearchQuery}
-          // setNotesInfoMessage={setNotesInfoMessage}
-          // searchNotes={searchNotes}
-          // // showSearch={false}
-          // showLogo={true}
-        />
-
+        {showHeading && (
+          <Header
+            heading={heading}
+            // searchQuery={searchQuery}
+            // setSearchQuery={setSearchQuery}
+            // setNotesInfoMessage={setNotesInfoMessage}
+            // searchNotes={searchNotes}
+            // // showSearch={false}
+            // showLogo={true}
+          />
+        )}
         <View
+          setShowHeading={setShowHeading}
+          setHeading={setHeading}
           selectedFolder={selectedFolder}
           emptyState={emptyState}
           setSelectedFolder={setSelectedFolder}
@@ -449,13 +455,14 @@ function Dashboard(props) {
           updateNote={updateNote}
           createNote={createNote}
         />
-        <NavBar view={view} setView={setView} />
+        <NavBar setHeading={setHeading} view={view} setView={setView} />
         <div onClick={createNewNote} className="new-note-icon">
           <img src={plusIcon} alt="" />
         </div>
       </div>
       <div className="big">
         <Sidebar
+          setHeading={setHeading}
           setSelectedFolder={setSelectedFolder}
           setSearchQuery={setSearchQuery}
           highlight={highlight}

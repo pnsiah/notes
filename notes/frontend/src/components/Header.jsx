@@ -15,18 +15,7 @@ function Header({
 }) {
   return (
     <header className="header">
-      {/* {showLogo && <Logo />} */}
       <h2 className="header-text">{heading}</h2>
-      {/* {showSearch && ( */}
-      {/*   <Search */}
-      {/*     setSearchQuery={setSearchQuery} */}
-      {/*     searchQuery={searchQuery} */}
-      {/*     fetchNotes={fetchNotes} */}
-      {/*     setEmptyState={setEmptyState} */}
-      {/*     setNotesInfoMessage={setNotesInfoMessage} */}
-      {/*     searchNotes={searchNotes} */}
-      {/*   /> */}
-      {/* )} */}
     </header>
   );
 }

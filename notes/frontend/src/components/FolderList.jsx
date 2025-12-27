@@ -4,6 +4,7 @@ import "../components/FolderList.css";
 import arrow_right from "../assets/images/icon-chevron-right.svg";
 
 function FolderList({
+  setHeading,
   folders,
   // getNotesByFolder,
   setSelectedFolder,
@@ -17,6 +18,7 @@ function FolderList({
     setView("folderNotes");
     setHighlight("");
     setSelectedFilter("folderNotes");
+    setHeading(`Folder: ${folder.name}`);
   };
 
   return (

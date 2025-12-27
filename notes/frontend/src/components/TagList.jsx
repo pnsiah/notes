@@ -3,6 +3,7 @@ import "../components/TagList.css";
 import arrow_right from "../assets/images/icon-chevron-right.svg";
 
 function TagList({
+  setHeading,
   setSelectedFilter,
   selectedTag,
   setHighlight,
@@ -23,6 +24,7 @@ function TagList({
               setView("taggedNotes");
               setHighlight("");
               setSelectedFilter("taggedNotes");
+              setHeading(`Tagged Notes: ${tag.name}`);
               // setSelectedFilter(null);
             }}
           >

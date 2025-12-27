@@ -9,6 +9,7 @@ import tag from "../assets/images/icon-tag.svg";
 import "./SideBar.css";
 
 function Sidebar({
+  setHeading,
   getNotesByFolder,
   setSelectedFolder,
   setSearchQuery,
@@ -61,6 +62,7 @@ function Sidebar({
       </div>
       <div className="list-container">
         <TagList
+          setHeading={setHeading}
           setSelectedFilter={setSelectedFilter}
           setHighlight={setHighlight}
           setView={setView}
@@ -70,6 +72,7 @@ function Sidebar({
           tags={tags}
         />
         <FolderList
+          setHeading={setHeading}
           setSelectedFilter={setSelectedFilter}
           setView={setView}
           setHighlight={setHighlight}

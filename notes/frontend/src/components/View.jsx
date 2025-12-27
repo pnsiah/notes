@@ -8,10 +8,12 @@ import Settings from "./Settings.jsx";
 import TaggedNotes from "./TaggedNotes";
 import Search from "./Search";
 import "../components/View.css";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import NoteActions from "./NoteActions";
 
 function View({
+  setHeading,
+  setShowHeading,
   emptyState,
   setEmptyState,
   selectedFolder,
@@ -55,6 +57,11 @@ function View({
     }
     if (view === "archived") {
       goToArchivedNotes();
+    }
+    if (view === "form") {
+      setShowHeading(false);
+    } else {
+      setShowHeading(true);
     }
   }, [view]);
   return (
@@ -102,6 +109,7 @@ function View({
       )}
       {view === "tags" && (
         <TagList
+          setHeading={setHeading}
           setSelectedFilter={setSelectedFilter}
           setHighlight={setHighlight}
           setView={setView}
@@ -113,6 +121,7 @@ function View({
       )}
       {view === "folders" && (
         <FolderList
+          setHeading={setHeading}
           setSelectedFolder={setSelectedFolder}
           setView={setView}
           setSelectedFilter={setSelectedFilter}

@@ -7,7 +7,7 @@ import settings from "../assets/images/icon-settings.svg";
 import folderIcon from "../assets/images/folder-open-regular-full.svg";
 import "../components/NavBar.css";
 
-function NavBar({ view, setView }) {
+function NavBar({ view, setView, setHeading }) {
   const navItems = [
     { id: "all", icon: home },
     { id: "archived", icon: archive },
@@ -22,6 +22,7 @@ function NavBar({ view, setView }) {
       <ul className="nav-list">
         {navItems.map((item) => (
           <NavItem
+            setHeading={setHeading}
             key={item.id}
             id={item.id}
             icon={item.icon}
