@@ -6,7 +6,7 @@
 }
 
 .title {
-  padding: var(--padding-sm) var(--padding-md);
+  padding: var(--padding-sm);
   padding-bottom: 0.2em;
   background-color: transparent;
   font-size: 1.5rem;
