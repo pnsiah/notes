@@ -1,6 +1,6 @@
 .notes {
   display: block;
-  padding: var(--padding-lg);
+  padding: var(--padding-sm);
 }
 
 .new-note-btn {
