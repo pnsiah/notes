@@ -370,14 +370,22 @@ def get_notes_by_tags(request):
 
 @csrf_exempt
 def get_notes_by_folder(request):
-    if request.method == "GET":
-        folder_id = request.GET.get("folder_id", "").strip()
-        notes = Note.objects.filter(user=request.user, folder__id=folder_id)
-        serialized_notes = serialize_note(notes)
-        print(serialized_notes)
-        return JsonResponse({"status": True, "notes": serialized_notes})
-    else:
-        return JsonResponse({"status": False, "message": "Error fetching notes"})
+    if request.method != "GET":
+        return error_response("Invalid request method", status=405)
+
+    folder_id = request.GET.get("folder_id", "").strip()
+    if not folder_id:
+        return error_response("Folder ID is required", status=400)
+
+    notes = Note.objects.filter(user=request.user, folder__id=folder_id).distinct()
+    serialized_notes = serialize_note(notes)
+
+    return JsonResponse(
+        {
+            "status": True,
+            "notes": serialized_notes,
+        }
+    )
 
 
 def list_archived_notes(request):

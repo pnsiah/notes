@@ -239,14 +239,23 @@ function Dashboard(props) {
           credentials: "include",
         },
       );
+
       const result = await response.json();
       setHasFetched(true);
+
+      if (!result.status) {
+        addNotification(result.message, true);
+        return;
+      }
+
       setNotes(result.notes);
+
       if (result.notes.length === 0) {
         setEmptyState({ message: "No notes found in this folder" });
       }
     } catch (e) {
       console.log(e);
+      addNotification("Failed to fetch notes. Please try again.", true);
     }
   };
 
