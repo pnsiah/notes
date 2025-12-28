@@ -1,3 +1,4 @@
-.taggedNotes {
+.filtered-notes {
   color: black;
+  padding: var(--padding-sm);
 }

@@ -5,7 +5,6 @@ import NoteForm from "./NoteForm";
 import NoteList from "./NoteList.jsx";
 import FolderList from "./FolderList";
 import Settings from "./Settings.jsx";
-import TaggedNotes from "./TaggedNotes";
 import Search from "./Search";
 import "../components/View.css";
 import { useState, useEffect } from "react";

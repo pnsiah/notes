@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import NoteList from "./NoteList";
 import Notes from "./Notes";
-import "./TaggedNotes.css";
+import "./FilteredNotes.css";
 
 function FilteredNotes({
   emptyState,
@@ -19,7 +19,7 @@ function FilteredNotes({
   }, [selectedItem]);
 
   return (
-    <div className="taggedNotes">
+    <div className="filtered-notes">
       <div>
         <NoteList
           emptyState={emptyState}
