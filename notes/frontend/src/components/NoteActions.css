@@ -14,7 +14,7 @@
   cursor: pointer;
 }
 
-.folder-icon{
+.folder-icon {
   width: 24px;
   height: 24px;
 }
@@ -39,8 +39,7 @@
   border-radius: 0.5em;
   cursor: pointer;
   width: 60px;
-justify-content: center;
-
+  justify-content: center;
 }
 
 .action-button span {
@@ -53,7 +52,7 @@ justify-content: center;
   }
 
   .note-actions {
-    display: block; 
+    display: block;
     grid-area: right;
   }
 
@@ -62,78 +61,11 @@ justify-content: center;
   }
 
   .action-button {
-    width: 80%; 
+    width: 80%;
     justify-content: flex-start;
   }
 
   .action-button span {
-    display: block; 
+    display: block;
   }
 }
-
-/* .note-actions { */
-/*   display: flex; */
-/*   align-items: center; */
-/*   padding: var(--padding-sm); */
-/*   background-color: transparent; */
-/*   justify-content: space-between; */
-/* } */
-/**/
-/* .note-actions__back { */
-/*   display: flex; */
-/*   justify-content: center; */
-/*   align-items: center; */
-/*   gap: 0.4rem; */
-/*   cursor: pointer; */
-/* } */
-/**/
-/* .action-button span { */
-/*   display: none; */
-/* } */
-/**/
-/* .note-actions__group { */
-/*   display: flex; */
-/*   align-items: center; */
-/*   gap: 0.5em; */
-/* } */
-/**/
-/* .action-button { */
-/*   /* margin: 0.5em 0 1em 0; */ */
-/*   cursor: pointer; */
-/*   /* width: 150%; */ */
-/*   width: fit-content; */
-/*   border-radius: 0.5em; */
-/*   display: flex; */
-/*   align-items: center; */
-/*   gap: 1em; */
-/*   padding: var(--padding-sm); */
-/*   border: 1px solid var(--neutral-300); */
-/* } */
-/**/
-/* .action-button:hover .icon, */
-/* .note-actions__back:hover .icon { */
-/*   filter: var(--icon-color-change); */
-/* } */
-/**/
-/* @media (min-width: 728px) { */
-/*   .note-actions__back { */
-/*     display: none; */
-/*   } */
-/*   .note-actions { */
-/*     display: block; */
-/*   } */
-/*   .note-actions__group { */
-/*     flex-direction: column; */
-/*   } */
-/**/
-/*   .action-button { */
-/*     margin: 0.5em 0 1em 0; */
-/*     cursor: pointer; */
-/*     width: 80%; */
-/*     border-radius: 0.5em; */
-/*   } */
-/**/
-/*   .action-button span { */
-/*     display: block; */
-/*   } */
-/* } */
