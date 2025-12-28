@@ -2,7 +2,6 @@
   position: relative;
 }
 
-/* icon button */
 .settings-icon {
   padding: 4px;
   cursor: pointer;
@@ -65,10 +64,8 @@
 .settings-section {
   display: flex;
   flex-direction: column;
-  /* gap: 2px; */
 }
 
-/* small section label */
 .settings-label {
   font-size: 0.7rem;
   text-transform: uppercase;
