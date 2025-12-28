@@ -22,7 +22,6 @@
   background-image: url("../assets/images/logo.svg");
   margin: 0 auto;
   background-size: contain;
-  /* background-position: center; */
   background-repeat: no-repeat;
 }
 
@@ -113,6 +112,6 @@
   transition: color 0.2s ease;
 }
 .auth-link:hover {
-  color: var(--neutral-400); /* slightly lighter on hover */
+  color: var(--neutral-400);
   text-decoration: underline;
 }

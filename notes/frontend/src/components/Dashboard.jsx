@@ -4,12 +4,10 @@ import Header from "./Header";
 import Settings from "./Settings.jsx";
 import Search from "./Search.jsx";
 import Logo from "./Logo.jsx";
-import TagList from "./TagList";
 import NoteForm from "./NoteForm";
 import Notes from "./Notes";
 import View from "./View";
 import NavBar from "./NavBar";
-import TaggedNotes from "./TaggedNotes";
 import NoteActions from "./NoteActions";
 import "../components/dashboard.css";
 import plusIcon from "../assets/images/icon-plus.svg";
@@ -42,10 +40,8 @@ function Dashboard(props) {
     message: "",
   });
   const [selectedNote, setSelectedNote] = useState(null);
-  // const [folderList, setFolderList] = useState([]);
   const [showActions, setshowActions] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [action, setAction] = useState("");
   const [modalData, setModalData] = useState(null);
 
   const { addNotification } = useContext(NotificationContext);
@@ -89,7 +85,6 @@ function Dashboard(props) {
       body: JSON.stringify({}),
     });
     const result = await response.json();
-    // console.log(result);
     setUserData(result.user_data);
     setFolders(result.folders);
     setTags(result.tags);
@@ -112,27 +107,6 @@ function Dashboard(props) {
     }
   }, [notes]);
 
-  // useEffect(() => {
-  //   setSelectedNote(notes[0]);
-  // }, [selectedNote]);
-
-  //
-  // useEffect(() => {u
-  //   fetch("http://localhost:8000/api/list_folders/", {
-  //     method: "GET",
-  //     credentials: "include",
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       if (data.status) {
-  //         console.log("Folders:", data.folders);
-  //         setFolderList(data.folders);
-  //       }
-  //     })
-  //     .catch(console.error);
-  // }, []);
-  // Come here
-
   const handleLogOut = async () => {
     try {
       const response = await fetch("http://localhost:8000/api/logout/", {
@@ -144,7 +118,6 @@ function Dashboard(props) {
 
       const result = await response.json();
 
-      // console.log(result);
       props.setPage("LogIn");
       console.log("hello");
     } catch (err) {
@@ -210,10 +183,8 @@ function Dashboard(props) {
         },
       );
       const result = await response.json();
-      // console.log(result);
 
       addNotification(result.message);
-      // await fetchUserData();
       setSelectedNote(null);
       await fetchNotes(selectedFilter);
       await fetchTags();
@@ -232,7 +203,6 @@ function Dashboard(props) {
         },
       );
       const result = await response.json();
-      // console.log("tagged notes here", result.notes);
       setHasFetched(true);
       setNotes(result.notes);
       if (result.notes.length === 0) {
@@ -253,7 +223,6 @@ function Dashboard(props) {
         },
       );
       const result = await response.json();
-      // console.log("tagged notes here", result.notes);
       setHasFetched(true);
       setNotes(result.notes);
       if (result.notes.length === 0) {
@@ -288,7 +257,6 @@ function Dashboard(props) {
         },
       );
       const result = await response.json();
-      // console.log(result);
       addNotification(result.message);
       await fetchUserData();
     } catch (err) {
@@ -351,7 +319,6 @@ function Dashboard(props) {
     );
 
     const result = await response.json();
-    // console.log(result.note);
     setSelectedNote(result.note);
   };
 
@@ -382,7 +349,6 @@ function Dashboard(props) {
 
       const result = await response.json();
       setTags(result.tags);
-      // console.log(result);
     } catch (err) {
       console.log(err);
     }
@@ -403,12 +369,6 @@ function Dashboard(props) {
           closeModal={closeModal}
           isModalOpen={isModalOpen}
           modal={modalData}
-          // modalTitle={modalData.title}
-          // modalBody={modalData.body}
-          // modalImage={modalData.image}
-          // confirmText={modalData.confirmText}
-          // actionFunc={modalData.actionFunc}
-          // selectedNote={selectedNote}
         />
       )}
       <div className="small">
@@ -416,17 +376,7 @@ function Dashboard(props) {
           <Logo />
           <Settings logOut={handleLogOut} />
         </div>
-        {showHeading && (
-          <Header
-            heading={heading}
-            // searchQuery={searchQuery}
-            // setSearchQuery={setSearchQuery}
-            // setNotesInfoMessage={setNotesInfoMessage}
-            // searchNotes={searchNotes}
-            // // showSearch={false}
-            // showLogo={true}
-          />
-        )}
+        {showHeading && <Header heading={heading} />}
         <View
           setShowHeading={setShowHeading}
           setHeading={setHeading}
@@ -450,7 +400,6 @@ function Dashboard(props) {
           setSelectedFilter={setSelectedFilter}
           selectedFilter={selectedFilter}
           setEmptyState={setEmptyState}
-          emptyState={emptyState}
           setSelectedNote={setSelectedNote}
           fetchNotes={fetchNotes}
           fetchSingleNote={fetchSingleNote}
@@ -542,7 +491,6 @@ function Dashboard(props) {
           )}
         </div>
       </div>
-      <div>{/* <button onClick={handleLogOut}>Log Out</button> */}</div>
     </div>
   );
 }
