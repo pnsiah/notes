@@ -70,7 +70,6 @@
 }
 
 .modal-button {
-  /* width: 100px; */
   width: auto;
   max-width: 120px;
   padding: 0.8em var(--padding-md);
