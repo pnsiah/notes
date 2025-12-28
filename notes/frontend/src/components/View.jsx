@@ -150,7 +150,6 @@ function View({
           />
         </>
       )}
-      {/* {view === "settings" && <Settings />} */}
       {view === "taggedNotes" && (
         <>
           <FilteredNotes
@@ -168,23 +167,6 @@ function View({
             fetchSingleNote={fetchSingleNote}
             hasFetched={hasFetched}
           />
-          {/* <TaggedNotes */}
-          {/*   setSelectedFilter={setSelectedFilter} */}
-          {/*   setSelectedTag={setSelectedTag} */}
-          {/*   selectedTag={selectedTag} */}
-          {/*   getNotesByTag={getNotesByTag} */}
-          {/*   selectedNote={selectedNote} */}
-          {/*   setView={setView} */}
-          {/*   notes={notes} */}
-          {/*   fetchSingleNote={fetchSingleNote} */}
-          {/*   hasFetched={hasFetched} */}
-          {/* /> */}
-          {/* <Notes */}
-          {/*   selectedNote={selectedNote} */}
-          {/*   setView={setView} */}
-          {/*   notes={notes} */}
-          {/*   fetchSingleNote={fetchSingleNote} */}
-          {/* /> */}
         </>
       )}
       {view === "folderNotes" && (
@@ -204,23 +186,6 @@ function View({
             fetchSingleNote={fetchSingleNote}
             hasFetched={hasFetched}
           />
-          {/* <TaggedNotes */}
-          {/*   setSelectedFilter={setSelectedFilter} */}
-          {/*   setSelectedTag={setSelectedTag} */}
-          {/*   selectedTag={selectedTag} */}
-          {/*   getNotesByTag={getNotesByTag} */}
-          {/*   selectedNote={selectedNote} */}
-          {/*   setView={setView} */}
-          {/*   notes={notes} */}
-          {/*   fetchSingleNote={fetchSingleNote} */}
-          {/*   hasFetched={hasFetched} */}
-          {/* /> */}
-          {/* <Notes */}
-          {/*   selectedNote={selectedNote} */}
-          {/*   setView={setView} */}
-          {/*   notes={notes} */}
-          {/*   fetchSingleNote={fetchSingleNote} */}
-          {/* /> */}
         </>
       )}
     </div>
