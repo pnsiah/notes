@@ -59,15 +59,11 @@ function SignUp(props) {
 
       const result = await response.json();
       if (result.status) {
-        // setIsError(false);
-        // setMessage(result.message);
         props.setPage("LogIn");
       } else {
-        // setIsError(true);
         addNotification(result.message || "Sign Up failed", true);
       }
     } catch (err) {
-      // setIsError(true);
       addNotification("Server error. Try again later", true);
     }
   };
@@ -75,7 +71,7 @@ function SignUp(props) {
   return (
     <div className="auth-container">
       <form className="auth-form" onSubmit={handleSubmit}>
-        <div className="form_image">{/* <img src={logo} alt="" /> */}</div>
+        <div className="form_image"></div>
         <div className="header-info">
           <h3>Create Your Account</h3>
           <p>
@@ -88,7 +84,6 @@ function SignUp(props) {
             value={formData.username}
             name="username"
             onChange={handleChange}
-            // placeholder="username"
             required
           />
         </label>
@@ -110,7 +105,6 @@ function SignUp(props) {
               name="password"
               onChange={handleChange}
               type={showPassword ? "text" : "password"}
-              // placeholder="password"
               required
             />
             <span
@@ -129,7 +123,6 @@ function SignUp(props) {
               name="confirmPassword"
               onChange={handleChange}
               type={showConfirmPassword ? "text" : "password"}
-              // placeholder="confirm_password"
               required
             />
             <span
@@ -143,10 +136,6 @@ function SignUp(props) {
         <button className="form-btn" type="submit">
           Sign Up
         </button>
-        {/* {message && ( */}
-        {/*   <p style={{ color: isError ? "red" : "green" }}>{message}</p> */}
-        {/* )} */}
-
         <div className="auth-redirect">
           Already have an account?
           <span
