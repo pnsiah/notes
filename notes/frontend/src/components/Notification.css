@@ -27,7 +27,6 @@
   margin-left: auto;
 }
 
-/* Animation keyframes */
 @keyframes fadeInOut {
   0% {
     opacity: 0;

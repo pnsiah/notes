@@ -1,6 +1,5 @@
 .search-form {
   width: 100%;
-  /* padding: 0 var(--padding-lg); */
   padding: var(--padding-sm);
 }
 
@@ -28,10 +27,6 @@
   width: 20px;
   height: 20px;
 }
-
-/* .search-info { */
-/*   color: black; */
-/* } */
 
 @media (min-width: 768px) {
   .search-form {
