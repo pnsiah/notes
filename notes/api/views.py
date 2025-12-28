@@ -348,13 +348,24 @@ def create_folder(request):
 
 @csrf_exempt
 def get_notes_by_tags(request):
-    if request.method == "GET":
-        tag_id = request.GET.get("tag_id", "").strip()
-        notes = Note.objects.filter(user=request.user, tags__id=tag_id)
-        serialized_notes = serialize_note(notes)
-        return JsonResponse({"status": True, "notes": serialized_notes})
-    else:
-        return JsonResponse({"status": False, "message": "Error fetching notes"})
+    if request.method != "GET":
+        return error_response("Invalid request method", status=405)
+
+    tag_id = request.GET.get("tag_id")
+
+    if not tag_id:
+        return error_response("Tag ID is required", status=400)
+
+    notes = Note.objects.filter(user=request.user, tags__id=tag_id).distinct()
+
+    serialized_notes = serialize_note(notes)
+
+    return JsonResponse(
+        {
+            "status": True,
+            "notes": serialized_notes,
+        }
+    )
 
 
 @csrf_exempt
