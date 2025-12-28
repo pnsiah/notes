@@ -172,51 +172,66 @@ def create_note(request):
 
 @csrf_exempt
 def update_note(request, note_id):
-    if request.method == "PUT":
-        data = json.loads(request.body)
-        note = get_object_or_404(Note, id=note_id, user=request.user)
-        new_title = data.get("title")
-        new_content = data.get("content")
+    if request.method != "PUT":
+        return error_response("Invalid request method", status=405)
 
-        if not new_title or not new_content:
-            return JsonResponse(
-                {"status": False, "message": "Title or content cannot be empty"},
-                status=400,
-            )
+    data = json.loads(request.body)
 
-        note.title = new_title
-        note.content = new_content
+    note = get_object_or_404(Note, id=note_id, user=request.user)
 
+    new_title = data.get("title", "").strip()
+    new_content = data.get("content", "").strip()
+
+    if not new_title:
+        return error_response("Title cannot be empty")
+
+    if not new_content:
+        return error_response("Content cannot be empty")
+
+    note.title = new_title
+    note.content = new_content
+
+    try:
         with transaction.atomic():
-            # Get OLD tags BEFORE any changes
+            # Store OLD tag IDs before changes
             old_tag_ids = list(note.tags.values_list("id", flat=True))
 
             note.save()
 
             if "tags" in data:
-                # Get NEW tags from the request
-                new_tags = data["tags"]
+                new_tags = data.get("tags", [])
 
-                # Clear old relationships
+                # Clear old tag relationships
                 note.tags.clear()
 
                 # Add new tags
                 for tag_name in new_tags:
-                    tag, created = Tag.objects.get_or_create(
-                        user=request.user, name=tag_name.strip()
+                    tag_name = tag_name.strip()
+                    if not tag_name:
+                        continue
+
+                    tag, _ = Tag.objects.get_or_create(
+                        user=request.user,
+                        name=tag_name,
                     )
                     note.tags.add(tag)
 
-                # Delete orphaned tags (from old_tag_ids only)
+                # Delete orphaned tags
                 Tag.objects.filter(
                     user=request.user,
                     id__in=old_tag_ids,
-                    notes__isnull=True,  # No notes left
+                    notes__isnull=True,
                 ).delete()
 
-        return JsonResponse({"status": True, "message": "Note updated"})
-    else:
-        return JsonResponse({"status": False, "message": "Invalid request"}, status=405)
+    except Exception:
+        return error_response("Failed to update note. Please try again.")
+
+    return JsonResponse(
+        {
+            "status": True,
+            "message": "Note updated successfully",
+        }
+    )
 
 
 @csrf_exempt
