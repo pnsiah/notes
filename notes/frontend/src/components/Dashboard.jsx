@@ -274,6 +274,7 @@ function Dashboard(props) {
 
     const result = await response.json();
     setNotes(result.notes);
+    console.log("note set", notes);
 
     if (result.notes.length === 0) {
       setEmptyState({

@@ -10,6 +10,14 @@ def save_note_with_tags(user, note, tag_list):
     return note
 
 
+def format_last_edited(note):
+    if note.last_edited.replace(microsecond=0) == note.created_at.replace(
+        microsecond=0
+    ):
+        return "Not edited yet"
+    return note.last_edited.strftime("%d %B %Y")
+
+
 def serialize_note(notes):
     serialized_notes = [
         {
@@ -17,6 +25,7 @@ def serialize_note(notes):
             "title": note.title,
             "content": note.content,
             "date_created": note.created_at.strftime("%d %B %Y"),
+            "last_edited": format_last_edited(note),
             "tags": [tag.name for tag in note.tags.all()],
         }
         for note in notes
