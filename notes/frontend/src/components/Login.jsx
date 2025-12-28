@@ -1,4 +1,3 @@
-import Dashboard from "./Dashboard";
 import { useState, useContext } from "react";
 import showLogo from "../assets/images/icon-show-password.svg";
 import hideLogo from "../assets/images/icon-hide-password.svg";
@@ -21,7 +20,6 @@ function Login(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.username.trim() || !formData.password.trim()) {
-      // setIsError(true);
       addNotification("All fields are required", true);
       return;
     }
@@ -35,18 +33,13 @@ function Login(props) {
 
       const result = await response.json();
       if (result.status) {
-        // setIsError(false);
-        // setMessage(result.message);
         props.setPage("Dashboard");
         window.scrollTo(0, 0); // scroll to top
-        // <Dashboard />;
-        // return;
+        return;
       } else {
-        // setIsError(true);
         addNotification(result.message, true);
       }
     } catch (err) {
-      // setIsError(true);
       addNotification("Server error try again later", true);
     }
   };
@@ -54,7 +47,7 @@ function Login(props) {
   return (
     <div className="auth-container">
       <form className="auth-form" action="" onSubmit={handleSubmit}>
-        <div className="form_image">{/* <img src={logo} alt="" /> */}</div>
+        <div className="form_image"></div>
         <div className="header-info">
           <h3>Welcome to Note</h3>
           <p>Please login to continue</p>
@@ -68,7 +61,6 @@ function Login(props) {
               setFormData({ ...formData, [e.target.name]: e.target.value });
               setMessage(null);
             }}
-            // placeholder="username"
           />
         </label>
         <label>
@@ -77,7 +69,6 @@ function Login(props) {
             <input
               value={formData.password}
               type={showPassword ? "text" : "password"}
-              // className="password"
               name="password"
               onChange={(e) => {
                 setFormData({
@@ -109,9 +100,6 @@ function Login(props) {
             Sign Up
           </span>
         </div>
-        {/* {message && ( */}
-        {/*   <p style={{ color: isError ? "red" : "green" }}>{message}</p> */}
-        {/* )} */}
       </form>
     </div>
   );
