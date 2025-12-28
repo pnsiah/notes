@@ -103,12 +103,21 @@ function Dashboard(props) {
     fetchUserData();
   }, []);
 
+  useEffect(() => {
+    if (notes.length > 0) {
+      setSelectedNote(notes[0]);
+      console.log("Auto-selecting:", notes[0].title);
+    } else {
+      setSelectedNote(null);
+    }
+  }, [notes]);
+
   // useEffect(() => {
   //   setSelectedNote(notes[0]);
   // }, [selectedNote]);
 
   //
-  // useEffect(() => {
+  // useEffect(() => {u
   //   fetch("http://localhost:8000/api/list_folders/", {
   //     method: "GET",
   //     credentials: "include",
