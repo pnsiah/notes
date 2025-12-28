@@ -44,7 +44,6 @@ function NoteActions({
               image: folderIcon,
               confirmText: "Create Folder",
               title: "Create Folder",
-              // payload: { noteId: selectedNote.id },
             });
           }}
           className="danger action-button"
@@ -56,10 +55,6 @@ function NoteActions({
           <button
             onClick={() => {
               openModal({
-                // body: "Are you sure you want to archive this note? You can find it in the Archived Notes section and restore it anytime.",
-                // image: archiveButton,
-                // confirmText: confirmText,
-                // actionFunc: archiveNote,
                 type: "restore-note",
                 title: "Archive Note",
                 image: restoreIcon,
