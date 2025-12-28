@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET
 from django.db import IntegrityError, transaction
 from .models import User, Note, Folder, Tag
-from .utils import save_note_with_tags, serialize_note
+from .utils import save_note_with_tags, serialize_note, error_response
 
 
 def index(request):
@@ -139,9 +139,9 @@ def create_note(request):
         folder_id = data.get("folder")
 
         if not title:
-            return JsonResponse({"status": False, "message": "Title cannot be empty"})
+            return error_response("Title cannot be empty")
         elif not content:
-            return JsonResponse({"status": False, "message": "Content cannot be empty"})
+            return error_response("Content cannot be empty")
 
         note = Note(user=request.user, title=title, content=content)
 
@@ -149,11 +149,12 @@ def create_note(request):
             try:
                 note.folder = Folder.objects.get(id=folder_id, user=request.user)
             except Folder.DoesNotExist:
-                return JsonResponse(
-                    {"status": False, "message": "Folder does not exists"}
-                )
+                return error_response("Folder does not exists")
 
-        note.save()
+        try:
+            note.save()
+        except Exception:
+            return error_response("Failed to save note. Please try again.")
 
         if tags:
             save_note_with_tags(request.user, note, tags)
@@ -166,7 +167,7 @@ def create_note(request):
             }
         )
     else:
-        JsonResponse({"status": False, "message": "Invalid request"}, status=405)
+        return error_response("Invalid request", status=405)
 
 
 @csrf_exempt

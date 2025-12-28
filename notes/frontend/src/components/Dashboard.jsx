@@ -120,7 +120,7 @@ function Dashboard(props) {
       addNotification(result.message);
     } catch (err) {
       console.log(err);
-      addNotification("Log out failed. Try again", true);
+      addNotification("Failed to create note. Try again", true);
     }
   };
 
@@ -134,16 +134,19 @@ function Dashboard(props) {
       });
 
       const result = await response.json();
-      if (result.status) {
-        addNotification(result.message);
-        await fetchNotes();
-        await fetchTags();
+      if (!result.status) {
+        addNotification(result.message, true);
+        return;
       }
+      await fetchNotes();
+      await fetchTags();
+      addNotification(result.message);
       // setSelectedNote(result.note[0]);
       // setHeading("All notes");
-      return result.status;
+      // return result.status;
     } catch (e) {
       console.log(e);
+      addNotification("Log out failed. Try again", true);
     }
   };
 

@@ -1,4 +1,5 @@
 from .models import Note, Tag
+from django.http import JsonResponse
 
 
 def save_note_with_tags(user, note, tag_list):
@@ -31,3 +32,7 @@ def serialize_note(notes):
         for note in notes
     ]
     return serialized_notes
+
+
+def error_response(message, status=400):
+    return JsonResponse({"status": False, "message": message}, status=status)
