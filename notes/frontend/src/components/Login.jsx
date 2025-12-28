@@ -2,7 +2,6 @@ import { useState, useContext } from "react";
 import showLogo from "../assets/images/icon-show-password.svg";
 import hideLogo from "../assets/images/icon-hide-password.svg";
 import { NotificationContext } from "./NotificationContext";
-
 import "./Auth.css";
 
 function Login(props) {
