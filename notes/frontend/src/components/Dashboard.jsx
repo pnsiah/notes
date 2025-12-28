@@ -182,18 +182,22 @@ function Dashboard(props) {
         `http://localhost:8000/api/delete_note/${noteId}/`,
         {
           method: "DELETE",
-          headers: { "Content-Type": "application/json" },
           credentials: "include",
         },
       );
       const result = await response.json();
 
+      if (!result.status) {
+        addNotification(result.message, true);
+        return;
+      }
+
       addNotification(result.message);
-      setSelectedNote(null);
       await fetchNotes(selectedFilter);
       await fetchTags();
     } catch (err) {
       console.log(err);
+      addNotification("Failed to delete note. Please try again.", true);
     }
   };
 

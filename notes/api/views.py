@@ -237,28 +237,33 @@ def update_note(request, note_id):
 @csrf_exempt
 def delete_note(request, note_id):
     if request.method != "DELETE":
-        return JsonResponse({"status": False, "message": "Invalid request"}, status=405)
+        return error_response("Invalid request", status=405)
+
     note = get_object_or_404(Note, id=note_id)
 
     if note.user != request.user:
-        return JsonResponse({"status": False, "message": "Denied"}, status=403)
+        return error_response("Permission denied", status=403)
 
-    with transaction.atomic():
-        # Get all tag IDs associated with this note
-        tag_ids = list(note.tags.values_list("id", flat=True))
+    try:
+        with transaction.atomic():
+            # Get tag IDs before deleting relationships
+            tag_ids = list(note.tags.values_list("id", flat=True))
 
-        # Clear the tags first (remove M2M relationships)
+            # Clear the tags first (remove M2M relationships)
+            # Remove M2M relationships
+            note.tags.clear()
 
-        note.tags.clear()
+            # Delete orphaned tags
+            Tag.objects.filter(
+                id__in=tag_ids,
+                notes__isnull=True,
+            ).delete()
 
-        # Delete tags that have no notes left
-        Tag.objects.filter(
-            id__in=tag_ids,
-            notes__isnull=True,  # Tags with no notes
-        ).delete()
+            # Delete the note
+            note.delete()
 
-        # Now delete the note
-        note.delete()
+    except Exception:
+        return error_response("Failed to delete note. Please try again.")
 
     return JsonResponse({"status": True, "message": "Note deleted successfully"})
 
