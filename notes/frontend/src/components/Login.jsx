@@ -13,6 +13,10 @@ function Login(props) {
 
   const { addNotification } = useContext(NotificationContext);
 
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.username.trim() || !formData.password.trim()) {
@@ -54,9 +58,7 @@ function Login(props) {
           <input
             value={formData.username}
             name="username"
-            onChange={(e) => {
-              setFormData({ ...formData, [e.target.name]: e.target.value });
-            }}
+            onChange={handleChange}
           />
         </label>
         <label>
@@ -66,12 +68,7 @@ function Login(props) {
               value={formData.password}
               type={showPassword ? "text" : "password"}
               name="password"
-              onChange={(e) => {
-                setFormData({
-                  ...formData,
-                  [e.target.name]: e.target.value,
-                });
-              }}
+              onChange={handleChange}
             />
             <span
               className="password-icon"

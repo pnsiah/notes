@@ -1,11 +1,9 @@
 import Login from "./Login";
 import { useContext, useState } from "react";
-
-import "./Auth.css";
-import logo from "../assets/images/logo.svg";
 import showLogo from "../assets/images/icon-show-password.svg";
 import hideLogo from "../assets/images/icon-hide-password.svg";
 import { NotificationContext } from "./NotificationContext";
+import "./Auth.css";
 
 function SignUp(props) {
   const [showPassword, setShowPassword] = useState(false);
@@ -19,8 +17,6 @@ function SignUp(props) {
   });
 
   const { addNotification } = useContext(NotificationContext);
-  const [isError, setIsError] = useState(false);
-  const [message, setMessage] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -35,13 +31,11 @@ function SignUp(props) {
       !formData.password.trim() ||
       !formData.confirmPassword.trim()
     ) {
-      setIsError(true);
       addNotification("All fields are required", true);
       return;
     }
 
     if (formData.password !== formData.confirmPassword) {
-      setIsError(true);
       addNotification("Passwords do not match", true);
       return;
     }
@@ -60,9 +54,11 @@ function SignUp(props) {
       const result = await response.json();
       if (result.status) {
         props.setPage("LogIn");
-      } else {
-        addNotification(result.message || "Sign Up failed", true);
+        return;
       }
+
+      // signup failed
+      addNotification(result.message || "Sign Up failed", true);
     } catch (err) {
       addNotification("Server error. Try again later", true);
     }
