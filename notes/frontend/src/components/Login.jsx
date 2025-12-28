@@ -11,9 +11,6 @@ function Login(props) {
     password: "",
   });
 
-  const [isError, setIsError] = useState(false);
-  const [message, setMessage] = useState(null);
-
   const { addNotification } = useContext(NotificationContext);
 
   const handleSubmit = async (e) => {
@@ -35,9 +32,10 @@ function Login(props) {
         props.setPage("Dashboard");
         window.scrollTo(0, 0); // scroll to top
         return;
-      } else {
-        addNotification(result.message, true);
       }
+
+      //login failed
+      addNotification(result.message, true);
     } catch (err) {
       addNotification("Server error try again later", true);
     }
@@ -58,7 +56,6 @@ function Login(props) {
             name="username"
             onChange={(e) => {
               setFormData({ ...formData, [e.target.name]: e.target.value });
-              setMessage(null);
             }}
           />
         </label>
@@ -74,7 +71,6 @@ function Login(props) {
                   ...formData,
                   [e.target.name]: e.target.value,
                 });
-                setMessage(null);
               }}
             />
             <span
