@@ -37,15 +37,15 @@ function Settings({ logOut }) {
             </button>
           </div>
 
-          <div className="settings-divider" />
-
-          <div className="settings-section">
-            <p className="settings-label">Appearance</p>
-            <button className="settings-item">
-              <span className="item-icon">🌗</span>
-              <span>Toggle theme</span>
-            </button>
-          </div>
+          {/* <div className="settings-divider" /> */}
+          {/**/}
+          {/* <div className="settings-section"> */}
+          {/*   <p className="settings-label">Appearance</p> */}
+          {/*   <button className="settings-item"> */}
+          {/*     <span className="item-icon">🌗</span> */}
+          {/*     <span>Toggle theme</span> */}
+          {/*   </button> */}
+          {/* </div> */}
         </div>
       )}
     </div>
