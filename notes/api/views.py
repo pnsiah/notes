@@ -82,7 +82,7 @@ def login_view(request):
 @csrf_exempt
 def logout_view(request):
     logout(request)
-    return JsonResponse({"status": True, "message": "Log out succesful"})
+    return JsonResponse({"status": True, "message": "Logged out succesfully"})
 
 
 @csrf_exempt

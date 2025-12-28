@@ -116,12 +116,11 @@ function Dashboard(props) {
       if (!response.ok) throw new Error("Failed to log out");
 
       const result = await response.json();
-
       props.setPage("LogIn");
-      console.log("hello");
+      addNotification(result.message);
     } catch (err) {
       console.log(err);
-      alert("Log out failed. Try again");
+      addNotification("Log out failed. Try again", true);
     }
   };
 
@@ -133,14 +132,15 @@ function Dashboard(props) {
         credentials: "include",
         body: JSON.stringify(noteData),
       });
+
       const result = await response.json();
       if (result.status) {
         addNotification(result.message);
-        await fetchUserData();
+        await fetchNotes();
+        await fetchTags();
       }
       // setSelectedNote(result.note[0]);
       // setHeading("All notes");
-      goToAllNotes();
       return result.status;
     } catch (e) {
       console.log(e);
