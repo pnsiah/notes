@@ -6,7 +6,6 @@ import arrow_right from "../assets/images/icon-chevron-right.svg";
 function FolderList({
   setHeading,
   folders,
-  // getNotesByFolder,
   setSelectedFolder,
   setView,
   setHighlight,
@@ -14,7 +13,6 @@ function FolderList({
 }) {
   const fetchFolderNotes = (folder) => {
     setSelectedFolder({ id: folder.id, name: folder.name });
-    // getNotesByFolder(folder.id);
     setView("folderNotes");
     setHighlight("");
     setSelectedFilter("folderNotes");
