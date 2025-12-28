@@ -7,11 +7,6 @@
   border-right: 1px solid var(--neutral-300);
 }
 
-.menu-links {
-  /* width: calc(100% - 1em); */
-  /* padding: var(--padding-md) var(--padding-sm); */
-}
-
 .arrow-right {
   visibility: hidden;
   margin-left: auto;
@@ -36,13 +31,6 @@
   display: block;
   visibility: visible;
 }
-/* .sidebar-button:focus { */
-/*   background-color: var(--neutral-300); */
-/* } */
-/* .sidebar-button:focus .arrow-right { */
-/*   display: block; */
-/*   visibility: visible; */
-/* } */
 
 .sidebar-button:focus .home,
 .sidebar-button:focus .archived-icon {
@@ -55,5 +43,4 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  /* padding: 0 var(--padding-sm); */
 }
