@@ -9,9 +9,10 @@ import Notes from "./Notes";
 import View from "./View";
 import NavBar from "./NavBar";
 import NoteActions from "./NoteActions";
-import "../components/dashboard.css";
-import plusIcon from "../assets/images/icon-plus.svg";
 import Modal from "./Modal";
+import plusIcon from "../assets/images/icon-plus.svg";
+import "../components/dashboard.css";
+
 import { NotificationContext } from "./NotificationContext";
 
 function Dashboard(props) {
@@ -79,10 +80,8 @@ function Dashboard(props) {
 
   const fetchUserData = async () => {
     const response = await fetch("http://localhost:8000/api/dashboard", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+      method: "GET",
       credentials: "include",
-      body: JSON.stringify({}),
     });
     const result = await response.json();
     setUserData(result.user_data);

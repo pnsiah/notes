@@ -87,7 +87,7 @@ def logout_view(request):
 
 @csrf_exempt
 def dashboard(request):
-    if request.method == "POST":
+    if request.method == "GET":
         if request.user.is_authenticated:
             user = request.user
 
@@ -96,18 +96,9 @@ def dashboard(request):
                 .prefetch_related("tags")
                 .order_by("-created_at")
             )
+
             user_tags = Tag.objects.filter(user=user)
             user_folders = Folder.objects.filter(user=user)
-            # serialized_notes = [
-            #     {
-            #         "id": note.id,
-            #         "title": note.title,
-            #         "content": note.content,
-            #         "date_created": note.created_at.strftime("%d %B %Y"),
-            #         "tags": [tag.name for tag in note.tags.all()],
-            #     }
-            #     for note in notes
-            # ]
             serialized_notes = serialize_note(notes)
 
             serialized_tags = [{"id": tag.id, "name": tag.name} for tag in user_tags]
@@ -133,7 +124,6 @@ def dashboard(request):
                 {"status": False, "message": "Not authenticated"}, status=401
             )
 
-    # ✅ Make sure GET or other methods return something too
     return JsonResponse(
         {"status": False, "message": "Invalid request method"}, status=400
     )
