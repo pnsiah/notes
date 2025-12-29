@@ -487,7 +487,6 @@ function Dashboard(props) {
           selectedTag={selectedTag}
           setSelectedTag={setSelectedTag}
           setSelectedFilter={setSelectedFilter}
-          selectedFilter={selectedFilter}
           setEmptyState={setEmptyState}
           setSelectedNote={setSelectedNote}
           fetchNotes={fetchNotes}
@@ -495,8 +494,6 @@ function Dashboard(props) {
           view={view}
           setView={setView}
           openModal={openModal}
-          archiveNote={archiveNote}
-          deleteNote={deleteNote}
           notes={notes}
           folders={folders}
           tags={tags}
