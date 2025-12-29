@@ -52,7 +52,7 @@ function Dashboard(props) {
     setIsModalOpen(true);
   };
 
-  const createNewNote = () => {
+  const resetNoteForm = () => {
     setSearchQuery("");
     setEmptyState({ isEmpty: false });
     setSelectedNote(null);
@@ -505,7 +505,7 @@ function Dashboard(props) {
           createNote={createNote}
         />
         <NavBar setHeading={setHeading} view={view} setView={setView} />
-        <div onClick={createNewNote} className="new-note-icon">
+        <div onClick={resetNoteForm} className="new-note-icon">
           <img src={plusIcon} alt="" />
         </div>
       </div>
@@ -546,7 +546,7 @@ function Dashboard(props) {
             selectedNote={selectedNote}
             notesInfoMessage={notesInfoMessage}
             hasFetched={hasFetched}
-            createNewNote={createNewNote}
+            resetNoteForm={resetNoteForm}
             setView={setView}
             setSelectedNote={setSelectedNote}
             fetchSingleNote={fetchSingleNote}

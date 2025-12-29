@@ -8,7 +8,7 @@ function Notes({
   setEmptyState,
   emptyState,
   hasFetched,
-  createNewNote,
+  resetNoteForm,
   setView,
   notes,
   notesInfoMessage,
@@ -18,7 +18,7 @@ function Notes({
   return (
     <div className="notes">
       <div className="note-list-container">
-        <button className="new-note-btn" onClick={createNewNote}>
+        <button className="new-note-btn" onClick={resetNoteForm}>
           <img src={plus} alt="" /> <span>Create New Note</span>
         </button>
         {notesInfoMessage && (
