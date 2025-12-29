@@ -8,7 +8,12 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET
 from django.db import IntegrityError, transaction
 from .models import User, Note, Folder, Tag
-from .utils import save_note_with_tags, serialize_note, error_response
+from .utils import (
+    save_note_with_tags,
+    serialize_notes,
+    error_response,
+    serialize_single_note,
+)
 
 
 def index(request):
@@ -99,7 +104,7 @@ def dashboard(request):
 
             user_tags = Tag.objects.filter(user=user)
             user_folders = Folder.objects.filter(user=user)
-            serialized_notes = serialize_note(notes)
+            serialized_notes = serialize_notes(notes)
 
             serialized_tags = [{"id": tag.id, "name": tag.name} for tag in user_tags]
             serialized_folders = [
@@ -162,7 +167,7 @@ def create_note(request):
         return JsonResponse(
             {
                 "status": True,
-                "note": serialize_note([note]),
+                "note": serialize_single_note(note),
                 "message": "Note created successfully",
             }
         )
@@ -317,7 +322,7 @@ def get_notes(request):
     #     }
     #     for note in notes
     # ]
-    serialized_notes = serialize_note(notes)
+    serialized_notes = serialize_notes(notes)
     return JsonResponse({"status": True, "notes": serialized_notes})
 
 
@@ -358,7 +363,7 @@ def get_notes_by_tags(request):
 
     notes = Note.objects.filter(user=request.user, tags__id=tag_id).distinct()
 
-    serialized_notes = serialize_note(notes)
+    serialized_notes = serialize_notes(notes)
 
     return JsonResponse(
         {
@@ -378,7 +383,7 @@ def get_notes_by_folder(request):
         return error_response("Folder ID is required", status=400)
 
     notes = Note.objects.filter(user=request.user, folder__id=folder_id).distinct()
-    serialized_notes = serialize_note(notes)
+    serialized_notes = serialize_notes(notes)
 
     return JsonResponse(
         {
@@ -450,19 +455,13 @@ def fetch_note(request, note_id):
         return JsonResponse({"status": False, "message": "Note not found"}, status=405)
 
     #  Return serialized note
+    serialized_note = serialize_single_note(note)
+    print("serialized note", serialized_note)
     return JsonResponse(
         {
             "status": True,
             "message": "Note fetched successfully",
-            "note": {
-                "id": note.id,
-                "title": note.title,
-                "content": note.content,
-                "last_edited": note.last_edited.strftime("%d %B %Y"),
-                "archived": note.archived,
-                "tags": [tag.name for tag in note.tags.all()],
-                "folder": note.folder.name if note.folder else "",
-            },
+            "note": serialized_note,
         },
         status=200,
     )
@@ -486,7 +485,7 @@ def search_notes(request):
             .distinct()
             .order_by("-created_at")
         )
-        serialized_notes = serialize_note(notes)
+        serialized_notes = serialize_notes(notes)
         return JsonResponse(
             {
                 "status": True,

@@ -19,7 +19,7 @@ def format_last_edited(note):
     return note.last_edited.strftime("%d %B %Y")
 
 
-def serialize_note(notes):
+def serialize_notes(notes):
     serialized_notes = [
         {
             "id": note.id,
@@ -28,10 +28,23 @@ def serialize_note(notes):
             "date_created": note.created_at.strftime("%d %B %Y"),
             "last_edited": format_last_edited(note),
             "tags": [tag.name for tag in note.tags.all()],
+            "folder": note.folder.id if note.folder else "",
         }
         for note in notes
     ]
     return serialized_notes
+
+
+def serialize_single_note(note):
+    return {
+        "id": note.id,
+        "title": note.title,
+        "content": note.content,
+        "last_edited": note.last_edited.strftime("%d %B %Y"),
+        "archived": note.archived,
+        "tags": [tag.name for tag in note.tags.all()],
+        "folder": note.folder.id if note.folder else "",
+    }
 
 
 def error_response(message, status=400):

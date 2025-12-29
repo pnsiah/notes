@@ -141,7 +141,7 @@ function Dashboard(props) {
       }
 
       addNotification(result.message);
-      await fetchNotes();
+      await fetchNotes(selectedFilter);
       await fetchTags();
     } catch (e) {
       console.log(e);
@@ -347,6 +347,7 @@ function Dashboard(props) {
 
     const result = await response.json();
     setSelectedNote(result.note);
+    console.log("notes here lol: ", result.note);
   };
 
   const createFolder = async (folderName) => {
