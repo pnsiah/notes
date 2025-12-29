@@ -406,15 +406,21 @@ function Dashboard(props) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({
-          folder: folderName,
-        }),
+        body: JSON.stringify({ folder: folderName }),
       });
+
       const result = await response.json();
-      fetchFolders();
-      addNotification(result.message);
+
+      if (!result.status) {
+        addNotification(result.message || "Failed to create folder.", true);
+        return;
+      }
+
+      addNotification(result.message || "Folder created successfully.");
+      await fetchFolders(); // refresh the folder list after success
     } catch (err) {
-      console.log(err);
+      console.error("Error creating folder:", err);
+      addNotification("Failed to create folder. Please try again.", true);
     }
   };
 
