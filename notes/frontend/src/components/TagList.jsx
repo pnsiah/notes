@@ -5,12 +5,10 @@ import arrow_right from "../assets/images/icon-chevron-right.svg";
 function TagList({
   setHeading,
   setSelectedFilter,
-  selectedTag,
   setHighlight,
   setView,
   setSelectedTag,
   tags,
-  getNotesByTag,
 }) {
   return (
     <section className="tags">
@@ -30,7 +28,6 @@ function TagList({
                 setHighlight("");
                 setSelectedFilter("taggedNotes");
                 setHeading(`Tagged Notes: ${tag.name}`);
-                // setSelectedFilter(null);
               }}
             >
               <button className="tag">

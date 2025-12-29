@@ -104,8 +104,6 @@ function View({
           setHighlight={setHighlight}
           setView={setView}
           setSelectedTag={setSelectedTag}
-          selectedTag={selectedTag}
-          getNotesByTag={getNotesByTag}
           tags={tags}
         />
       )}
@@ -116,7 +114,6 @@ function View({
           setView={setView}
           setSelectedFilter={setSelectedFilter}
           setHighlight={setHighlight}
-          getNotesByFolder={getNotesByFolder}
           folders={folders}
         />
       )}
