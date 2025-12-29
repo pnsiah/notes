@@ -337,17 +337,27 @@ function Dashboard(props) {
   };
 
   const fetchSingleNote = async (noteId) => {
-    const response = await fetch(
-      `http://localhost:8000/api/fetch_note/${noteId}/`,
-      {
-        method: "GET",
-        credentials: "include",
-      },
-    );
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/fetch_note/${noteId}/`,
+        {
+          method: "GET",
+          credentials: "include",
+        },
+      );
 
-    const result = await response.json();
-    setSelectedNote(result.note);
-    console.log("notes here lol: ", result.note);
+      const result = await response.json();
+
+      if (!result.status) {
+        addNotification(result.message, true);
+        return;
+      }
+
+      setSelectedNote(result.note);
+    } catch (e) {
+      console.log(e);
+      addNotification("Failed to fetch note. Please try again.", true);
+    }
   };
 
   const createFolder = async (folderName) => {

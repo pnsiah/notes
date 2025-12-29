@@ -451,7 +451,7 @@ def fetch_note(request, note_id):
         note = Note.objects.get(id=note_id, user=request.user)
 
     except Note.DoesNotExist:
-        return JsonResponse({"status": False, "message": "Note not found"}, status=405)
+        return error_response("Note not found.", status=404)
 
     #  Return serialized note
     serialized_note = serialize_single_note(note)
