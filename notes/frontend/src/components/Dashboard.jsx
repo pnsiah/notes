@@ -259,18 +259,6 @@ function Dashboard(props) {
     }
   };
 
-  // const fetchFolders = async () => {
-  //   try {
-  //     const response = await fetch("http://localhost:8000/api/list_folders/", {
-  //       method: "GET",
-  //       credentials: "include",
-  //     });
-  //     const result = await response.json();
-  //     setFolders(result.folders);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
   const fetchFolders = async () => {
     try {
       const response = await fetch("http://localhost:8000/api/get_folders/", {
@@ -285,12 +273,13 @@ function Dashboard(props) {
         return;
       }
 
-      setFolders(result.folders || []);
+      setFolders(result.folders);
     } catch (e) {
       console.error("Failed to fetch folders:", e);
       addNotification("Failed to fetch folders. Please try again.", true);
     }
   };
+};
 
   const archiveNote = async (noteId) => {
     try {
@@ -302,11 +291,19 @@ function Dashboard(props) {
           credentials: "include",
         },
       );
+
       const result = await response.json();
+
+      if (!result.status) {
+        addNotification(result.message || "Failed to archive note.", true);
+        return;
+      }
+
       addNotification(result.message);
-      await fetchUserData();
+      await fetchNotes();
     } catch (err) {
-      console.log(err);
+      console.error("Error archiving note:", err);
+      addNotification("Failed to archive note. Please try again.", true);
     }
   };
 
