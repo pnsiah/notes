@@ -279,7 +279,6 @@ function Dashboard(props) {
       addNotification("Failed to fetch folders. Please try again.", true);
     }
   };
-};
 
   const archiveNote = async (noteId) => {
     try {
@@ -339,27 +338,35 @@ function Dashboard(props) {
   };
 
   const searchNotes = async (query) => {
-    const response = await fetch(
-      `http://localhost:8000/api/search_notes/?query=${encodeURIComponent(query)}`,
-      {
-        method: "GET",
-        credentials: "include",
-      },
-    );
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/search_notes/?query=${encodeURIComponent(query)}`,
+        {
+          method: "GET",
+          credentials: "include",
+        },
+      );
 
-    const result = await response.json();
-    const notes = result.notes || [];
+      const result = await response.json();
 
-    setNotes(notes);
+      if (!result.status) {
+        addNotification(result.message || "Failed to search notes.", true);
+        return;
+      }
 
-    if (notes.length === 0) {
-      setEmptyState({
-        isEmpty: true,
-        message:
-          "No notes match your search. Try a different keyword or create a new note.",
-      });
-    } else {
-      setEmptyState({ isEmpty: false });
+      const notes = result.notes || [];
+      setNotes(notes);
+
+      if (notes.length === 0) {
+        setEmptyState({
+          isEmpty: true,
+          message:
+            "No notes match your search. Try a different keyword or create a new note.",
+        });
+      }
+    } catch (err) {
+      console.error("Failed to search notes:", err);
+      addNotification("Failed to search notes. Please try again.", true);
     }
   };
 

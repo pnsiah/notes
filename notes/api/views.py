@@ -455,34 +455,37 @@ def fetch_note(request, note_id):
     )
 
 
-@csrf_exempt
 def search_notes(request):
-    if request.method == "GET":
-        query = request.GET.get("query", "").strip()
-        if not query:
-            return JsonResponse(
-                {"status": False, "message": "No search query"}, status=404
-            )
-        notes = (
-            Note.objects.filter(
-                Q(title__icontains=query)
-                | Q(content__icontains=query)
-                | Q(tags__name__icontains=query),
-                user=request.user,
-            )
-            .distinct()
-            .order_by("-created_at")
+    if not request.user.is_authenticated:
+        return error_response("Authentication required", status=401)
+
+    if request.method != "GET":
+        return error_response("Invalid request method", status=405)
+
+    query = request.GET.get("query", "").strip()
+    if not query:
+        return error_response("No search query", status=400)
+
+    notes = (
+        Note.objects.filter(
+            Q(title__icontains=query)
+            | Q(content__icontains=query)
+            | Q(tags__name__icontains=query),
+            user=request.user,
         )
-        serialized_notes = serialize_notes(notes)
-        return JsonResponse(
-            {
-                "status": True,
-                "message": "Successfully retrieved",
-                "notes": serialized_notes,
-            },
-            status=200,
-        )
-    return JsonResponse({"status": False, "message": "Invalid request"}, status=405)
+        .distinct()
+        .order_by("-created_at")
+    )
+
+    serialized_notes = serialize_notes(notes)
+    return JsonResponse(
+        {
+            "status": True,
+            "message": "Successfully retrieved",
+            "notes": serialized_notes,
+        },
+        status=200,
+    )
 
 
 @require_GET
