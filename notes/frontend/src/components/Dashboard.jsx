@@ -291,23 +291,33 @@ function Dashboard(props) {
   };
 
   const fetchNotes = async (filter = "all") => {
-    const response = await fetch(
-      `http://localhost:8000/api/get_notes/?filter=${filter}`,
-      {
-        method: "GET",
-        credentials: "include",
-      },
-    );
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/get_notes/?filter=${filter}`,
+        {
+          method: "GET",
+          credentials: "include",
+        },
+      );
 
-    const result = await response.json();
-    setNotes(result.notes);
-    console.log("note set", notes);
+      const result = await response.json();
 
-    if (result.notes.length === 0) {
-      setEmptyState({
-        message:
-          "You don’t have any notes yet. Start a new note to capture your thoughts and ideas.",
-      });
+      if (!result.status) {
+        addNotification(result.message, true);
+        return;
+      }
+
+      setNotes(result.notes);
+
+      if (!result.notes || result.notes.length === 0) {
+        setEmptyState({
+          message:
+            "You don’t have any notes yet. Start a new note to capture your thoughts and ideas.",
+        });
+      }
+    } catch (e) {
+      console.error("Failed to fetch notes:", e);
+      addNotification("Failed to fetch notes. Please try again.", true);
     }
   };
 

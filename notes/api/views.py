@@ -291,37 +291,26 @@ def archive_note(request, note_id):
     return JsonResponse({"status": True, "message": message})
 
 
-@csrf_exempt
+@require_GET
 def get_notes(request):
     if not request.user.is_authenticated:
-        return JsonResponse(
-            {"status": False, "error": "Authentication required"}, status=401
-        )
-    filter = request.GET.get("filter", "all")
+        return error_response("Authentication required", status=401)
+
+    filter_type = request.GET.get("filter", "all")
+
     notes = (
         Note.objects.filter(user=request.user)
         .prefetch_related("tags")
         .order_by("-created_at")
     )
 
-    print(filter)
-    if filter == "archived":
+    if filter_type == "archived":
         notes = notes.filter(archived=True)
     else:
-        print("fetching all notes")
         notes = notes.filter(archived=False)
 
-    # serialized_notes = [
-    #     {
-    #         "id": note.id,
-    #         "title": note.title,
-    #         "content": note.content,
-    #         "date_created": note.created_at.strftime("%d %B %Y"),
-    #         "tags": [tag.name for tag in note.tags.all()],
-    #     }
-    #     for note in notes
-    # ]
     serialized_notes = serialize_notes(notes)
+
     return JsonResponse({"status": True, "notes": serialized_notes})
 
 
