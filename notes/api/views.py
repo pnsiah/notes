@@ -167,7 +167,6 @@ def create_note(request):
         return JsonResponse(
             {
                 "status": True,
-                "note": serialize_single_note(note),
                 "message": "Note created successfully",
             }
         )
