@@ -25,7 +25,7 @@ urlpatterns = [
     path("api/fetch_note/<int:note_id>/", views.fetch_note, name="fetch_note"),
     path("api/update_note/<int:note_id>/", views.update_note, name="update_note"),
     path("api/create_note/", views.create_note, name="create_note"),
-    path("api/list_tags/", views.list_tags, name="list_tags"),
+    path("api/get_tags/", views.get_tags, name="get_tags"),
     path("api/get_folders/", views.get_folders, name="get_folders"),
     path("api/message/", views.message),
 ]

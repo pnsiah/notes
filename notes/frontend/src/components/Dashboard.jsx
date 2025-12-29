@@ -426,15 +426,22 @@ function Dashboard(props) {
 
   const fetchTags = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/list_tags/", {
+      const response = await fetch("http://localhost:8000/api/get_tags/", {
         method: "GET",
         credentials: "include",
       });
 
       const result = await response.json();
-      setTags(result.tags);
+
+      if (!result.status) {
+        addNotification(result.message || "Failed to fetch tags.", true);
+        return;
+      }
+
+      setTags(result.tags || []);
     } catch (err) {
-      console.log(err);
+      console.error("Error fetching tags:", err);
+      addNotification("Failed to fetch tags. Please try again.", true);
     }
   };
 
