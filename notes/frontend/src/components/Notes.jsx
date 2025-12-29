@@ -5,7 +5,6 @@ import NoteList from "./NoteList";
 
 function Notes({
   selectedNote,
-  setEmptyState,
   emptyState,
   hasFetched,
   resetNoteForm,
@@ -13,7 +12,6 @@ function Notes({
   notes,
   notesInfoMessage,
   fetchSingleNote,
-  setSelectedNote,
 }) {
   return (
     <div className="notes">
