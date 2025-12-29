@@ -7,24 +7,7 @@ import restore from "../assets/images/icon-restore.svg";
 import back from "../assets/images/icon-arrow-left.svg";
 import "../components/NoteActions.css";
 
-function NoteActions({
-  createFolder,
-  setView,
-  selectedFilter,
-  setSelectedFilter,
-  openModal,
-  selectedNote,
-  actionFunc,
-  archiveNote,
-  deleteNote,
-  navigateBack,
-  fetchNotes,
-  setSelectedNote,
-}) {
-  const updateAction = (action) => {
-    actionFunc(action);
-  };
-
+function NoteActions({ openModal, selectedNote, navigateBack }) {
   const confirmText = selectedNote?.archived ? "Restore Note" : "Archive Note";
   const confirmIcon = selectedNote?.archived ? restore : archive;
 
@@ -55,8 +38,9 @@ function NoteActions({
           <button
             onClick={() => {
               openModal({
+                //come here change is not smooth
                 type: "restore-note",
-                title: "Archive Note",
+                title: "Restore Note",
                 image: restoreIcon,
                 confirmText: "Restore Note",
                 payload: { noteId: selectedNote.id },

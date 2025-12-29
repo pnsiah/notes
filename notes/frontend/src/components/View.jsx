@@ -86,15 +86,8 @@ function View({
         <>
           <NoteActions
             openModal={openModal}
-            setSelectedNote={setSelectedNote}
             selectedNote={selectedNote}
             navigateBack={navigateBack}
-            setView={setView}
-            fetchNotes={fetchNotes}
-            selectedFilter={selectedFilter}
-            setSelectedFilter={setSelectedFilter}
-            deleteNote={deleteNote}
-            archiveNote={archiveNote}
           />
           <NoteForm
             createNote={createNote}
