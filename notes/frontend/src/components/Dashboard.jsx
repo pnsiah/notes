@@ -510,7 +510,6 @@ function Dashboard(props) {
         <Sidebar
           setHeading={setHeading}
           setSelectedFolder={setSelectedFolder}
-          setSearchQuery={setSearchQuery}
           highlight={highlight}
           setHighlight={setHighlight}
           selectedTag={selectedTag}
@@ -545,9 +544,7 @@ function Dashboard(props) {
             hasFetched={hasFetched}
             resetNoteForm={resetNoteForm}
             setView={setView}
-            setSelectedNote={setSelectedNote}
             fetchSingleNote={fetchSingleNote}
-            setEmptyState={setEmptyState}
             emptyState={emptyState}
             notes={notes}
           />
@@ -565,15 +562,7 @@ function Dashboard(props) {
             />
           )}
           {showActions && (
-            <NoteActions
-              setSelectedNote={setSelectedNote}
-              selectedNote={selectedNote}
-              setView={setView}
-              deleteNote={deleteNote}
-              archiveNote={archiveNote}
-              createFolder={createFolder}
-              openModal={openModal}
-            />
+            <NoteActions selectedNote={selectedNote} openModal={openModal} />
           )}
         </div>
       </div>

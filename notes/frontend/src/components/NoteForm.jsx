@@ -17,7 +17,7 @@ function NoteForm({ selectedNote, userFolders, createNote, updateNote }) {
     content: false,
   });
 
-  const { addNotification } = useContext(NotificationContext);
+  // const { addNotification } = useContext(NotificationContext);
 
   useEffect(() => {
     if (selectedNote) {
