@@ -221,7 +221,7 @@ function Dashboard(props) {
 
       setNotes(result.notes);
 
-      if (result.notes.length === 0) {
+      if (!result.notes || result.notes.length === 0) {
         setEmptyState({ message: "No notes found for this tag" });
       }
     } catch (e) {
@@ -250,7 +250,7 @@ function Dashboard(props) {
 
       setNotes(result.notes);
 
-      if (result.notes.length === 0) {
+      if (!result.notes || result.notes.length === 0) {
         setEmptyState({ message: "No notes found in this folder" });
       }
     } catch (e) {
@@ -259,16 +259,36 @@ function Dashboard(props) {
     }
   };
 
+  // const fetchFolders = async () => {
+  //   try {
+  //     const response = await fetch("http://localhost:8000/api/list_folders/", {
+  //       method: "GET",
+  //       credentials: "include",
+  //     });
+  //     const result = await response.json();
+  //     setFolders(result.folders);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
   const fetchFolders = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/list_folders/", {
+      const response = await fetch("http://localhost:8000/api/get_folders/", {
         method: "GET",
         credentials: "include",
       });
+
       const result = await response.json();
-      setFolders(result.folders);
+
+      if (!result.status) {
+        addNotification(result.message || "Failed to fetch folders.", true);
+        return;
+      }
+
+      setFolders(result.folders || []);
     } catch (e) {
-      console.log(e);
+      console.error("Failed to fetch folders:", e);
+      addNotification("Failed to fetch folders. Please try again.", true);
     }
   };
 

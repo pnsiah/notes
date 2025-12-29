@@ -485,13 +485,17 @@ def search_notes(request):
     return JsonResponse({"status": False, "message": "Invalid request"}, status=405)
 
 
-def list_folders(request):
-    if request.method == "GET":
-        folders = Folder.objects.filter(user=request.user).values("id", "name")
-        return JsonResponse(
-            {"status": True, "message": "Folders retrieved", "folders": list(folders)},
-            status=200,
-        )
+@require_GET
+def get_folders(request):
+    if not request.user.is_authenticated:
+        return error_response("Authentication required", status=401)
 
-    else:
-        return JsonResponse({"status": False, "message": "Invalid request"}, status=405)
+    folders = Folder.objects.filter(user=request.user).values("id", "name")
+    return JsonResponse(
+        {
+            "status": True,
+            "message": "Folders retrieved",
+            "folders": list(folders),
+        },
+        status=200,
+    )
