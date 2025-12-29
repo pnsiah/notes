@@ -202,6 +202,9 @@ function Dashboard(props) {
   };
 
   const getNotesByTag = async (tag_id) => {
+    //clear search if any
+    setSearchQuery("");
+
     try {
       const response = await fetch(
         `http://localhost:8000/api/get_notes_by_tags/?tag_id=${tag_id}`,
@@ -231,6 +234,9 @@ function Dashboard(props) {
   };
 
   const getNotesByFolder = async (folder_id) => {
+    //clear search if any
+    setSearchQuery("");
+
     try {
       const response = await fetch(
         `http://localhost:8000/api/get_notes_by_folder/?folder_id=${folder_id}`,
