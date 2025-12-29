@@ -10,17 +10,13 @@ import "./SideBar.css";
 
 function Sidebar({
   setHeading,
-  getNotesByFolder,
   setSelectedFolder,
-  setSearchQuery,
   setHighlight,
   highlight,
   goToAllNotes,
   goToArchivedNotes,
   setView,
-  selectedTag,
   setSelectedTag,
-  getNotesByTag,
   selectedFilter,
   setSelectedFilter,
   folders,
@@ -66,9 +62,7 @@ function Sidebar({
           setSelectedFilter={setSelectedFilter}
           setHighlight={setHighlight}
           setView={setView}
-          selectedTag={selectedTag}
           setSelectedTag={setSelectedTag}
-          getNotesByTag={getNotesByTag}
           tags={tags}
         />
         <FolderList
@@ -77,7 +71,6 @@ function Sidebar({
           setView={setView}
           setHighlight={setHighlight}
           setSelectedFolder={setSelectedFolder}
-          getNotesByFolder={getNotesByFolder}
           folders={folders}
         />
       </div>
