@@ -2,12 +2,12 @@ import Notes from "./Notes";
 import TagList from "./TagList";
 import FilteredNotes from "./FilteredNotes";
 import NoteForm from "./NoteForm";
-import NoteList from "./NoteList.jsx";
+// import NoteList from "./NoteList.jsx";
 import FolderList from "./FolderList";
-import Settings from "./Settings.jsx";
+// import Settings from "./Settings.jsx";
 import Search from "./Search";
 import "../components/View.css";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import NoteActions from "./NoteActions";
 
 function View({
@@ -152,14 +152,9 @@ function View({
       {view === "taggedNotes" && (
         <>
           <FilteredNotes
-            filterType="taggedNotes"
             emptyState={emptyState}
             selectedItem={selectedTag}
-            // setSelectedFilter={setSelectedFilter}
-            setSelectedTag={setSelectedTag}
             getNotes={getNotesByTag}
-            selectedTag={selectedTag}
-            getNotesByTag={getNotesByTag}
             selectedNote={selectedNote}
             setView={setView}
             notes={notes}
@@ -171,14 +166,9 @@ function View({
       {view === "folderNotes" && (
         <>
           <FilteredNotes
-            filterType="folderNotes"
             emptyState={emptyState}
             selectedItem={selectedFolder}
-            // setSelectedFilter={setSelectedFilter}
-            setSelectedTag={setSelectedTag}
             getNotes={getNotesByFolder}
-            selectedTag={selectedTag}
-            getNotesByTag={getNotesByTag}
             selectedNote={selectedNote}
             setView={setView}
             notes={notes}
