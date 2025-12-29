@@ -1,5 +1,6 @@
 from .models import Note, Tag
 from django.http import JsonResponse
+from functools import wraps
 
 
 def save_note_with_tags(user, note, tag_list):
@@ -49,3 +50,15 @@ def serialize_single_note(note):
 
 def error_response(message, status=400):
     return JsonResponse({"status": False, "message": message}, status=status)
+
+
+def require_auth(view_func):
+    @wraps(view_func)
+    def wrapper(request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return JsonResponse(
+                {"status": False, "message": "Authentication required"}, status=401
+            )
+        return view_func(request, *args, **kwargs)
+
+    return wrapper

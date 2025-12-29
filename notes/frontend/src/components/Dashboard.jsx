@@ -89,8 +89,6 @@ function Dashboard(props) {
     setTags(result.tags);
     setNotes(result.notes);
     setHasFetched(true);
-
-    // setSelectedNote(result.notes[0]);
   };
 
   useEffect(() => {

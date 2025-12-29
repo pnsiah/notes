@@ -13,6 +13,7 @@ from .utils import (
     serialize_notes,
     error_response,
     serialize_single_note,
+    require_auth,
 )
 
 
@@ -91,50 +92,46 @@ def logout_view(request):
 
 
 @csrf_exempt
+@require_auth
 def dashboard(request):
-    if request.method == "GET":
-        if request.user.is_authenticated:
-            user = request.user
+    if request.method != "GET":
+        return error_response("Invalid request method", status=400)
 
-            notes = (
-                Note.objects.filter(user=user, archived=False)
-                .prefetch_related("tags")
-                .order_by("-created_at")
-            )
+    user = request.user
 
-            user_tags = Tag.objects.filter(user=user)
-            user_folders = Folder.objects.filter(user=user)
-            serialized_notes = serialize_notes(notes)
+    notes = (
+        Note.objects.filter(user=user, archived=False)
+        .prefetch_related("tags")
+        .order_by("-created_at")
+    )
+    user_tags = Tag.objects.filter(user=user)
 
-            serialized_tags = [{"id": tag.id, "name": tag.name} for tag in user_tags]
-            serialized_folders = [
-                {"id": folder.id, "name": folder.name} for folder in user_folders
-            ]
+    user_folders = Folder.objects.filter(user=user)
+    serialized_notes = serialize_notes(notes)
 
-            return JsonResponse(
-                {
-                    "status": True,
-                    "user_data": {
-                        "id": user.id,
-                        "username": user.username,
-                        "email": user.email,
-                    },
-                    "notes": serialized_notes,
-                    "tags": serialized_tags,
-                    "folders": serialized_folders,
-                }
-            )
-        else:
-            return JsonResponse(
-                {"status": False, "message": "Not authenticated"}, status=401
-            )
+    serialized_tags = [{"id": tag.id, "name": tag.name} for tag in user_tags]
+    serialized_folders = [
+        {"id": folder.id, "name": folder.name} for folder in user_folders
+    ]
 
     return JsonResponse(
-        {"status": False, "message": "Invalid request method"}, status=400
+        {
+            "status": True,
+            "user_data": {
+                "id": user.id,
+                "username": user.username,
+                "email": user.email,
+            },
+            "notes": serialized_notes,
+            "tags": serialized_tags,
+            "folders": serialized_folders,
+        },
+        status=200,
     )
 
 
 @csrf_exempt
+@require_auth
 def create_note(request):
     if request.method == "POST":
         data = json.loads(request.body)
@@ -175,6 +172,7 @@ def create_note(request):
 
 
 @csrf_exempt
+@require_auth
 def update_note(request, note_id):
     if request.method != "PUT":
         return error_response("Invalid request method", status=405)
@@ -239,6 +237,7 @@ def update_note(request, note_id):
 
 
 @csrf_exempt
+@require_auth
 def delete_note(request, note_id):
     if request.method != "DELETE":
         return error_response("Invalid request", status=405)
@@ -273,6 +272,7 @@ def delete_note(request, note_id):
 
 
 @csrf_exempt
+@require_auth
 def archive_note(request, note_id):
     if request.method != "PUT":
         return error_response("Invalid request method", status=405)
@@ -291,36 +291,30 @@ def archive_note(request, note_id):
     return JsonResponse({"status": True, "message": message}, status=200)
 
 
-@require_GET
+@require_auth
 def get_notes(request):
-    if not request.user.is_authenticated:
-        return error_response("Authentication required", status=401)
+    if request.method != "GET":
+        return error_response("Invalid request method", status=405)
 
     filter_type = request.GET.get("filter", "all")
-
     notes = (
         Note.objects.filter(user=request.user)
         .prefetch_related("tags")
         .order_by("-created_at")
     )
-
     if filter_type == "archived":
         notes = notes.filter(archived=True)
     else:
         notes = notes.filter(archived=False)
-
     serialized_notes = serialize_notes(notes)
-
     return JsonResponse({"status": True, "notes": serialized_notes})
 
 
 @csrf_exempt
+@require_auth
 def create_folder(request):
     if request.method != "POST":
         return error_response("Invalid request method", status=405)
-
-    if not request.user.is_authenticated:
-        return error_response("Authentication required", status=401)
 
     data = json.loads(request.body)
     folder_name = data.get("folder", "").strip()
@@ -343,6 +337,7 @@ def create_folder(request):
 
 
 @csrf_exempt
+@require_auth
 def get_notes_by_tags(request):
     if request.method != "GET":
         return error_response("Invalid request method", status=405)
@@ -365,6 +360,7 @@ def get_notes_by_tags(request):
 
 
 @csrf_exempt
+@require_auth
 def get_notes_by_folder(request):
     if request.method != "GET":
         return error_response("Invalid request method", status=405)
@@ -384,6 +380,7 @@ def get_notes_by_folder(request):
     )
 
 
+@require_auth
 def list_archived_notes(request):
     if request.method == "GET":
         notes = Note.objects.filter(user=request.user, archived=True).prefetch_related(
@@ -417,10 +414,8 @@ def list_archived_notes(request):
         )
 
 
+@require_auth
 def get_tags(request):
-    if not request.user.is_authenticated:
-        return error_response("Authentication required", status=401)
-
     if request.method != "GET":
         return error_response("Invalid request method", status=405)
 
@@ -436,21 +431,17 @@ def get_tags(request):
     )
 
 
-def restore_note(request):
-    pass
-
-
-@require_GET
+@require_auth
 def fetch_note(request, note_id):
+    if request.method != "GET":
+        return error_response("Invalid request method", status=405)
+
     try:
         note = Note.objects.get(id=note_id, user=request.user)
-
     except Note.DoesNotExist:
         return error_response("Note not found.", status=404)
 
-    #  Return serialized note
     serialized_note = serialize_single_note(note)
-    print("serialized note", serialized_note)
     return JsonResponse(
         {
             "status": True,
@@ -461,10 +452,8 @@ def fetch_note(request, note_id):
     )
 
 
+@require_auth
 def search_notes(request):
-    if not request.user.is_authenticated:
-        return error_response("Authentication required", status=401)
-
     if request.method != "GET":
         return error_response("Invalid request method", status=405)
 
@@ -494,10 +483,10 @@ def search_notes(request):
     )
 
 
-@require_GET
+@require_auth
 def get_folders(request):
-    if not request.user.is_authenticated:
-        return error_response("Authentication required", status=401)
+    if request.method != "GET":
+        return error_response("Invalid request method", status=405)
 
     folders = Folder.objects.filter(user=request.user).values("id", "name")
     return JsonResponse(
