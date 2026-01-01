@@ -1,5 +1,4 @@
 import Search from "./Search";
-import Logo from "./Logo";
 import "../components/Header.css";
 
 function Header({ heading }) {

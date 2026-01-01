@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import NoteList from "./NoteList";
-import Notes from "./Notes";
 import "./FilteredNotes.css";
 
 function FilteredNotes({

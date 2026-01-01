@@ -5,7 +5,6 @@ import Logo from "./Logo";
 import home from "../assets/images/icon-home.svg";
 import archived from "../assets/images/icon-archive.svg";
 import arrow_right from "../assets/images/icon-chevron-right.svg";
-import tag from "../assets/images/icon-tag.svg";
 import "./SideBar.css";
 
 function Sidebar({

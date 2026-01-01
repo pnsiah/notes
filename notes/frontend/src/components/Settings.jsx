@@ -31,6 +31,7 @@ function Settings({ logOut }) {
         <div className="settings-popup">
           <div className="settings-section">
             <p className="settings-label">Account</p>
+            <div className="settings-divider" />
             <button onClick={logOut} className="settings-item">
               <span className="item-icon">🔑</span>
               <span>Log Out</span>
