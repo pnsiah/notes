@@ -562,7 +562,11 @@ function Dashboard(props) {
             />
           )}
           {showActions && (
-            <NoteActions selectedNote={selectedNote} openModal={openModal} />
+            <NoteActions
+              selectedFilter={selectedFilter}
+              selectedNote={selectedNote}
+              openModal={openModal}
+            />
           )}
         </div>
       </div>

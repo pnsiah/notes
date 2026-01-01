@@ -28,6 +28,7 @@ def serialize_notes(notes):
             "content": note.content,
             "date_created": note.created_at.strftime("%d %B %Y"),
             "last_edited": format_last_edited(note),
+            "archived": note.archived,
             "tags": [tag.name for tag in note.tags.all()],
             "folder": note.folder.id if note.folder else "",
         }

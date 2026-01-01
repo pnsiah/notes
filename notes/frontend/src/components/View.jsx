@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import NoteActions from "./NoteActions";
 
 function View({
+  selectedFilter,
   setHeading,
   setShowHeading,
   emptyState,
@@ -81,6 +82,7 @@ function View({
       {view === "form" && (
         <>
           <NoteActions
+            selectedFilter={selectedFilter}
             openModal={openModal}
             selectedNote={selectedNote}
             navigateBack={navigateBack}

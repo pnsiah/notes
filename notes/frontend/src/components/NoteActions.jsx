@@ -7,9 +7,20 @@ import restore from "../assets/images/icon-restore.svg";
 import back from "../assets/images/icon-arrow-left.svg";
 import "../components/NoteActions.css";
 
-function NoteActions({ openModal, selectedNote, navigateBack }) {
+function NoteActions({
+  openModal,
+  selectedFilter,
+  selectedNote,
+  navigateBack,
+}) {
   const confirmText = selectedNote?.archived ? "Restore Note" : "Archive Note";
   const confirmIcon = selectedNote?.archived ? restore : archive;
+  // const confirmText =
+  //   selectedFilter === "archive" || selectedNote?.archived
+  //     ? "Restore Note"
+  //     : "Archive Note";
+  // const confirmIcon =
+  //   selectedFilter === "archive" || selectedNote?.archived ? restore : archive;
 
   return (
     <div className="note-actions">
