@@ -8,6 +8,10 @@
   border-radius: 8px;
 }
 
+.profile-icon {
+  width: 24px;
+}
+
 .settings-icon:hover {
   background: var(--neutral-300);
 }
