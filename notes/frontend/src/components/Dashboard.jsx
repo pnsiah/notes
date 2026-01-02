@@ -463,7 +463,7 @@ function Dashboard(props) {
       <div className="small">
         <div className="top-bar">
           <Logo />
-          <Settings logOut={handleLogOut} />
+          <Settings userName={userData.username} logOut={handleLogOut} />
         </div>
         {showHeading && <Header heading={heading} />}
         <View
@@ -536,7 +536,7 @@ function Dashboard(props) {
               searchNotes={searchNotes}
               fetchNotes={fetchNotes}
             />
-            <Settings logOut={handleLogOut} />
+            <Settings userName={userData.username} logOut={handleLogOut} />
           </div>
           <Notes
             selectedNote={selectedNote}
