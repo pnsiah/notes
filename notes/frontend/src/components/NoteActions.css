@@ -46,7 +46,7 @@
   display: none;
 }
 
-@media (min-width: 728px) {
+@media (min-width: 768px) {
   .note-actions__back {
     display: none;
   }
