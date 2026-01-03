@@ -1,9 +1,16 @@
 import "../components/Modal.css";
 import { useState } from "react";
 
-function Modal({ closeModal, modal, archiveNote, deleteNote, createFolder }) {
+function Modal({
+  closeModal,
+  modalData,
+  isOpen,
+  archiveNote,
+  deleteNote,
+  createFolder,
+}) {
   const [folderName, setFolderName] = useState("");
-  const { type, title, image, confirmText, payload } = modal;
+  const { type, title, image, confirmText, payload } = modalData;
 
   const renderModalBody = (type) => {
     switch (type) {
@@ -48,16 +55,15 @@ function Modal({ closeModal, modal, archiveNote, deleteNote, createFolder }) {
   };
 
   const handleConfirm = () => {
-    if (!modal) return;
+    if (!modalData) return;
 
-    switch (modal.type) {
+    switch (modalData.type) {
       case "delete-note":
         deleteNote(payload.noteId);
         break;
 
       case "archive-note":
         archiveNote(payload.noteId);
-        console.log("id here", payload.noteId);
         break;
 
       case "restore-note":
@@ -70,7 +76,7 @@ function Modal({ closeModal, modal, archiveNote, deleteNote, createFolder }) {
         break;
 
       default:
-        console.warn("Unknown modal type:", modal.type);
+        console.warn("Unknown modal type:", modalData.type);
     }
 
     closeModal();

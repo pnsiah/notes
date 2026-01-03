@@ -75,7 +75,6 @@ function Dashboard(props) {
     setSelectedFilter("archived");
     setHighlight("archived");
     setHeading("Archived Notes");
-    // fetchNotes("archived");
   };
 
   const fetchUserData = async () => {
@@ -303,7 +302,7 @@ function Dashboard(props) {
       }
 
       addNotification(result.message);
-      await fetchNotes();
+      await fetchNotes(selectedFilter);
     } catch (err) {
       console.error("Error archiving note:", err);
       addNotification("Failed to archive note. Please try again.", true);
@@ -456,8 +455,8 @@ function Dashboard(props) {
           archiveNote={archiveNote}
           createFolder={createFolder}
           closeModal={closeModal}
-          isModalOpen={isModalOpen}
-          modal={modalData}
+          isOpen={isModalOpen}
+          modalData={modalData}
         />
       )}
       <div className="small">
