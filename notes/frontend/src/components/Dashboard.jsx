@@ -41,7 +41,7 @@ function Dashboard(props) {
     message: "",
   });
   const [selectedNote, setSelectedNote] = useState(null);
-  const [showActions, setshowActions] = useState(true);
+  // const [showActions, setshowActions] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
 
@@ -75,7 +75,6 @@ function Dashboard(props) {
     setSelectedFilter("archived");
     setHighlight("archived");
     setHeading("Archived Notes");
-    // fetchNotes("archived");
   };
 
   const fetchUserData = async () => {
@@ -303,7 +302,7 @@ function Dashboard(props) {
       }
 
       addNotification(result.message);
-      await fetchNotes();
+      await fetchNotes(selectedFilter);
     } catch (err) {
       console.error("Error archiving note:", err);
       addNotification("Failed to archive note. Please try again.", true);
@@ -456,8 +455,8 @@ function Dashboard(props) {
           archiveNote={archiveNote}
           createFolder={createFolder}
           closeModal={closeModal}
-          isModalOpen={isModalOpen}
-          modal={modalData}
+          isOpen={isModalOpen}
+          modalData={modalData}
         />
       )}
       <div className="small">
@@ -561,13 +560,11 @@ function Dashboard(props) {
               selectedNote={selectedNote}
             />
           )}
-          {showActions && (
-            <NoteActions
-              selectedFilter={selectedFilter}
-              selectedNote={selectedNote}
-              openModal={openModal}
-            />
-          )}
+          <NoteActions
+            selectedFilter={selectedFilter}
+            selectedNote={selectedNote}
+            openModal={openModal}
+          />
         </div>
       </div>
     </div>
