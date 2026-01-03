@@ -11,3 +11,34 @@ This project is distinct from other projects in this course due to both its arch
 The application supports advanced note management features, including creating, archiving, restoring, and deleting notes, as well as organizing notes using folders and tags. Users can search and filter notes based on tags, folders, and note content, which requires coordinated state management and dynamic updates on the frontend.
 
 On the frontend, React is used to provide a highly interactive user experience, including real-time updates, modal-based confirmations, and conditional rendering based on application state. The user interface is built with CSS only, without external styling frameworks, and follows a mobile-first responsive design approach, with layout adjustments based on screen size to ensure usability across different devices.
+
+## Setup and Usage
+
+### Requirements
+
+- **Python 3.10+**
+- **Django 5.2.7**
+- **Node.js 18+**
+- **React 19.1.1**
+- **SQLite** (default Django database)
+
+### Installation and Running the Application
+
+```bash
+# Backend setup
+cd notes
+pip install django==5.2.7
+python manage.py makemigrations
+
+python manage.py migrate
+python manage.py runserver
+
+
+# Frontend setup (open a new terminal)
+
+cd frontend
+npm install
+npm run dev
+
+# Open the link shown in the terminal to access the application
+```
