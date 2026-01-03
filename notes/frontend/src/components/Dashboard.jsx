@@ -41,7 +41,7 @@ function Dashboard(props) {
     message: "",
   });
   const [selectedNote, setSelectedNote] = useState(null);
-  const [showActions, setshowActions] = useState(true);
+  // const [showActions, setshowActions] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
 
@@ -561,13 +561,11 @@ function Dashboard(props) {
               selectedNote={selectedNote}
             />
           )}
-          {showActions && (
-            <NoteActions
-              selectedFilter={selectedFilter}
-              selectedNote={selectedNote}
-              openModal={openModal}
-            />
-          )}
+          <NoteActions
+            selectedFilter={selectedFilter}
+            selectedNote={selectedNote}
+            openModal={openModal}
+          />
         </div>
       </div>
     </div>
