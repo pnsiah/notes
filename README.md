@@ -22,23 +22,49 @@ On the frontend, React is used to provide a highly interactive user experience, 
 - **React 19.1.1**
 - **SQLite** (default Django database)
 
+<!-- ### Installation and Running the Application -->
+<!---->
+<!-- ```bash -->
+<!-- # Backend setup -->
+<!-- cd notes -->
+<!-- pip install django==5.2.7 -->
+<!-- python manage.py makemigrations -->
+<!---->
+<!-- python manage.py migrate -->
+<!-- python manage.py runserver -->
+<!---->
+<!---->
+<!-- # Frontend setup (open a new terminal) -->
+<!---->
+<!-- cd frontend -->
+<!-- npm install -->
+<!-- npm run dev -->
+<!---->
+<!-- # Open the link shown in the terminal to access the application -->
+<!-- ``` -->
+
 ### Installation and Running the Application
 
-```bash
-# Backend setup
-cd notes
-pip install django==5.2.7
-python manage.py makemigrations
+1. Navigate to the backend directory:
+   `cd notes`
 
-python manage.py migrate
-python manage.py runserver
+2. Install backend dependencies:
+   `pip install django==5.2.7`
 
+3. Create and apply database migrations:
+   `python manage.py makemigrations`  
+   `python manage.py migrate`
 
-# Frontend setup (open a new terminal)
+4. Start the Django development server:
+   `python manage.py runserver`
 
-cd frontend
-npm install
-npm run dev
+5. Open a new terminal and navigate to the frontend directory:
+   `cd frontend`
 
-# Open the link shown in the terminal to access the application
-```
+6. Install frontend dependencies:
+   `npm install`
+
+7. Start the React development server:
+   `npm run dev`
+
+8. Open the link displayed in the terminal after the React app starts to access the application in your browser.
