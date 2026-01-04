@@ -68,3 +68,22 @@ npm run dev
 <!--    `npm run dev` -->
 <!---->
 <!-- 8. Open the link displayed in the terminal after the React app starts to access the application in your browser. -->
+
+## Files and Directories
+
+- final project: main project directory
+- venv: virtual environment
+- notes: projects files
+- api: backend folder or django app
+- **pycache**/:cache files
+- migrations/: migration folder
+- static/
+- index.html: index file just to show something not really being used
+- **init**.py: empty makes this a package
+- admin.py: register models the admin has access to
+- apps.py: contains app config
+- models.py: models for the app
+- tests.py: to write tests
+- urls.py: api endpoints
+- utils.py: helper functions.
+- views.py: view function that handles backend logic
