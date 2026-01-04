@@ -68,3 +68,89 @@ npm run dev
 <!--    `npm run dev` -->
 <!---->
 <!-- 8. Open the link displayed in the terminal after the React app starts to access the application in your browser. -->
+
+## Files and Directories
+
+- **final-project/**: Root directory of the project
+- **venv/**: Python virtual environment
+- **notes/**: Django project directory
+- **api/**: Django application containing the backend logic and APIs
+- **frontend/**: React application responsible for frontend interactivity
+- \***\*pycache**/\*\*: Python cache files
+- **migrations/**: Database migration files
+- **static/**: Static assets used by the application
+- **index.html**: Placeholder index file (not actively used in the application)
+- **manage.py**: Django command-line utility for administrative tasks
+- **db.sqlite3**: SQLite database file used by the application
+
+### Django Application Files (`api/`)
+
+- \***\*init**.py\*\*: Marks the directory as a Python package
+- **admin.py**: Registers models for access via the Django admin interface
+- **apps.py**: Application configuration
+- **models.py**: Defines database models for the application
+- **tests.py**: Contains automated tests
+- **urls.py**: Defines API endpoint routes
+- **utils.py**: Helper and utility functions
+- **views.py**: View functions that handle backend logic and API responses
+
+### React Application (`frontend/`)
+
+- node_modules/: node modules
+- public/ : image
+- src/: assets and component directories
+- assets/
+  -- images/: contains images
+- components/
+  - Auth.css
+  - Dashboard.jsx: main logic and render the dashboard for notes
+  - EmptyNotes.jsx: empty notes components
+  - FilteredNotes.css
+  - FilteredNotes.jsx: filteredNotes by type based on whether it is filtered by tags or folders
+  - FolderList.css
+  - FolderList.jsx: list user folders
+  - Header.css
+  - Header.jsx: header component that tells the heading of the page on small screen or what is being clicked on big screen
+  - Login.jsx: handling login of users
+  - Logo.css
+  - Logo.jsx: logo of the notes app
+  - Modal.css
+  - Modal.jsx: handles modal body and confirm function or what the modal open does whether create folder, arhive notes or restore notes.
+  - NavBar.css
+  - NavBar.jsx: contains the nav items on small screen
+  - NavItem.css
+  - NavItem.jsx : buttons that switches views on small screen like showing user the selected note, all notes list and archive notes list, filtered notes.
+  - NoteActions.css
+  - NoteActions.jsx:
+  - NoteForm.css
+  - NoteForm.jsx
+  - NoteList.css
+  - NoteList.jsx
+  - Notes.css
+  - Notes.jsx
+  - Notification.css
+  - Notification.jsx
+  - NotificationContext.jsx
+  - Search.css
+  - Search.jsx
+  - Settings.css
+  - Settings.jsx
+  - SideBar.css
+  - Sidebar.jsx
+  - Signup.jsx
+  - TagList.css
+  - TagList.jsx
+  - View.css
+  - View.jsx
+  - dashboard.css
+- App.css
+- App.jsx
+- index.css
+- main.jsx
+- .gitignore
+- README.md
+- eslint.config.js
+- index.html
+- package-lock.json
+- package.json
+- vite.config.js
