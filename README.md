@@ -144,7 +144,8 @@ npm run dev
   - View.jsx: responsible for switching the view or dynamically showing different content on small screen
   - dashboard.css
 - App.css
-- App.jsx
+- App.jsx: handles what the users see whether the login page,sign up pages or dashboard. setts page something like router or switching between pages that give the illusion of loading different pages
+
 - index.css
 - main.jsx
 - .gitignore
