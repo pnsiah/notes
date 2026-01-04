@@ -71,19 +71,22 @@ npm run dev
 
 ## Files and Directories
 
-- final project: main project directory
-- venv: virtual environment
-- notes: projects files
-- api: backend folder or django app
-- **pycache**/:cache files
-- migrations/: migration folder
-- static/
-- index.html: index file just to show something not really being used
-- **init**.py: empty makes this a package
-- admin.py: register models the admin has access to
-- apps.py: contains app config
-- models.py: models for the app
-- tests.py: to write tests
-- urls.py: api endpoints
-- utils.py: helper functions.
-- views.py: view function that handles backend logic
+- **final-project/**: Root directory of the project
+- **venv/**: Python virtual environment
+- **notes/**: Django project directory
+- **api/**: Django application containing the backend logic and APIs
+- \***\*pycache**/\*\*: Python cache files
+- **migrations/**: Database migration files
+- **static/**: Static assets used by the application
+- **index.html**: Placeholder index file (not actively used in the application)
+
+### Django Application Files (`api/`)
+
+- \***\*init**.py\*\*: Marks the directory as a Python package
+- **admin.py**: Registers models for access via the Django admin interface
+- **apps.py**: Application configuration
+- **models.py**: Defines database models for the application
+- **tests.py**: Contains automated tests
+- **urls.py**: Defines API endpoint routes
+- **utils.py**: Helper and utility functions
+- **views.py**: View functions that handle backend logic and API responses
