@@ -96,61 +96,52 @@ npm run dev
 
 ### React Application (`frontend/`)
 
-- node_modules/: node modules
-- public/ : image
-- src/: assets and component directories
-- assets/
-  -- images/: contains images
-- components/
-  - Auth.css
-  - Dashboard.jsx: main logic and render the dashboard for notes
-  - EmptyNotes.jsx: empty notes components
-  - FilteredNotes.css
-  - FilteredNotes.jsx: filteredNotes by type based on whether it is filtered by tags or folders
-  - FolderList.css
-  - FolderList.jsx: list user folders
-  - Header.css
-  - Header.jsx: header component that tells the heading of the page on small screen or what is being clicked on big screen
-  - Login.jsx: handling login of users
-  - Logo.css
-  - Logo.jsx: logo of the notes app
-  - Modal.css
-  - Modal.jsx: handles modal body and confirm function or what the modal open does whether create folder, arhive notes or restore notes.
-  - NavBar.css
-  - NavBar.jsx: contains the nav items on small screen
-  - NavItem.css
-  - NavItem.jsx : buttons that switches views on small screen like showing user the selected note, all notes list and archive notes list, filtered notes.
-  - NoteActions.css
-  - NoteActions.jsx: buttons to call open modals to create folder, archive and restore notes and navigate back on small screen
-  - NoteForm.css
-  - NoteForm.jsx: Handles the creating and updating notes. also show notes
-  - NoteList.css
-  - NoteList.jsx: List notes whether filtered or all notes
-  - Notes.css
-  - Notes.jsx: house noteslist and create new notes button
-  - Notification.css
-  - Notification.jsx: handles display notifcations
-  - NotificationContext.jsx: handles context to have notes available for all components.
-  - Search.css
-  - Search.jsx: handles searching notes by title, tags, or content.
-  - Settings.css
-  - Settings.jsx: handles showing username and logging out.
-  - SideBar.css
-  - Sidebar.jsx: contains logo and notes filters, tags and folders
-  - Signup.jsx: handles registering a new user
-  - TagList.css
-  - TagList.jsx: list all user note tags,
-  - View.css
-  - View.jsx: responsible for switching the view or dynamically showing different content on small screen
-  - dashboard.css
-- App.css
-- App.jsx
-- index.css
-- main.jsx
-- .gitignore
-- README.md
-- eslint.config.js
-- index.html
-- package-lock.json
-- package.json
-- vite.config.js
+- **node_modules/**: Installed frontend dependencies
+- **public/**: Public assets such as images
+- **src/**: Contains application source code, assets, and React components
+
+#### Assets
+
+- **assets/images/**: Image assets used in the application
+
+#### Components
+
+The `components/` directory contains all React components responsible for UI rendering and frontend logic.  
+Each component has a corresponding CSS file used for styling.
+
+- **Dashboard.jsx**: Main dashboard component responsible for rendering and managing notes
+- **EmptyNotes.jsx**: Displays a placeholder when no notes are available
+- **FilteredNotes.jsx**: Displays notes filtered by tags or folders
+- **FolderList.jsx**: Renders the list of user folders
+- **Header.jsx**: Displays the current view title and page heading
+- **Login.jsx**: Handles user authentication (login)
+- **Logo.jsx**: Displays the application logo
+- **Modal.jsx**: Handles modal rendering and confirmation logic for actions such as creating folders, archiving, restoring, or deleting notes
+- **NavBar.jsx**: Navigation bar for small screen devices
+- **NavItem.jsx**: Navigation buttons used to switch views on smaller screens
+- **NoteActions.jsx**: Provides action buttons for creating folders, archiving, restoring notes, and navigating back on small screens
+- **NoteForm.jsx**: Handles creating and updating notes, and displays note content
+- **NoteList.jsx**: Renders the list of notes (all notes or filtered notes)
+- **Notes.jsx**: Parent component that manages the notes list and new note creation
+- **Notification.jsx**: Displays notification messages to the user
+- **NotificationContext.jsx**: Provides global notification state across components using React Context
+- **Search.jsx**: Handles searching notes by title, tags, or content
+- **Settings.jsx**: Displays user settings such as username and logout functionality
+- **Sidebar.jsx**: Contains navigation filters, folders, and tags
+- **Signup.jsx**: Handles user registration
+- **TagList.jsx**: Displays a list of all user tags
+- **View.jsx**: Controls dynamic view switching and conditional rendering on small screens
+
+#### Root Files
+
+- **App.jsx**: Main application component that controls page rendering (login, signup, dashboard) and handles view switching
+- **App.css**: Global styles for the application
+- **index.css**: CSS reset and global CSS variables
+- **main.jsx**: Application entry point
+- **index.html**: Root HTML file used to mount the React application
+- **package.json**: Frontend dependencies and scripts
+- **package-lock.json**: Locked dependency versions
+- **vite.config.js**: Vite configuration file
+- **eslint.config.js**: ESLint configuration generated by Vite
+- **.gitignore**: Files and directories ignored by Git
+- **README.md**: Frontend documentation
