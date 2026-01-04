@@ -121,27 +121,27 @@ npm run dev
   - NavItem.css
   - NavItem.jsx : buttons that switches views on small screen like showing user the selected note, all notes list and archive notes list, filtered notes.
   - NoteActions.css
-  - NoteActions.jsx:
+  - NoteActions.jsx: buttons to call open modals to create folder, archive and restore notes and navigate back on small screen
   - NoteForm.css
-  - NoteForm.jsx
+  - NoteForm.jsx: Handles the creating and updating notes. also show notes
   - NoteList.css
-  - NoteList.jsx
+  - NoteList.jsx: List notes whether filtered or all notes
   - Notes.css
-  - Notes.jsx
+  - Notes.jsx: house noteslist and create new notes button
   - Notification.css
-  - Notification.jsx
-  - NotificationContext.jsx
+  - Notification.jsx: handles display notifcations
+  - NotificationContext.jsx: handles context to have notes available for all components.
   - Search.css
-  - Search.jsx
+  - Search.jsx: handles searching notes by title, tags, or content.
   - Settings.css
-  - Settings.jsx
+  - Settings.jsx: handles showing username and logging out.
   - SideBar.css
-  - Sidebar.jsx
-  - Signup.jsx
+  - Sidebar.jsx: contains logo and notes filters, tags and folders
+  - Signup.jsx: handles registering a new user
   - TagList.css
-  - TagList.jsx
+  - TagList.jsx: list all user note tags,
   - View.css
-  - View.jsx
+  - View.jsx: responsible for switching the view or dynamically showing different content on small screen
   - dashboard.css
 - App.css
 - App.jsx
