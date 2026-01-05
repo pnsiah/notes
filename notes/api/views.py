@@ -1,11 +1,9 @@
-from django.db import transaction
 import json
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_GET
 from django.db import IntegrityError, transaction
 from .models import User, Note, Folder, Tag
 from .utils import (
@@ -29,9 +27,6 @@ def auth_status(request):
     return JsonResponse(
         {
             "authenticated": request.user.is_authenticated,
-            # "username": request.user.username
-            # if request.user.is_authenticated
-            # else None,
         }
     )
 
@@ -135,10 +130,11 @@ def dashboard(request):
 def create_note(request):
     if request.method == "POST":
         data = json.loads(request.body)
+
         title = data.get("title").strip()
         tags = data.get("tags")
         content = data.get("content").strip()
-        folder_id = data.get("folder")
+        folder_id = data.get("folder_id")
 
         if not title:
             return error_response("Title cannot be empty")
@@ -183,12 +179,22 @@ def update_note(request, note_id):
 
     new_title = data.get("title", "").strip()
     new_content = data.get("content", "").strip()
+    folder_id = data.get("folder_id", "").strip()
 
     if not new_title:
         return error_response("Title cannot be empty")
 
     if not new_content:
         return error_response("Content cannot be empty")
+
+    if folder_id is not None:
+        if folder_id == "":
+            if note.folder is not None:
+                note.folder = None
+        else:
+            if note.folder != int(folder_id):
+                folder = get_object_or_404(Folder, id=folder_id, user=request.user)
+                note.folder = folder
 
     note.title = new_title
     note.content = new_content

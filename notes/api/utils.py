@@ -30,7 +30,7 @@ def serialize_notes(notes):
             "last_edited": format_last_edited(note),
             "archived": note.archived,
             "tags": [tag.name for tag in note.tags.all()],
-            "folder": note.folder.id if note.folder else "",
+            "folder_id": note.folder.id if note.folder else "",
         }
         for note in notes
     ]
@@ -45,7 +45,7 @@ def serialize_single_note(note):
         "last_edited": note.last_edited.strftime("%d %B %Y"),
         "archived": note.archived,
         "tags": [tag.name for tag in note.tags.all()],
-        "folder": note.folder.id if note.folder else "",
+        "folder_id": note.folder.id if note.folder else "",
     }
 
 

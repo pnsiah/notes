@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import settingsIcon from "../assets/images/icon-settings.svg";
 import profileIcon from "../assets/images/circle-user-solid-full.svg";
+import logOutIcon from "../assets/images/icon-logout.svg";
 import "./Settings.css";
 
 function Settings({ logOut, userName }) {
@@ -38,7 +39,7 @@ function Settings({ logOut, userName }) {
               <span>{userName}</span>
             </button>
             <button onClick={logOut} className="settings-item">
-              <span className="item-icon">🔑</span>
+              <img src={logOutIcon} alt="" />
               <span>Log Out</span>
             </button>
           </div>

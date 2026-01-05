@@ -137,6 +137,7 @@ function Dashboard(props) {
 
       addNotification(result.message);
       await fetchNotes(selectedFilter);
+      console.log("hello", notes);
       await fetchTags();
     } catch (e) {
       console.log(e);
@@ -389,6 +390,7 @@ function Dashboard(props) {
       }
 
       setSelectedNote(result.note);
+      console.log(result.note);
     } catch (e) {
       console.log(e);
       addNotification("Failed to fetch note. Please try again.", true);
