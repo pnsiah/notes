@@ -27,7 +27,6 @@ function Sidebar({
   useEffect(() => {
     if (!DATA_FETCHING_VIEWS.includes(selectedFilter)) return;
     fetchNotes(selectedFilter);
-    console.log("Effect and selected filter:", selectedFilter);
   }, [selectedFilter]);
 
   return (
