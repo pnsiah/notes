@@ -41,7 +41,6 @@ function Dashboard(props) {
     message: "",
   });
   const [selectedNote, setSelectedNote] = useState(null);
-  // const [showActions, setshowActions] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
 
