@@ -11,6 +11,7 @@ function TagList({
   tags,
 }) {
   const handleTagClick = (tag) => {
+    // Switch UI to show notes for the selected tag
     setSelectedTag({ id: tag.id, name: tag.name });
     setView("taggedNotes");
     setHighlight("");
