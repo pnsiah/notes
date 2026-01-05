@@ -42,7 +42,7 @@ def serialize_single_note(note):
         "id": note.id,
         "title": note.title,
         "content": note.content,
-        "last_edited": note.last_edited.strftime("%d %B %Y"),
+        "last_edited": format_last_edited(note),
         "archived": note.archived,
         "tags": [tag.name for tag in note.tags.all()],
         "folder_id": note.folder.id if note.folder else "",
