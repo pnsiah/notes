@@ -1,14 +1,13 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import tag from "../assets/images/icon-tag.svg";
 import infoIcon from "../assets/images/icon-info.svg";
 import clock from "../assets/images/icon-clock.svg";
 import "../components/NoteForm.css";
 import folderIcon from "../assets/images/folder-regular-full.svg";
-import { NotificationContext } from "./NotificationContext";
 
 function NoteForm({ selectedNote, userFolders, createNote, updateNote }) {
   const [title, setTitle] = useState("");
-  const [folder, setFolder] = useState("");
+  const [folderId, setfolderId] = useState("");
   const [lastEdited, setLastEdited] = useState("");
   const [tags, setTags] = useState("");
   const [content, setContent] = useState("");
@@ -17,19 +16,17 @@ function NoteForm({ selectedNote, userFolders, createNote, updateNote }) {
     content: false,
   });
 
-  // const { addNotification } = useContext(NotificationContext);
-
   useEffect(() => {
     if (selectedNote) {
       setTitle(selectedNote.title || "");
-      setFolder(selectedNote.folder || "");
+      setfolderId(selectedNote.folder_id || "");
       setContent(selectedNote.content || "");
       setLastEdited(selectedNote.last_edited);
       setTags((selectedNote.tags || []).join(", "));
       setWarnings({ title: false, content: false });
     } else {
       setTitle("");
-      setFolder("");
+      setfolderId("");
       setTags("");
       setContent("");
       setLastEdited("Not saved yet");
@@ -47,7 +44,7 @@ function NoteForm({ selectedNote, userFolders, createNote, updateNote }) {
 
   const resetForm = () => {
     setTitle("");
-    setFolder("");
+    setfolderId("");
     setTags("");
     setContent("");
     setLastEdited("Not saved yet");
@@ -79,12 +76,12 @@ function NoteForm({ selectedNote, userFolders, createNote, updateNote }) {
 
     const noteData = {
       title,
-      folder,
       content,
-      // lastEdited,
       tags: cleanTags(tags),
+      folder_id: folderId,
     };
 
+    console.log("node data", noteData);
     // decide whether to create or update
     const success = selectedNote
       ? await updateNote(selectedNote.id, noteData)
@@ -102,9 +99,6 @@ function NoteForm({ selectedNote, userFolders, createNote, updateNote }) {
 
   return (
     <div className="create-note">
-      {/* <div className="back"> */}
-      {/*   <button>Go back</button> */}
-      {/* </div> */}
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -143,8 +137,8 @@ function NoteForm({ selectedNote, userFolders, createNote, updateNote }) {
             </div>
             <div className="right">
               <select
-                value={folder}
-                onChange={(e) => setFolder(Number(e.target.value))}
+                value={folderId}
+                onChange={(e) => setfolderId(e.target.value)}
               >
                 <option className="select-placeholder" value="" disabled>
                   Select a folder
