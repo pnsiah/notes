@@ -390,7 +390,7 @@ function Dashboard(props) {
       }
 
       setSelectedNote(result.note);
-      console.log(result.note);
+      console.log("selected note", selectedNote);
     } catch (e) {
       console.log(e);
       addNotification("Failed to fetch note. Please try again.", true);

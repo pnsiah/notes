@@ -438,6 +438,7 @@ def get_tags(request):
 
 
 @require_auth
+# fetch single note
 def fetch_note(request, note_id):
     if request.method != "GET":
         return error_response("Invalid request method", status=405)
