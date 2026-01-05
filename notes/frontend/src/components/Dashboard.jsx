@@ -41,7 +41,6 @@ function Dashboard(props) {
     message: "",
   });
   const [selectedNote, setSelectedNote] = useState(null);
-  // const [showActions, setshowActions] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
 
@@ -97,7 +96,6 @@ function Dashboard(props) {
   useEffect(() => {
     if (notes.length > 0) {
       setSelectedNote(notes[0]);
-      console.log("Auto-selecting:", notes[0].title);
     } else {
       setSelectedNote(null);
     }
@@ -192,8 +190,8 @@ function Dashboard(props) {
       addNotification(result.message);
       await fetchNotes(selectedFilter);
       await fetchTags();
-    } catch (err) {
-      console.log(err);
+    } catch (e) {
+      console.log(e);
       addNotification("Failed to delete note. Please try again.", true);
     }
   };

@@ -11,7 +11,8 @@ function FolderList({
   setHighlight,
   setSelectedFilter,
 }) {
-  const fetchFolderNotes = (folder) => {
+  const handleFolderClick = (folder) => {
+    // Switch UI to show notes for the selected folder
     setSelectedFolder({ id: folder.id, name: folder.name });
     setView("folderNotes");
     setHighlight("");
@@ -29,7 +30,7 @@ function FolderList({
           </li>
         ) : (
           folders.map((folder) => (
-            <li key={folder.id} onClick={() => fetchFolderNotes(folder)}>
+            <li key={folder.id} onClick={() => handleFolderClick(folder)}>
               <button className="folder">
                 <img src={folderIcon} alt="" />
                 <span className="tag-text">{folder.name}</span>

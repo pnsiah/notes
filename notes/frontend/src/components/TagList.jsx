@@ -10,6 +10,15 @@ function TagList({
   setSelectedTag,
   tags,
 }) {
+  const handleTagClick = (tag) => {
+    // Switch UI to show notes for the selected tag
+    setSelectedTag({ id: tag.id, name: tag.name });
+    setView("taggedNotes");
+    setHighlight("");
+    setSelectedFilter("taggedNotes");
+    setHeading(`Tagged Notes: ${tag.name}`);
+  };
+
   return (
     <section className="tags">
       <h3 className="section-heading">Tags</h3>
@@ -20,16 +29,7 @@ function TagList({
           </li>
         ) : (
           tags.map((tag) => (
-            <li
-              key={tag.id}
-              onClick={() => {
-                setSelectedTag({ id: tag.id, name: tag.name });
-                setView("taggedNotes");
-                setHighlight("");
-                setSelectedFilter("taggedNotes");
-                setHeading(`Tagged Notes: ${tag.name}`);
-              }}
-            >
+            <li key={tag.id} onClick={() => handleTagClick(tag)}>
               <button className="tag">
                 <img src={tagIcon} alt="" />
                 <span className="tag-text">{tag.name}</span>

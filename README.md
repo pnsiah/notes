@@ -40,34 +40,9 @@ cd frontend
 npm install
 npm run dev
 
+
 # Open the link shown in the terminal to access the application
 ```
-
-<!-- ### Installation and Running the Application -->
-<!---->
-<!-- 1. Navigate to the backend directory: -->
-<!--    `cd notes` -->
-<!---->
-<!-- 2. Install backend dependencies: -->
-<!--    `pip install django==5.2.7` -->
-<!---->
-<!-- 3. Create and apply database migrations: -->
-<!--    `python manage.py makemigrations`   -->
-<!--    `python manage.py migrate` -->
-<!---->
-<!-- 4. Start the Django development server: -->
-<!--    `python manage.py runserver` -->
-<!---->
-<!-- 5. Open a new terminal and navigate to the frontend directory: -->
-<!--    `cd frontend` -->
-<!---->
-<!-- 6. Install frontend dependencies: -->
-<!--    `npm install` -->
-<!---->
-<!-- 7. Start the React development server: -->
-<!--    `npm run dev` -->
-<!---->
-<!-- 8. Open the link displayed in the terminal after the React app starts to access the application in your browser. -->
 
 ## Files and Directories
 
@@ -106,7 +81,7 @@ npm run dev
 
 #### Components
 
-The `components/` directory contains all React components responsible for UI rendering and frontend logic.  
+The `components/` directory contains all React components responsible for UI rendering and frontend logic.
 Each component has a corresponding CSS file used for styling.
 
 - **Dashboard.jsx**: Main dashboard component responsible for rendering and managing notes
