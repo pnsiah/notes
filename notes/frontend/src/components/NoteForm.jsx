@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import tag from "../assets/images/icon-tag.svg";
+import tagIcon from "../assets/images/icon-tag.svg";
 import infoIcon from "../assets/images/icon-info.svg";
 import clock from "../assets/images/icon-clock.svg";
 import "../components/NoteForm.css";
@@ -118,7 +118,7 @@ function NoteForm({ selectedNote, userFolders, createNote, updateNote }) {
         <section className="form-divider">
           <div className="note-inputs">
             <div className="left">
-              <img src={tag} alt="" />
+              <img src={tagIcon} alt="" />
               <p className="left-text">Tags</p>
             </div>
             <div className="right">
