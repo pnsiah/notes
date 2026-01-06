@@ -53,6 +53,7 @@ def error_response(message, status=400):
     return JsonResponse({"status": False, "message": message}, status=status)
 
 
+# check if user is authenticated
 def require_auth(view_func):
     @wraps(view_func)
     def wrapper(request, *args, **kwargs):

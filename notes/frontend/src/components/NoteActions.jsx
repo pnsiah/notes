@@ -1,9 +1,7 @@
 import deleteIcon from "../assets/images/icon-delete.svg";
 import restoreIcon from "../assets/images/icon-restore.svg";
-import archive from "../assets/images/icon-archive.svg";
-import folderIcon from "../assets/images/folder-open-regular-full.svg";
 import archiveIcon from "../assets/images/icon-archive.svg";
-import restore from "../assets/images/icon-restore.svg";
+import folderIcon from "../assets/images/folder-open-regular-full.svg";
 import back from "../assets/images/icon-arrow-left.svg";
 import "../components/NoteActions.css";
 
@@ -14,7 +12,7 @@ function NoteActions({
   navigateBack,
 }) {
   const confirmText = selectedNote?.archived ? "Restore Note" : "Archive Note";
-  const confirmIcon = selectedNote?.archived ? restore : archive;
+  const confirmIcon = selectedNote?.archived ? restoreIcon : archiveIcon;
 
   return (
     <div className="note-actions">
