@@ -2,8 +2,6 @@ import deleteIcon from "../assets/images/icon-delete.svg";
 import restoreIcon from "../assets/images/icon-restore.svg";
 import archiveIcon from "../assets/images/icon-archive.svg";
 import folderIcon from "../assets/images/folder-open-regular-full.svg";
-import archiveIcon from "../assets/images/icon-archive.svg";
-import restoreIcon from "../assets/images/icon-restore.svg";
 import back from "../assets/images/icon-arrow-left.svg";
 import "../components/NoteActions.css";
 
