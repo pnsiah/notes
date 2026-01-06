@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import TagList from "./TagList";
 import FolderList from "./FolderList";
 import Logo from "./Logo";
-import home from "../assets/images/icon-home.svg";
-import archived from "../assets/images/icon-archive.svg";
+import homeIcon from "../assets/images/icon-home.svg";
+import archiveIcon from "../assets/images/icon-archive.svg";
 import arrow_right from "../assets/images/icon-chevron-right.svg";
 import "./SideBar.css";
 
@@ -39,7 +39,7 @@ function Sidebar({
           }}
           className={`sidebar-button ${highlight === "all" ? "highlight" : ""}`}
         >
-          <img className="home" src={home} alt="" />
+          <img className="home" src={homeIcon} alt="" />
           <span className="menu-text">All Notes</span>
           <img className="arrow-right" src={arrow_right} alt="" />
         </button>
@@ -49,7 +49,7 @@ function Sidebar({
           }}
           className={`sidebar-button ${highlight === "archived" ? "highlight" : ""}`}
         >
-          <img className="archived-icon" src={archived} alt="" />
+          <img className="archived-icon" src={archiveIcon} alt="" />
           <span className="menu-text">Archived Notes</span>
           <img className="arrow-right" src={arrow_right} alt="" />
         </button>
