@@ -1,6 +1,6 @@
 import NavItem from "./NavItem";
-import home from "../assets/images/icon-home.svg";
-import archive from "../assets/images/icon-archive.svg";
+import homeIcon from "../assets/images/icon-home.svg";
+import archiveIcon from "../assets/images/icon-archive.svg";
 import tagIcon from "../assets/images/icon-tag.svg";
 import search from "../assets/images/icon-search.svg";
 import folderIcon from "../assets/images/folder-open-regular-full.svg";
@@ -8,8 +8,8 @@ import "../components/NavBar.css";
 
 function NavBar({ view, setView, setHeading }) {
   const navItems = [
-    { id: "all", icon: home },
-    { id: "archived", icon: archive },
+    { id: "all", icon: homeIcon },
+    { id: "archived", icon: archiveIcon },
     { id: "tags", icon: tagIcon },
     { id: "search", icon: search },
     { id: "folders", icon: folderIcon },
