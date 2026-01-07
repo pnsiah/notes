@@ -8,10 +8,12 @@ function NoteList({
   setView,
   notes,
   fetchSingleNote,
+  setSelectedNote,
 }) {
   const show = (id) => {
     fetchSingleNote(id);
     setView("form");
+    // setSelectedNote({ ...note });
   };
 
   if (!hasFetched) {

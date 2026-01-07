@@ -179,7 +179,7 @@ def update_note(request, note_id):
 
     new_title = data.get("title", "").strip()
     new_content = data.get("content", "").strip()
-    folder_id = data.get("folder_id", "").strip()
+    folder_id = data.get("folder_id", "")
 
     if not new_title:
         return error_response("Title cannot be empty")
