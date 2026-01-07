@@ -449,6 +449,7 @@ def fetch_note(request, note_id):
         return error_response("Note not found.", status=404)
 
     serialized_note = serialize_single_note(note)
+    print(serialized_note)
     return JsonResponse(
         {
             "status": True,

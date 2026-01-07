@@ -40,7 +40,7 @@ function Dashboard(props) {
     isEmpty: false,
     message: "",
   });
-  const [selectedNote, setSelectedNote] = useState(null);
+  const [selectedNoteId, setSelectedNoteId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
 
@@ -54,7 +54,7 @@ function Dashboard(props) {
   const resetNoteForm = () => {
     setSearchQuery("");
     setEmptyState({ isEmpty: false });
-    setSelectedNote(null);
+    setSelectedNoteId(null);
     setView("form");
   };
 
@@ -94,15 +94,11 @@ function Dashboard(props) {
   }, []);
 
   useEffect(() => {
-    if (!selectedNote && notes.length > 0) {
-      setSelectedNote(notes[0]);
+    if (!selectedNoteId && notes.length > 0) {
+      console.log("notes here", notes);
+      setSelectedNoteId(notes[0].id);
+      console.log("first selected notes", selectedNote);
       return;
-    }
-    if (selectedNote) {
-      const updatedNote = notes.find((n) => n.id === selectedNote.id);
-      if (updateNote && updateNote.id != selectedNote.id) {
-        setSelectedNote(updatedNote);
-      }
     }
   }, [notes]);
 
@@ -204,7 +200,6 @@ function Dashboard(props) {
   };
 
   const getNotesByTag = async (tag_id) => {
-    setSelectedNote(null);
     //clear search if any
     setSearchQuery("");
 
@@ -237,7 +232,6 @@ function Dashboard(props) {
   };
 
   const getNotesByFolder = async (folder_id) => {
-    setSelectedNote(null);
     //clear search if any
     setSearchQuery("");
 
@@ -317,7 +311,6 @@ function Dashboard(props) {
   };
 
   const fetchNotes = async (filter = "all") => {
-    setSelectedNote(null);
     try {
       const response = await fetch(
         `http://localhost:8000/api/get_notes/?filter=${filter}`,
@@ -398,7 +391,9 @@ function Dashboard(props) {
         return;
       }
 
-      setSelectedNote(result.note);
+      console.log("result", result);
+      setSelectedNoteId(result.note.id);
+      console.log("noteid", result.note.id);
       console.log("selected note", selectedNote);
     } catch (e) {
       console.log(e);
@@ -452,10 +447,11 @@ function Dashboard(props) {
   };
 
   const navigateBack = () => {
-    setSelectedNote(null);
+    setSelectedNoteId(null);
     setView(selectedFilter);
   };
 
+  const selectedNote = notes.find((n) => n.id === selectedNoteId) || null;
   return (
     <div className="dashboard-container">
       {isModalOpen && (
@@ -496,7 +492,7 @@ function Dashboard(props) {
           setSelectedTag={setSelectedTag}
           setSelectedFilter={setSelectedFilter}
           setEmptyState={setEmptyState}
-          setSelectedNote={setSelectedNote}
+          setSelectedNoteId={setSelectedNoteId}
           fetchNotes={fetchNotes}
           fetchSingleNote={fetchSingleNote}
           view={view}
@@ -547,7 +543,8 @@ function Dashboard(props) {
             <Settings userName={userData.username} logOut={handleLogOut} />
           </div>
           <Notes
-            setSelectedNote={setSelectedNote}
+            setSelectedNoteId={setSelectedNoteId}
+            selectedNoteId={selectedNoteId}
             selectedNote={selectedNote}
             notesInfoMessage={notesInfoMessage}
             hasFetched={hasFetched}
@@ -568,11 +565,13 @@ function Dashboard(props) {
               createNote={createNote}
               userFolders={folders}
               selectedNote={selectedNote}
+              selectedNoteId={selectedNoteId}
             />
           )}
           <NoteActions
             selectedFilter={selectedFilter}
             selectedNote={selectedNote}
+            selectedNoteId={selectedNoteId}
             openModal={openModal}
           />
         </div>
