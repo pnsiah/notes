@@ -10,10 +10,10 @@ function NoteList({
   fetchSingleNote,
   setSelectedNote,
 }) {
-  const show = (id, note) => {
+  const show = (id) => {
     fetchSingleNote(id);
     setView("form");
-    setSelectedNote({ ...note });
+    // setSelectedNote({ ...note });
   };
 
   if (!hasFetched) {
@@ -26,7 +26,7 @@ function NoteList({
         <EmptyNotes emptyState={emptyState} />
       ) : (
         notes.map((note) => (
-          <li onClick={() => show(note.id, note)} key={note.id}>
+          <li onClick={() => show(note.id)} key={note.id}>
             <button
               className={`note ${selectedNote?.id === note.id ? "note-active" : ""}`}
             >

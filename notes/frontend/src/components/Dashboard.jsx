@@ -95,10 +95,14 @@ function Dashboard(props) {
 
   useEffect(() => {
     if (!selectedNote && notes.length > 0) {
-      // if (notes.length > 0) {
       setSelectedNote(notes[0]);
-    } else {
-      setSelectedNote(selectedNote);
+      return;
+    }
+    if (selectedNote) {
+      const updatedNote = notes.find((n) => n.id === selectedNote.id);
+      if (updateNote && updateNote.id != selectedNote.id) {
+        setSelectedNote(updatedNote);
+      }
     }
   }, [notes]);
 
@@ -200,6 +204,7 @@ function Dashboard(props) {
   };
 
   const getNotesByTag = async (tag_id) => {
+    setSelectedNote(null);
     //clear search if any
     setSearchQuery("");
 
@@ -232,6 +237,7 @@ function Dashboard(props) {
   };
 
   const getNotesByFolder = async (folder_id) => {
+    setSelectedNote(null);
     //clear search if any
     setSearchQuery("");
 
@@ -311,6 +317,7 @@ function Dashboard(props) {
   };
 
   const fetchNotes = async (filter = "all") => {
+    setSelectedNote(null);
     try {
       const response = await fetch(
         `http://localhost:8000/api/get_notes/?filter=${filter}`,
