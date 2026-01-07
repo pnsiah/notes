@@ -94,10 +94,11 @@ function Dashboard(props) {
   }, []);
 
   useEffect(() => {
-    if (notes.length > 0) {
+    if (!selectedNote && notes.length > 0) {
+      // if (notes.length > 0) {
       setSelectedNote(notes[0]);
     } else {
-      setSelectedNote(null);
+      setSelectedNote(selectedNote);
     }
   }, [notes]);
 
@@ -166,6 +167,7 @@ function Dashboard(props) {
       addNotification(result.message);
       await fetchNotes(selectedFilter);
       await fetchTags();
+      console.log("selected motherfucker", selectedNote);
     } catch (e) {
       console.log(e);
       addNotification("Failed to update note. Please try again.", true);
@@ -538,6 +540,7 @@ function Dashboard(props) {
             <Settings userName={userData.username} logOut={handleLogOut} />
           </div>
           <Notes
+            setSelectedNote={setSelectedNote}
             selectedNote={selectedNote}
             notesInfoMessage={notesInfoMessage}
             hasFetched={hasFetched}
