@@ -93,17 +93,17 @@ function Dashboard(props) {
     fetchUserData();
   }, []);
 
-  useEffect(() => {
-    if (!notes.length) return;
-    if (selectedNoteId == null) {
-      setSelectedNoteId(notes[0].id);
-      return;
-    }
-
-    if (!notes.some((n) => n.id === selectedNoteId)) {
-      setSelectedNoteId(notes[0].id);
-    }
-  }, [notes, selectedNoteId]);
+  // useEffect(() => {
+  //   if (!notes.length) return;
+  //   if (selectedNoteId == null) {
+  //     setSelectedNoteId(notes[0].id);
+  //     return;
+  //   }
+  //
+  //   if (!notes.some((n) => n.id === selectedNoteId)) {
+  //     setSelectedNoteId(notes[0].id);
+  //   }
+  // }, [notes, selectedNoteId]);
 
   const handleLogOut = async () => {
     try {
@@ -223,8 +223,12 @@ function Dashboard(props) {
 
       setNotes(result.notes);
 
-      if (!result.notes || result.notes.length === 0) {
-        setEmptyState({ message: "No notes found for this tag" });
+      if (result.notes && result.notes.length > 0) {
+        setSelectedNoteId(result.notes[0].id);
+      } else {
+        setEmptyState({
+          message: "No notes found for this tag",
+        });
       }
     } catch (e) {
       console.error(e);
@@ -255,8 +259,12 @@ function Dashboard(props) {
 
       setNotes(result.notes);
 
-      if (!result.notes || result.notes.length === 0) {
-        setEmptyState({ message: "No notes found in this folder" });
+      if (result.notes && result.notes.length > 0) {
+        setSelectedNoteId(result.notes[0].id);
+      } else {
+        setEmptyState({
+          message: "No notes found in this folder",
+        });
       }
     } catch (e) {
       console.log(e);
@@ -330,7 +338,9 @@ function Dashboard(props) {
 
       setNotes(result.notes);
 
-      if (!result.notes || result.notes.length === 0) {
+      if (result.notes && result.notes.length > 0) {
+        setSelectedNoteId(result.notes[0].id);
+      } else {
         setEmptyState({
           message:
             "You don’t have any notes yet. Start a new note to capture your thoughts and ideas.",
