@@ -223,8 +223,12 @@ function Dashboard(props) {
 
       setNotes(result.notes);
 
-      if (!result.notes || result.notes.length === 0) {
-        setEmptyState({ message: "No notes found for this tag" });
+      if (result.notes && result.notes.length > 0) {
+        setSelectedNoteId(result.notes[0].id);
+      } else {
+        setEmptyState({
+          message: "No notes found for this tag",
+        });
       }
     } catch (e) {
       console.error(e);
@@ -255,8 +259,12 @@ function Dashboard(props) {
 
       setNotes(result.notes);
 
-      if (!result.notes || result.notes.length === 0) {
-        setEmptyState({ message: "No notes found in this folder" });
+      if (result.notes && result.notes.length > 0) {
+        setSelectedNoteId(result.notes[0].id);
+      } else {
+        setEmptyState({
+          message: "No notes found in this folder",
+        });
       }
     } catch (e) {
       console.log(e);
