@@ -94,9 +94,14 @@ function Dashboard(props) {
   }, []);
 
   useEffect(() => {
-    if (!selectedNoteId && notes.length > 0) {
+    if (!notes.length) return;
+    if (selectedNoteId == null) {
       setSelectedNoteId(notes[0].id);
       return;
+    }
+
+    if (!notes.some((n) => n.id === selectedNoteId)) {
+      setSelectedNoteId(notes[0].id);
     }
   }, [notes, selectedNoteId]);
 
@@ -217,7 +222,6 @@ function Dashboard(props) {
       }
 
       setNotes(result.notes);
-      setSelectedNoteId(null);
 
       if (!result.notes || result.notes.length === 0) {
         setEmptyState({ message: "No notes found for this tag" });
@@ -250,7 +254,6 @@ function Dashboard(props) {
       }
 
       setNotes(result.notes);
-      setSelectedNoteId(null);
 
       if (!result.notes || result.notes.length === 0) {
         setEmptyState({ message: "No notes found in this folder" });
@@ -326,7 +329,6 @@ function Dashboard(props) {
       }
 
       setNotes(result.notes);
-      setSelectedNoteId(null);
 
       if (!result.notes || result.notes.length === 0) {
         setEmptyState({
@@ -448,6 +450,10 @@ function Dashboard(props) {
   };
 
   const selectedNote = notes.find((n) => n.id === selectedNoteId) || null;
+
+  // useEffect(() => {
+  //   console.log(selectedNoteId);
+  // }, [selectedNoteId]);
 
   return (
     <div className="dashboard-container">
