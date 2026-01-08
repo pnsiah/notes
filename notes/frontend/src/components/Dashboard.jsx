@@ -94,13 +94,16 @@ function Dashboard(props) {
   }, []);
 
   useEffect(() => {
-    if (!selectedNoteId && notes.length > 0) {
-      console.log("notes here", notes);
+    if (!notes.length) return;
+    if (selectedNoteId == null) {
       setSelectedNoteId(notes[0].id);
-      console.log("first selected notes", selectedNote);
       return;
     }
-  }, [notes]);
+
+    if (!notes.some((n) => n.id === selectedNoteId)) {
+      setSelectedNoteId(notes[0].id);
+    }
+  }, [notes, selectedNoteId]);
 
   const handleLogOut = async () => {
     try {
@@ -138,7 +141,6 @@ function Dashboard(props) {
 
       addNotification(result.message);
       await fetchNotes(selectedFilter);
-      console.log("hello", notes);
       await fetchTags();
     } catch (e) {
       console.log(e);
@@ -167,7 +169,6 @@ function Dashboard(props) {
       addNotification(result.message);
       await fetchNotes(selectedFilter);
       await fetchTags();
-      console.log("selected motherfucker", selectedNote);
     } catch (e) {
       console.log(e);
       addNotification("Failed to update note. Please try again.", true);
@@ -391,10 +392,7 @@ function Dashboard(props) {
         return;
       }
 
-      console.log("result", result);
       setSelectedNoteId(result.note.id);
-      console.log("noteid", result.note.id);
-      console.log("selected note", selectedNote);
     } catch (e) {
       console.log(e);
       addNotification("Failed to fetch note. Please try again.", true);
@@ -452,6 +450,11 @@ function Dashboard(props) {
   };
 
   const selectedNote = notes.find((n) => n.id === selectedNoteId) || null;
+
+  // useEffect(() => {
+  //   console.log(selectedNoteId);
+  // }, [selectedNoteId]);
+
   return (
     <div className="dashboard-container">
       {isModalOpen && (
