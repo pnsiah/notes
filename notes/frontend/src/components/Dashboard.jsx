@@ -95,12 +95,7 @@ function Dashboard(props) {
 
   useEffect(() => {
     if (!selectedNoteId && notes.length > 0) {
-      console.log("notes here", notes);
       setSelectedNoteId(notes[0].id);
-      console.log("first selected notes", selectedNote);
-      console.log("notes here in effect", notes);
-      console.log("selectedNoteId", selectedNoteId);
-      // console.log("selectedNote", selectedNote);
       return;
     }
   }, [notes, selectedNoteId]);
@@ -141,7 +136,6 @@ function Dashboard(props) {
 
       addNotification(result.message);
       await fetchNotes(selectedFilter);
-      console.log("hello", notes);
       await fetchTags();
     } catch (e) {
       console.log(e);
@@ -170,7 +164,6 @@ function Dashboard(props) {
       addNotification(result.message);
       await fetchNotes(selectedFilter);
       await fetchTags();
-      // console.log("selected motherfucker", selectedNote);
     } catch (e) {
       console.log(e);
       addNotification("Failed to update note. Please try again.", true);
@@ -224,6 +217,7 @@ function Dashboard(props) {
       }
 
       setNotes(result.notes);
+      setSelectedNoteId(null);
 
       if (!result.notes || result.notes.length === 0) {
         setEmptyState({ message: "No notes found for this tag" });
@@ -256,6 +250,7 @@ function Dashboard(props) {
       }
 
       setNotes(result.notes);
+      setSelectedNoteId(null);
 
       if (!result.notes || result.notes.length === 0) {
         setEmptyState({ message: "No notes found in this folder" });
@@ -331,7 +326,7 @@ function Dashboard(props) {
       }
 
       setNotes(result.notes);
-      console.log("notes in fetch", notes);
+      setSelectedNoteId(null);
 
       if (!result.notes || result.notes.length === 0) {
         setEmptyState({
@@ -395,10 +390,7 @@ function Dashboard(props) {
         return;
       }
 
-      console.log("result", result);
       setSelectedNoteId(result.note.id);
-      console.log("noteid", result.note.id);
-      console.log("selected note", selectedNote);
     } catch (e) {
       console.log(e);
       addNotification("Failed to fetch note. Please try again.", true);
@@ -456,8 +448,6 @@ function Dashboard(props) {
   };
 
   const selectedNote = notes.find((n) => n.id === selectedNoteId) || null;
-
-  console.log("selected note outside", selectedNote);
 
   return (
     <div className="dashboard-container">
