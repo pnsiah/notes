@@ -369,12 +369,12 @@ function Dashboard(props) {
         return;
       }
 
-      const notes = result.notes || [];
-      setNotes(notes);
+      setNotes(result.notes);
 
-      if (notes.length === 0) {
+      if (result.notes && result.notes.length > 0) {
+        setSelectedNoteId(result.notes[0].id);
+      } else {
         setEmptyState({
-          isEmpty: true,
           message:
             "No notes match your search. Try a different keyword or create a new note.",
         });
