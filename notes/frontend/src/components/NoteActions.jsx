@@ -5,12 +5,7 @@ import folderIcon from "../assets/images/folder-open-regular-full.svg";
 import back from "../assets/images/icon-arrow-left.svg";
 import "../components/NoteActions.css";
 
-function NoteActions({
-  openModal,
-  selectedFilter,
-  selectedNote,
-  navigateBack,
-}) {
+function NoteActions({ openModal, selectedNote, navigateBack }) {
   const confirmText = selectedNote?.archived ? "Restore Note" : "Archive Note";
   const confirmIcon = selectedNote?.archived ? restoreIcon : archiveIcon;
 
@@ -41,7 +36,6 @@ function NoteActions({
           <button
             onClick={() => {
               openModal({
-                //come here change is not smooth
                 type: "restore-note",
                 title: "Restore Note",
                 image: restoreIcon,

@@ -576,7 +576,6 @@ function Dashboard(props) {
             />
           )}
           <NoteActions
-            selectedFilter={selectedFilter}
             selectedNote={selectedNote}
             selectedNoteId={selectedNoteId}
             openModal={openModal}

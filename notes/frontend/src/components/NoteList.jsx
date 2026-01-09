@@ -10,7 +10,6 @@ function NoteList({
   fetchSingleNote,
 }) {
   const show = (id) => {
-    console.log("id", id);
     fetchSingleNote(id);
     setView("form");
   };
