@@ -461,10 +461,6 @@ function Dashboard(props) {
 
   const selectedNote = notes.find((n) => n.id === selectedNoteId) || null;
 
-  // useEffect(() => {
-  //   console.log(selectedNoteId);
-  // }, [selectedNoteId]);
-
   return (
     <div className="dashboard-container">
       {isModalOpen && (

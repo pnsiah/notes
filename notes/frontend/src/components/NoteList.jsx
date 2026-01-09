@@ -8,13 +8,11 @@ function NoteList({
   setView,
   notes,
   fetchSingleNote,
-  // setSelectedNoteId,
 }) {
   const show = (id) => {
     console.log("id", id);
     fetchSingleNote(id);
     setView("form");
-    // setSelectedNote({ ...note });
   };
 
   if (!hasFetched) {
