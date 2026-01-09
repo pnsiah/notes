@@ -552,8 +552,6 @@ function Dashboard(props) {
             <Settings userName={userData.username} logOut={handleLogOut} />
           </div>
           <Notes
-            setSelectedNoteId={setSelectedNoteId}
-            selectedNoteId={selectedNoteId}
             selectedNote={selectedNote}
             notesInfoMessage={notesInfoMessage}
             hasFetched={hasFetched}
