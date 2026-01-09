@@ -15,14 +15,6 @@ from .utils import (
 )
 
 
-def index(request):
-    return render(request, "index.html")
-
-
-def message(request):
-    return JsonResponse({"message": "Hello from Django!"})
-
-
 def auth_status(request):
     return JsonResponse(
         {

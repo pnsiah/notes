@@ -2,7 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("", views.index, name="index"),
     path("api/register/", views.register, name="register"),
     path("api/auth_status/", views.auth_status, name="auth_status"),
     path("api/login/", views.login_view, name="login_view"),
@@ -27,5 +26,4 @@ urlpatterns = [
     path("api/create_note/", views.create_note, name="create_note"),
     path("api/get_tags/", views.get_tags, name="get_tags"),
     path("api/get_folders/", views.get_folders, name="get_folders"),
-    path("api/message/", views.message),
 ]
