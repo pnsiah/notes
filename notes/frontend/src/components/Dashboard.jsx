@@ -461,10 +461,6 @@ function Dashboard(props) {
 
   const selectedNote = notes.find((n) => n.id === selectedNoteId) || null;
 
-  // useEffect(() => {
-  //   console.log(selectedNoteId);
-  // }, [selectedNoteId]);
-
   return (
     <div className="dashboard-container">
       {isModalOpen && (
@@ -556,8 +552,6 @@ function Dashboard(props) {
             <Settings userName={userData.username} logOut={handleLogOut} />
           </div>
           <Notes
-            setSelectedNoteId={setSelectedNoteId}
-            selectedNoteId={selectedNoteId}
             selectedNote={selectedNote}
             notesInfoMessage={notesInfoMessage}
             hasFetched={hasFetched}
@@ -582,7 +576,6 @@ function Dashboard(props) {
             />
           )}
           <NoteActions
-            selectedFilter={selectedFilter}
             selectedNote={selectedNote}
             selectedNoteId={selectedNoteId}
             openModal={openModal}

@@ -10,7 +10,6 @@ function Notes({
   resetNoteForm,
   setView,
   notes,
-  setSelectedNoteId,
   notesInfoMessage,
   fetchSingleNote,
 }) {
@@ -24,7 +23,6 @@ function Notes({
           <div className="notes-message">{notesInfoMessage}</div>
         )}
         <NoteList
-          setSelectedNoteId={setSelectedNoteId}
           emptyState={emptyState}
           hasFetched={hasFetched}
           selectedNote={selectedNote}
