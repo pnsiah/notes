@@ -131,11 +131,14 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "api/static"),
 ]
 
+
+# CORS: allow React dev servers to access the Django API
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://localhost:3000",
 ]
-#
+
+# CSRF: trust requests coming from the React frontend
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "http://localhost:3000",

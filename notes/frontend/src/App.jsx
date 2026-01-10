@@ -24,6 +24,7 @@ function App() {
     })();
   }, []);
 
+  // defines which component to render per page
   const pages = {
     LogIn: <LogIn setPage={setPage} />,
     SignUp: <SignUp setPage={setPage} />,
