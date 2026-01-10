@@ -1,4 +1,3 @@
-import Login from "./Login";
 import { useContext, useState } from "react";
 import showLogo from "../assets/images/icon-show-password.svg";
 import hideLogo from "../assets/images/icon-hide-password.svg";
@@ -24,7 +23,7 @@ function SignUp(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // validation
+    // validate fields
     if (
       !formData.username.trim() ||
       !formData.email.trim() ||
@@ -35,6 +34,7 @@ function SignUp(props) {
       return;
     }
 
+    // validate password confirmation
     if (formData.password !== formData.confirmPassword) {
       addNotification("Passwords do not match", true);
       return;
@@ -53,7 +53,7 @@ function SignUp(props) {
 
       const result = await response.json();
       if (result.status) {
-        props.setPage("LogIn");
+        props.setPage("LogIn"); //redirect to login page after successful signup
         return;
       }
 
