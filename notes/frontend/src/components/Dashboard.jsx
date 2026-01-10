@@ -12,7 +12,6 @@ import NoteActions from "./NoteActions";
 import Modal from "./Modal";
 import plusIcon from "../assets/images/icon-plus.svg";
 import "../components/dashboard.css";
-
 import { NotificationContext } from "./NotificationContext";
 
 function Dashboard(props) {
@@ -51,32 +50,34 @@ function Dashboard(props) {
     setIsModalOpen(true);
   };
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const resetNoteForm = () => {
-    setSearchQuery("");
+    setSearchQuery(""); // clear search input
     setEmptyState({ isEmpty: false });
     setSelectedNoteId(null);
     setView("form");
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
+  // switch view to show all notes
   const goToAllNotes = () => {
-    setSearchQuery("");
+    setSearchQuery(""); // clear search input
     setSelectedFilter("all");
     setHighlight("all");
     setHeading("All Notes");
   };
 
+  // switch view to show archived notes
   const goToArchivedNotes = () => {
-    setSearchQuery("");
+    setSearchQuery(""); // clear search input
     setSelectedFilter("archived");
     setHighlight("archived");
     setHeading("Archived Notes");
   };
 
-  const fetchUserData = async () => {
+  const loadDashboardData = async () => {
     const response = await fetch("http://localhost:8000/api/dashboard", {
       method: "GET",
       credentials: "include",
@@ -89,21 +90,10 @@ function Dashboard(props) {
     setHasFetched(true);
   };
 
+  // after log in fetch and set user-related data
   useEffect(() => {
-    fetchUserData();
+    loadDashboardData();
   }, []);
-
-  // useEffect(() => {
-  //   if (!notes.length) return;
-  //   if (selectedNoteId == null) {
-  //     setSelectedNoteId(notes[0].id);
-  //     return;
-  //   }
-  //
-  //   if (!notes.some((n) => n.id === selectedNoteId)) {
-  //     setSelectedNoteId(notes[0].id);
-  //   }
-  // }, [notes, selectedNoteId]);
 
   const handleLogOut = async () => {
     try {
@@ -201,8 +191,7 @@ function Dashboard(props) {
   };
 
   const getNotesByTag = async (tag_id) => {
-    //clear search if any
-    setSearchQuery("");
+    setSearchQuery(""); // clear search input
 
     try {
       const response = await fetch(
@@ -223,6 +212,7 @@ function Dashboard(props) {
 
       setNotes(result.notes);
 
+      // Handle first note selection or empty state
       if (result.notes && result.notes.length > 0) {
         setSelectedNoteId(result.notes[0].id);
       } else {
@@ -237,8 +227,7 @@ function Dashboard(props) {
   };
 
   const getNotesByFolder = async (folder_id) => {
-    //clear search if any
-    setSearchQuery("");
+    setSearchQuery(""); //clear search input
 
     try {
       const response = await fetch(
@@ -259,6 +248,7 @@ function Dashboard(props) {
 
       setNotes(result.notes);
 
+      // Handle first note selection or empty state
       if (result.notes && result.notes.length > 0) {
         setSelectedNoteId(result.notes[0].id);
       } else {
@@ -338,6 +328,7 @@ function Dashboard(props) {
 
       setNotes(result.notes);
 
+      // Handle first note selection or empty state
       if (result.notes && result.notes.length > 0) {
         setSelectedNoteId(result.notes[0].id);
       } else {
@@ -346,8 +337,8 @@ function Dashboard(props) {
             "You don’t have any notes yet. Start a new note to capture your thoughts and ideas.",
         });
       }
-    } catch (e) {
-      console.error("Failed to fetch notes:", e);
+    } catch (err) {
+      console.error("Failed to fetch notes:", err);
       addNotification("Failed to fetch notes. Please try again.", true);
     }
   };
@@ -371,6 +362,7 @@ function Dashboard(props) {
 
       setNotes(result.notes);
 
+      // Handle first note selection or empty state
       if (result.notes && result.notes.length > 0) {
         setSelectedNoteId(result.notes[0].id);
       } else {
@@ -403,8 +395,8 @@ function Dashboard(props) {
       }
 
       setSelectedNoteId(result.note.id);
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.log("Failed to fetch note", err);
       addNotification("Failed to fetch note. Please try again.", true);
     }
   };
@@ -454,6 +446,7 @@ function Dashboard(props) {
     }
   };
 
+  // reset view to selected filter
   const navigateBack = () => {
     setSelectedNoteId(null);
     setView(selectedFilter);
