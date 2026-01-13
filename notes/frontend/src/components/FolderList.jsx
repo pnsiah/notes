@@ -12,7 +12,7 @@ function FolderList({
   setSelectedFilter,
 }) {
   const handleFolderClick = (folder) => {
-    // Switch UI to show notes for the selected folder
+    // Update state to display notes for the selected folder
     setSelectedFolder({ id: folder.id, name: folder.name });
     setView("folderNotes");
     setHighlight("");
