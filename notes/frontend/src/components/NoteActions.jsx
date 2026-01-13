@@ -30,6 +30,17 @@ function NoteActions({ openModal, selectedNote, navigateBack }) {
     });
   };
 
+  const handleArchiveNoteClick = () => {
+    // open archive note modal
+    openModal({
+      type: "archive-note",
+      image: archiveIcon,
+      confirmText: "Archive Note",
+      title: "Archive Note",
+      payload: { noteId: selectedNote.id },
+    });
+  };
+
   return (
     <div className="note-actions">
       <div>
@@ -52,19 +63,7 @@ function NoteActions({ openModal, selectedNote, navigateBack }) {
             <span>{confirmText}</span>
           </button>
         ) : (
-          <button
-            onClick={() => {
-              // open archive note modal
-              openModal({
-                type: "archive-note",
-                image: archiveIcon,
-                confirmText: "Archive Note",
-                title: "Archive Note",
-                payload: { noteId: selectedNote.id },
-              });
-            }}
-            className="action-button"
-          >
+          <button onClick={handleArchiveNoteClick} className="action-button">
             <img className="icon" src={confirmIcon} alt="" />
             <span>{confirmText}</span>
           </button>
