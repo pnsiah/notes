@@ -9,6 +9,16 @@ function NoteActions({ openModal, selectedNote, navigateBack }) {
   const confirmText = selectedNote?.archived ? "Restore Note" : "Archive Note";
   const confirmIcon = selectedNote?.archived ? restoreIcon : archiveIcon;
 
+  const handleCreateFolderClick = () => {
+    // open create folder modal
+    openModal({
+      type: "create-folder",
+      image: folderIcon,
+      confirmText: "Create Folder",
+      title: "Create Folder",
+    });
+  };
+
   return (
     <div className="note-actions">
       <div>
@@ -19,14 +29,7 @@ function NoteActions({ openModal, selectedNote, navigateBack }) {
       </div>
       <div className="note-actions__group">
         <button
-          onClick={() => {
-            openModal({
-              type: "create-folder",
-              image: folderIcon,
-              confirmText: "Create Folder",
-              title: "Create Folder",
-            });
-          }}
+          onClick={handleCreateFolderClick}
           className="danger action-button"
         >
           <img className="icon folder-icon" src={folderIcon} alt="" />
@@ -35,6 +38,7 @@ function NoteActions({ openModal, selectedNote, navigateBack }) {
         {selectedNote?.archived ? (
           <button
             onClick={() => {
+              // open restore note modal
               openModal({
                 type: "restore-note",
                 title: "Restore Note",
@@ -51,6 +55,7 @@ function NoteActions({ openModal, selectedNote, navigateBack }) {
         ) : (
           <button
             onClick={() => {
+              // open archive note modal
               openModal({
                 type: "archive-note",
                 image: archiveIcon,
@@ -67,6 +72,7 @@ function NoteActions({ openModal, selectedNote, navigateBack }) {
         )}
         <button
           onClick={() => {
+            // open delete note modal
             openModal({
               type: "delete-note",
               image: deleteIcon,
