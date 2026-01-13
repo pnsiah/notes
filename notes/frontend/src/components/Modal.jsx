@@ -4,7 +4,6 @@ import { useState } from "react";
 function Modal({
   closeModal,
   modalData,
-  isOpen,
   archiveNote,
   deleteNote,
   createFolder,
@@ -13,6 +12,7 @@ function Modal({
   const { type, title, image, confirmText, payload } = modalData;
 
   const renderModalBody = (type) => {
+    // render modal body based on modal type
     switch (type) {
       case "delete-note":
         return (
@@ -55,6 +55,7 @@ function Modal({
   };
 
   const handleConfirm = () => {
+    // Perform the appropriate action based on modal type
     if (!modalData) return;
 
     switch (modalData.type) {
