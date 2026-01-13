@@ -41,6 +41,16 @@ function NoteActions({ openModal, selectedNote, navigateBack }) {
     });
   };
 
+  const handleDeleteNoteClick = () => {
+    // open delete note modal
+    openModal({
+      type: "delete-note",
+      image: deleteIcon,
+      confirmText: "Delete Note",
+      payload: { noteId: selectedNote.id },
+    });
+  };
+
   return (
     <div className="note-actions">
       <div>
@@ -69,15 +79,7 @@ function NoteActions({ openModal, selectedNote, navigateBack }) {
           </button>
         )}
         <button
-          onClick={() => {
-            // open delete note modal
-            openModal({
-              type: "delete-note",
-              image: deleteIcon,
-              confirmText: "Delete Note",
-              payload: { noteId: selectedNote.id },
-            });
-          }}
+          onClick={handleDeleteNoteClick}
           className="danger action-button"
         >
           <img className="icon" src={deleteIcon} alt="" />
