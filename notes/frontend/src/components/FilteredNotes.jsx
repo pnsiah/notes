@@ -12,6 +12,7 @@ function FilteredNotes({
   setView,
   fetchSingleNote,
 }) {
+  // fetch notes whenever selected item changes
   useEffect(() => {
     if (!selectedItem) return;
     getNotes(selectedItem.id);

@@ -9,6 +9,48 @@ function NoteActions({ openModal, selectedNote, navigateBack }) {
   const confirmText = selectedNote?.archived ? "Restore Note" : "Archive Note";
   const confirmIcon = selectedNote?.archived ? restoreIcon : archiveIcon;
 
+  const handleCreateFolderClick = () => {
+    // open create folder modal
+    openModal({
+      type: "create-folder",
+      image: folderIcon,
+      confirmText: "Create Folder",
+      title: "Create Folder",
+    });
+  };
+
+  const handleRestoreNoteClick = () => {
+    // open restore note modal
+    openModal({
+      type: "restore-note",
+      title: "Restore Note",
+      image: restoreIcon,
+      confirmText: "Restore Note",
+      payload: { noteId: selectedNote.id },
+    });
+  };
+
+  const handleArchiveNoteClick = () => {
+    // open archive note modal
+    openModal({
+      type: "archive-note",
+      image: archiveIcon,
+      confirmText: "Archive Note",
+      title: "Archive Note",
+      payload: { noteId: selectedNote.id },
+    });
+  };
+
+  const handleDeleteNoteClick = () => {
+    // open delete note modal
+    openModal({
+      type: "delete-note",
+      image: deleteIcon,
+      confirmText: "Delete Note",
+      payload: { noteId: selectedNote.id },
+    });
+  };
+
   return (
     <div className="note-actions">
       <div>
@@ -19,61 +61,25 @@ function NoteActions({ openModal, selectedNote, navigateBack }) {
       </div>
       <div className="note-actions__group">
         <button
-          onClick={() => {
-            openModal({
-              type: "create-folder",
-              image: folderIcon,
-              confirmText: "Create Folder",
-              title: "Create Folder",
-            });
-          }}
+          onClick={handleCreateFolderClick}
           className="danger action-button"
         >
           <img className="icon folder-icon" src={folderIcon} alt="" />
           <span>Create Folder</span>
         </button>
         {selectedNote?.archived ? (
-          <button
-            onClick={() => {
-              openModal({
-                type: "restore-note",
-                title: "Restore Note",
-                image: restoreIcon,
-                confirmText: "Restore Note",
-                payload: { noteId: selectedNote.id },
-              });
-            }}
-            className="action-button"
-          >
+          <button onClick={handleRestoreNoteClick} className="action-button">
             <img className="icon" src={confirmIcon} alt="" />
             <span>{confirmText}</span>
           </button>
         ) : (
-          <button
-            onClick={() => {
-              openModal({
-                type: "archive-note",
-                image: archiveIcon,
-                confirmText: "Archive Note",
-                title: "Archive Note",
-                payload: { noteId: selectedNote.id },
-              });
-            }}
-            className="action-button"
-          >
+          <button onClick={handleArchiveNoteClick} className="action-button">
             <img className="icon" src={confirmIcon} alt="" />
             <span>{confirmText}</span>
           </button>
         )}
         <button
-          onClick={() => {
-            openModal({
-              type: "delete-note",
-              image: deleteIcon,
-              confirmText: "Delete Note",
-              payload: { noteId: selectedNote.id },
-            });
-          }}
+          onClick={handleDeleteNoteClick}
           className="danger action-button"
         >
           <img className="icon" src={deleteIcon} alt="" />

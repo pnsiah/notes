@@ -462,7 +462,6 @@ function Dashboard(props) {
           archiveNote={archiveNote}
           createFolder={createFolder}
           closeModal={closeModal}
-          isOpen={isModalOpen}
           modalData={modalData}
         />
       )}
