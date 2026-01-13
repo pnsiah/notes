@@ -19,6 +19,17 @@ function NoteActions({ openModal, selectedNote, navigateBack }) {
     });
   };
 
+  const handleRestoreNoteClick = () => {
+    // open restore note modal
+    openModal({
+      type: "restore-note",
+      title: "Restore Note",
+      image: restoreIcon,
+      confirmText: "Restore Note",
+      payload: { noteId: selectedNote.id },
+    });
+  };
+
   return (
     <div className="note-actions">
       <div>
@@ -36,19 +47,7 @@ function NoteActions({ openModal, selectedNote, navigateBack }) {
           <span>Create Folder</span>
         </button>
         {selectedNote?.archived ? (
-          <button
-            onClick={() => {
-              // open restore note modal
-              openModal({
-                type: "restore-note",
-                title: "Restore Note",
-                image: restoreIcon,
-                confirmText: "Restore Note",
-                payload: { noteId: selectedNote.id },
-              });
-            }}
-            className="action-button"
-          >
+          <button onClick={handleRestoreNoteClick} className="action-button">
             <img className="icon" src={confirmIcon} alt="" />
             <span>{confirmText}</span>
           </button>
