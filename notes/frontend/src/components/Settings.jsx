@@ -19,15 +19,6 @@ function Settings({ logOut, userName }) {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-    function handleClickOutside(e) {
-      if (settingsRef.current && !settingsRef.current.contains(e.target)) {
-        setIsOpen(false);
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
 
   return (
     <div className="settings-wrapper" ref={settingsRef}>
