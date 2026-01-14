@@ -9,6 +9,16 @@ function Settings({ logOut, userName }) {
   const settingsRef = useRef(null);
 
   useEffect(() => {
+    // close settings pop up when clicked outside
+    function handleClickOutside(e) {
+      if (settingsRef.current && !settingsRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
     function handleClickOutside(e) {
       if (settingsRef.current && !settingsRef.current.contains(e.target)) {
         setIsOpen(false);
