@@ -20,6 +20,7 @@ function Search({
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current);
 
+    // Reset to full notes list when search query is empty
     if (!searchQuery || !searchQuery.trim()) {
       fetchNotes();
       setNotesInfoMessage("");
