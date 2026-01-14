@@ -1,5 +1,5 @@
-import tagIcon from "../assets/images/icon-tag.svg";
 import "../components/TagList.css";
+import tagIcon from "../assets/images/icon-tag.svg";
 import arrow_right from "../assets/images/icon-chevron-right.svg";
 
 function TagList({
