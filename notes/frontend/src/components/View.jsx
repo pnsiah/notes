@@ -56,6 +56,7 @@ function View({
   }, [view]);
 
   const renderView = () => {
+    // Render the appropriate component based on the current view state
     switch (view) {
       case "all":
         return (
