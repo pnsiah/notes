@@ -25,6 +25,7 @@ function Sidebar({
   const DATA_FETCHING_VIEWS = ["all", "archived"];
 
   useEffect(() => {
+    // Fetch notes when the selected filter is "all" or "archived"
     if (!DATA_FETCHING_VIEWS.includes(selectedFilter)) return;
     fetchNotes(selectedFilter);
   }, [selectedFilter]);

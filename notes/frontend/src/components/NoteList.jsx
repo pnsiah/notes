@@ -1,5 +1,5 @@
-import "../components/NoteList.css";
 import EmptyNotes from "./EmptyNotes";
+import "../components/NoteList.css";
 
 function NoteList({
   emptyState,
@@ -9,7 +9,7 @@ function NoteList({
   notes,
   fetchSingleNote,
 }) {
-  const show = (id) => {
+  const openNote = (id) => {
     fetchSingleNote(id);
     setView("form");
   };
@@ -24,7 +24,7 @@ function NoteList({
         <EmptyNotes emptyState={emptyState} />
       ) : (
         notes.map((note) => (
-          <li onClick={() => show(note.id)} key={note.id}>
+          <li onClick={() => openNote(note.id)} key={note.id}>
             <button
               className={`note ${selectedNote?.id === note.id ? "note-active" : ""}`}
             >
