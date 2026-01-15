@@ -17,7 +17,6 @@ import { NotificationContext } from "./NotificationContext";
 function Dashboard(props) {
   const [showHeading, setShowHeading] = useState(true);
   const [notes, setNotes] = useState([]);
-  const [isUpdating, setIsUpdating] = useState(false);
   const [heading, setHeading] = useState("All Notes");
   const [folders, setFolders] = useState([]);
   const [hasFetched, setHasFetched] = useState(false);
@@ -102,7 +101,7 @@ function Dashboard(props) {
       return;
     }
 
-    // if current selection still exists → do nothing
+    // if current selection still exists; do nothing
     const exists = notes.some((note) => note.id === selectedNoteId);
 
     if (exists) return;
