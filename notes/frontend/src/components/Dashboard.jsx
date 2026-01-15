@@ -159,6 +159,7 @@ function Dashboard(props) {
       addNotification(result.message);
       await fetchNotes(selectedFilter);
       await fetchTags();
+      setSelectedNoteId(noteId);
     } catch (e) {
       console.log(e);
       addNotification("Failed to update note. Please try again.", true);
