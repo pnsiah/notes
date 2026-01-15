@@ -17,6 +17,7 @@ import { NotificationContext } from "./NotificationContext";
 function Dashboard(props) {
   const [showHeading, setShowHeading] = useState(true);
   const [notes, setNotes] = useState([]);
+  const [isUpdating, setIsUpdating] = useState(false);
   const [heading, setHeading] = useState("All Notes");
   const [folders, setFolders] = useState([]);
   const [hasFetched, setHasFetched] = useState(false);
@@ -95,6 +96,21 @@ function Dashboard(props) {
     loadDashboardData();
   }, []);
 
+  useEffect(() => {
+    if (notes.length === 0) {
+      setSelectedNoteId(null);
+      return;
+    }
+
+    // if current selection still exists → do nothing
+    const exists = notes.some((note) => note.id === selectedNoteId);
+
+    if (exists) return;
+
+    // otherwise select first note
+    setSelectedNoteId(notes[0].id);
+  }, [notes]);
+
   const handleLogOut = async () => {
     try {
       const response = await fetch("http://localhost:8000/api/logout/", {
@@ -139,6 +155,7 @@ function Dashboard(props) {
   };
 
   const updateNote = async (noteId, noteData) => {
+    setIsUpdating(true);
     try {
       const response = await fetch(
         `http://localhost:8000/api/update_note/${noteId}/`,
@@ -212,14 +229,10 @@ function Dashboard(props) {
 
       setNotes(result.notes);
 
-      // Handle first note selection or empty state
-      if (result.notes && result.notes.length > 0) {
-        setSelectedNoteId(result.notes[0].id);
-      } else {
-        setEmptyState({
-          message: "No notes found for this tag",
-        });
-      }
+      setEmptyState({
+        message: "No notes found for this tag",
+      });
+      // }
     } catch (e) {
       console.error(e);
       addNotification("Failed to fetch notes. Please try again.", true);
@@ -248,14 +261,10 @@ function Dashboard(props) {
 
       setNotes(result.notes);
 
-      // Handle first note selection or empty state
-      if (result.notes && result.notes.length > 0) {
-        setSelectedNoteId(result.notes[0].id);
-      } else {
-        setEmptyState({
-          message: "No notes found in this folder",
-        });
-      }
+      setEmptyState({
+        message: "No notes found in this folder",
+      });
+      // }
     } catch (e) {
       console.log(e);
       addNotification("Failed to fetch notes. Please try again.", true);
@@ -328,15 +337,10 @@ function Dashboard(props) {
 
       setNotes(result.notes);
 
-      // Handle first note selection or empty state
-      if (result.notes && result.notes.length > 0) {
-        setSelectedNoteId(result.notes[0].id);
-      } else {
-        setEmptyState({
-          message:
-            "You don’t have any notes yet. Start a new note to capture your thoughts and ideas.",
-        });
-      }
+      setEmptyState({
+        message:
+          "You don’t have any notes yet. Start a new note to capture your thoughts and ideas.",
+      });
     } catch (err) {
       console.error("Failed to fetch notes:", err);
       addNotification("Failed to fetch notes. Please try again.", true);
@@ -362,15 +366,11 @@ function Dashboard(props) {
 
       setNotes(result.notes);
 
-      // Handle first note selection or empty state
-      if (result.notes && result.notes.length > 0) {
-        setSelectedNoteId(result.notes[0].id);
-      } else {
-        setEmptyState({
-          message:
-            "No notes match your search. Try a different keyword or create a new note.",
-        });
-      }
+      setEmptyState({
+        message:
+          "No notes match your search. Try a different keyword or create a new note.",
+      });
+      // }
     } catch (err) {
       console.error("Failed to search notes:", err);
       addNotification("Failed to search notes. Please try again.", true);

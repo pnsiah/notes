@@ -17,6 +17,7 @@ function NoteForm({ selectedNote, userFolders, createNote, updateNote }) {
   });
 
   useEffect(() => {
+    // populate form when a note is selected; reset when cleared
     if (selectedNote) {
       setTitle(selectedNote.title || "");
       setfolderId(selectedNote.folder_id || "");
@@ -82,19 +83,10 @@ function NoteForm({ selectedNote, userFolders, createNote, updateNote }) {
     };
 
     console.log("node data", noteData);
-    // decide whether to create or update
+    // If a note is selected, update it; otherwise create a new one
     const success = selectedNote
       ? await updateNote(selectedNote.id, noteData)
       : await createNote(noteData);
-
-    // if (success) resetForm();
-
-    // if (selectedNote) {
-    //   updateNote(selectedNote.id, noteData);
-    // } else {
-    //   createNote(noteData);
-    //   setSe
-    // }
   };
 
   return (
@@ -185,11 +177,7 @@ function NoteForm({ selectedNote, userFolders, createNote, updateNote }) {
           </div>
         )}
         <div className="note-buttons">
-          <button
-            // onClick={handleSubmit}
-            className="note-button save"
-            type="submit"
-          >
+          <button className="note-button save" type="submit">
             Save Note
           </button>
           <button

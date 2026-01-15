@@ -1,12 +1,12 @@
+import { useEffect } from "react";
 import Notes from "./Notes";
 import TagList from "./TagList";
 import FilteredNotes from "./FilteredNotes";
 import NoteForm from "./NoteForm";
 import FolderList from "./FolderList";
 import Search from "./Search";
-import "../components/View.css";
-import { useEffect } from "react";
 import NoteActions from "./NoteActions";
+import "../components/View.css";
 
 function View({
   selectedFilter,
@@ -44,97 +44,103 @@ function View({
   goToArchivedNotes,
 }) {
   useEffect(() => {
+    // Navigate to the appropriate notes view
     if (view === "all") {
       goToAllNotes();
     }
     if (view === "archived") {
       goToArchivedNotes();
     }
-    if (view === "form") {
-      setShowHeading(false);
-    } else {
-      setShowHeading(true);
-    }
+    // Show or hide heading depending on view
+    setShowHeading(view !== "form");
   }, [view]);
-  return (
-    <div className="view">
-      {view === "all" && (
-        <Notes
-          emptyState={emptyState}
-          setView={setView}
-          hasFetched={hasFetched}
-          fetchSingleNote={fetchSingleNote}
-          notes={notes}
-        />
-      )}
-      {view === "archived" && (
-        <Notes
-          emptyState={emptyState}
-          setView={setView}
-          hasFetched={hasFetched}
-          fetchSingleNote={fetchSingleNote}
-          notesInfoMessage={notesInfoMessage}
-          notes={notes}
-        />
-      )}
-      {view === "form" && (
-        <>
-          <NoteActions
-            selectedFilter={selectedFilter}
-            openModal={openModal}
-            selectedNote={selectedNote}
-            navigateBack={navigateBack}
-          />
-          <NoteForm
-            createNote={createNote}
-            updateNote={updateNote}
-            userFolders={folders}
-            selectedNote={selectedNote}
-          />
-        </>
-      )}
-      {view === "tags" && (
-        <TagList
-          setHeading={setHeading}
-          setSelectedFilter={setSelectedFilter}
-          setHighlight={setHighlight}
-          setView={setView}
-          setSelectedTag={setSelectedTag}
-          tags={tags}
-        />
-      )}
-      {view === "folders" && (
-        <FolderList
-          setHeading={setHeading}
-          setSelectedFolder={setSelectedFolder}
-          setView={setView}
-          setSelectedFilter={setSelectedFilter}
-          setHighlight={setHighlight}
-          folders={folders}
-        />
-      )}
-      {view === "search" && (
-        <>
-          <Search
-            setNotesInfoMessage={setNotesInfoMessage}
-            searchNotes={searchNotes}
-            setEmptyState={setEmptyState}
-            setSearchQuery={setSearchQuery}
-            searchQuery={searchQuery}
-            fetchNotes={fetchNotes}
-          />
+
+  const renderView = () => {
+    // Render the appropriate component based on the current view state
+    switch (view) {
+      case "all":
+        return (
           <Notes
             emptyState={emptyState}
             setView={setView}
             hasFetched={hasFetched}
             fetchSingleNote={fetchSingleNote}
             notes={notes}
-            notesInfoMessage={notesInfoMessage}
           />
-        </>
-      )}
-      {view === "taggedNotes" && (
-        <>
+        );
+      case "archived":
+        return (
+          <Notes
+            emptyState={emptyState}
+            setView={setView}
+            hasFetched={hasFetched}
+            fetchSingleNote={fetchSingleNote}
+            notesInfoMessage={notesInfoMessage}
+            notes={notes}
+          />
+        );
+      case "form":
+        return (
+          <>
+            <NoteActions
+              selectedFilter={selectedFilter}
+              openModal={openModal}
+              selectedNote={selectedNote}
+              navigateBack={navigateBack}
+            />
+            <NoteForm
+              createNote={createNote}
+              updateNote={updateNote}
+              userFolders={folders}
+              selectedNote={selectedNote}
+            />
+          </>
+        );
+      case "tags":
+        return (
+          <TagList
+            setHeading={setHeading}
+            setSelectedFilter={setSelectedFilter}
+            setHighlight={setHighlight}
+            setView={setView}
+            setSelectedTag={setSelectedTag}
+            tags={tags}
+          />
+        );
+      case "folders":
+        return (
+          <FolderList
+            setHeading={setHeading}
+            setSelectedFolder={setSelectedFolder}
+            setView={setView}
+            setSelectedFilter={setSelectedFilter}
+            setHighlight={setHighlight}
+            folders={folders}
+          />
+        );
+      case "search":
+        return (
+          <>
+            <Search
+              setNotesInfoMessage={setNotesInfoMessage}
+              searchNotes={searchNotes}
+              setEmptyState={setEmptyState}
+              setSearchQuery={setSearchQuery}
+              searchQuery={searchQuery}
+              fetchNotes={fetchNotes}
+            />
+            <Notes
+              emptyState={emptyState}
+              setView={setView}
+              hasFetched={hasFetched}
+              fetchSingleNote={fetchSingleNote}
+              notesInfoMessage={notesInfoMessage}
+              notes={notes}
+            />
+          </>
+        );
+      case "taggedNotes":
+        return (
           <FilteredNotes
             emptyState={emptyState}
             selectedItem={selectedTag}
@@ -145,10 +151,9 @@ function View({
             fetchSingleNote={fetchSingleNote}
             hasFetched={hasFetched}
           />
-        </>
-      )}
-      {view === "folderNotes" && (
-        <>
+        );
+      case "folderNotes":
+        return (
           <FilteredNotes
             emptyState={emptyState}
             selectedItem={selectedFolder}
@@ -159,10 +164,13 @@ function View({
             fetchSingleNote={fetchSingleNote}
             hasFetched={hasFetched}
           />
-        </>
-      )}
-    </div>
-  );
+        );
+      default:
+        return null;
+    }
+  };
+
+  return <div className="view">{renderView()}</div>;
 }
 
 export default View;

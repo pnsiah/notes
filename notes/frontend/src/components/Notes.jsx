@@ -1,7 +1,7 @@
 import plus from "../assets/images/icon-plus.svg";
+import NoteList from "./NoteList";
 import "../components/Notes.css";
 import "../components/NoteList.css";
-import NoteList from "./NoteList";
 
 function Notes({
   selectedNote,
