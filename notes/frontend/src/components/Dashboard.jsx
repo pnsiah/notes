@@ -95,6 +95,21 @@ function Dashboard(props) {
     loadDashboardData();
   }, []);
 
+  useEffect(() => {
+    if (notes.length === 0) {
+      setSelectedNoteId(null);
+      return;
+    }
+
+    // keep note it is selected
+    const exists = notes.some((note) => note.id === selectedNoteId);
+
+    if (!exists) {
+      setSelectedNoteId(notes[0].id);
+      return;
+    }
+  }, [notes, selectedNoteId]);
+
   const handleLogOut = async () => {
     try {
       const response = await fetch("http://localhost:8000/api/logout/", {
@@ -159,7 +174,6 @@ function Dashboard(props) {
       addNotification(result.message);
       await fetchNotes(selectedFilter);
       await fetchTags();
-      setSelectedNoteId(noteId);
     } catch (e) {
       console.log(e);
       addNotification("Failed to update note. Please try again.", true);
