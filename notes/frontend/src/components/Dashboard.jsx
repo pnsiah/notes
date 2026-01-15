@@ -229,10 +229,6 @@ function Dashboard(props) {
 
       setNotes(result.notes);
 
-      // Handle first note selection or empty state
-      // if (result.notes && result.notes.length > 0) {
-      //   setSelectedNoteId(result.notes[0].id);
-      // } else {
       setEmptyState({
         message: "No notes found for this tag",
       });
@@ -265,10 +261,6 @@ function Dashboard(props) {
 
       setNotes(result.notes);
 
-      // Handle first note selection or empty state
-      // if (result.notes && result.notes.length > 0) {
-      //   setSelectedNoteId(result.notes[0].id);
-      // } else {
       setEmptyState({
         message: "No notes found in this folder",
       });
@@ -345,15 +337,10 @@ function Dashboard(props) {
 
       setNotes(result.notes);
 
-      // Handle first note selection or empty state
-      // if (result.notes && result.notes.length > 0) {
-      //   setSelectedNoteId(result.notes[0].id);
-      // } else {
       setEmptyState({
         message:
           "You don’t have any notes yet. Start a new note to capture your thoughts and ideas.",
       });
-      // }
     } catch (err) {
       console.error("Failed to fetch notes:", err);
       addNotification("Failed to fetch notes. Please try again.", true);
@@ -379,10 +366,6 @@ function Dashboard(props) {
 
       setNotes(result.notes);
 
-      // Handle first note selection or empty state
-      // if (result.notes && result.notes.length > 0) {
-      //   setSelectedNoteId(result.notes[0].id);
-      // } else {
       setEmptyState({
         message:
           "No notes match your search. Try a different keyword or create a new note.",
